@@ -1,0 +1,1733 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage[all]{xy}
+\usepackage{cancel}
+\usepackage{pictexwd}
+\usepackage{parskip}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{vmargin}
+\usepackage{graphicx}
+
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definicion}[theorem]{Definición}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}{Lema}[theorem]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[theorem]
+\newtheorem{corolario}{Corolario}[theorem]
+\newtheorem{observation}{Observación}[theorem]
+\newtheorem{properties}{Propiedades}[theorem]
+\newtheorem{exercise}{Ejercicio}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\graphicspath{{images/}}
+
+\author{Pablo Pallàs}
+\title{Estructuras Algebraicas}
+\setlength{\parindent}{10pt}
+
+\begin{document}
+\rmfamily
+\maketitle
+\tableofcontents
+\parindent= 0cm
+\section{Generalidades sobre grupos}
+\subsection{Primeras definiciones}
+\begin{definition}Un \textbf{grupo} es un conjunto no vacío $G$ en el que está definida una operación binaria interna, que llamaremos $\cdot$ $$\begin{array}{rccl}
+\cdot\hspace{0.1cm} \colon &G \times G & \longrightarrow &G\\
+&(a,b)& \longmapsto &a \cdot b =ab
+\end{array}
+$$ con $a,b \in G$. Además, dicha operación binaria cumple: 
+\renewcommand{\labelenumi}{\roman {enumi}.}
+\begin{enumerate}
+\item $\cdot$ es \textbf{asociativa}. $$(a \cdot b)\cdot c = a \cdot(b \cdot c)\quad \forall a,b,c \in G.$$
+\item $G$ tiene \textbf{elemento neutro} para $\cdot$, que denotamos $1_{G}$. Se tiene que $$a \cdot 1_{G} = 1_{G} \cdot a = a \quad \forall a \in G.$$
+\item Todos los elementos de G son invertibles para $\cdot$, es decir:
+\begin{center}
+$\forall a \in G\quad\exists a^{-1}$ tal que $a \cdot a^{-1} = a^{-1} \cdot a = 1_{G}$.
+\end{center}
+Se dice que $a^{-1}$ es el \textbf{inverso} de $a$.
+\end{enumerate}
+Diremos que los elementos $a, b \in G$ conmutan si $a \cdot b = b \cdot a$. Si cada par de elementos de $G$ conmutan se dice que el grupo G es \textbf{abeliano}.
+\end{definition}
+
+En ocasiones, escribiremos $(G,\cdot)$ para hablar de un grupo $G$ cuando queramos destacar el hecho de que el conjunto $G$ es un grupo con la operación binaria $\cdot$, que ya sabemos que llamaremos multiplicación.
+
+\begin{properties}A partir de estos axiomas podemos deducir una serie de propiedades: 
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+\item El \textit{elemento neutro} de un grupo es único, en efecto, si existieran dos, digamos $e_{1}$ y $e_{2}$, entonces $e_{1} = e_{1}  e_{2} = e_{2}$, puesto que $e_{2}$ es neutro y $e_{1}$ también.
+\item El \textit{inverso} de cada elemento es también único. En efecto, sean $b$ y $c$ inversos de $a$. Entonces $$b = b  1_{G} = b  (a  c) = (b  a)  c = 1_{G}  c = c $$ Además, si $a  b = 1_{G}$ entonces $a$ es el inverso de $b$ y $b$ es el inverso de $a$, pues $$a^{-1} = a^{-1}  1_{G} = a^{-1} (a  b) = (a^{-1}  a)  b = 1_{G}  b= b $$ $$b^{-1} = 1_{G}  b^{-1} = (a  b)  b^{-1} = a  (b  b^{-1}) = a 1_{G} = a $$
+\item Cada elemento es el inverso de su inverso, esto es, $(a^{-1})^{-1} = a$. Consecuencia inmediata de las igualdades $a  a^{-1} = a^{-1}  a = 1_{G}$ y la unicidad del inverso.
+\item Dados $a, b \in G$, se tiene $(a  b)^{-1} = b^{-1}  a^{-1}$ ya que $$(a  b)  (b^{-1}  a^{-1}) = a  (b  b^{-1})  a^{-1} = a  a^{-1} = 1_{G} $$
+\item Dados $a,b,c \in G$ tales que $a  b = a  c$ se tiene que $b = c$, pues multiplicando por la izquierda ambos miembros de la igualdad inicial por 
+$a^{-1}$, resulta $$b = (a^{-1}  a)  b = a^{-1}  (a  b) = a^{-1}  (a  c) = (a^{-1}  a)  c = c $$
+Análogamente, si $b  a = c  a$ entonces $b = c$. Esta propiedad se llama \textbf{propiedad cancelativa}.
+\end{enumerate}
+\end{properties}
+
+\begin{example} Algunos ejemplos:\begin{enumerate}
+\item $\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$ con la suma son grupos abelianos.
+\item $\mathbb{Z}^{\ast}, \mathbb{Q}^{\ast}, \mathbb{R}^{\ast}, \mathbb{C}^{\ast}$ con el producto también son grupos abelianos.
+\item El conjunto $\mathfrak{M}_{m \times n}(\mathbb{R})$ de todas las matrices reales de tamaño $m \times n$ es un grupo abeliano con la adición de matrices.
+\item El conjunto $\mathfrak{M}_{n}(\mathbb{R})$ de todas las matrices reales de tamaño $n \times n$ no es un grupo con la multiplicación de matrices, ya que no todas las matrices cuadradas son invertibles. En cambio, el conjunto $$GL_{n}(\mathbb{R}) = \lbrace A \in \mathfrak{M}_{n}(\mathbb{R}) : det(A) \neq 0 \rbrace $$
+de todas las matrices invertibles de tamaño $n \times n$ es un grupo con la multiplicación de matrices que, en general, no es abeliano. Llamaremos \textbf{grupo general lineal} a dicho grupo.
+
+Consideremos ahora el siguiente conjunto $$SL_{n}(\mathbb{R}) = \lbrace A \in \mathfrak{M}_{n}(\mathbb{R}) : det(A) = 1 \rbrace $$
+Es fácil comprobar que $SL_{n}(\mathbb{R})$ es un grupo con la multiplicación de matrices que, en general, no será abeliano. Lo llamaremos \textbf{grupo especial lineal}.
+
+Aunque aún no conozcamos la noción de subgrupo, de contenido entre grupos, si que es evidente ver que en cuanto a conjuntos  $SL_{n}(\mathbb{R}) \subseteq GL_{n}(\mathbb{R})$.
+
+A propósito del anterior, del \textit{grupo general lineal}, sabemos que es un grupo abeliano con la operación multiplicación de matrices. Su elemento neutro es la \textit{matriz identidad}, y se tiene \begin{center}
+$A:=  \left (\begin{array}{cccc}
+a & b\\
+c & d
+\end{array} \right) \longrightarrow A^{-1} = \frac{1}{ad-bc}\left (\begin{array}{cccc}
+d & -b\\
+-c & a
+\end{array} \right)$
+\end{center}
+\item El conjunto $ G = \lbrace 1,i,-1,-i\rbrace$ con la operación multiplicación es un grupo. En efecto, el elemento neutro es el $1$, la operación es cerrada y todo producto de elementos pertenece a $G$, se cumple la propiedad asociativa y todo elemento tiene inverso: $1^{-1} = 1$, $(-1)^{-1} = -1$, $i^{-1} = -i$ y $(-i)^{-1} = i$.
+\item  Consideramos $C = \lbrace z = a+bi \in \mathbb{C} : \abs{z}^{2} = a^{2}+b^{2} = 1\rbrace$ el subconjunto de los números complejos formado por los elementos de la circunferencia de radio uno. Es un grupo con la operación multiplicación compleja. Si $n$ es un entero positivo, el subconjunto de $C$ formado por las $n$ raíces $n$-ésimas de la unidad $$C_{n} = \lbrace \xi^{k} : k = 0, \ldots, n-1 \rbrace,$$ con $\xi = \cos \left( \dfrac{2\pi}{n}\right) + i \sen \left( \dfrac{2\pi}{n}\right) $ es también un grupo con la multiplicación. En concreto es un tipo especial de grupo del que hablaremos más adelante.
+
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Además, en un grupo $G$ no sólo vamos a poder multiplicar elementos, también subconjuntos (y lo que más tarde conoceremos como subgrupos). Así, dados dos subconjuntos $X,Y \subseteq G$, escribiremos $$XY = \lbrace xy : x \in X, y \in Y \rbrace \subseteq G.$$ 
+Por asociatividad, tenemos que si $Z \subseteq G$, entonces $$(XY)Z= X(YZ).$$ También definimos $$X^{-1} = \lbrace x^{-1}: x \in X \rbrace .$$
+
+\begin{proposition}\label{biyeG} Tenemos: \begin{enumerate}
+\item La aplicación $$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x&\longmapsto &x^{-1}
+\end{array}$$ es una biyección. 
+\item Si $g \in G$, entonces las aplicaciones $$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x&\longmapsto &xg
+\end{array}$$
+$$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x&\longmapsto &gx
+\end{array}$$
+son biyectivas.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } \begin{enumerate} 
+\item Veamos que es biyectiva. Si $x^{-1} = y^{-1},$ con $x,y \in G$, entonces $x = (x^{-1})^{-1} = (y^{-1})^{-1} = y$, y así es inyectiva. Ahora, si $z \in G$ tenemos que $z$ es el inverso de $z^{-1}$, y así también es sobreyectiva.
+\item Veamos que la aplicación $$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x&\longmapsto &xg
+\end{array}$$ es biyectiva, y con la otra será análoga. Sea $xg = yg$, entonces multiplicando por $g^{-1}$ por la derecha tenemos que $x = y$ y así es inyectiva. Por otro lado, si tenemos un $z \in G$ entonces $zg^{-1}g = z$ y así es también sobreyectiva.
+
+\end{enumerate}
+
+$\hfill \square$
+
+Siempre que estudiemos una estructura algebraica se darán definiciones, nociones generales y alguna propiedad sobre ella, pero sin duda una de las cuestiones más importantes será ver si esa estructura contiene o puede contener a subconjuntos que también estén dotados con la misma estructura. En el caso de los grupos sí ocurre y corresponde, como ya sabemos, a la noción de \textit{subgrupo}. Este hecho es de especial relevancia para la \textit{Teoría de Grupos}.
+
+\begin{definition}Un subconjunto $H$ de un grupo $G$ se dice \textbf{subgrupo} de $G$ (y se escribe $H \leq G$) si, con la misma operación que $G$, es un grupo.
+\end{definition}
+
+Esta definición nos proporciona una idea de lo que estamos hablando cuando nos referimos a un subgrupo, es algo así como un grupo más pequeño contenido en el grupo grande. A nivel cualitativo nos puede servir pero necesitaremos una forma de definir también, o mejor dicho de decidir, si un elemento $x \in G$ pertenece también a un subgrupo $H$. Para ello daremos algunas formas de caracterizar a los subgrupos. Una de ellas se desprende inmediatamente de la definición, y es que dados $x,y \in G$ entonces sabemos que $xy \in G$ y como $H$ también es grupo con la misma operación de $G$ ($\cdot$ en este caso, pero que omitimos su notación) entonces en caso de que $x,y \in H$ también $xy \in H$. Pero además de este hecho un subgrupo tiene que cumplir lo siguiente:
+\begin{properties} Dado $H$ un subgrupo de $G$, tenemos: \begin{enumerate}
+\item $1_{G}$ pertenece a $H$ y es su elemento neutro.
+\item Si $x \in H$, entonces también $x^{-1} \in H$.
+\end{enumerate}
+\end{properties}
+\emph{Demostración: } \begin{enumerate}
+
+\item Por definición $H$ ha de tener elemento neutro, que llamaremos $u$. Es claro que $uu = u$. Sea $u^{-1} \in G$ el inverso de $u$ en $G$. Entonces $u^{-1}(uu) = u^{-1} u = 1_{G}$, luego $(u^{-1}u)u = 1_{G}$, y así $1_{G}u = 1_{G}$. Esto quiere decir que $u = 1_{G}.$
+
+\item Es simplemente consecuencia de lo anterior, si $x \in H$, existirá un $y \in H$ tal que $xy = 1_{G} \in H$, y de ahí se sigue.
+\end{enumerate}
+$\hfill \square$
+
+\begin{example} Veamos los siguientes ejemplos:
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+\item Consideremos el subconjunto $H = \lbrace 1,-1 \rbrace \subseteq \mathbb{R^{*}}$ (y por tanto de $\mathbb{R}$). Claramente, $H$ es un grupo con la multiplicación de números reales, pero no lo es con la adición de números reales, por tanto, $H$ es subgrupo del grupo multiplicativo $\mathbb{R^{*}}$, pero no del grupo aditivo $\mathbb{R}$.
+\item Anteriormente hemos visto que $ G = \lbrace 1,i,-1,-i\rbrace$ es un grupo con la multiplicación de números complejos, por tanto, $G$ es un subgrupo del grupo multiplicativo $\mathbb{C^{*}}$.
+\item El grupo aditivo $\mathbb{Z}$ es un subgrupo del grupo aditivo $\mathbb{Q}$, que a su vez es subgrupo del grupo aditivo $\mathbb{R}$ y éste lo es del grupo aditivo $\mathbb{C}$.
+
+
+De igual manera, el grupo multiplicativo $\mathbb{Q^{*}}$ es subgrupo del grupo multiplicativo $\mathbb{R^{*}}$ y éste lo es del grupo multiplicativo $\mathbb{C^{*}}$.
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+
+Así, una vez visto la noción de subgrupo veamos una forma de caracterizarlos bastante útil y la que se suele emplear: 
+\begin{proposition} \label{eq:condsub} Sea $H$ un subconjunto no vacío de un grupo $G$. Entonces, tenemos las siguientes condiciones equivalentes:
+\begin{enumerate}
+\item $H$ es subgrupo de $G$.
+\item Para cada par de elementos $x,y \in H$ se tiene que $xy^{-1} \in H$
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } \\
+$1. \Rightarrow 2.$ Dados dos elementos $x,y \in H$, sabemos que entonces $y ^{-1} \in H$. El producto es una operación binaria interna en $H$, porque $H$ es subgrupo. Así, como $x, y^{-1} \in H$, se tiene que $xy^{-1} \in H$.\\
+$2. \Rightarrow 1.$ Sea $x \in H$. Ahora, si tomamos $y = x$ tenemos que $$xx^{-1} \in H$$ y así $1_{G} \in H$, luego $H$ tiene elemento neutro. Ahora, dado un $y \in H$, si tomamos $x = 1_{G} \in H$, tenemos que $$y^{-1} = 1_{G}y^{-1} = xy^{-1} \in H$$ luego cada elemento de $H$ tiene inverso en $H$. Finalmente, dados $x,y \in H$ ya sabemos que $z = y^{-1} \in H$, luego $$xy = x(y^{-1})^{-1} = xz^{-1} \in H$$ y así la operación de $G$ es una operación binaria interna de $H$. La asociatividad es evidente, pues lo es para cada terna de elementos de $G$.
+
+$\hfill \square$
+
+\begin{observation} Tanto $\lbrace 1_{G} \rbrace$ como $G$ son siempre subgrupos. Llamaremos \textbf{subgrupos propios} de $G$ a aquellos subgrupos distintos de $\lbrace 1_{G} \rbrace$ y $G$.
+\end{observation}
+
+Veamos ahora un ejemplo interesante de subgrupo, en este caso los de $\mathbb{Z}$:
+\begin{example}Supongamos que $m \in \mathbb{Z}$ con $m>1$ y consideremos el conjunto $$m\mathbb{Z}= \lbrace mx : x \in \mathbb{Z}\rbrace $$ de todos los múltiplos de $m$. Claramente $m\mathbb{Z}\neq\emptyset$.
+
+
+Supongamos que $a,b \in m\mathbb{Z}$, entonces $a=mx$ y $b=my$ para algunos $x,y \in \mathbb{Z}$. Ahora, $$a-b = mx -my = m(x-y) \in m\mathbb{Z},$$ ya que $x-y \in \mathbb{Z}$.
+
+
+Por tanto, por ~\ref{eq:condsub} tenemos que es subgrupo del grupo aditivo $\mathbb{Z}$. De hecho, los subgrupos de $\mathbb{Z}$ son todos de esa forma, con $m$ un entero cualquiera.
+\end{example}
+$\hfill \blacksquare$
+
+Notar que en este caso hemos cambiado la notación empleada para la operación. En vez de escribir $ab^{-1}$ hemos escrito $a-b$, esto es así porque $\mathbb{Z}$ es un grupo abeliano y para éstos se suele emplear este tipo de notación, que se conoce como aditiva.
+
+Ya sabemos cómo son y cómo se caracterizan los subgrupos, ahora veremos cómo podemos obtenerlos a partir de ciertos conjuntos de elementos, que llamaremos generadores.
+
+\begin{definition}Si $S$ es un subconjunto no vacío de un grupo $G$, el conjunto $$\langle S \rangle = \lbrace s_{1}^{h_{1}} \ldots s_{n}^{h_{n}} : n \in \mathbb{N},\hspace{0.1cm} s_{i} \in S,\hspace{0.1cm} h_{i} \in \mathbb{Z}, \hspace{0.2cm} 1 \leq i \leq n \rbrace$$ es un subgrupo de $G$ que contiene a $S$, llamado \textbf{subgrupo generado por $S$}.
+
+
+Si $\mathcal{F}$ es la familia de todos los subgrupos de $G$ que contienen a $S$, $$ \langle S \rangle = \bigcap_{H \in \mathcal{F}} H$$ y, en particular, $\langle S\rangle \subseteq H$ para cada $H \in \mathcal{F}$.
+\end{definition}
+
+\begin{observation} Un caso particular pero muy importante es aquel en que $S = \lbrace a \rbrace$ con $a \in G$. En tal caso escribimos $\langle a \rangle$. Y tenemos que, $$\langle a \rangle = \lbrace a^{k} : k \in \mathbb{Z}\rbrace$$ y se le llama \textbf{subgrupo generado por a}.\end{observation}
+
+De hecho, a partir de este caso surgirán una tipo de grupos de sobra conocidos, los \textit{grupos cíclicos}, que estarán generados por un sólo elemento, ya que el resto de elementos del grupo serán sus potencias. 
+
+\begin{definition}Un subconjunto no vacío $S$ de un grupo $G$ se llama \textbf{sistema generador} de $G$ si $G = \langle S \rangle$. Un grupo $G$ que posee un sistema finito de generadores se llama \textit{finitamente generado}. 
+\end{definition} 
+
+Ya hemos definido lo que son los grupos abelianos, y hemos visto que ha de cumplirse la propiedad conmutativa. Esto en general no se tendrá en grupos no abelianos, pero sin embargo sí podremos encontrar subconjuntos de elementos que sí cumplan la propiedad conmutativa, es decir, que sus elementos conmutan. Además vamos a comprobar que a estos subconjuntos les vamos a poder dotar de estructura de grupo (en este caso subgrupo).
+
+\begin{definition}\label{eq:centro} Si $H$ es un subgrupo de un grupo $G$, se llama \textbf{centralizador} de $H$ en $G$ a $$C_{G}(H) = \lbrace x \in G : ax = xa \hspace{0.15cm} \forall a \in H\rbrace.$$
+Al centralizador de $G$ en $G$ lo notaremos por $Z(G)$ y le llamaremos \textbf{centro} de $G$. Así, $$Z(G) = \lbrace x \in G : ax = xa \hspace{0.15cm} \forall a \in G\rbrace.$$
+y como consecuencia se tiene que $G$ es abeliano si y sólo si $G = Z(G)$. Además, el centro es un subgrupo de $G$. De hecho más en general todavía: se tiene que $C_{G}(H)$ es un subgrupo de $G$
+\end{definition}
+\emph{Demostración: } Demostraremos esto último. Como $1_{G} \in C_{G}(H),$ éste no es vacío. Sean $x,y \in C_{G}(H),\hspace{0.1cm} a \in H$. Como $x\in C_{G}(H),\hspace{0.1cm} ax = xa$. Como $y \in C_{G}(H), \hspace{0.1cm} a^{-1} \in H,\hspace{0.1cm} a^{-1}y = ya^{-1}$. Por lo tanto, \begin{center}$a(xy^{-1}) = (ax)y^{-1} = (xa)y^{-1} = x(ay^{-1}) = x(ya^{-1})^{-1} = x(a^{-1}y)^{-1} = x(y^{-1}a) = (xy^{-1})a$\end{center} luego $xy^{-1} \in C_{G}(H)$. Así, $C_{G}(H)$ es un subgrupo de $G$.
+
+$\hfill \square$
+
+Más adelante daremos otras definiciones y llegaremos a estos subgrupos de otra forma a través de unos conceptos que veremos en los siguientes capítulos.
+
+En el caso particular de que $H = \langle a \rangle$ con $a \in G$, entonces $x \in C_{G}(H)\Leftrightarrow xa = ax$. De hecho, cuando hablemos del centralizador del subgrupo generado por $a$ en $G$ escribiremos $C_{G}(a)$ en vez de $C_{G}(\langle a \rangle)$ y $$C_{G}(a) = \lbrace x \in G : ax = xa\rbrace$$ y, es obvio que $$Z(G) = \bigcap_{a \in G} C_{G}(a).$$ Además, $a \in Z(G) \Leftrightarrow C_{G}(a) = G$, ya que si $a \in Z(G)$ cada $x \in G$ cumple $ax = xa$, luego $G \subseteq C_{G}(a) \subseteq G$. Recíprocamente, si $C_{G}(a) = G$, cada $x \in G$ pertenece a $C_{G}(a)$, luego $ax = xa$ para cada $x \in G$ y así $a \in Z(G)$.
+
+Ahora definiremos un concepto muy general, que no abarca sólo a subgrupos sino a todo subconjunto no vacío.
+
+\begin{definition} \label{eq:conjugado} Si $S$ es un subconjunto no vacío de un grupo $G$ y $a \in G$, se llama \textbf{conjugado} de $S$ por $a$ al conjunto $$S^{a} = \lbrace axa^{-1}: x \in S\rbrace$$ Diremos que $y \in S^{a} \Leftrightarrow a^{-1}ya \in S$. Ya que si $y \in S^{a} \Rightarrow y = axa^{-1}\Rightarrow a^{-1}ya = x, \hspace{0.1cm} x \in S$.
+\end{definition} 
+
+\begin{definition}\label{eq:normalizador} Si $H$ es un subconjunto no vacío de un grupo $G$, se llama \textbf{normalizador} de $H$ en $G$ a $$N_{G}(H) = \lbrace a \in G : H^{a} = H\rbrace,$$ que además es un subgrupo de $G$.
+\end{definition}
+
+\emph{Demostración: } Ya sabemos que $H^{1} = H$, por lo que $1 \in N_{G}(H)$ y así $N_{G}(H)$ es no vacío. Por otro lado, si $a,b \in N_{G}(H)$, $H^{ab^{-1}} = (H^{a})^{b^{-1}} = H^{b^{-1}}$ pues $a \in N_{G}(H)$. Además $H = H^{1} = H^{bb^{-1}} = (H^{b})^{b^{-1}} = H^{b^{-1}}$, ya que $b \in N_{G}(H)$. Tenemos entonces que $H^{ab^{-1}} = H$ luego $ab^{-1} \in N_{G}(H)$.
+
+$\hfill \square$
+
+Ahora, antes de seguir notemos la siguiente observación, que es evidente y se refiere a dos propiedades sobre la intersección de subgrupos:
+
+\begin{observation} Si tenemos una familia no vacía de subgrupos $H_{i}$ de $G$, con $i \in I$, entonces la intersección $$H = \bigcap_{i \in I} H_{i}$$ también es subgrupo de $G$.
+
+Además, para cada $a \in G$, tendremos que $$H^{a} = \bigcap_{i \in I}H_{i}^{a}.$$ Esto quiere decir que si definimos un subgrupo como la intersección de una colección de subgrupos, su conjugado será también la intersección de los mismos subgrupos de la misma colección conjugados.
+\end{observation}
+
+Antes ya habíamos dejado claro que no vamos a multiplicar sólo elementos de un grupo, también subconjuntos. Ahora que ya sabemos qué son los subgrupos podemos extender esta noción a ellos.
+\begin{definition} Dados dos subgrupos $H$ y $K$ de un grupo $G$, se define $$HK = \lbrace hk : h \in H, k \in K \rbrace.$$ A este grupo lo llamaremos \textbf{grupo producto}.
+\end{definition}
+
+Sin embargo, este producto no se suele comportar muy bien. En general, el producto de subgrupos no será subgrupo, para que lo sea tendrá que ocurrir lo siguiente:
+
+\begin{proposition} $HK$ es subgrupo de $G$ si y sólo si $HK = KH$. Es claro que $H \subseteq HK$ y que $K \subseteq HK$.
+\end{proposition}
+\emph{Demostración: } Supongamos que $HK$ es subgrupo de $G$. Si $x = hk \in HK$ entonces $k^{-1}h^{-1} = x^{-1} \in HK$, luego $k^{-1}h^{-1} = uv$ con $u \in H$, $v \in K$ y así $x = hk = (k^{-1}h^{-1})^{-1} = (uv)^{-1} = v^{-1}u^{-1} \in KH$ y esto prueba $HK \subseteq KH$.Sea ahora $y = kh \in KH$. Entonces $z = h^{-1}k^{-1} \in HK$, y como $HK$ es subgrupo $y = kh = (h^{-1}k^{-1})^{-1} = z^{-1} \in HK$, y así $KH \subseteq HK$.
+ 
+Recíprocamente, supongamos que $HK = KH$. Evidentemente $HK$ es no vacío, pues $1 = 1 \cdot 1 \in HK$. Además, dados $x = h_{1}k_{1}$, $y = h_{2}k_{2}$, con $x,y \in HK$,$xy^{-1} = h_{1}k_{1}k_{2}^{-1}h_{2}^{-1} = h_{1}k_{3}h_{2}^{-1}$, con $k_{3} = k_{1}k_{2}^{-1} \in K$. Como $k_{3}h_{2}^{-1} \in KH = HK$, $k_{3}h_{2}^{-1} = h_{3}k$, con $h_{3} \in H$, $k \in K$. Así, $xy^{-1} = h_{1}h_{3}k = hk \in HK$, con $h = h_{1}h_{3} \in H$.
+
+$\hfill \square$
+
+Veamos una aplicación de la proposición que acabamos de ver:
+
+\begin{example} Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación es la suma).
+
+
+$H+K$ no es el subgrupo $\lbrace 0 \rbrace$ pues, $m = m + 0 \in H + K$. Y, como ya sabemos, existirá un $d \in \mathbb{Z}$ tal que $m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, veamos que $d = mcd(m,n)$:
+
+
+Como $m = m + 0 \in m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, $d$ divide a $m$, y como $n = 0 + n \in m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, $d$ divide a $n$. Además $d \in d\mathbb{Z} = m\mathbb{Z} + n\mathbb{Z}$ luego existen $a,b \in \mathbb{Z}$, tal que $d = ma + nb$. Entonces dado un $c$ que divida a $m$ y $n$:
+$$m = cu,\hspace{0.1cm} n = cv, u, u \in \mathbb{Z}$$ luego $d = (cu)a + (cv)b = c(ua + vb)$ y $c$ divide a $d$. Esto prueba que $d = mcd(m,n)$. 
+
+En particular, dos números enteros $m,n$ son primos entre sí si y sólo si $$1 = am + bn \hspace{0.2cm} a,b \in \mathbb{Z}.$$ En efecto, si $mcd(m,n) = 1$, es $m\mathbb{Z} + n\mathbb{Z} = 1\mathbb{Z}$ por lo visto ahora. Así, $1 \in m\mathbb{Z}+n\mathbb{Z}$. Recíprocamente, si $1 = am + bn$ y $d$ es un divisor de $m$ y $n$, tendremos $m = du$, $n = dv$, luego $1 = d(au + bv)$ y así $d = +1$ ó $-1$. Y como podemos asumir que $mcd(m,n)$ es positivo entonces $mcd(m,n) = 1$.
+\end{example}
+
+$\hfill \blacksquare$
+
+Otra noción importante de un grupo es el número de elementos que tiene, su cardinal si lo vemos como conjunto.  Aunque no es exactamente lo mismo, veremos que en algunos grupos podremos tener todos los elementos que queramos pero el orden no será infinito, como es el caso de los \textit{grupos cíclicos}. Además, también vamos a ver cómo extender este concepto a un sólo elemento cualquiera de un grupo $G$ cualquiera, y tendrá una íntima relación con el subgrupo que genera.
+
+\begin{definition} Sea $G$ un grupo. Al número de elementos de un subgrupo finito $H$ de $G$ se le llama \textbf{orden} de $H$ y lo denotamos por $o(H)$ ó también $ |H|$. En particular, cuando $G$ es finito, el número de elementos de $G$ se llama \textbf{orden} de $G$ y lo denotaremos $|G|$.. En caso contrario, diremos que $G$ es un grupo infinito.
+
+
+Dado un elemento $a \in G$ llamaremos \textbf{orden} de $a$, y lo denotaremos por $o(a)$, al número de elementos del subgrupo que genera, $\langle a \rangle$. Es decir, que $o(a) = | \langle a \rangle |$.
+\end{definition}
+
+Veamos algunas propiedades interesantes del orden y algunos resultados importantes: 
+\begin{proposition}Sea $G$ un grupo y $a \in G$ un elemento de torsión (su subgrupo generado es finito). Entonces:
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+\item Existe $k \geq 1$ tal que $a^{k}=1$.
+\item El orden de $a$ es el menor natural $n \geq 1$ tal que $a^{n} = 1$
+\item Si $n = o(a)$, entonces $\langle a \rangle = \lbrace 1, a, \cdots, a^{n-1} \rbrace.$
+\item Si $n = o(a)$ y $k \in \mathbb{N}$, $a^{k} = 1$ si y sólo si $k$ es múltiplo de $n$.($n$ divide a $m$).
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Veamos punto por punto: \begin{enumerate}
+\item Como $\langle a \rangle$ es finito, la aplicación 
+$$
+\begin{array}{rccl}
+&\mathbb{N} \backslash \lbrace 0 \rbrace & \longrightarrow &\langle a \rangle\\
+&m& \longmapsto &a^{m}
+\end{array}
+$$ no es inyectiva. Así, existen $r<s \in \mathbb{N}$ tales que $a^{r} = a^{s}.$ Si $k = s - r$, $1 = a^{0} = a^{r}a^{-r} = a^{s}a^{-r} = a^{s-r} = a^{k}$ .
+\item Sea $n$ el menor natural que cumple $a^{n} = 1$, cuya existencia se deduce de lo que acabamos de demostrar. Si probamos que $$\langle a \rangle = \lbrace 1, a, \ldots, a^{n-1} \rbrace$$ y que todos los miembros de la derecha son distintos, entonces tendremos que $o(a) = n$.
+Evidentemente el elemento de la izquierda de la igualdad contiene al de la derecha. Recíprocamente, si $x = a^{k}$, $k \in \mathbb{Z}$, dividimos por $n$ y por el algoritmo de la división sabemos que: $$k = qn + r, \hspace{0.1cm} 0\leq r \leq n-1,$$ luego $x = a^{qn+r}= (a^{n})^{q}a^{r} = 1^{q}a^{r} = a^{r}, \hspace{0.1cm}  0\leq r \leq n-1.$Por último, si existieran $0\leq r < s \leq n-1$ tales que $a^{r} = a^{s},$ sería $a^{s-r} = a^{s}a^{-r} = a^{r}a^{-r} = a^{0} = 1, \hspace{0.1cm} s-r \leq n-1 < n,$ pero esto es absurdo porque $n$ es el menor positivo tal que $a^{n} = 1$.
+\item Demostrado al demostrar $2.$
+\item Si $m = np$ es múltiplo de $n$, $a^{m} = a^{np} = (a^{n})^{p} = 1.$ Recíprocamente, si $m$ no es múltiplo de $n$, $m = np + r, \hspace{0.1cm} 1\leq r\leq n-1$, luego $a^{m} = a^{np + r} = (a^{n})^{p}a^{r} = 1^{p}a^{r} = a^{r} \neq 1$ por 2.
+\end{enumerate}
+
+$\hfill \square$
+
+Así, el subgrupo generado por un elemento $a \in G$ va a tener un número de elementos que va a estar marcado por su orden. Por lo tanto, queda claro que $o(a) = |\langle a \rangle |$.
+
+Junto con el orden, veremos otra noción de suma importancia, que nos dará uno de lo resultados más útiles del capítulo. Pero antes de ello vamos a tener que definir unas relaciones de equivalencia concretas: 
+
+\begin{definition}Sea $G$ un grupo y $H$ un subgrupo de $G$. Llamaremos $R_{H}$ y $R^{H}$ a las siguientes \textit{relaciones} en $G$:
+\begin{center}
+$xR_{H}y$ si y sólo si $xy^{-1} \in H$\\
+$xR^{H}y$ si y sólo si $x^{-1}y \in H$
+\end{center}
+\end{definition}
+
+Tanto $R_{H}$ como  $R^{H}$ son relaciones de equivalencia.
+
+\emph{Demostración: } Lo haremos para $R_{H}$ (para $R^{H}$ es análoga). Tenemos que ver que cumplen con las propiedades \textit{reflexiva} (1), \textit{simétrica} (2) y \textit{transitiva} (3)\begin{enumerate}
+\item Si $x \in G$, $xx^{-1} = 1 \in H$ luego $xR_{H}x$.\vspace{0.2cm}\\
+\item Si $xR_{H}y$ entonces $xy^{-1} \in H$, luego $(xy^{-1})^{-1} \in H,$ y esto es $yx^{-1} \in H$ así que $yR_{H}x$.\vspace{0.2cm}\\
+\item Si $xR_{H}y$, y $yR_{H}z$, entonces se tiene $xy^{-1} \in H, \hspace{0.2cm} yz^{-1} \in H$
+y así $xz^{-1} = (xy^{-1})(yz^{-1}) \in H$ por lo que $xR_{H}z$.
+\end{enumerate}
+$\hfill \square$
+
+El haber definido estas relaciones de equivalencia nos va a permitir estudiar las clases que éstas mismas generan para llegar a unos conjuntos especiales que llamaremos \textit{coclases} ó \textit{clases laterales}. En ocasiones se hace al revés, primero se presentan las coclases y a partir de ahí estudiamos (normalmente en sus demostraciones) las relaciones que definen. En este caso se ha preferido partir de las relaciones de equivalencia e ir construyendo poco a poco éstos conjuntos. Así que:
+
+Sea ahora $\left[ x \right]_{R^{H}}$ la clase de equivalencia del elemento $x \in G$ definida por la relación $R^{H}$. Entonces \begin{center}$\left[ x \right]_{R^{H}} = \lbrace a \in G : xR^{H}a \rbrace = \lbrace a \in G : x^{-1}a = h \in H \rbrace = \lbrace a \in G: a = xh, \hspace{0.1cm} h \in H \rbrace = xH.$\end{center}
+En efecto, dado un $x \in G$, la clase de equivalencia de $x$ respecto de $R^{H}$ es $xH$, y la denominaremos \textit{clase lateral a izquierda módulo $H$} ó \textit{coclase izquierda}. Análogamente podemos hacer con $R_{H}$, \begin{center}$\left[ x \right]_{R_{H}} = \lbrace a \in G : xR_{H}a \rbrace = \lbrace a \in G: ax^{-1} = h \in H \rbrace = \lbrace a \in G : a = hx, \hspace{0.1cm} h \in H \rbrace = Hx,$\end{center} y tendremos que $Hx$ es la \textit{clase lateral a derecha módulo $H$} ó \textit{coclase derecha}. Notar que en este último caso tomamos los $h$ de la forma $ax^{-1}$ cuando la relación $R_{H}$ en realidad vendría a decir que $h$ sería de la forma $xa^{-1}$, simplemente tomamos el inverso (que también está en $H$) ya que la relación es de equivalencia es igual da hacer $x R_{H}a$ que $aR_{H}x$.
+
+\begin{proposition} Sea $H \leq G$ y $x,y \in G$. Entonces: \begin{enumerate}
+\item $xH = H$ si y sólo si $x \in H$.
+\item $xH = yH$ si y sólo si $x^{-1}y \in H$.
+\item $xH \cap yH \neq 0$ si y sólo si $xH = yH$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }\begin{enumerate}
+\item Si $x \in H$ ya sabemos por~\ref{biyeG} que $xH = H$. Recíprocamente, si $xH = H$ entonces $x = x1 \in xH = H$.
+\item Sea $xH = yH$, entonces $y \in yH = xH$ luego $y = xh$ para algún $h \in H$. De aquí tenemos que $x^{-1}y = h \in H$. Recíprocamente, sea $x^{-1}y \in H$, luego $x^{-1}y = h \in H$ y se tiene que $y = xh$ y $x = yh^{-1}$. Sea $a \in xH$, entonces $a = xh'$, $h' ,\in H$. Ahora $a = xh' = yh^{-1}h' = y(h^{-1}h') \in yH$ ya que $h^{-1}h' \in H$. Así, $xH \subseteq yH$. Al revés es análogo. Así, $xH = yH$.
+\item Sea $z \in (xH \cap yH)$. Entonces $z = xh \in xH$ y también $z= yh' \in yH$, luego $x^{-1}z \in H$ e $y^{-1}z \in H$. Como $H$ es grupo, $(y^{-1}z)^{-1} = z^{-1}y \in H$ y $(x^{-1}z)(z^{-1}y) = x^{-1}y \in H$. Ahora, por el apartado anterior $xH = yH$. Recíprocamente es evidente.
+
+\end{enumerate}
+
+$\hfill \square$
+
+Todo esto que acabamos de hacer es exactamente análogo con las coclases a derecha. Además notar que a partir de lo que acabamos de ver tenemos que: 
+
+\begin{enumerate}
+\item $xR^{H}y$ si y sólo si $xH = yH$
+\item $xR_{H}y$ si y sólo si $Hx = Hy$
+\end{enumerate}
+
+Con esto, ya tenemos más que claro que las clases de equivalencia de estas relaciones, las coclases, van a definir una partición de $G$. Y también sabemos que podemos considerar los conjuntos de las clases de equivalencia (coclases) para formar los conjuntos cociente:
+
+\begin{definition}A los conjuntos de estas clases los llamaremos $G/R^{H}$ y $G/R_{H}$ respectivamente. Son los \textbf{conjuntos cocientes} definidos por las relaciones de equivalencia $R^{H}$ y $R_{H}$ respectivamente. Es decir, podríamos definirlos así: $$G/R^{H} = \lbrace xH : x \in G \rbrace.$$ $$G/R_{H} = \lbrace Hx: x \in G \rbrace.$$ Además sabemos que ambos conforman particiones de $G$. Es decir, que $G$ es unión \textbf{disjunta} de clases de equivalencia:
+$$G = \bigcup_{x\in R}xH,$$
+donde $R$ es un conjunto de representantes de clases de equivalencia definidas por $R^{H}$. Además $$ |G| = \sum_{xH \in G/R^{H}} card \hspace{0.1cm} xH.$$ Análogamente con $R_{H}$. Hablamos de cardinales y no órdenes porque hablamos de conjuntos y no de grupos. 
+\end{definition}
+
+\begin{proposition}
+Sea $H$ un subgrupo de un grupo $G$. Entonces:
+$$card(G/R^{H})= card(G/R_{H}).$$
+\end{proposition}
+\emph{Demostración: } Veamos que la aplicación
+
+$$
+\begin{array}{rccl}
+\Psi \colon &G/R^{H} & \longrightarrow & G/R_{H}\\
+&xH & \longmapsto &Hx^{-1}
+\end{array}
+$$
+es biyectiva. \begin{enumerate} 
+\item Veamos primero que $\Psi$ está \textit{bien definida}, es decir, si $xH = yH$ entonces $Hx^{-1} = Hb^{-1}$. En efecto, si $xH = yH$, entonces tenemos que $x R^{H}y$, es decir que $x^{-1}y \in H$. Y como $H$ es subgrupo de $G$, $(x^{-1}y)^{-1} \in H$, y como $(x^{-1}y)^{-1} = y^{-1}(x^{-1})^{-1}$ se tiene que $y^{-1}R_{H}x^{-1}$ y por tanto $Hy^{-1} = Hx^{-1}$.
+\item Veamos ahora que es \textit{inyectiva}. Supongamos que $xH, \hspace{0.1cm} yH \in G/R^{H}$. Si $\Psi (xH) = \Psi (yH)$, entonces $Hx^{-1} = Hy^{-1}$, luego $y^{-1}R_{H}x^{-1}$ y así $y^{-1}(x^{-1})^{-1} = (x^{-1}y)^{-1} \in H$ por lo que también $x^{-1}y \in H$, pero esto quiere decir que $x R^{H}y$ o lo que es lo mismo: que $xH = yH$. Así $\Psi$ es inyectiva.
+\item Veamos que es \textit{suprayectiva}. Si $Hx \in G/R_{H}$, como $x^{-1}H \in G/R^{H}$ y $\Psi (x^{-1}H) = H(x^{-1})^{-1} = Hx$ tenemos que $\Psi$ es suprayectiva.
+\end{enumerate}
+Por lo tanto, $\Psi$ es una aplicación biyectiva y así $$card(G/R^{H}) = card(G/R_{H}).$$
+$\hfill \square$
+
+Esta proposición nos permite establecer el concepto de \textit{índice} de un subgrupo en un grupo como el número de elementos del conjunto formado por las clases laterales a izquierda (o derecha) del subgrupo.
+
+\begin{definition} \label{eq:indice} Decimos que $H$ es un subgrupo de $G$ de \textbf{índice infinito} si $G/R_{H}$ (y por ello $G/R^{H}$) es un conjunto infinito.
+
+
+Cuando $G/R_{H}$ es finito, llamamos \textbf{índice} de $H$ en $G$ y lo denotamos $\left[ G:H \right]$, al número de elementos de $G/R_{H}$ (que además coincide con $G/R^{H}$). Es decir, definimos el índice como el número de coclases a derecha (ó a izquierda porque es el mismo). En este caso decimos que $H$ es un subgrupo de $G$ de índice finito ó que tiene índice finito en $G$. Por tanto tenemos que $$\left[ G:H \right] = card(G/R_{H}) = card(G/R^{H}).$$
+
+Además es claro que si $G$ tiene orden finito, como la aplicación $$
+\begin{array}{rccl}
+&G & \longrightarrow & G/R_{H}\\
+&x & \longmapsto &Hx
+\end{array}
+$$ es suprayectiva, todo subgrupo de $G$ es de índice finito.
+\end{definition}
+
+Una consecuencia bastante clara de todo esto es que $[G:1] = |G|$ y $[G:H] = 1$ si y sólo si $G = H$.
+
+\begin{example} Veamos cómo se relacionan los subgrupos de $\mathbb{Z}$ con el mismo $\mathbb{Z}$ a través de sus respectivos índices:
+
+Sea $G = \mathbb{Z}$ y $H \neq \lbrace 0 \rbrace$ un subgrupo de $\mathbb{Z}$. Ya sabemos que $H$ es de la forma $H = m\mathbb{Z}$, con $m$ un entero positivo cualquiera. Como la operación en $\mathbb{Z}$ es la \textit{suma}, las clases respecto de $R_{H}$, que son las mismas que respecto $R_{m\mathbb{Z}}$, serán de la forma $$m\mathbb{Z} + x, \hspace{0.1cm} x \in \mathbb{Z}.$$ Veamos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace m\mathbb{Z} + 0, m\mathbb{Z} + 1, \ldots, m\mathbb{Z} + (m-1)\rbrace.$$ Dado $x \in \mathbb{Z}$ obtenemos, por el algoritmo de la división, $$x = qm + r, \hspace{0.1cm} 0\leq r\leq m-1,$$y así $x-r = qm \in m\mathbb{Z}$, luego $xR_{m\mathbb{Z}}r$, es decir, $m\mathbb{Z} + x = m\mathbb{Z} + r$, lo que prueba la igualdad. Además las clases son todas distintas, es decir, los elementos del segundo miembro son distintos, pues si $m\mathbb{Z} + k = m\mathbb{Z} + l, \hspace{0.1cm} 0\leq k < l \leq m-1$, entonces $lR_{m\mathbb{Z}}k$, y por tanto $l-k \in m\mathbb{Z}, \hspace{0.1cm} 1\leq l-k <m,$ y tenemos que $l-k = qm, \hspace{0.1cm} q \in \mathbb{Z}$ lo cual implicaría que $l = qm +k > m$ si $q>0$ ó $k = l - qm >m$ si $q < 0$ ( y así $-q >0$), lo cual es imposible.
+
+Así, $\left[ \mathbb{Z}:m\mathbb{Z} \right] = m$. Notar que $\mathbb{Z}$ es un grupo infinito cuyos subgrupos no nulos tienen índice finito.
+\end{example}
+$\hfill \blacksquare$
+
+Aunque hayamos usado en este caso la notación a derecha, normalmente usaremos la de izquierda, es decir, que lo anterior lo escribiremos como: $$\mathbb{Z}/m\mathbb{Z} = \lbrace 0 + m\mathbb{Z}, 1 + m\mathbb{Z}, \ldots, (m-1) + m\mathbb{Z} \rbrace.$$
+
+\begin{observation} De~\ref{biyeG} tenemos que si $G$ es un grupo, y $H$ es un subgrupo de $G$ entonces los conjuntos $H$, $xH$ y $Hx$ son biyectivos, es decir, tienen el mismo número de elementos. Por lo tanto tenemos que $card \hspace{0.1cm} (xH) = |H| = card \hspace{0.1cm} (Hx)$.
+\end{observation}
+
+Además también deducimos que, dado un $x \in G$, existe una biyección entre $xH$ y $Hx$, aunque ésto no quiere decir que necesariamente tengan que ser iguales, pueden ser \textit{distintos} y veremos más adelante que ocurre cuando se da la igualdad. Ahora ya tenemos todo lo necesario para ver el que es, con toda seguridad, el resultado más importante de los vistos hasta ahora.
+
+\begin{theorem}[\textit{Teorema de Lagrange}]
+Sea $G$ un grupo y $H$ un subgrupo de $G$. Son equivalentes:
+\begin{enumerate}
+\item $G$ es finito
+\item $|H|$ es finito y $H$ tiene índice finito en $G$. En tal caso, $$|G| = |H|\cdot \left[ G:H \right]$$
+\end{enumerate}
+ En particular, en todo grupo finito el orden de cualquier subgrupo divide al orden del grupo.
+\end{theorem}
+\emph{Demostración: } Veamoslo por doble impicación:\vspace{0.2cm}\\
+$1. \Rightarrow 2.$ Como $$\begin{array}{rccl}
+&H & \longrightarrow & G\\
+&x & \longmapsto &x
+\end{array}$$ es inyectiva la finitud de $G$ implica la de $H$, y por~\ref{eq:indice} también lo es $G/R_{H}$.\vspace{0.2cm}\\
+$2. \Rightarrow 1.$ Como $R_{H}$ es relación de equivalencia, $G$ es unión \textit{disjunta} de las clases de equivalencia como ya sabemos. Así, recordamos que $$|G| = \sum_{Hx\in G/R_{H}} card \hspace{0.1cm} (Hx).$$ Ahora, por~\ref{eq:preL}, $card \hspace{0.1cm} (Hx) = card \hspace{0.1cm} (H) = |H|$ tal y como vimos, luego $$|G| = |H| \cdot card \hspace{0.1cm} G/R_{H} = |H| \cdot [G: H],$$ y así $G$ es finito, y se tiene la conocida \textit{fórmula de Lagrange}.
+
+$\hfill \square$
+
+Como consecuencia inmediata se tiene que si $G$ grupo y $H$ subgrupo de $G$ son finitos, y es importante recalcar esto, entonces $$\left[ G:H \right] = \frac{|G|}{|H|}.$$
+
+El \textit{Teorema de Lagrange} es uno de los resultados más importantes en \textit{Teoría de Grupos} y su sencillez lo convierte en una de las herramientas más útiles que servirá para demostrar resultados más complicados más adelante. Dos consecuencias sencillas pero útiles son las que siguen: 
+
+\begin{corolario}Si $H$ y $K$ son subgrupos finitos de un grupo $G$ con $|H| = m$, $|K| = n$ y $mcd(m,n) = 1$, entonces $H\cap K = \lbrace 1_{G} \rbrace $.
+\end{corolario}
+\emph{Demostración: }$H\cap K$ es subgrupo de $H$ y de $K$, luego $|H\cap K|$ debe dividir a $m$ y $n$. Como $mcd(m,n) = 1$, entonces $|H \cap K| = 1$ y así $H \cap K = \lbrace 1_{G} \rbrace$.
+
+$\hfill \square$
+\begin{corolario}Supongamos que $G$ es un grupo finito. Si $a \in G$, entonces $o(a)\mid |G|$ y, en particular, $a^{|G|} = 1$.
+\end{corolario}
+\emph{Demostración: }Supongamos que $a \in G$ y que $o(a) = m$. Ya sabemos que $|\langle a \rangle | = m$ y como $\langle a \rangle $ es un subgrupo de $G$, por el teorema de Lagrange, $m \mid |G|$. Así $|G| = mq$ con $q \in \mathbb{Z}$, y por tanto: $$a^{|G|} = a^{mq} = (a^{m})^{q} = 1^{q} = 1.$$
+
+$\hfill \square$
+
+En diagramas como el siguiente se nos presenta información útil para representar una serie de relaciones en un grupo, esquemas así serán utilizados con frecuencia. En éste podemos apreciar una serie de nodos, que son grupos y subgrupos, en este caso $G$ y dos subgrupos suyos: $H$ y $K$ cualesquiera. Las líneas representan \textit{contenido}, el subgrupo de abajo está contenido en el de arriba. En este caso $G=HK$ y lo expresaremos como un diamante. 
+$$\xymatrix @=2cm {&G \ar@{-}[ld]_n \ar@{-}[rd]^m  \\ H \ar@{-}[rd]_m & & K \ar@{-}[ld]^n \\ &H \cap K }$$
+
+Además si $G$ es un grupo finito, entonces se va a cumplir que $n= [G:H] = [K: K \cap H]$ y $m= [G:K] = [H : H \cap K]$. Este diagrama nos va a proporcionar información también sobre los órdenes de los subgrupos, cuando veamos el orden del producto más adelante será interesante volver a revisarlo.
+
+Ahora comprobaremos una propiedad que tiene la \textit{fórmula de Lagrange}, la transitividad, es decir, que se puede aplicar sucesivamente sobre subgrupos que cumplen las condiciones expuestas en el teorema. En concreto, lo vamos a comprobar para un subgrupo contenido en otro.
+
+\begin{proposition}[\textit{Transitividad del índice}]Sean $G$ un grupo y $H$ y $K$ subgrupos de $G$ tales que $H \subseteq K$. Entonces:
+\begin{enumerate}
+\item $H$ es subgrupo de $K$
+\item Si el índice de $H$ en $G$ es finito lo son también el índice de $K$ en $G$ y el de $H$ en $K$ y $$\left[ G:H \right] = \left[ G:K \right]\cdot \left[ K:H \right].$$
+\end{enumerate}
+Esta propiedad se conoce como \textit{transitividad del índice.}
+\end{proposition}
+\emph{Demostración: }La aplicación $\varphi \colon G/R_{H}  \longrightarrow  G/R_{K}$ es sobreyectiva, luego la finitud de $G/R_{H}$ implica la de $G/R_{K}$, esto es $m:= \left[ G:K \right]$ es finito. Sean $a_{1}, \ldots, a_{m}$ representantes de las clases de equivalencia de $G/R_{K}$, es decir, $$G = \bigcup_{i=1}^{m} Ka_{i}.$$ la finitud de $\left[ G:H \right]$ implica la de $\left[ K:H \right]$ porque $\left[ K:H \right]$ es el número de elementos de $K/R_{H} \subseteq G/R_{H}$.
+
+Sean $n:= \left[ K:H \right]$ y $b_{1},\ldots,b_{n}$ representantes de las clases de equivalencia de $K/R_{H}$, es decir $$K = \bigcup_{j=1}^{n}Hb_{j}.$$ Sean $c_{ij}:=b_{j}a_{i}$ $\forall (i,j) \in I$, donde $I = \lbrace(i,j) : 1\leq i \leq m, \hspace{0.1cm} 1\leq j \leq n\rbrace$. Entonces $$G = \bigcup_{i=1}^{m}Ka_{i} = \bigcup_{i=1}^{m}(\bigcup_{j=1}^{n}Hb_{j})a_{i} = \bigcup_{(i,j)\in I}Hb_{j}a_{i} = \bigcup_{(i,j) \in I}Hc_{ij}.$$ Por lo que $\left[ G:H \right] = card(I) = mn= \left[ G:K \right] \cdot \left[ K:H \right]$.
+
+$\hfill \square$
+
+Como su nombre indica, transitividad, podríamos literalmente haber aplicado, como se ha dicho antes, la \textit{fórmula de Lagrange} dos veces, teniendo que $$|G| = |K| \cdot [G : K],$$ $$|K| = |H| \cdot [K:H].$$ Al hablar de órdenes e índices, tratamos con elementos que conmutan, y sustituyendo se ve fácil el resultado, pero solamente es válido para el caso de grupos finitos, y a nosotros nos interesa probarlo en general.
+
+\begin{observation} Sean $H_{1},\ldots,H_{t}$ subgrupos de índice finito de un grupo $G$. Entonces, tenemos que $H = H_{1}\cap \ldots \cap H_{t}$ es subgrupo de índice finito de $G$.
+\end{observation}
+
+El siguiente resultado es muy importante y será utilizado con frecuencia en problemas para hallar órdenes de productos y comprobar cuándo un grupo cualquiera se puede descomponer en un producto cartesiano (más tarde veremos que en teoría de grupos éste recibe un nombre distinto) de subgrupos suyos.
+
+\begin{proposition} Sea $G$ un grupo y $H$, $K$ subgrupos de $G$ de orden finito. Entonces, $$|HK| = \dfrac{|H||K|}{|H \cap K|}.$$
+\end{proposition}
+\emph{Demostración: } Sean $h_{1}(H \cap K), \cdots, h_{m}(H \cap K)$ representantes de las clases laterales a izquierda de $H\cap K$ en $H$. Veamos que los elementos de $HK$ son los $h_{i}k$, con $1 \leq i \leq m$, $k \in K$ y que todos son diferentes.\vspace{0.2cm}\\
+Por un lado está claro que $m = [H : H \cap K ]$. Si $hk \in HK$, tendremos que $h = h_{i}x$, con un $i$ cualquiera, y $x \in H \cap K$. Así, $hk = h_{i}xk = h_{i}(xk)$, con $xk \in K$. Ahora, supongamos que $h_{i}k =h_{j}k'$, con $1 \leq i,j \leq m$, $k, k' \in K$. Entonces, $h_{j}^{-1}h_{i} = k'k^{-1} \in H \cap K$. Como $h_{i}(H \cap K) \neq h_{j}(H \cap K)$ si $i \neq j$, necesariamente $i =j$. Así, $h_{i}k =h_{i}k'$ y multiplicando a izquierda por $h_{i}^{-1}$ se tiene que $k = k'$. Por lo tanto, ha quedado claro que los elementos de $HK$ son los $h_{i}k$ y que además son todos diferentes, luego $$|HK| = [H : H\cap K]|K| = \dfrac{|H||K|}{|H \cap K|}.$$
+
+$\hfill \square$
+
+De aquí se desprende que, evidentemente, si tenemos dos grupos disjuntos (es decir, que sólo comparten el elemento neutro) entonces $|HK| = |H||K|$. Esto es muy útil cuando son dos subgrupos de un grupo cualquiera $G$ tales que $G = HK$, es decir, cuando se da que el producto de dos subgrupos es un grupo.
+
+Este es el resultado interesante que se avisó antes para revisar nuevamente el diagrama en diamante antes dibujado. Si lo observamos, teniendo en cuenta lo que acabamos de ver y que habíamos definido $G= HK$ un grupo finito, entonces necesariamente $|G| =|HK| = \dfrac{|H| |K|}{|H \cap K |} = |H| [K : K \cap H]$ y de aquí $[G:H] = \dfrac{|G|}{|H|} = [K : K \cap H]$, tal y cómo habíamos visto. Análogamente con $[G:K]$.
+
+\subsection{Subgrupos normales y grupos cociente}
+
+En cualquier estructura algebraica, al trabajar con cualquier clase de objetos es importante encontrar relaciones de equivalencia tales que los conjuntos cocientes respecto a dichas relaciones admitan los diferentes tipos de estructuras que estudiamos de los objetos iniciales. Para los grupos, si $H$ es un subgrupo de un grupo $G$, los cocientes $G/R_{H}$ y $G/R^{H}$ no admiten en general la estructura de grupo. Para que lo hagan han de cumplirse las siguientes condiciones:
+
+\begin{proposition} Sean $G$ un grupo y $H$ un subgrupo de $G$. Las siguientes condiciones son equivalentes:
+\begin{enumerate}
+\item $Ha = aH$, $\forall  a \in G$.
+\item $H = H^{a}$ para cada $a \in G$. Es decir, $a^{-1}Ha = H \hspace{0.2cm} \forall a\in G$.
+\item $\forall a,b \in G$ tales que $ab \in H$ se verifica que $ba \in H$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Hagamos una implicación circular:\vspace{0.2cm}\\
+1. $\Rightarrow$ 2. Si $y \in H^{a}$ entonces $aya^{-1} = h \in H$. Como $ay = ha \in Ha = aH$ existirá un $h' \in H$ con $ay = ah'$. Simplificando tenemos que $y = h' \in H$, luego $H^{a}\subseteq H$. Y aplicando el contenido que acabamos de probar para $a^{-1}$ se tiene que $H^{a^{-1}}\subseteq H$, y así $H = (H^{a^{-1}})^{a}\subseteq H^{a}$, por lo tanto $H = H^{a}$.\vspace{0.2cm}\\
+2.  $\Rightarrow$ 3. Como $ab \in H$ entonces $ba = a^{-1}(ab)a \in H^{a} = H.$\vspace{0.2cm}\\
+3.  $\Rightarrow$ 1. Sea $x \in Ha$. Entonces, $x = ha$ con $h \in H$ y, por ello, $xa^{-1} = h \in H.$ Por hipótesis $a^{-1}x = h' \in H$, y así $x = ah'\in aH,$ demostrando el primer contenido $Ha \subseteq aH$.\vspace{0.2cm}\\ Recíprocamente, si $x = ah \in aH$, resulta que $a^{-1}x = h \in H$, luego $xa^{-1} = h' \in H$, es decir, $x = h'a \in Ha,$ demostrando con esto el contenido recíproco $aH \subseteq Ha$, y por lo tanto $aH = Ha$.
+
+$\hfill \square$
+
+Como ya sabemos en general se tiene que, dado un $x \in H$, las coclases $xH$ y $Hx$ en general serán distintas. Sin embargo, cuando hablemos de subgrupos normales, $N$, se tendrá que $xN = Nx$ $\forall x \in G$. Esta condición nos permitirá tomar el conjunto de las coclases a izquierda o a derecha (da igual) y construir sobre dicho conjunto un nuevo grupo, es decir, que podemos otorgarle una estructura de grupo.
+
+A la hora de entender el desarrollo de la demostración anterior es importante entender el concepto del conjugado de un grupo por un elemento, en este caso un $a \in G$ cualquiera, que ya vimos en~\ref{eq:conjugado}.
+
+\begin{definition} Un subgrupo $H$ de un grupo $G$ que cumple cualquiera de las condiciones anteriores (y por tanto todas al ser equivalentes) se denomina \textbf{ subgrupo normal}. Diremos que $H$ es \textit{subgrupo normal} de $G$ y lo denotaremos de la forma $H\unlhd G$.
+La primera de las condiciones anteriores equivale a decir que $R_{H} = R^{H}.$
+
+En particular, si $H$ es normal tendremos que $G/R_{H} = G/R^{H}$, es decir que $xH = Hx$ $\forall x \in G$, y denotaremos ambos cocientes por $G/H$.
+\end{definition}
+
+Notar que es evidente que \textit{cualquier subgrupo de un grupo abeliano es normal}.
+
+\begin{observation}Para probar que un subgrupo $H$ es normal bastará ver que $$H^{a} \subseteq H, \hspace{0.1cm} \forall a \in G.$$ Ya que, probado esto y aplicado a $a^{-1} \in G$, se tendrá que $H^{a^{-1}}\subseteq H$ y así 
+\begin{center}
+$H = (H^{a^{-1}})^{a} \subseteq H^{a} \Longrightarrow H = H^{a}$ y $H$ es normal.
+\end{center} 
+\end{observation}
+
+Es decir, sólo hará falta probar un contenido del conjugado en el mismo subgrupo. La condición se traduce en que $aHa^{-1} \subseteq H$ , $\forall a \in G$.
+
+\begin{example} Sea $n>0$ un entero y $O_{n}(\mathbb{R})$ un subgrupo de $GL_{n}(\mathbb{R})$ llamado subgrupo de las \textbf{matrices ortogonales} o simplemente \textbf{subgrupo ortogonal} de orden $n$ con coeficientes en $\mathbb{R}$. $$O_{n}(\mathbb{R}) = \lbrace A \in GL_{n}(\mathbb{R}):A^{t}A = I_{n}\rbrace$$ donde $A^{t}$ es la matriz traspuesta de $A$ y $I_{n}$ es la matriz identidad.\vspace{0.2cm}\\
+Veamos que $O_{2}(\mathbb{R})$, subgrupo formado por las matrices ortogonales de orden 2, no es subgrupo normal de $GL_{2}(\mathbb{R})$
+\begin{center}
+Sea $P = \left(
+\begin{matrix}
+1 & 0 \\
+1 & 1
+\end{matrix}
+\right) \in GL_{2}(\mathbb{R})$, \hspace{0.1cm} $A =\left(
+\begin{matrix}
+1 & 0 \\
+0 & -1
+\end{matrix}
+\right) \in O_{2}(\mathbb{R})$ y \hspace{0.1cm }$P^{-1} = \left(
+\begin{matrix}
+1 & 0 \\
+-1 & 1
+\end{matrix}
+\right)$.\\
+\end{center}
+Simplemente multiplicando se tiene que $$B = PAP^{-1} = \left(
+\begin{matrix}
+1 & 0 \\
+1 & 1
+\end{matrix}
+\right) \left(
+\begin{matrix}
+1 & 0 \\
+0 & -1
+\end{matrix}
+\right)\left(
+\begin{matrix}
+1 & 0 \\
+-1 & 1
+\end{matrix}
+\right) = \left(
+\begin{matrix}
+1 & 0 \\
+2 & -1
+\end{matrix}
+\right).$$
+Y $B$ no es ortogonal, ya que $$B^{t}B = \left(
+\begin{matrix}
+1 & 2 \\
+0 & -1
+\end{matrix}
+\right)\left(
+\begin{matrix}
+1 & 0 \\
+2 & -1
+\end{matrix}
+\right)= \left(
+\begin{matrix}
+5 & -2 \\
+-2 & -1
+\end{matrix}
+\right) \neq \left(
+\begin{matrix}
+1 & 0 \\
+0 & 1
+\end{matrix}
+\right).$$
+$\hfill \blacksquare$
+\end{example}
+
+\begin{proposition}Si $G$ es un grupo y $H$ un subgrupo de $G$ con $\left[ G:H \right] = 2$, entonces $H$ es subgrupo normal de $G$.
+\end{proposition}
+\emph{Demostración: }Como $\left[ G:H \right] = 2$, tanto $G/R_{H}$ como $G/R^{H}$ tienen 2 elementos. Entonces, dado un $a \in G$ puede ocurrir que:\begin{enumerate}
+\item Si $a \in H$. En tal caso, $a1^{-1} = a \in H$ y así $aR_{H}1$, luego $Ha = H1 = H.$ Y como $a^{-1}1 = a^{-1} \in H$, entonces $aR^{H}1$ y así, $aH = 1H = H.$ Por lo tanto, $$aH = Ha.$$
+\item Si $a \notin H$, $aH \neq H$. Como $G/R^{H}$ tiene dos elementos, tendremos que $G = H\sqcup aH$ (unión disjunta).
+Pero si $a \notin H$, también se cumplirá $H \neq Ha$. Y como $G/R_{H}$ también tiene dos elementos, tenemos $ G = H \sqcup Ha$ (unión disjunta).
+
+Por lo tanto, $aH = G\setminus H = Ha$, y $H$ es normal. Ésto se desprende de que $G$ es unión disjunta de clases y que sólo existen dos, la del neutro y la del elemento $a \notin H$.
+\end{enumerate}
+$\hfill \square$
+
+\begin{observation} En cualquier grupo $G$, los subgrupos $\lbrace 1_{G} \rbrace$ y $G$ son normales. Es claro, ya que dado un $a \in G$ tendremos que $a \lbrace 1_{G} \rbrace = a = \lbrace 1_{G} \rbrace a$. Esto último de hecho nos quiere decir que, en efecto $G/\lbrace 1_{G} \rbrace = G$. Además, $aG = G = Ga$.
+\end{observation}
+
+\begin{proposition}Si $G$ es un grupo, todo subgrupo $H \subseteq Z(G)$ es un subgrupo normal de $G$.
+\end{proposition}
+\emph{Demostración: } Recordar que el centro de $G$ es $$Z(G) = \lbrace x \in G : ax = xa \hspace{0.2cm} \forall a \in G\rbrace$$ y es subgrupo de $G$ tal y como vimos en~\ref{eq:centro}.
+
+Basta probar que $H^{a}\subseteq H$ para cada $a \in G$. Sea $x \in H^{a}$. Así $axa^{-1} = h \in H$, luego $x = a^{-1}ha$. Como $h \in H \subseteq Z(G)$, $ha = ah$ y así $x = a^{-1}ha = h \in H.$
+
+$\hfill \square$
+
+\begin{example}En el siguiente ejemplo exploraremos dos de los grupos clásicos de matrices:
+
+Sea un $n \in \mathbb{N}$ no nulo, y el grupo $G = GL_{n}(\mathbb{R})$ de las matrices de orden $n$ con coeficientes en $\mathbb{R}$ y determinante no nulo. Ya sabemos que $G$ con la operación producto de matrices es un grupo.
+
+Sea $H = \lbrace A \in G : det(A) = 1\rbrace$. Este grupo también lo vimos y es el \textit{grupo especial lineal}. Se denota por $SL_{n}(\mathbb{R})$ y es subgrupo normal de $G$. En efecto:\vspace{0.2cm}\\
+Dados $A,B \in H$, como $BB^{-1} = I_{n}$, $det(B) \cdot det(B^{-1}) = 1$, luego $det(B^{-1}) = \frac{1}{det(B)} = 1$ y así $$det(AB^{-1}) = det(A)det(B^{-1}) = 1 \cdot 1 = 1.$$ Esto demuestra que $H$ es subgrupo de $G$. Para ver que es normal veamos que cumple la últimas de las condiciones vistas.
+
+
+Si $A,B \in G$ y $AB \in H$ significa que $det(AB) = 1$. Entonces $$det(BA) = det(B)\cdot det(A) = det(A) \cdot det(B) = det(AB) = 1,$$ luego $BA \in H$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{definition}Si $H$ y $K$ son subgrupos de un grupo $G$ decimos que $K$ es un \textbf{subgrupo conjugado} de $H$ si existe $a \in G$ tal que $K =H^{a}$.
+\end{definition}
+
+El siguiente resultado vendrá bien tenerlo en cuenta cuando demos los \textit{Teoremas de Sylow} en capítulos posteriores: 
+
+\begin{proposition}~\label{eq:conjug}Sean $H$ y $K$ subgrupos de un grupo $G$:
+\begin{enumerate}
+\item Si $K$ es conjugado de $H$, entonces $H$ es conjugado de $K$, y diremos que $H$ y $K$ son \textit{conjugados}.
+\item Si $\Sigma$ es la familia de subgrupos conjugados de $H$ (distintos) y $N = N_{G}(H)$ es el normalizador de $H$ en $G$, la aplicación $$
+\begin{array}{rccl}
+\varphi \colon &G/R_{N} & \longrightarrow & \Sigma\\
+&Na & \longmapsto &H^{a}
+\end{array}
+$$ es biyectiva.
+\item En particular, si $N_{G}(H)$ tiene índice finito en $G$, el número de conjugados de $H$ en $G$ es $\left[ G:N_{G}(H) \right]$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }\begin{enumerate}
+\item Es evidente, pues si $K = H^{a}$, $K^{a^{-1}} =(H^{a})^{a^{-1}} = H$.
+\item Comencemos por demostrar que $\varphi$ está bien definida:
+
+Si $Na = Nb$, entonces $ab^{-1} \in N$, luego $H^{ab^{-1}} = H$ y así $H^{b} = (H^{ab^{-1}})^{b} = H^{a}$. Veamos ahora que es inyectiva: 
+
+Si $H^{a} = H^{b}$ se tiene $H^{ab^{-1}} = (H^{b})^{b^{-1}} = H$, luego $ab^{-1} \in N$ y $Na = Nb.$ Como la sobreyectividad es evidente, queda demostrado.
+\item  Es claro ya que $$card\hspace{0.1cm} \Sigma = card(G/R_{N}) = \left[ G:N \right].$$
+\end{enumerate}
+$\hfill \square$
+
+\begin{proposition}\label{eq:nhnormal} Sea $N \unlhd G$, sean $H, K \leq G$ tales que $H \unlhd K$. Entonces $NH$ es subgrupo normal de $NK$.
+\end{proposition}
+\emph{Demostración: }Primeramente veamos que $NH=HN$ y así $NH$ es subgrupo de $G$:
+
+En particular $NH$ es subgrupo de $NK$, pues $NH \subseteq NK$. Pero si $x \in NH$ se escribirá $x = nh, \hspace{0.1cm} n \in N, \hspace{0.1cm} h \in H$. Así $x \in Nh = hN \subseteq HN$, la igualdad $Nh = hN$ se tiene por ser $N$ subgrupo normal de $G$. Esto prueba el contenido $NH \subseteq HN$. El otro es análogo. De igual forma se prueba que $NK = KN$, luego $NK$ es subgrupo de $G$, y así es grupo. Ahora veamos la normalidad:
+
+Usaremos la primera de las condiciones definidas. Veamos que si $a \in NK$, entonces $a(NH) = (NH)a$. Como $a \in NK$ se escribirá $a = nk, \hspace{0.1cm} n \in N, \hspace{0.1cm} k \in K$. Si $x \in a(NH) = a(HN)$ se tendrá $x = ahn_{1}, \hspace{0.1cm} h \in H, \hspace{0.1cm} n_{1} \in N.$ Como $x \in (ah)N = N(ah)$ por ser $N$ subgrupo normal de $G$, tendremos entonces $x = n_{2}ah = n_{2}nkh, \hspace{0.1cm} n_{2} \in N.$ Como $kh \in kH = Hk$ por ser $H$ subgrupo normal de $K$, $x = n_{2}nh_{1}k, \hspace{0.1cm} h_{1} \in H,$ o también, $x = n_{2}nh_{1}n^{-1}nk = n_{2}nh_{1}n^{-1}a$. Ahora $h_{1}n^{-1} \in HN = NH$, con lo que se tiene $h_{1}n^{-1} = n_{3}h_{2}$, $n_{3} \in N$, $h_{2} \in H$. Finalmente, $x = n_{2}nn_{3}h_{2}a \in (NH)a$. Y así $a(NH) \subseteq (NH)a$. Para el otro contenido se procede de igual forma.
+
+$\hfill \square$
+
+\begin{definition}Decimos que un grupo $G$ es \textbf{simple} si sus únicos subgrupos normales son $\lbrace 1_{G}\rbrace$ y $G$. Los ejemplos más sencillos de grupos simples son los de orden primo.
+\end{definition}
+
+\begin{observation}Así, si $p$ es un número primo y $G$ un grupo de orden $p$, los únicos subgrupos de $G$ son $\lbrace 1_{G}\rbrace$ y $G$. En particular, $G$ es simple.
+
+Esto se sigue del hecho que si $H$ es un subgrupo de $G$, su orden debe dividir a $p$ por el \textit{Teorema de Lagrange}. Y como $p$ es primo, ó bien $|H| = 1$ y así $H = \lbrace 1_{G}\rbrace$, ó bien $|H| = p$ y así $H = G$.
+\end{observation}
+
+Notar que la normalidad no es una propiedad \textit{transitiva}, es decir , puede existir un grupo $G$ y subgrupos suyos $H$ y $K$ con $H \subseteq K$, $H$ subgrupo normal de $K$, y $K$ subgrupo normal de $G$, pero $H$ no ser subgrupo normal de $G$.
+
+\begin{definition}Si $H$ es un subgrupo de un grupo $G$, se llama \textbf{corazón} de $H$ a $$K(H) = \bigcap_{a \in G} H^{a}. \label{eq:corazon}$$ Además, $K(H)$ es un subgrupo de $G$, en particular es un subgrupo normal de $G$.
+\end{definition}
+\emph{Demostración: }Basta probar que $K(H)^{b} \subseteq K(H)$ para cada $b \in G$:
+
+Sea $x \in K(H)^{b}$, tenemos que ver que $x \in H^{a}$ para cada $a \in G$. Pero $
+bxb^{-1} \in K(H) \subseteq H^{ab^{-1}}$, luego $ab^{-1}(bxb^{-1})(ab^{-1})^{-1} \in H,$ y por lo tanto $axa^{-1} \in H$ y $x\in H^{a}$.
+
+$\hfill \square$
+
+Como consecuencia de esto se tiene que, dado un $N \subseteq H$ subgrupo normal de $G$, entonces $N \subseteq K(H)$, ya que, para cada $a \in G$, 
+\begin{center}
+$N= N^{a} \subseteq H^{a}$, y así $N \subseteq \bigcap_{a \in G}H^{a} = K(H).$
+\end{center}
+
+Es decir, hallar el corazón de un subgrupo nos dará una forma de encontrar un subgrupo normal, lo cual es muy útil porque normalmente encontrarlos no es tarea sencilla. Aún así, hallar el corazón tampoco será sencillo.
+\begin{theorem}[\textit{Teorema de Poincaré}]
+Si $G$ posee un subgrupo de índice finito, también posee un subgrupo normal de índice finito.
+\end{theorem}
+\emph{Demostración: }Probemos que si $H$ es un subgrupo de índice finito, $K(H)$, que es normal, tiene índice finito. Como $\left[ G:H \right]$ es finito, también lo es $$\left[ G:N_{G}(H) \right] = \frac{\left[ G:H \right]}{\left[ N_{G}(H):H \right]},$$ luego sabemos que $H$ tiene un número finito de conjugados. Y como $K(H)$ es la intersección de los conjugados de $H$, y hay una cantidad finita de éstos, para probar que $\left[ G:K(H) \right]$ es finito basta (ya que la intersección de subgrupos de índice finito es subgrupo de índice finito) demostrar que cada $H^{a}$ es subgrupo de $G$ de índice finito. De hecho probaremos la igualdad $$\left[ G:H \right] = \left[ G:H^{a} \right].$$ Para eso es suficiente demostrar que la aplicación $$
+\begin{array}{rccl}
+&G/R_{H^{a}} & \longrightarrow & G/R_{H}\\
+&H^{a}x & \longmapsto &Hax
+\end{array}
+$$ es biyectiva. Está bien definida, y es inyectiva, pues $H^{a}x = H^{a}y$ equivale a que $xy^{-1} \in H^{a},$ y así $axy^{-1}a^{-1} \in H,$ o lo que es lo mismo, $ax(ay)^{-1} \in H$ y esto es $Hax = Hay.$ Además es sobreyectiva, puesto que $Hy = Hax$ con $x=a^{-1}y$ $\hspace{0.1cm} \forall y \in G.$
+
+$\hfill \square$
+
+Ahora buscaremos subgrupos $H$ tales que $G/R_{H}$ tenga, de modo natural, estructura de grupo. Estos subgrupos serán los normales.
+
+\begin{proposition}\label{eq:cociente} Sean $G$ un grupo y $H$ un subgrupo normal de $G$. El \textbf{grupo cociente} $G/H = G/R_{H} = G/R^{H}$ tiene estructura de grupo con la operación $$\begin{array}{rccl}
+&G/H \times G/H & \longrightarrow & G/H\\
+&(aH,aH) & \longmapsto &abH.
+\end{array}
+$$
+El elemento neutro es $H=1H.$ Además, si $H$ es subgrupo de $G$ de índice finito, $|G/H| = \left[ G:H \right]$.
+\end{proposition}
+\emph{Demostración: }Ya sabemos que cuando $H$ es normal, los conjuntos cocientes $G/R_{H}$ y $G/R^{H}$ coinciden, y los denotaremos por $G/H$. El único punto problemático, y donde se hace uso de la normalidad de $H$, es cuando hay que comprobar que la operación está bien definida, es decir, que no dependa de los representantes $a$ y $b$ elegidos.
+\begin{enumerate}
+\item Sea pues $aH = xH$, $bH = yH$, comprobemos que $abH =xyH,$ es decir que $(ab)^{-1}xy \in H$, y así $b^{-1}a^{-1}xy \in H.$
+Como $aH = xH$, $a^{-1}x = h \in H$. Como $bH = yH$, $b^{-1}y = h' \in H$. Por ello, $b^{-1}a^{-1}xy = b^{-1}hy = b^{-1}yy^{-1}hy = h'y^{-1}hy.$
+Si $z = y^{-1}hy$, resulta que  $z \in H^{y} = H$ por ser $H$ normal. Por lo que, $b^{-1}a^{-1}xy = h'z \in H.$
+\item Además la operación es asociativa, pues \begin{center}$aH((bH)(cH)) = (aH)(bcH) = (a(bc))H = ((ab)c)H = ((ab)H)(cH) = ((aH)(bH))cH.$\end{center}
+\item Como
+\begin{center}
+$(aH)H=(aH)(1H)=(a1)H=(aH)$ y\\
+$H(aH)=(1H)(aH)=(1a)H=aH$,
+\end{center}
+la clase $H$ es el elemento neutro. 
+\item Dado $aH \in G/H$ se verifica $$(aH)(a^{-1}H) = (aa^{-1}H) = 1H = H,$$ $$(a^{-1}H)(aH) = (a^{-1}aH) = 1H = H,$$ y así $a^{-1}H$ es el inverso de $aH$. Es decir $$(aH)^{-1} = a^{-1}H.$$
+\item Finalmente, si $H$ tiene índice finito en $G$, $$|G/H| = card(G/R_{H}) = \left[ G:H \right].$$
+\end{enumerate}
+
+$\hfill \square$
+
+Es decir, si tenemos un grupo $G$ y un subgrupo $H$ que es normal, entonces el cociente $G/H$ es también un grupo. Los subgrupos normales son los adecuados para dotar a un cociente de estructura de grupo. Una vez visto esto, sólo nos queda estudiar cómo son los subgrupos de un grupo cociente $G/H$.
+
+\emph{Demostración: }Si $K$ es un subgrupo de $G$ que contiene a $H$, $H$ es subgrupo normal de $K$ por serlo de $G$. Entonces tiene sentido considerar el grupo cociente $K/H$. Evidentemente $K/H \subseteq G/H$ y es subgrupo de $G/H$, puesto que dados $aH, bH \in K/H$, $a,b \in K$ se tiene $(aH)(bH)^{-1} = (aH)(b^{-1}H) = ab^{-1}H \in K/H,$ ya que al ser $K$ subgrupo de $G$, $ab^{-1} \in K$.
+
+Recíprocamente, sea $M$ un subgrupo de $G/H$, y llamemos $$K = \lbrace x \in G : xH \in M \rbrace.$$ Veamos que $K$ es un subgrupo de $G$ que contiene a $H$ y que $M = K/H$.
+
+Desde luego, si $h \in H$ se tiene que $hH = H$, que pertenece a $M$ pues $M$ es subgrupo y $H$ es el neutro de $G/H$. Esto prueba que $h \in K$ y con ello que $H \subseteq K$. Dados $x,y \in K$ tenemos $xH, yH \in M$ de donde $xy^{-1}H = (xH)(y^{-1}H) = (xH)(yH)^{-1} \in M$ por ser $M$ subgrupo. Esto quiere decir que $xy^{-1} \in K$. Por lo tanto $K$ es subgrupo de $G$.
+
+Veamos que se cumple la igualdad $M = K/H$. Dado $xH \in K/H$, es $x \in K$ y por tanto $xH \in M$. En el otro sentido, si $xH \in M$, entonces $x \in K$, luego $xH \in K/H$. Es inmediato que si $K_{1}$ y $K_{2}$ son subgrupos de $G$ que contienen a $H$ y $K_{1}/H = K_{2}/H$, entonces $K_{1} = K_{2}$.
+
+$\hfill \square$
+
+Por lo tanto, hemos demostrado que la aplicación $$\begin{array}{rccl}
+&K & \longrightarrow & K/H\\
+&x & \longmapsto &xH.
+\end{array}
+$$ es una biyección entre los subgrupos de $G$ que contienen a $H$ y los subgrupos de $G/H$. Este resultado se conoce como \textbf{\textit{Teorema de la correspondencia}}. Además la biyección preserva la normalidad y por lo tanto tenemos que: \begin{proposition} K es subgrupo normal de $G$ si y sólo si $K/H$ es subgrupo normal de $G/H$.\end{proposition}
+
+\emph{Demostración: }Sea $K \unlhd G$. Dados $aH, bH$ con $(aH)(bH) \in K/H$, entonces $(ab)H \in K/H$, es decir, $ab \in K$. Como $K$ es normal, y $ab \in K$, deducimos que $ba \in K$, luego $(bH)(aH) = (ba)H \in K/H,$ y así $K/H$ es normal. Para el recíproco es análogo.
+
+$\hfill \square$
+
+\begin{example}
+Dado un entero positivo $m$, el subgrupo $H = m\mathbb{Z}$ del grupo $\mathbb{Z}$ es desde luego normal, por ser $\mathbb{Z}$ abeliano. Como la notación es aditiva, la operación en el cociente vendrá dada por $$\begin{array}{rccl}
+&\mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/m\mathbb{Z} & \longrightarrow & \mathbb{Z}/m\mathbb{Z}\\
+&(a+m\mathbb{Z}, b+m\mathbb{Z}) & \longmapsto &a+b+m\mathbb{Z}.
+\end{array}
+$$
+Además el grupo cociente $\mathbb{Z}/m\mathbb{Z}$ es de orden $m$. y sabemos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace 0+m\mathbb{Z}, 1+m\mathbb{Z}, \ldots, (m-1)+m\mathbb{Z}\rbrace$$ siendo todos sus elementos distintos. Finalmente es claro que $\mathbb{Z}/m\mathbb{Z} = \langle 1+m\mathbb{Z}\rangle.$ Además definiremos un grupo abeliano concreto que estudiaremos más adelante, y que veremos que es muy interesante:
+$$\mathbb{Z}_{m}^{\ast} = \lbrace a+m\mathbb{Z} \in \mathbb{Z}/m\mathbb{Z} : mcd(a,m) = 1\rbrace,$$
+con la operación 
+$$\begin{array}{rccl}
+&\mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{m}^{\ast} & \longrightarrow & \mathbb{Z}_{m}^{\ast}\\
+&(a+m\mathbb{Z}, b+m\mathbb{Z}) & \longmapsto &ab+m\mathbb{Z}.
+\end{array}
+$$
+\end{example}
+
+$\hfill \blacksquare$
+
+\subsection{Homomorfismos y teoremas de isomorfía}
+
+Ya sabemos lo que son los grupos, cómo se subdividen y si estos subconjuntos heredan la estructura de grupo (subgrupos), cúantas de estas subestructuras hay y bajo qué condiciones podemos hablar de un \textit{cociente} que herede la estructura de grupo. A continuación vamos a ver cuándo dos grupos son ``iguales'', y de qué manera podemos establecer esta igualdad \textit{algebraica}, es decir, cuándo podemos decir que dos grupos tienen la misma estructura y que, salvo los nombres que les demos a sus elementos, son el mismo. De ésto se ocupan los conocidos \textit{Teoremas de Isomorfía}, para los cuales tendremos antes que presentar y definir qué son los homomorfismos, las aplicaciones que conservan la estructura.
+
+\begin{definition}Una aplicación $
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$ entre dos grupos $G_{1}$ y $G_{2}$ se llama \textbf{homomorfismo de grupos} si
+\begin{center}
+$f(ab) = f(a)f(b)$ para cada $a,b \in G_{1}$.
+\end{center}
+\end{definition}
+
+Además, nuevamente recordar que, al igual que al comienzo del capítulo lo comentamos en general, a la hora de denotar homomorfismos, la operación que definamos en el grupo de salida y/o grupo de llegada (ya sea la aditiva $+$ o la multiplicativa $\cdot$) se omitirá cuando no haya lugar a dudas y se especificará cuando convenga.
+
+\begin{properties} Algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta:
+\begin{enumerate}
+\item $f(1_{G_{1}}) = 1_{G_{2}}$ ya que $1_{G_{2}}f(1_{G_{1}}) = f(1_{G_{1}}) = f(1_{G_{1}}1_{G_{1}}) = f(1_{G_{1}})f(1_{G_{1}}) \Longrightarrow 1_{G_{2}} = f(1_{G_{1}}).$
+\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G_{1}}) = 1_{G_{2}},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G_{1}}) = 1_{G_{2}}.$$
+\item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G_{1}}$ se tiene que $1_{G_{2}} = f(1_{G_{1}}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
+\item Si $H$ es un subgrupo de $G_{2}$, $$f^{-1}(H) = \lbrace x \in G_{1} : f(x) \in H\rbrace$$ es un subgrupo de $G_{1}$. Además si $H$ es subgrupo normal de $G_{2}$, $f^{-1}(H)$ lo es de $G_{1}$.
+
+En efecto, si $x,y \in f^{-1}(H)$, entonces $f(x),f(y) \in H$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in H$, luego $xy^{-1} \in f^{-1}(H)$. Para probar la normalidad de $f^{-1}(H)$ usamos la última de las condiciones: Si $ab \in f^{-1}(H)$ se sigue que $f(a)f(b) = f(ab) \in H$ y como $H$ es normal, $f(ab) = f(b)f(a) \in H.$ Por lo tanto $ba \in f^{-1}(H).$
+ 
+\item Si además consideramos otro homomorfismo $
+\begin{array}{rccl}
+g\colon G_{2} \longrightarrow  G_{3}
+\end{array}
+$entonces,
+
+$\begin{array}{rccl}
+g \circ f\colon G_{1} \longrightarrow  G_{3}
+\end{array}
+$ también es homomorfismo, pues $$ (g \circ f)(xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = (g \circ f)(x) (g \circ f)(y).$$
+\end{enumerate}
+\end{properties}
+$\hfill \blacksquare$
+
+\begin{definition} \label{eq:kernormal}
+Dado un homomorfismo$
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$ entre dos grupos $G_{1}$ y $G_{2}$, llamaremos \textbf{núcleo de f} a $$Ker f = \lbrace a \in G_{1} : f(a) = 1_{G_{2}}\rbrace.$$ Y de igual forma, llamaremos \textbf{imagen de f} al conjunto $$Im f = \lbrace f(x) : x \in G_{1}\rbrace.$$
+\end{definition}
+
+Todas estas propiedades y definiciones respecto a los homomorfismos también ser verán más adelante para la otra estructura algebraica que estudiaremos, los anillos. Notar que además, el núcleo de $f$ es un subgrupo de G, en particular $Ker f \unlhd G_{1}$. En efecto, dados $a,b \in Ker f$, $$f(ab^{-1}) = f(a)f(b^{-1}) = f(a)f(b)^{-1} = 1_{G_{2}}1_{G_{2}} = 1_{G_{2}}$$ y así $Ker f$ es subgrupo de $G_{1}$. Para ver que es normal es suficiente probar que $(Ker f)^{a} \subseteq Ker f\hspace{0.1cm} \forall a \in G_{1}$.
+Si $x\in (Ker f)^{a}$ resulta que $a^{-1}xa \in Ker f$, y así $$f(a^{-1}xa) = 1_{G_{2}} \Rightarrow f(a)^{-1}f(x)f(a) = 1_{G_{2}} \Rightarrow f(a)f(x) = 1_{G_{2}}f(a) = f(a) = f(a) 1_{G_{2}}.$$ Simplificamos y queda $f(x) = 1_{G_{2}}$, luego $x \in Ker f$.
+
+La imagen también es un subgrupo de $G_{2}$ pues dados $a = f(x)$, $b = f(y)$, con $a,b \in Im f$, $ab^{-1} = f(x)f(y)^{-1} = f(x)f(y^{-1}) = f(xy^{-1}) \in Im f.$
+
+Que el núcleo de un homomorfismo sea un subgrupo normal es de especial importancia para un par de resultados que veremos a continuación, de hecho esta observación nos puede llevar a pensar que \textit{todo subgrupo normal es el núcleo de un homomorfismo de grupos}.
+
+\begin{properties} Sea $
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$ un homomorfismo entre dos grupos $G_{1}$ y $G_{2}$:
+\begin{enumerate}
+\item $f$ es inyectiva si y sólo si $Ker f = \lbrace 1_{G_{1}}\rbrace$. 
+
+\emph{Demostración: } Supongamos que $f$ es inyectiva. Sea $a \in Ker \hspace{0.1cm} f$, entonces $f(a)=1 = f(1)$. Luego $a=1$ y $Ker \hspace{0.1cm}f = \lbrace 1_{G_{1}}$. 
+
+Recíprocamente, sea $Ker f = \lbrace 1_{G_{1}}\rbrace$. Sea $f(a)=f(b)$. Entonces $f(ab^{-1}) = f(a)f(b)^{-1} = 1$, así $ab^{-1} \in Ker \hspace{0.1cm} f = 1$. Así $a=b$ y $f$ es inyectiva.
+\item Si $f$ es inyectiva y $x \in G_{1}$ es un elemento de orden $m$, entonces $o(f(x)) = m$.
+
+\emph{Demostración: } Sea $k = o(f(x))$. Entonces $f(x)^{k} = 1_{G_{2}}$, luego $f(x^{k}) = 1_{G_{2}}$ y así $x^{k} \in Ker f = \lbrace 1_{G_{1}} \rbrace$. Por lo tanto, $x^{k} = 1_{G_{1}}$, luego $k$ es múltiplo de $m$. Y como $o(f(x))$ divide a $m$ por una de las propiedades anteriores, tenemos que $k = m$.
+\item $f$ es sobreyectiva (o suprayectiva) si y sólo si $Im f = G_{2}$
+
+\emph{Demostración: } Supongamos que $f$ es sobreyectiva, por tanto $f(G_{1}) = G_{2}$ y así $Im f = G_{2}$. Recíprocamente, si $Im f = G_{2}$ entonces $f(G_{1}) = G_{2}$ y así $f$ es sobreyectiva.
+\end{enumerate}
+\end{properties}
+$\hfill \blacksquare$
+
+De entre todos los homomorfismos que podemos establecer entre dos grupos, son especialmente importantes dos de ellos: 
+
+\begin{itemize}
+\item Si $H$ es un subgrupo de un grupo $G$, la \textbf{\textit{inclusión}} $$\begin{array}{rccl}
+i \colon &H & \longrightarrow & G\\
+&x & \longmapsto &x
+\end{array}
+$$ es un homomorfismo inyectivo puesto que $i(xy) = xy = i(x)i(y)$ y $x \in Ker f$ implica que $i(x) = 1_{G}$, es decir, $x = 1_{G} = 1_{H}$.
+\item Si $H$ es un subgrupo normal de un grupo $G$, la \textbf{\textit{proyección}} $$\begin{array}{rccl}
+\pi \colon &G & \longrightarrow & G/H\\
+&x & \longmapsto &xH
+\end{array}
+$$ es un homomorfismo sobreyectivo. La sobreyectividad es obvia y para ver que es homomorfismo: $$\pi (xy) = xyH = (xH)(yH) = \pi (x) \pi (y).$$ Lo llamaremos \textbf{\textit{proyección canónica}}.
+\end{itemize}
+
+\begin{definition}Sea $
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$ un homomorfismo entre dos grupos $G_{1}$ y $G_{2}$, diremos que $f$ es un \textbf{monomorfismo} si $f$ es inyectiva y \textbf{epimorfismo} si $f$ es sobreyectiva.
+\end{definition}
+
+A partir de lo que ya sabemos de grupos cocientes, subgrupos normales y lo que acabamos de ver del núcleo de un homomorfismo (que es subgrupo normal del grupo de partida) y en concreto estos dos últimos homomorfismos podemos, ahora sí, dar un significado alternativo a lo que conocemos por subgrupo normal:
+
+\begin{proposition} Todo subgrupo normal es el núcleo de un homomorfismo de grupos.
+\end{proposition}
+\emph{Demostración: } Sea $N$ un subgrupo normal de un grupo $G$. Vamos a construir un homomorfismo $\varphi$ y un grupo $H$ tales que $N = Ker \hspace{0.1cm} \varphi$ y $H = G/N$. Sabemos que $$\forall a \in G, b \in N, \hspace{0.1cm} aba^{-1} \in N \Longleftrightarrow \forall a \in G, \hspace{0.1cm} aN = Na.$$ Además, si $N$ es subgrupo normal de $G$, podemos definir el grupo cociente $$H = G/N  = \lbrace aN :a \in G \rbrace = \lbrace Na : a \in G\rbrace,$$ con la operación $$\begin{array}{rccl}
+&G/N \times G/N & \longrightarrow & G/N\\
+&(aN,bN)& \longmapsto &abN
+\end{array}
+$$ que en~\ref{eq:cociente} ya definimos y comprobamos que estaba bien definida, que era cerrada, que cumplía la asociatividad, la existencia del elemento neutro y la existencia del elemento inverso. Así que ahora sea la aplicación $$\begin{array}{rccl}
+\varphi \colon &G & \longrightarrow & H\\
+&a & \longmapsto &aN.
+\end{array}
+$$  Es claro que $\varphi$ es homomorfismo puesto que es una proyección: $$\varphi(ab) = abN = (aN)(bN) = \varphi(a) \varphi(b).$$ Entonces $$Ker\hspace{0.1cm} \varphi = \lbrace a \in G : \varphi(a) = aN = N \rbrace = \lbrace a \in G : a \in N \rbrace = N.$$
+
+$\hfill \square$
+
+Una vez presentadas las principales propiedades de los homomorfismos y dos de los más importantes como son la inclusión y la proyección canónica vamos a ver un resultado que será fundamental para entender los homomorfismos en general y así poder llegar a discernir cuándo dos grupos son \textit{algebraicamente} equivalentes.
+
+\begin{proposition}[\textit{Descomposición canónica de un homomorfismo}]
+Sean dos grupos $G_{1}, G_{2}$ y 
+$\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$un homomorfismo entre ellos. Entonces existe un homomorfismo biyectivo $$
+\begin{array}{rccl}
+\bar{f}\colon G_{1}/Ker f \longrightarrow  Im f
+\end{array}
+$$ que hace conmutativo el siguiente diagrama, $$\xymatrix @=2cm {G_{1}\ar[r]^{f} \ar[d]_\pi & G_{2}  \\ G_{1}/Ker f \ar[r]^{\bar{f}} & Im f \ar[u]_{i}  }$$
+donde $i$ y $\pi$ son los homomorfismos presentados anteriormente. Notar que $Ker f$ es subgrupo normal y por eso podemos definir el cociente. Además la conmutatividad del diagrama significa que: $$f = i \circ \bar{f} \circ \pi.$$
+\end{proposition}
+\emph{Demostración: } La última condición nos indica como actúa $\bar{f}$:
+$$f(x) = (i \circ \bar{f} \circ \pi) (x) = i(\bar{f}(\pi(x))) = \bar{f}(\pi(x)) = \bar{f}(x Ker f).$$ Y con eso definimos $\bar{f}$. Veamos ahora que: \vspace{0.2cm}\\
+(i). $\bar{f}$ está bien definida ya que si $xKer f = yKer f$, entonces 
+\begin{center}
+$x^{-1}y \in Ker f \Longrightarrow 1_{G_{2}} = f(x^{-1}y) = f(x)^{-1}f(y)$ y así $f(x) = f(y) \Longrightarrow \bar{f}(xKer f) = \bar{f}(yKer f)$.
+\end{center}
+(ii). $\bar{f}$ es homomorfismo ya que $$\bar{f}((xKerf)(yKerf)) = \bar{f}(xyKerf) = f(xy) = f(x)f(y) = \bar{f}(xKerf)\bar{f}(yKerf).$$
+(iii). $\bar{f}$ es inyectiva ya que si $xKerf \in Ker\bar{f}$ entonces 
+
+$f(x) = \bar{f}(xKerf) = 1_{Im f} = 1_{G_{2}} \Longrightarrow x \in Kerf$ y así $xKerf = Kerf$, que es el elemento neutro de $G_{1}/Ker f$ y así $\bar{f}$ es inyectiva.
+
+(iv). $\bar{f}$ es sobreyectiva ya que cada elemento de $Im f$ es de la forma
+\begin{center}
+$Im f\ni g = f(x) = \bar{f}(xKerf)$ para cierto $x \in G_{1}.$
+\end{center}
+Además la conmutatividad del diagrama es obvia, pues $\bar{f}$ se ha definido para que lo sea.
+
+$\hfill \square$
+
+Así, ya estamos en condiciones de presentar la \textit{igualdad algebraica} entre dos grupos cualesquiera.
+
+\begin{definition}
+Un homomorfismo biyectivo entre dos grupos se llama \textbf{isomorfismo}. Cuando exista un isomorfismo $
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$diremos que los grupos $G_{1}$ y $G_{2}$ son \textbf{isomorfos}, y escribiremos $G_{1}\simeq G_{2}$.
+\end{definition}
+
+\begin{observation} Algunas observaciones con respecto al concepto de isomorfismo de grupos:
+\begin{enumerate}
+\item Si $
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$es isomorfismo, también lo es $
+\begin{array}{rccl}
+f^{-1}\colon G_{2} \longrightarrow  G_{1}
+\end{array}
+$, o, dicho de otra forma, si $G_{1}\simeq G_{2}$ entonces $G_{2}\simeq G_{1}$.
+
+\emph{Demostración: }Como la inversa de toda aplicación biyectiva es biyectiva, basta comprobar que $f^{-1}$ es homomorfismo de grupos.\vspace{0.2cm}\\
+Si $a,b \in G_{2}$, y $f^{-1}(a)= x$, $f^{-1}(b) = y$, entonces $$f(x) = a, \hspace{0.1cm} f(y) = b\Longrightarrow f(xy) = f(x)f(y) = ab,$$ y así, $xy = f^{-1}(ab)$, por lo que $f^{-1}(ab) = f^{-1}(a)f^{-1}(b).$
+\item Si $G_{1}\simeq G_{2}$ y $G_{1}$ es abeliano, también lo será $G_{2}$
+
+\emph{Demostración: }Sean $x,y \in G_{2}$ y$
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$ isomorfismo. Como $f$ es sobreyectiva, existirán $a,b \in G$ tales que $x = f(a)$, $y = f(b)$. Entonces $$xy = f(a)f(b) = f(ab) = f(ba) = f(b)f(a) = yx.$$
+\end{enumerate}
+\end{observation}
+
+Notemos que si $G_{1}$ es un grupo cualquiera, entonces $G_{1} \simeq G_{1}$ puesto que que la aplicación identidad$
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{1}
+\end{array}
+$ es claramente un isomorfismo. Ya sabemos que si $G_{1}\simeq G_{2}$ entonces $G_{2} \simeq G_{1}$, y además si tenemos un tercer grupo $G_{3}$ y $G_{1} \simeq G_{2}$, $G_{2} \simeq G_{3}$, entonces $G_{1} \simeq G_{3}$ ya que la composición de isomorfismos también es isomorfismo. Por lo tanto, si consideramos el conjunto de todos los grupos, la relación binaria $\simeq$ es de equivalencia.
+
+Como hemos podido ver, la propiedad de ser abeliano se conserva en isomorfismos. Será común ir viendo más propiedades que se conservan, y las llamaremos \textit{invariantes bajo isomorfismo}. Es decir, dos grupos isomorfos tienen, por así decirlo, «las mismas propiedades» y lo único en lo que se diferencian será en los símbolos utilizados para representar los elementos y operaciones. Es decir, son en esencia el mismo grupo.
+
+A continuación presentaremos uno de los grandes resultados de la \textit{Teoría de Grupos}, que establece uno de los isomorfismos más útiles y conocidos. En este caso debería ser presentado como corolario pero, por cuestiones estéticas y haciendo honor a su importancia, lo haremos como teorema:
+
+\begin{theorem}[\textit{\textbf{Primer Teorema de Isomorfía}}]
+Si$
+\begin{array}{rccl}
+f\colon G_{1} \longrightarrow  G_{2}
+\end{array}
+$es un homomorfismo entre dos grupos $G_{1}$ y $G_{2}$, los grupos $G_{1}/Ker f$ e $Im f$ son isomorfos. Es decir
+$$G_{1}/Ker f \simeq Im f.$$
+\end{theorem}
+\emph{Demostración: }Por la \textit{descomposición canónica}.$
+\begin{array}{rccl}
+\bar{f}\colon G_{1}/Ker f \longrightarrow  Im f
+\end{array}
+$es un isomorfismo como ya se ha visto.
+
+$\hfill \square$
+
+Como observación interesante es importante tener en cuenta que si tenemos dos grupos finitos \textit{isomorfos}, (importante que sean finitos) entonces han de tener el mismo orden pues la aplicación que los relaciona es biyectiva.
+
+\begin{example}Veamos algunos ejemplos:
+\begin{enumerate}
+\item Vamos a calcular los homomorfismos $
+\begin{array}{rccl}
+f\colon \mathbb{Z} \longrightarrow  \mathbb{Z}
+\end{array}
+$.
+
+Sea $f$ uno de estos homomorfismos, y $f(1) = a$, con $a\in \mathbb{Z}$, entonces tendremos que para cada entero positivo $n$: $$f(n) = f(\underbrace{1+\ldots+1}_n) = f(1)\underbrace{ + \ldots + }_n f(1) = na$$
+mientras que si $n$ es negativo, $m = -n$ será positivo y así $f(n) = f(-m) = -f(m) = -(ma) = (-m)a = na.$ Y como $f(0) = 0a$, tenemos que $f(n) = na$ para cada $a\in \mathbb{Z}$.
+
+Esta aplicación es homomorfismo, ya que $$f(n+m) = (n+m)a = na + ma = f(n) + f(m).$$
+Así, los homomorfismos de $\mathbb{Z}$ en $\mathbb{Z}$ son las aplicaciones ($a\in \mathbb{Z}$) $$\begin{array}{rccl}
+f_{a}\colon &\mathbb{Z} & \longrightarrow & \mathbb{Z}\\
+&n& \longmapsto &na
+\end{array}
+$$
+\item La aplicación $$\begin{array}{rccl}
+f\colon &(GL_{n}(\mathbb{R}), \cdot) & \longrightarrow & (\mathbb{R}^{\ast}, \cdot)\\
+&A& \longmapsto &det A
+\end{array}
+$$ es un epimorfismo (un homomorfismo sobreyectivo) de grupos con núcleo $SL_{n}(\mathbb{R})$ y así, por el \textit{Primer Teorema de Isomorfía}, $$GL_{n}(\mathbb{R})/SL_{n}(\mathbb{R}) \simeq \mathbb{R}^{\ast}.$$
+En efecto, $f(AB) = det(AB) = det A \cdot det B = f(A)f(B)$, luego $f$ es homomorfismo. Es evidente que $Ker f = SL_{n}(\mathbb{R})$ por definición. Finalmente, si $a \in \mathbb{R}^{\ast}$, la matriz $$A = (a_{ij} : 1 \leq i \leq n,\hspace{0.1cm} 1\leq j \leq n)$$ definida por  $$a_{ij} = \left\lbrace \begin{array}{c} 0\hspace{0.1cm} si \hspace{0.1cm} i\neq j\\ a\hspace{0.1cm} si \hspace{0.1cm}  i=j=1\\1\hspace{0.1cm} si \hspace{0.1cm}  i=j>1  \end{array}\right.$$
+cumple $det A = a1^{n-1} = a$, probando la sobreyectividad de $f$.
+\item Sea $x \in \mathbb{R}$ y  $$\begin{array}{rccl}
+f\colon &(\mathbb{R}, +) & \longrightarrow & (\mathbb{C}^{\ast}, \cdot)\\
+&x& \longmapsto &e^{2\pi xi},
+\end{array}
+$$ como $e^{2\pi xi} = \cos 2\pi x + i\sin 2\pi x = 1$ si $x \in \mathbb{Z}$, deducimos que $Ker f = \mathbb{Z}$. Y como, para cualquier $x \in \mathbb{R}$, el valor absoluto o \textit{módulo} del número complejo $e^{2\pi x i} = \cos 2\pi x + i\sin 2\pi x$ es $\sqrt{\cos^{2} 2 \pi x +\sin^{2} 2\pi x} = 1$, tenemos que $Im f = S^{1} = \lbrace z \in \mathbb{C}: |z| = 1\rbrace$ (indicaremos el módulo con $|\cdot |$). Así, por el \textit{Primer Teorema de Isomorfía}: $$(\mathbb{R}/\mathbb{Z},+) \simeq (S^{1}, \cdot).$$
+\item Sea $G$ un grupo abeliano y $$\begin{array}{rccl}
+f\colon &G & \longrightarrow & G\\
+&x& \longmapsto &x^{2}
+\end{array}
+$$ una aplicación que es homomorfismo ya que $$f(xy) = (xy)^{2} = xyxy = xxyy = x^{2}y^{2} = f(x)f(y).$$
+Observar que $$Ker f = \lbrace x \in G : x^{2} = 1\rbrace$$ que estará formado por $1$ y todos los elementos de orden $2$ de $G$ en caso de que existan. Por ejemplo si $G = \mathbb{R}^{\ast}$, entonces $x^{2} = 1$ equivale a $(x+1)(x-1) = 0$, y así $ker f = \lbrace +1,-1\rbrace$. A este grupo lo denotaremos $\mathcal{U}_{2}$ y será interesante cuando veamos el \textit{grupo simétrico} y anillos.
+
+Notar que en general $f$ no es inyectiva, sólo lo será si el orden de $G$ es impar.
+
+\emph{Demostración: } Suponer que $|G| = 2k+1$ impar, sea $x \in ker f$. Así $x^{2} = 1$ y también $x^{2k+1} = 1$, por ser el orden de $G$. Entonces $$x = x1 = x1^{k} = x(x^{2})^{k} = x^{2k+1} = 1$$ y así $f$ es inyectiva.\vspace{0.2cm}\\
+Recíprocamente, veamos que si $|G| = 2k$ es par, sea o no $G$ abeliano, $f$ no es inyectiva. Para cada $x \in G$ llamaremos $A_{x} = \lbrace x, x^{-1}\rbrace.$ Además los $A_{x}$ constituyen una partición de $G$ pues como cada $x \in A_{x}$, la igualdad $$G = \bigcup_{x \in G} A_{x}$$ es obvia, además si $A_{x}\cap A_{y} \neq \emptyset$ entonces $x \in \lbrace y, y^{-1}\rbrace$ ó $x^{-1} \in \lbrace y,y^{-1}\rbrace$.\vspace{0.2cm}\\
+Para el primer caso, si $x = y$ entonces $x^{-1} = y^{-1}$ y $A_{x} = A_{y}$, y si $x = y^{-1}$ entonces $x^{-1} = y$ y nuevamente $A_{x} = A_{y}$. Análogamente para el segundo caso.\vspace{0.2cm}\\ Es claro que $A_{1} = \lbrace 1 \rbrace$, pues $1^{-1} = 1$. Si el resto de los $A_{x}$ (supongamos que hay $p$ de ellos) tuviese dos elementos, entonces $$2k = |G| = card A_{1} + 2p = 2p +1.$$ Y como éste último es impar sería absurdo. Luego ha de existir $1 \neq a \in G$ tal que $card A_{a} = 1$. Esto significaría que $a^{-1} = a$, y así $f(a) = a^{2} = aa^{-1} = 1 = f(1)$. Luego $f$ no es inyectiva.\vspace{0.2cm}\\
+Esto se puede reformular diciendo que: \textit{«Todo grupo finito de orden par posee algún elemento de orden 2»}. 
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+\begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
+Sean $N$ y $H$ subgrupos normales de un grupo $G$, tales que $N \subseteq H$. Entonces $H/N$ es subgrupo normal de $G/N$ y $$(G/N)/(H/N) \simeq G/H.$$
+\end{theorem}
+\emph{Demostración: }Consideremos la aplicación $$\begin{array}{rccl}
+f\colon &G/N & \longrightarrow & G/H\\
+&aN& \longmapsto &aH
+\end{array}
+,$$ que está bien definida, pues si $aN = bN$ entonces $ab^{-1} \in N \subseteq H$, luego $aH = bH$.
+
+Como $f((aN)(bN)) = f(abN) = abH = (aH)(bH) = f(aN)f(bN)$, $f$ es homomorfismo. Cada $aH \in G/H$ es de la forma $aH = f(aN)$ y así $f$ es sobreyectiva y, por lo tanto, epimorfismo.
+
+Por último, $aN \in Ker f \Longleftrightarrow aH = f(aN) = H,$ pero esto quiere decir que $$Ker f = \lbrace aN \in G/N : a \in H\rbrace = H/N.$$ Y por el \textit{Primer Teorema de Isomorfía}, $(G/N)/Ker f \simeq Im f,$ y como $Im f = G/H$, por ser $f$ sobreyectiva, y $Ker f = H/N$ se tiene $$(G/N)/(H/N) \simeq G/H.$$
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Tercer Teorema de Isomorfía}}]
+Sean $H$ y $N$ subgrupos de un grupo $G$, con $N$ subgrupo normal de $G$. Entonces:
+\begin{enumerate}
+\item $H \cap N$ es subgrupo normal de $H$.
+\item $HN$ es subgrupo de $G$.
+\item $N$ es subgrupo normal de $HN$.
+\item $HN/N \simeq H/(H \cap N)$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }
+
+1. Veamos que se cumple la última de las condiciones de normalidad. Sean $a,b \in H$ tales que $ab \in H \cap N$. Entonces $ab \in N$, $a,b \in G$. Como $N$ es subgrupo normal de $G$, $ba \in N$. Además $ba \in H$, ya que $b, a \in H$, luego $ba \in H \cap N$.
+
+2. Tenemos que probar que $HN = NH$ (como ya sabemos de la primera sección). Si $x \in HN$, existen $h \in H$, $n \in N$ tales que $x = hn$. En particular: $x \in hN = Nh \subseteq NH,$ ya que $N$ es normal. Esto prueba que $HN \subseteq NH$ y el otro contenido es análogo.
+
+3. De un resultado anterior.
+
+4. Definimos $$\begin{array}{rccl}
+f\colon &H & \longrightarrow & HN/N\\
+&h& \longmapsto &hN
+\end{array}
+$$ que evidentemente es un homomorfismo. Veamos que $Im f = HN/N$. Dado $xN \in HN/N$ será $x = hn, \hspace{0.1cm} h \in H, \hspace{0.1cm} n \in N\Longrightarrow x^{-1}h = n^{-1}h^{-1}h = n^{-1} \in N,$ luego $xN = hN = f(h).$
+
+Veamos que $Ker f = H \cap N$. $x \in Ker f$ quiere decir que $x \in H$ y $xN = N$, es decir, $x \in H$, $x \in N$ y, por lo tanto, $x \in H \cap N$. Así, por el Primer Teorema de Isomorfía, $$H/Ker f \simeq Im f \Longrightarrow H/(H \cap N) \simeq HN/N.$$
+
+$\hfill \square$
+
+Notar que para demostrar lo primero también se podría haber visto que $H \cap N$ es el núcleo de algún homomorfismo, en concreto del que se expone en el último apartado.
+
+Notar también que en algunos libros de texto el segundo y tercer teoremas de isomorfía aparecen intercambiados, realmente da igual si el segundo es el tercero o viceversa pero es importante que una vez fijados sigan así durante el resto del texto.
+
+\section{Grupos cíclicos}
+\subsection{La función de Euler}
+
+Definiremos y estudiaremos un concepto conocido como \textit{función de Euler}, la presentamos ahora porque es una función muy interesante que será útil más adelante con el estudio de ciertos grupos. También suele definirse en \textit{anillos}, y tiene importantes aplicaciones en dichas estructuras algebraicas; sin embargo, no es necesario definir un \textit{anillo}, se puede perfectamente hacer sobre un \textit{grupo abeliano finito} aunque más adelante también la definiremos sobre anillos.
+
+Comenzaremos definiendo un conjunto sobre el que definiremos todo lo que veremos en adelante, sea $m$ un entero positivo y denotemos 
+$$\mathbb{Z}_{m}^{\ast} = \lbrace a +m\mathbb{Z} \in \mathbb{Z} / m\mathbb{Z} : mcd(a,m)= 1 \rbrace,$$
+y consideremos la operación binaria $$\begin{array}{rccl}
+&\mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{m}^{\ast} & \longrightarrow & \mathbb{Z}_{m}^{\ast}\\
+&(a+m\mathbb{Z},b+m\mathbb{Z})& \longmapsto &ab+m\mathbb{Z}.
+\end{array}
+$$
+Veamos primero que, con esta operación, $\mathbb{Z}_{m}^{\ast}$ es un grupo abeliano.
+
+La operación está bien definida ya que: si $a + m\mathbb{Z} = a' + m\mathbb{Z}$ y $b + m\mathbb{Z} = b' + m\mathbb{Z}$, tendremos que $a = a' + mu$, $b = b' + mv$, con $u,v \in \mathbb{Z}$ y así $$ab = a'b' + m(b'u + a'v + muv).$$ Luego $ab - a'b' \in m\mathbb{Z}$ y por tanto $ab + m\mathbb{Z} = a'b' + m\mathbb{Z}.$ Esto demuestra que la definición no depende de los representantes.
+
+Ahora veamos que es interna: si $mcd(a,m) = mcd(b,m) = 1$, entonces $mcd(ab,m) = 1$. Usando la \textit{Identidad de Bézout} tenemos que $$1 = ua +vm, \hspace{0.1cm} 1= u'b + v'm, \hspace{0.1cm} u,v,u',v' \in \mathbb{Z}.$$ Por lo que, $$1 = (ua +vm)(u'b + v'm)= uu'ab+(auv'+bvu' + mvv')m = u'' ab + v''m,$$
+\begin{center}
+con $u''= uu'$ y $v''= auv'+bvu' + mvv'$.
+\end{center}
+Y de nuevo, por la \textit{Identidad de Bézout}, $mcd(ab,m)=1$ como queríamos ver.
+
+Para ver el resto de axiomas de grupo hay que tener en cuenta que la asociatividad es obvia y también está claro que $1 + m\mathbb{Z}$ es el elemento neutro. También es inmediato que $\mathbb{Z}_{m}^{\ast}$ es abeliano. Y para el inverso: para cada $a + m\mathbb{Z}$, como $mcd(a,m)=1$, se tiene que 
+\begin{center}
+$1= au+mv$, $u,v \in \mathbb{Z}$, y así
+\end{center}
+$$1 + m\mathbb{Z} = (au+ m\mathbb{Z}) + (mv + m\mathbb{Z}) = (a + m\mathbb{Z})(u+ m\mathbb{Z}),$$ por lo que $u + m\mathbb{Z}$ es el inverso de $a + m\mathbb{Z}$. Es decir, para cada $a + m\mathbb{Z} \in \mathbb{Z}_{m}^{\ast}$ existe un inverso, éstos elementos se denominan \textit{invertibles} y en teoría de anillos se denotan como \textit{unidades}, conformando así el \textit{grupo de unidades módulo $m$}. Sin embargo como ya hemos visto, no es necesario definir ni hablar de anillos, podemos hacerlo sobre grupos abelianos finitos. Y así lo haremos.
+
+Por lo tanto podemos definir la \textit{función de Euler} como:
+$$\begin{array}{rccl}
+\phi\colon &\mathbb{N}\setminus \lbrace 0 \rbrace & \longrightarrow &\mathbb{N}\setminus \lbrace 0 \rbrace\\
+&m& \longmapsto &\phi (m)
+\end{array}
+$$ que a cada natural positivo $m$ le hace corresponder el orden $\phi(m)$ del grupo $\mathbb{Z}_{m}^{\ast}$. Una forma alternativa de entender a la \textit{función de Euler} es a partir de la definición, como una función que a cada natural le asigna el número de naturales más pequeños que él con los que es \textit{coprimo}. Vamos a dar un procedimiento para calcularla viendo como actúa sobre cada natural positivo:
+
+\begin{itemize}
+\item Si $p$ es primo, $\phi(p) = p-1$, pues cada natural $1 \leq a \leq p-1$ cumple $mcd(a,p)=1.$
+\item Si $p$ es un número primo y $m$ un natural positivo, $$\phi(p^{m})= p^{m-1}(p-1).$$ Esto se desprende del hecho de que los naturales $1 \leq a \leq p^{m}$ que no son primos con $p^{m}$ son $$p, 2p, 3p, \ldots, p^{m-1}p.$$ Así que hay $p^{m-1}$ que no son primos con $p$, por lo que $$\phi(p^{m}) = p^{m}-p^{m-1} = p^{m-1}(p-1).$$
+\item Si $m$ y $n$ son primos primos entre sí, $\phi(mn)= \phi(m) \phi(n)$. Para ver esto se trata de encontrar una biyección 
+$$\begin{array}{rccl}
+&\mathbb{Z}_{mn}^{\ast} & \longrightarrow &\mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{n}^{\ast},
+\end{array}
+$$ 
+ya que el primer miembro tiene $\phi(mn)$ elementos, y el segundo $\phi(m)\phi(n)$. Y, ¿cúal es esta biyección?, bien pues aquí la tenemos 
+$$\begin{array}{rccl}
+f \colon &a + mn\mathbb{Z}& \longrightarrow &(a+ m\mathbb{Z}, a + n\mathbb{Z}).
+\end{array}
+$$ 
+Es claro que, si $mcd(a,mn)=1$, se tendrá $$mcd(a,m)= mcd(a,n)=1.$$ Además, si $a \in mn\mathbb{Z}$, también $a \in m\mathbb{Z}$ y $a \in n\mathbb{Z}$. Esto prueba que $f$ está bien definida.
+
+También es inyectiva: si $a + m\mathbb{Z} = b + m\mathbb{Z}$ y $a + n\mathbb{Z} = b + n\mathbb{Z}$, resulta que $a-b$ es múltiplo de $m$ y de $n$. Y como $m$ y $n$ son primos entre sí, deducimos que $a-b$ es múltiplo de $mn$, luego $a + mn\mathbb{Z}= b + mn\mathbb{Z}$.
+
+Es sobreyectiva. Sea $(x + m\mathbb{Z}, y + n\mathbb{Z}) \in \mathbb{Z}_{m}^{\ast} \times \mathbb{Z}_{n}^{\ast}$. Como $m$ y $n$ son primos entre sí, por la \textit{Identidad de Bézout} tenemos que existen $u,v \in \mathbb{Z}$ tales que $um + vn = 1$. Sea entonces $$a = yum + xvn.$$
+Veamos que si $a + mn\mathbb{Z} \in \mathbb{Z}_{mn}^{\ast}$, entonces $f(a + mn\mathbb{Z}) = (x + m\mathbb{Z}, y + n\mathbb{Z})$ probando así la sobreyectividad:
+
+Si $mcd(a,mn) \neq 1$, existirá un primo $p$ que dividirá a ambos. Como $p$ es primo y divide a $mn$, divide a uno de ellos, digamos $m$. Entonces también divide a $$a - yum = xvn,$$ y por ello ha de dividir a $x, v$ o $n$. Como $mcd(m,x) = mcd(m,n)=1$, se sigue que $p$ divide a $v$. En tal caso dividirá a $$um + vn = 1,$$ lo cual es absurdo. Por lo tanto, $a + mn\mathbb{Z} \in \mathbb{Z}_{mn}^{\ast}$. Como $$a - x = yum + x(vn- 1) = yum - xum \in m\mathbb{Z},$$ $$a - y = xvn + y(um-1) = xvn -yvn \in n\mathbb{Z},$$ y así tenemos que $$f(a + mn\mathbb{Z}) = (a + m\mathbb{Z}, a + n\mathbb{Z}) = (x + m\mathbb{Z}, y + n\mathbb{Z}).$$
+\item Finalmente, y como consecuencia de lo definido anteriormente tenemos que, sabiendo que todo natural positivo $m$ puede descomponerse en factores primos por el \textit{Teorema fundamental de la Aritmética}, $m = p_{1}^{a_{1}} \ldots p_{k}^{a_{k}}$, resulta $$\phi(m) = \phi(p_{1}^{a_{1}} \ldots p_{k}^{a_{k}}) = p_{1}^{a_{1}-1} \ldots p_{k}^{a_{k}-1}(p_{1}-1) \ldots (p_{k}-1).$$
+\end{itemize}
+
+Así, hemos podido definir la \textit{función de Euler}, y la vamos a enunciar como teorema:
+\begin{theorem}
+Dado un natural positivo $m$ y el grupo abeliano $\mathbb{Z}_{m}^{\ast}$, formado por todas las clases cuyo representante es coprimo con $m$, entonces existe una función que llamaremos \textbf{función de Euler} y la definiremos como:
+$$\begin{array}{rccl}
+\phi\colon &\mathbb{N}\setminus \lbrace 0 \rbrace & \longrightarrow &\mathbb{N}\setminus \lbrace 0 \rbrace\\
+&m& \longmapsto &\phi (m) = \phi(p_{1}^{a_{1}} \ldots p_{k}^{a_{k}}) = p_{1}^{a_{1}-1} \ldots p_{k}^{a_{k}-1}(p_{1}-1) \ldots (p_{k}-1)
+\end{array}
+$$ que a cada $m$ le hace corresponder el orden $\phi(m)$ del grupo $\mathbb{Z}_{m}^{\ast}$.
+\end{theorem}
+
+\subsection{Grupos cíclicos}
+
+Ya hemos podido presentar las principales propiedades y resultados sobre grupos: su estructura, la de los subgrupos, cocientes, aplicaciones entre ellos, etc. Lo que veremos ahora es un tipo concreto de grupo, los más sencillos de todos, que son aquellos que están generados por un sólo elemento: los conocidos como \textit{grupos cíclicos}. Para esta sección será útil recordar la conocida como \textit{función de Euler}, a la que le he dedicado unas páginas en la sección anterior.
+
+\begin{definition}
+Diremos que un grupo $G$ es \textbf{cíclico} si existe un elemento $a \in G$ tal que $G = \langle a \rangle$, es decir, si está generado por un sólo elemento $a \in G$. En tal caso diremos que $a$ es un \textit{generador} de $G$. Escribiremos
+$$G = \langle a \rangle = \lbrace a^{n} : n \in \mathbb{Z}\rbrace.$$
+Notar que esto último es sólo si el grupo $G$ es multiplicativo, en caso de ser aditivo tendríamos $$G = \langle a \rangle = \lbrace na : n \in \mathbb{Z}\rbrace.$$
+\end{definition}
+
+Como ejemplo sencillo de grupo cíclico es el grupo $\mathbb{Z}$ de los número enteros, ya que $\mathbb{Z} = \langle 1 \rangle$. También $\mathbb{Z}_{n}$ es grupo cíclico, en este caso generado por la clase de equivalencia del $1$, $\left[ 1 \right]_{n}$. Al grupo cíclico $\mathbb{Z}_{n}$ lo llamaremos \textbf{\textit{grupo de restos módulo n}} y, como ya sabemos, consta de $n$ elementos, que son:
+
+\begin{center}
+$\mathbb{Z}_{n} = \lbrace \left[ 0 \right]_{n}, \left[ 1 \right]_{n}, \ldots, \left[ n-1 \right]_{n} \rbrace$,
+\end{center}
+donde $\left[ 0 \right]_{n} = 0 + n\mathbb{Z}$, $\left[ 1 \right]_{n} = 1 +n\mathbb{Z}$ , $\ldots$, $\left[ n-1 \right]_{n} = (n-1) + n\mathbb{Z}$. Se llama grupo (en realidad es un anillo) de restos módulo $n$ porque a cada clase pertenecen varios elementos: todos los que al dividir por $n$ den el resto que tenga como representante. Es decir, a la clase del $0$ pertencerán todos los elementos que al dividir entre $n$ tengan como resto $0$, a la clase del $1$ los que al dividir entre $n$ den como resto $1$, y así hasta $n-1$.
+
+Además como consecuencia también sencilla de ver tenemos:
+
+\begin{proposition}Un grupo finito $G$ es cíclico si y sólo si existe $a \in G$ tal que $o(a) = |G|$.
+\end{proposition}
+\emph{Demostración: }En efecto, si $G = \langle a \rangle$, $|G| = o( \langle a \rangle) = o(a)$(el orden de un elemento $a$ coincide con el orden del subgrupo generado por $a$). Recíprocamente, si $a \in G$ y $o(a) = |G|$, $\langle a \rangle$ es un subconjunto de $G$ con tantos elementos como $G$, luego $$\langle a \rangle = G.$$
+
+$\hfill \square$
+
+\begin{proposition}
+Si $p$ es un número primo y $G$ es un grupo de orden $p$, entonces $G$ es cíclico.
+\end{proposition}
+\emph{Demostración: } Sea $a \in G$, con $a \neq 1$. Por el \textit{Teorema de Lagrange} $o(a)$ divide a $p$, como $o(a) \neq 1$, será entonces $o(a) = p$ y así $G$ es cíclico.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:oxk}
+Sea $G$ un grupo, $x \in G$ un elemento de orden $n$ y $k$ un entero positivo entre $1$ y $n$. Entonces $o(x^{k}) = n/d$, con $d= mcd(n,k)$.
+\end{proposition}
+\emph{Demostración: } Veamos que $n/d$ es el menor entero positivo tal que $(x^{k})^{n/d} = 1$.
+
+Para comenzar, $$(x^{k})^{n/d} = (x^{n})^{k/d} = 1^{k/d} = 1$$ ya que $d$ divide a $k$ por ser $d = mcd(n,k)$ y que el orden de $x$ es $n$.
+
+Por otra parte, si $t$ es un entero positivo tal que $(x^{k})^{t} = 1$, entonces $kt$ es múltiplo de $n$, es decir que existe un $t'$ entero positivo tal que $kt = nt'$. De aquí, puesto que $d$ divide a $k$  y a $n$, $$\left( \dfrac{k}{d}\right)t =\left( \dfrac{n}{d}\right) t',$$ luego $\left( \dfrac{n}{d}\right) $ divide a $\left( \dfrac{k}{d}\right) t$. Pero como $n/d$ y $k/d$ son primos entre sí, necesariamente $(n/d)$ divide a $t$, como queríamos demostrar. ($n/d$ es el menor entero positivo tal que $(x^{k})^{n/d} = 1$).
+
+$\hfill \square$
+
+Y, como consecuencia de este resultado tenemos el siguiente corolario (ya que recordamos que el orden de un elemento coincide con el orden de su subgrupo generado).
+
+\begin{corolario}
+Sea $G$ un grupo, $x \in G$ un elemento de orden $n$ y $k$ un entero positivo entre $1$ y $n$. Si $mcd(n,k)= d$, entonces $\langle x ^{k} \rangle$ es un subgrupo de orden $n/d$.
+\end{corolario}
+\begin{proposition}Supongamos que $G = \langle x \rangle$ es un grupo cíclico. Si $H$ es un subgrupo de $G$, entonces $H = \lbrace 1 \rbrace$ ó $H = \langle x^{k} \rangle$, con $k$ el menor entero positivo tal que $x^{k} \in H$.
+\end{proposition}
+\emph{Demostración: } Si $H = \lbrace 1 \rbrace$ no hay nada que probar. Sea $H \neq \lbrace 1 \rbrace$ y veamos que $H = \langle x^{k} \rangle$, con $k$ el menor entero positivo tal que $x^{k} \in H$.
+
+Es claro, por ser el producto una operación interna en $H$, que $\langle x^{k} \rangle \in H$.
+
+Ahora, dado $x ^{p} \in H$, comprobemos que $x^{p} \in \langle x^{k} \rangle$, es decir, que $p$ es múltiplo de $k$. Podemos suponer que $p \geq 0$ pues $p$ será múltiplo de $k$ si y sólo si lo es $-p$. Por el algoritmo de la división, al dividir $p$ entre $k$ existirán enteros no negativos $q,r$ , $0 \leq r < k$, tales que $p = kq + r$. Entonces, 
+\begin{center}
+$x^{p} = x^{kq+r} = (x^{k})^{q}x^{r}$, por tanto $x^{r} = x^{p}(x^{k})^{-q} \in H$
+\end{center}
+pero por la elección de $k$ (el menor entero positivo tal que $x^{k} \in H$) necesariamente $r = 0$. Esto implica que $x^{p} = (x^{k})^{q} \in \langle x^{k} \rangle$.
+
+$\hfill \square$
+
+Es decir, lo que acabamos de comprobar nos demuestra que \textit{todo subgrupo de un grupo cíclico es también cíclico}, ó bien el subgrupo trivial ó bien el generado por una potencia del elemento generador del grupo.
+
+Así pues, sabemos que todo subgrupo de un grupo cíclico es también cíclico, pero de qué forma son concretamente estos subgrupos nos lo dirá el siguiente resultado:
+
+\begin{proposition}~\label{eq:ciclico}Sea $G$ un grupo cíclico, $n = |G|$. Para cada divisor $m$ de $n$ existe un único subgrupo de $G$ de orden $m$. Además este subgrupo es cíclico.
+\end{proposition}
+\emph{Demostración: }Sea $a \in G$ tal que $G = \langle a \rangle$. En primer lugar, 
+si $n= kl$, $\langle a^{k} \rangle$ es un subgrupo de orden $l$, ya que $o(a^{k}) = \dfrac{n}{mcd(k,n)} = \dfrac{n}{k} = l$ por~\ref{eq:oxk}.
+
+Probemos la proposición. Como $m$ divide a $n$, existe un natural $d$ tal que $$n = dm.$$
+Por lo que acabamos de ver al comienzo de la demostración $H = \langle a^{d} \rangle$ tiene orden $m$. Veamos que es el único subgrupo de orden $m$. Sea $K$ otro subgrupo de $G$ de orden $m$. Sea $k$ el menor entero positivo tal que $a^{k} \in K$ (que existe puesto que $K \subset G = \langle a \rangle$).
+
+Si $a^{p} \in K$, $p$ es múltiplo de $k$ ya que, si dividimos $p$ entre $k$ tenemos,  por el algoritmo de la división, que 
+\begin{center}
+$p = kq + r$, $0 \leq r < k$, luego $a^{r} = a^{p-kq} = a^{p}(a^{k})^{-q} \in K$
+\end{center}
+pero por la elección de $k$ (el menor entero positivo tal que $a^{k} \in K$), ha de ser necesariamente $r = 0$, y así 
+\begin{center}
+$p= qk$, es decir, $p$ es múltiplo de $k$.
+\end{center}
+De esto se deduce que $n= sk$, con $s \in \mathbb{N}$, ya que $a^{n} = 1 \in K$, además $$K = \langle a^{k} \rangle$$ porque para cada $x = a^{p} \in K$ se tiene que $x = (a^{k})^{p} \in \langle a^{k} \rangle$.
+
+Ahora, $m = |K| = o(a^{k}) = n/k$, con lo que $k = n/m = d$ y así $K = \langle a^{d} \rangle = H$.
+
+Luego, $\langle a^{d} \rangle$ es el único subgrupo de $G$ de orden $m$. Como además es cíclico, hemos acabado.
+
+$\hfill \square$
+
+Por lo tanto, dado un grupo cíclico finito $G = \langle x \rangle$ de orden $n$, los subgrupos serán de la forma $\langle x^{n/m} \rangle$, con $m$ un divisor de $n$.
+
+\begin{corolario}\label{eq:corpgrupo} Sea $G$ un grupo finito. $G$ no tiene subgrupos propios si y sólo si $|G|$ es primo. Por lo tanto, un grupo simple abeliano finito es de orden primo.
+\end{corolario}
+\emph{Demostración: }
+Si $|G|$ es un primo, entonces $G$ no tiene subgrupos propios por el \textit{Teorema de Lagrange}.
+
+Recíprocamente, supongamos que $G$ no tiene subgrupos propios. Sea $1 \neq x \in G$. Entonces $G = \langle x \rangle.$ Si $p$ es un número primo que divide a $|G|$, entonces sabemos que $G$ va a tener un subgrupo $H$ de orden $p$. Por lo tanto, $G = H$ tiene orden $p$.
+
+$\hfill \square$
+
+Como ya hemos visto, tanto para grupos en general como para grupos cíclicos en particular, existen ciertos elementos que dan lugar ó que generan el grupo, y los denominamos \textit{generadores}. A la hora de definirse un grupo cíclico cualquiera suele darse además el elemento que lo genera y puede parecer que este elemento es único, así que es natural preguntarse si pueden o no existir más generadores. Así, en caso de que los haya, el siguiente resultado nos ayudará a encontrar todos \textit{generadores} de un grupo cíclico $G$ cualquiera, es decir aquellos elementos $x$ tales que $G = \langle x \rangle$.
+
+\begin{proposition}Sea $G = \langle x \rangle$ un grupo cíclico finito de orden $n$, y sea $k$ un entero positivo entre $1$ y $n$. Entonces $x^{k}$ es un generador de $G$ si y sólo si $mcd(n,k) = 1$.
+\end{proposition}
+\emph{Demostración: }
+Si $mcd(n,k) = 1$, entonces $| \langle x^{k} \rangle | = n/1 = n$ luego $\langle x^{k} \rangle$ es un grupo, subgrupo de $G$, con el mismo número de elementos de $G$, por lo que necesariamente es el propio $G$ y así $x^{k}$ un generador.
+
+Recíprocamente, supongamos que $mcd(n,k)> 1$, entonces resulta $|G| = | \langle x^{k} \rangle | = \dfrac{n}{mcd(n,k)} < n$, lo cual es absurdo.
+
+$\hfill \square$
+
+Por ejemplo, si tenemos un grupo $G = \langle x \rangle$  cíclico de orden $9$, sus generadores son $x$, $x^{2}$, $x^{4}$, $x^{5}$, $x^{7}$ y $x^{8}$.
+
+\begin{example}Como hemos visto al principio, si tenemos $n \in \mathbb{Z}$, con $n>1$ y consideramos el grupo aditivo $\mathbb{Z}_{n}$, tenemos que $\mathbb{Z}_{n} = \langle \left[ 1 \right] \rangle$ (aquí hemos escrito $\left[ 1 \right]$ en lugar de $\left[ 1 \right]_{n}$ por cuestiones estéticas). Esto se comprueba fácilmente ya que 
+\begin{center}
+$0\left[ 1 \right] = \left[ 0 \right]$, $1\left[ 1 \right] = \left[ 1 \right]$, $2\left[ 1 \right] = \left[ 2 \right]$, $\ldots$ , $(n-1)\left[ 1 \right] = \left[ n-1 \right].$
+\end{center}
+Y como acabamos de ver, en función del $n$ escogido, $\mathbb{Z}_{n}$ puede estar generado por otros elementos además de $\left[ 1 \right]$. Veamos para $\mathbb{Z}_{8}$.
+
+Ya sabemos que $\mathbb{Z}_{8} = \lbrace \left[ 0 \right], \left[ 1 \right], \left[ 2 \right], \left[ 3 \right], \left[ 4 \right], \left[ 5 \right], \left[ 6 \right], \left[ 7 \right] \rbrace$, y además
+
+$0\left[ 3 \right] = 0(3 + 8\mathbb{Z}) = 0 +8\mathbb{Z} = \left[ 0 \right],1\left[ 3 \right] = 1(3 + 8\mathbb{Z}) = 3 +8\mathbb{Z} = \left[ 3 \right],2\left[ 3 \right] = 2(3 + 8\mathbb{Z}) = 6 +8\mathbb{Z} = \left[ 6 \right],$
+
+$3\left[ 3 \right] = 3(3 + 8\mathbb{Z}) = 1 +8\mathbb{Z} = \left[ 1 \right],4\left[ 3 \right] = 4(3 + 8\mathbb{Z}) = 4 +8\mathbb{Z} = \left[ 4 \right], 5\left[ 3 \right] = 5(3 + 8\mathbb{Z}) = 7 +8\mathbb{Z} = \left[ 7 \right],$
+
+$6\left[ 3 \right] = 6(3 + 8\mathbb{Z}) = 2 +8\mathbb{Z} = \left[ 2 \right], 7\left[ 3 \right] = 7(3 + 8\mathbb{Z}) = 5 +8\mathbb{Z} = \left[ 5 \right],$
+
+con lo que $\mathbb{Z}_{8} = \langle \left[ 3 \right] \rangle$. 
+
+Por el resultado anterior sabemos que esto ocurre porque $mcd(3,8)=1$, igualmente con $\left[ 5 \right]$ y con $\left[ 7 \right]$ pero sin embargo con $\left[ 2 \right]$:
+
+$0\left[ 2 \right] = 0(2 + 8\mathbb{Z}) = 0 +8\mathbb{Z} = \left[ 0 \right],1\left[ 2 \right] = 1(2 + 8\mathbb{Z}) = 2 +8\mathbb{Z} = \left[ 2 \right],2\left[ 2 \right] = 2(2 + 8\mathbb{Z}) = 4 +8\mathbb{Z} = \left[ 4 \right],$
+
+$3\left[ 2 \right] = 3(2 + 8\mathbb{Z}) = 6 +8\mathbb{Z} = \left[ 2 \right],4\left[ 2 \right] = 4(2 + 8\mathbb{Z}) = 0 +8\mathbb{Z} = \left[ 0 \right], 5\left[ 2 \right] = 5(2 + 8\mathbb{Z}) = 2 +8\mathbb{Z} = \left[ 2 \right],$
+
+$6\left[ 2 \right] = 6(2 + 8\mathbb{Z}) = 4 +8\mathbb{Z} = \left[ 4 \right], 7\left[ 2 \right] = 7(2 + 8\mathbb{Z}) = 6 +8\mathbb{Z} = \left[ 6 \right],$
+
+con lo que $\langle \left[ 2 \right] \rangle = \lbrace \left[ 0 \right], \left[ 2 \right], \left[ 4 \right], \left[ 6 \right] \rbrace \neq \mathbb{Z}_{8}$.
+\end{example}
+$\hfill \blacksquare$
+
+Notar que, dado un $\mathbb{Z}_{n}$, con $n>1$, cuando hallamos todos los generadores lo que estamos haciendo es buscar todos los $x$ tales que $mcd(x,n)=1$, pero ésto no es más que la imagen de $n$ por la conocida  \textit{función de Euler}. De esto se desprende la siguiente consecuencia:
+
+\begin{corolario} Sea $n\in \mathbb{Z}$ con $n>1$ y $k \in \mathbb{N}$. Entonces $\mathbb{Z}_{n} = \langle \left[ k \right] \rangle$ si y sólo si $\left[ k \right] \in \mathbb{Z}_{n}^{\ast}$. Recordando que $$\mathbb{Z}_{n}^{\ast} = \lbrace a +n\mathbb{Z} \in \mathbb{Z} /n\mathbb{Z} : mcd(a,n)= 1 \rbrace.$$
+\end{corolario}
+
+De todos estos resultados vistos, y empleando la \textit{función de Euler} $\phi$, podemos así afirmar el siguiente teorema, que además queda demostrado:
+
+\begin{theorem}
+Sea $G$ un grupo cíclico finito de orden $n$. Si $d$ es un divisor de $n$ (podemos suponerlo positivo), entonces el número de elementos de $G$ de orden $d$ es $\phi(d)$.
+\end{theorem}
+
+Esto quiere decir básicamente que en un grupo cíclico $G$, el número de elementos que tengan orden $d$ será el número de \textit{coprimos} con $d$. En particular, si $d = n = |G|$, tendremos que el número de generadores de $G$ será $\phi(d)$.
+
+\begin{proposition} Si $G$ es cíclico y $H$ es un subgrupo normal de $G$, también el cociente $G/H$ es cíclico.
+\end{proposition}
+\emph{Demostración: } Si $G = \langle a \rangle$, es obvio que $G/H = \langle aH \rangle$.
+
+$\hfill \square$
+
+Como ya vimos en un ejemplo cuando vimos subgrupos normales, un subgrupo cualquiera $H = m\mathbb{Z}$ de $\mathbb{Z}$, con $m$ entero positivo, es normal ya que $\mathbb{Z}$, y por tanto $m\mathbb{Z}$, es abeliano. Luego, por lo que acabamos de ver, el grupo cociente $\mathbb{Z}/m\mathbb{Z} = \mathbb{Z}_{m}$ es cíclico y su orden en $m$. De hecho, como ya sabemos $$\mathbb{Z}_{m} = \lbrace 0 + m\mathbb{Z}, 1 +m\mathbb{Z} , \ldots, (m-1) + m\mathbb{Z}\rbrace,$$ y $\mathbb{Z}_{m} = \langle 1 +m\mathbb{Z} \rangle$. Por lo tanto, dependiendo de la $m$ escogida, la \textit{función de Euler} establece el número de generadores del grupo cociente $\mathbb{Z}_{m}$.
+
+Ya hemos visto a lo largo de estos capítulos que el conjunto de los enteros y los enteros módulo $n$, $\mathbb{Z}$ y $\mathbb{Z}_{n}$, son grupos, y en concreto grupos cíclicos. Que se haya hecho un inciso especial en estos dos grupos no es casualidad, vamos a ver a continuación que son, por así decirlo, los «únicos» grupos cíclicos que existen. Es decir, que dado un grupo cíclico, o es equivalente a $\mathbb{Z}$ o a $\mathbb{Z}_{n}$, y ya vimos en el anterior capítulo que cuando hablamos de «igualdad» o «equivalencia» en \textit{Teoría de Grupos} en realidad estamos hablando de isomorfismos. Básicamente todo grupo cíclico es isomorfo a $\mathbb{Z}$ o a $\mathbb{Z}_{n}$.
+
+\begin{theorem}
+Sea $G$ un grupo cíclico. Se verifica:
+\begin{enumerate}
+\item Si $G$ es infinito, entonces es isomorfo a $(\mathbb{Z},+)$.
+\item Si $G$ es finito de orden $n$, entonces es isomorfo a $(\mathbb{Z}_{n},+)$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }(Notar que hemos especificado que la operación en ambos grupos $\mathbb{Z}$ y $\mathbb{Z}_{n}$ sea la adición, puesto que su elemento neutro será el $0$ y no el $1$)
+Sea $G = \langle x \rangle$ y consideremos el homomorfismo $$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &G\\
+&k& \longmapsto &x^{k},
+\end{array}
+$$ que es claramente sobreyectivo ($Im f = G$).
+
+1. Basta comprobar que $f$ es inyectiva. Para ello supongamos por reducción al absurdo que $Ker f \neq \lbrace 0\rbrace$. Entonces, por ser $Ker f$ un subgrupo de $\mathbb{Z}$ no trivial, será de la forma $n\mathbb{Z}$ para algún $n \in \mathbb{N}$ no nulo. Ahora, el \textit{Primer Teorema de Isomorfía} nos asegura que $\mathbb{Z}_{n} = \mathbb{Z}/n\mathbb{Z} \simeq G$, así $G$ tendría $n$ elementos, lo cual contradice la hipótesis de que sea infinito.
+
+2. Si $G$ es finito de orden $n$, no puede ser $Ker f = \lbrace 0 \rbrace$, puesto que en este caso $f$ sería  inyectiva y entonces $G$ infinito. Así pues $Ker f = m\mathbb{Z}$ para algún $m \in \mathbb{N}$ no nulo, usando de nuevo el \textit{Primer Teorema de Isomorfía} $\mathbb{Z}_{m} = \mathbb{Z}/m\mathbb{Z} \simeq G$. Como $\mathbb{Z}_{m}$ y $G$ han de tener el mismo orden, $m=n$.
+
+$\hfill \square$
+
+Como consecuencia interesante tenemos:
+
+\begin{corolario}
+Supongamos que $G = \langle a \rangle$ es un grupo cíclico. Entonces:
+\begin{enumerate}
+\item Si $o(a) = \infty$, entonces $$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &G\\
+&k& \longmapsto &a^{k},
+\end{array}
+$$ es un isomorfismo.
+\item Si $o(a)= n$, entonces $$\begin{array}{rccl}
+f\colon &\mathbb{Z}_{n}& \longrightarrow &G\\
+&\left[ k \right]& \longmapsto &a^{k},
+\end{array}
+$$ es un isomorfismo.
+\end{enumerate} 
+\end{corolario}
+
+Además, el teorema anterior nos permite establecer una «igualdad» entre grupos cíclicos a través de isomorfismos:
+
+\begin{corolario} Sean $G$ y $H$ grupos cíclicos. Entonces $G \simeq H$ si y sólo si $o(H) = o(G)$.
+\end{corolario}
+
+Otra consecuencia, más bien lógica y evidente, del anterior teorema pero que podríamos haberla presentado perfectamente desde el principio es la que nos habla acerca de otro invariante bajo isomorfismos de grupos (ya vimos alguno en el anterior capítulo):
+
+\begin{corolario} Sean dos grupos $G_{1}$ y $G_{2}$ isomorfos, $G_{1} \simeq G_{2}$, y $G_{1}$ cíclico, entonces $G_{2}$ también será cíclico. En concreto, la propiedad de ser cíclico es un invariante bajo isomorfismo.
+\end{corolario}
+\emph{Demostración: }Sea $a \in G_{1}$ tal que $G_{1} = \langle a \rangle$ y $f\colon G_{1} \longrightarrow G_{2}$ un isomorfismo. Llamemos $b= f(a)$. Probemos que $G_{2} = \langle b \rangle$.
+
+Dado un $y \in G_{2}$, existe un $x \in G_{1}$ tal que $y = f(x)$. Como $x \in G_{1} = \langle a \rangle$, existirá un entero $k$ tal que $x = a^{k}$. Entonces $$y = f(x) = f(a^{k})= f(a)^{k} = b^{k} \in \langle b \rangle.$$
+
+$\hfill \square$
+
+Por último aclarar que de ahora en adelante si hablamos de un grupo cíclico cualquiera de orden $n$ lo denotaremos por $C_{n}.$
+
+\section{Grupos de automorfismos}
+
+\subsection{Grupos de automorfismos y automorfismos internos}
+
+Del \textit{Álgebra Lineal} conocemos ya los espacios vectoriales, y en concreto los isomorfismos de un espacio vectorial en sí mismo, que denotamos en su momento como \textit{automorfismos}; también sabemos que ese conjunto de automorfismos no constituyen un espacio vectorial. Sin embargo cuando las estructuras sobre las que trabajemos sean los grupos sí se dará, el conjunto de los automorfismos de un grupo con la operación composición constituyen un grupo. En este capítulo nos dedicaremos a estudiarlos.
+
+\begin{definition}Si $G$ es un grupo, un \textbf{automorfismo} de $G$ es un isomorfismo $$\begin{array}{rccl}
+f\colon G \longrightarrow G.
+\end{array}
+$$ Notaremos por $Aut(G)$ el conjunto de los automorfismos de $G$. $Aut(G)$ es un subgrupo del grupo de las biyecciones de $G$, $Biy(G)$. En particular, $Aut(G)$ es un grupo con la operación composición. El contenido $Aut(G) \subseteq Biy(G)$ es evidente y como la aplicación identidad $$\begin{array}{rccl}
+id_{G}\colon &G& \longrightarrow &G\\
+&x& \longmapsto &x
+\end{array}
+$$ es un automorfismo de $G$, $Aut(G)$ no es vacío. Además, sabemos que dados $f, g \in Aut(G)$, $g^{-1} \in Aut(G)$, la composición $f \circ g^{-1}$ es biyectiva por serlo $f$ y $g^{-1}$, y es homomorfismo por serlo la composición de homomorfismos. Así, $f \circ g^{-1} \in Aut(G)$. Como siempre, la asociatividad se desprende de la composición.
+\end{definition}
+
+\begin{example}$$Aut(\mathbb{Z}) = \mathbb{Z}/2\mathbb{Z}.$$
+Ya que si $f\colon \mathbb{Z} \longrightarrow \mathbb{Z}$ es un automorfismo, sabemos de su estudio que existirá un $a \in \mathbb{Z}$ tal que
+\begin{center}
+$f(n) = an$, para cada $n \in \mathbb{Z}$.
+\end{center}
+Al ser $f$ automorfismo, es sobreyectiva y así $1 \in Im f$. En consecuencia ha de existir un $n \in \mathbb{Z}$ tal que $an = 1$. Por lo tanto, sólo puede ser $a = +1$ ó $a = -1$. De hecho esos serán los elementos de $Aut(\mathbb{Z})$: 
+$$\begin{array}{rccl}
+f_{1}\colon &\mathbb{Z}& \longrightarrow &\mathbb{Z}\\
+&n& \longmapsto &n
+\end{array}
+$$ 
+$$\begin{array}{rccl}
+f_{-1}\colon &\mathbb{Z}& \longrightarrow &\mathbb{Z}\\
+&n& \longmapsto &-n
+\end{array}
+$$  Recíprocamente, los homomorfismos 
+$$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &\mathbb{Z}\\
+&n& \longmapsto &n
+\end{array}
+$$  y $$\begin{array}{rccl}
+g\colon &\mathbb{Z}& \longrightarrow &\mathbb{Z}\\
+&n& \longmapsto &-n
+\end{array}
+$$  son evidentemente automorfismos. Así $Aut(\mathbb{Z}) = \lbrace f, g \rbrace$ tiene dos elementos, y sabemos que todo grupo de orden primo es cíclico, por lo que $Aut(\mathbb{Z})$ es cíclico, y que todo cíclico finito de orden $2$ es isomorfo a $\mathbb{Z}/2\mathbb{Z}$, por lo que ya está.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition}Sea $C_{n}$ un grupo cíclico de orden $n$, entonces $$Aut(C_{n}) \simeq \mathcal{U}_{n}.$$ 
+En particular, es un grupo abeliano de orden $\phi(n)$.
+\end{proposition}
+\emph{Demostración: }Sea $$\begin{array}{rccllll}
+\psi \colon &\mathcal{U}_{n}& \longrightarrow &Aut(C_{n})& & & \\
+&[u]& \longmapsto &f_{u} \colon C_{n} \longrightarrow C_{n}& & & \\
+& &  & \hspace{1cm} x \longmapsto x^{u}& & & 
+\end{array}
+$$
+Veamos que $\psi$ está bien definida:
+
+$f_{u}(x^{k})=f_{u}(x)^{k}=(x^{u})^{k}=x^{uk}$, $f_{u}$ es un homomorfismo y $f_{u}(\langle x \rangle )= \langle f_{u}(x) \rangle = \langle x^{u} \rangle = C_{n}$ ya que $u$ es coprimo con $n$ y por lo tanto  $x^{u}$ es generador de $C_{n}$. Esto quiere decir también que $f_{u}$ es sobreyectiva, y como es una aplicación sobreyectiva entre dos conjuntos del mismo cardinal tenemos que es biyectiva y así $f_{u} \in Aut(C_{n})$. Si tenemos que $[u]=[j]$ para algunos $[u],[j] \in \mathcal{U}_{n}$ entonces $\psi([u]) = \psi ([j])$, pero $[u]=[j] \Rightarrow u=j+kn$ para algún $k \in \mathbb{Z}$. Así $f_{u}(x)=x^{u}=x^{j+kn}=x^{j}(x^{n})^{k}=x^{j}=f_{j}(x)$ y así $\psi$ está bien definida.
+
+Veamos que $\psi$ es homorfismo: 
+
+$\psi([u][j])(x)=f_{uj}(x)=x^{uj}=(x^{j})^{u}=f_{u}(x^{j})=f_{u}f_{j}(x)=[\psi([u]) \circ \psi([j])](x).$
+
+Es claramente sobreyectiva y para ver que es inyectiva: 
+
+\begin{center}$Ker \hspace{0.1cm} \psi=\lbrace [u] \in \mathcal{U}_{n}:f_{u}=id \in Aut(C_{n}) \rbrace = \lbrace [u] \in \mathcal{U}_{n}:x^{u}=x \rbrace = \lbrace [u] \in \mathcal{U}_{n} x^{u-1}=1 \rbrace = \lbrace [u] \in \mathcal{U}_{n}: n \mid u-1 \rbrace,$\end{center}
+luego $[u] \in Ker \hspace{0.1cm} \psi$ si y sólo si $\exists k \in \mathbb{Z}$ tal que $u-1 =kn$ si y sólo si $\exists k \in \mathbb{Z}$ tal que $u = 1+kn$ si y sólo si $u \equiv 1$ mod $n$. Así, $Ker \hspace{0.1cm} \psi =\lbrace 1 \rbrace$ y $\psi$ es inyectiva.
+
+$\hfill \square$
+
+Esto es lo mismo que decir que, dado $n$ un número natural mayor que uno, $$Aut(\mathbb{Z}/n\mathbb{Z}) \simeq \mathbb{Z}_{n}^{\ast}.$$
+
+En particular, de todos estos resultados vistos tenemos:
+
+\begin{corolario} \label{eq:AutUnidads} Sea $G$ un grupo, entonces:
+\begin{enumerate}
+\item $Aut(G) = \mathbb{Z}/2\mathbb{Z}$ si $G$ es cíclico infinito
+\item $Aut(G) = \mathbb{Z}_{n}^{\ast}$ si $G$ es cíclico de orden $n$.
+\end{enumerate}
+\end{corolario}
+
+Y ahora el siguiente teorema, que será útil más allá incluso de la presente obra:
+
+\begin{theorem} Si dos grupos $G_{1}$ y $G_{2}$ son isomorfos, entonces también lo serán $Aut(G_{1})$ y $Aut(G_{2})$. 
+\end{theorem}
+\emph{Demostración: }Sea $f\colon G_{1}\longrightarrow G_{2}$  un isomorfismo. Construimos $$\begin{array}{rccl}
+\phi\colon &Aut(G_{2})& \longrightarrow &Aut(G_{1})\\
+&h& \longmapsto &f^{-1} \circ h \circ f.
+\end{array}
+$$ Y veamos que es el isomorfismo que buscamos. Evidentemente, cada automorfismo $h$ de $G_{2}$ es un homomorfismo biyectivo, luego $f^{-1} \circ h \circ f \in Aut(G_{1})$ y $\phi$ está bien definida. Veamos que es homomorfismo: $$\phi(g \circ h) = f^{-1} \circ (g \circ h) \circ f = f^{-1} \circ g \circ f \circ f^{-1} \circ h \circ f = \phi(g) \circ \phi(h).$$ Si $h \in Ker \phi$, se tiene que $f^{-1} \circ h \circ f = I_{G_{1}}$, luego $h \circ f = f$ y de aquí $h = (h \circ f) \circ f^{-1} = f \circ f^{-1} = I_{G_{1}}$. Así, $\phi$ es inyectiva.
+
+Finalmente, $\phi$ es sobreyectiva, pues dado $g \in Aut(G_{1})$, existe $$h = f \circ g \circ f^{-1} \in Aut(G_{2})$$ tal que $$\phi(h) = f^{-1} \circ h \circ f = f^{-1} \circ f \circ g \circ f^{-1} \circ f = g.$$
+
+$\hfill \square$
+
+En cuanto a este resultado, importante decir que el recíproco no tiene por qué cumplirse, es decir, pueden existir grupos no isomorfos $G_{1}$ y $G_{2}$ tales que $Aut(G_{1}) \simeq Aut(G_{2})$.	Un ejemplo de ello es el siguiente:
+
+\begin{example} Consideremos dos grupos, $G_{1} = \mathbb{Z}/3\mathbb{Z}$ y $G_{2} = \mathbb{Z}/4\mathbb{Z}$, que claramente no son isomorfos al no tener el mismo orden.
+
+De la proposición vista antes tenemos que $$Aut(G_{1}) \simeq \mathbb{Z}_{3}^{\ast}, \hspace{0.1cm} Aut(G_{2}) \simeq \mathbb{Z}_{4}^{\ast}.$$ Ahora, usando la función de Euler: $$|\mathbb{Z}_{3}^{\ast}| = \phi(3) = 2, \hspace{0.1cm} |\mathbb{Z}_{4}^{\ast}| = \phi(4) = 2.$$ Así, al tener ambos órdenes primos podemos decir que son cíclicos, y por tanto $$\mathbb{Z}_{3}^{\ast} \simeq \mathbb{Z}/2\mathbb{Z}, \hspace{0.1cm} \mathbb{Z}_{4}^{\ast} \simeq \mathbb{Z}/2\mathbb{Z},$$ luego $Aut(G_{1}) \simeq Aut(G_{2}).$
+\end{example}
+$\hfill \blacksquare$
+
+Antes de pasar al estudio de los llamados \textit{automorfismos internos} veamos un ejemplo general de automorfismos que todos conocemos del \textit{Álgebra Lineal}:
+
+\begin{example}
+Sea $P \in GL_{n}(\mathbb{R})$ una matriz con determinante no nulo y coeficientes reales. Si $A \in GL_{n}(\mathbb{R})$, entonces $PAP^{-1} \in GL_{n}(\mathbb{R})$. Por tanto, podemos definir una aplicación$$\begin{array}{rccl}
+f\colon &GL_{n}(\mathbb{R})& \longrightarrow &GL_{n}(\mathbb{R})\\
+&A& \longmapsto &PAP^{-1}
+\end{array}
+$$ para cualquier $A \in GL_{n}(\mathbb{R})$. Además, si $A,B \in GL_{n}(\mathbb{R})$, entonces $$f(AB) = PABP^{-1} = PAP^{-1}PBP^{-1} = f(A)f(B),$$ con lo que $f$ es homomorfismo.\vspace{0.2cm}\\
+Veamos cuál es el núcleo de esta aplicación, dada una $A \in GL_{n}(\mathbb{R})$ entonces que $f(A) = I_{n}$ (matriz identidad) quiere decir que $PAP^{-1} = I_{n}$ y esto implica que $A = I_{n}$. En consecuencia, $Ker f = \lbrace I_{n} \rbrace$, así que $f$ es inyectiva.\vspace{0.2cm}\\
+Ahora, si $B \in GL_{n}(\mathbb{R})$, entonces $A = P^{-1}BP \in GL_{n}(\mathbb{R})$ y $$f(A) = PAP^{-1} = PP^{-1}BPP^{-1} = B,$$ y así $f$ es sobreyectiva. Luego $f$ es un automorfismo de $GL_{n}(\mathbb{R})$.
+\end{example}
+$\hfill \blacksquare$
+
+\begin{proposition}Sea $G$ un grupo y $g \in G$. Sea $x \in G$. Definimos $x^{g} = gxg^{-1}$. A $x^g$ lo denominaremos \textbf{conjugado de $x$ por $g$} ó simplemente \textbf{conjugado}. Entonces: 
+\begin{enumerate}
+\item La aplicación $$\begin{array}{rccl}
+\alpha_{g}\colon &G& \longrightarrow &G\\
+&x& \longmapsto &x^{g}
+\end{array}
+$$ es un automorfismo de $G$ llamado \textbf{automorfismo interno}.
+\item $\alpha_{g} \circ \alpha_{h} = \alpha_{gh}$, $\forall g,h \in G$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Para demostrar el resultado iremos por partes:
+\begin{enumerate}
+\item $\alpha_{g}(xy)=g(xy)g^{-1} = (gxg^{-1})(gyg^{-1}) = \alpha_{g}(x)\alpha_{g}(y)$. Así, $\alpha_{g}$ es homomorfismo. Es evidente comprobar que es biyectivo teniendo en cuenta que su inversa es $\alpha_{g^1}$, que es claro que va a existir.
+\item $(\alpha_{g} \circ \alpha_{h})(x) = \alpha_{g}(hxh^{-1}) = g(hxh^{-1})g^{-1}=(gh)x(gh)^{-1} = \alpha_{gh}(x).$
+\end{enumerate}
+
+$\hfill \square$
+
+Ahora, dado que tenemos $\alpha_{g} \circ \alpha_{h} = \alpha_{gh}$ y que $(\alpha_{g})^{-1} = \alpha_{g^{-1}}$ es claro que el conjunto de los automorfismos internos tendrá también estructura de grupo.
+
+\begin{definition} Dado un grupo $G$, definimos el \textbf{grupo de los automorfismos internos de $G$} como 
+$$Int (G) = \lbrace\alpha_{g} : g \in G \rbrace.$$
+
+Es claro que $Int (G) \leq Aut(G).$
+\end{definition}
+
+Es más, se tiene que: 
+
+\begin{proposition}$Int(G)$ es un subgrupo normal de $Aut(G)$.
+\end{proposition}
+\emph{Demostración: }Vamos a comprobar que $(Int (G))^{g} \subseteq Int(G), \hspace{0.1cm} \forall g \in Aut(G).$ Sea así $f \in (Int(G))^{g}$. Por tanto, $g \circ f \circ g^{-1} \in Int(G)$, luego $\exists y \in G$ tal que $g \circ f \circ g^{-1} = \alpha_{y}$ y así $f= g^{-1} \circ \alpha_{y} \circ g.$
+
+Entonces, dado $x \in G$ y llamando $b = g^{-1}(y)$, tenemos $$f(x) = (g^{-1} \circ \alpha_{y})(g(x)) = g^{-1}(yg(x)y^{-1}) = bxb^{-1} = \alpha_{b}(x).$$ Por lo que $f = \alpha_{b} \in Int(G)$.
+
+$\hfill \square$
+
+Si consideramos ahora la aplicación $$\begin{array}{rccl}
+\psi\colon &G& \longrightarrow &Aut(G)\\
+&g& \longmapsto &\alpha_{g},
+\end{array}
+$$
+entonces es claro que la imagen es $Int(G)$, y si calculamos su núcleo: \begin{center}
+$Ker\hspace{0.1cm} \psi = \lbrace g \in G: \psi(g) = \alpha_{g} = id \rbrace = \lbrace g \in G : gxg^{-1} = x \hspace{0.2cm} \forall x \in G \rbrace = \lbrace g \in G : gx = xg\hspace{0.2cm} \forall x \in G \rbrace = Z(G).$
+\end{center}
+
+Y ahora, por el \textit{Primer Teorema de Isomorfía} tenemos que $$G/Z(G) \simeq Int(G).$$
+
+De esto se deduce además dos propiedades elementales que condensaremos en la siguiente proposición:
+
+\begin{proposition}\label{eq:intG} Sea $G$ un grupo. Son equivalentes:
+\begin{enumerate}
+\item $G$ es abeliano.
+\item $Int(G) = \lbrace id_{G} \rbrace$.
+\item $Int(G)$ es un grupo cíclico.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }\\
+(1) $\Longrightarrow$ (2). Si $G$ es abeliano coincide con su centro. Así que $G/Z(G)$ consta de un solo elemento y como $G/Z(G)\simeq Int(G)$, $Int(G) = \lbrace id_{G} \rbrace$.
+
+(2) $\Longrightarrow$(3). Evidente, puesto que sólo tiene un elemento.
+
+(3) $\Longrightarrow$(1). Sean $x,y \in G$. Vamos a probar que $xy = yx$. Sabemos que $Int(G)$ es cíclico, y como la propiedad de ser cíclico también es un invariante bajo isomorfismos, entonces $G/Z(G)$ también es cíclico; en consecuencia existirá $g\in G$ tal que $G/Z(G) = \langle Z(G)g \rangle$. Así, para los $x,y$ anteriores, $$Z(G)x = Z(G)g^{k}, \hspace{0.1cm} Z(G)y = Z(G)g^{l},$$ con $k$ y $l$ enteros.
+
+Por lo tanto, $xg^{-k} \in Z(G)$, y también $yg^{-l} \in Z(G)$. Entonces \begin{center}$xy = xg^{-k}g^{k}y = g^{k}yxg^{-k} = g^{k}yg^{-l}g^{l}xg^{-k} = yg^{-l}g^{k}g^{l}xg^{-k} = yg^{k}xg^{-k} = yxg^{-k}g^{k} = yx,$\end{center} donde es importante tener en cuenta que $g^{k}g^{l} = g^{k+l} = g^{l+k} = g^{l}g^{k}$ en la quinta igualdad.
+
+$\hfill \square$
+
+Y de estas propiedades deducimos las siguientes consecuencias:
+
+\begin{corolario}Sean $G$ un grupo y $H$ subgrupo de $G$ contenido en $Z(G)$. Entonces
+\begin{enumerate}
+\item $H$ es subgrupo normal.
+\item Si $G/H$ es cíclico, $G$ es abeliano.
+\end{enumerate}
+\end{corolario}
+\emph{Demostración: }\\
+(1). Ya se vió.
+
+(2). Por el \textit{Segundo Teorema de Isomorfía} $$G/Z(G) \simeq (G/H)/(Z(G)/H).$$ Como $G/H$ es cíclico y $(Z(G)/H)$ es subgrupo normal, también lo será $$(G/H)/(Z(G)/H)$$ y así $G/Z(G)$ también. Que $G$ sea abeliano se deduce de los resultados anteriores.
+
+$\hfill \square$
+
+En particular, si $H=Z(G)$ cumple entonces que es un subgrupo de $G$ y evidentemente está contenido en $Z(G)$. Por lo que se tiene el corolario y llegaríamos al resultado que suele conocerse: 
+
+\begin{center}\textbf{\textit{Si $G/Z(G)$ es cíclico entonces $G$ es abeliano.}}\end{center}
+
+\subsection{Producto directo y semidirecto}
+
+\begin{proposition}Sean $G_{1}$ y $G_{2}$ grupos. Dado el producto cartesiano $G_{1} \times G_{2}$ podemos convertirlo en un grupo con la siguiente operación: $$\cdot \colon (g_{1},g_{2})(g'_{1},g'_{2})=(g_{1}g'_{1},g_{2},g'_{2}).$$
+Además, dado un grupo $G$ y $N_{1},N_{2} \unlhd G$ subgrupos normales tales que $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}=\lbrace 1_{G} \rbrace$. Entonces $$N_{1} \times N_{2} \simeq G.$$
+\end{proposition}
+\emph{Demostración: }Para ver que es grupo con $\cdot$ basta con una simple comprobación. Para la segunda parte definimos la siguiente aplicación: 
+$$\begin{array}{rccl}
+f\colon &N_{1}\times N_{2} & \longrightarrow & G\\
+&(n_{1},n_{2})& \longmapsto &n_{1}n_{2}
+\end{array}
+$$ 
+
+Para ver que $f$ es homomorfismo: $$f((n_{1},n_{2})(n'_{1},n'_{2}))=f((n_{1}n'_{1},n_{2}n'_{2}))=n_{1}n'_{1}n_{2}n'_{2}.$$
+$$f((n_{1},n_{2}))f((n'_{1},n'_{2}))=n_{1}n_{2}n'_{1}n'_{2}.$$
+Para comprobar que son iguales bastará probar que $xy=yx$ para todo $x\in N_{1}$, $y\in N_{2}$. Sea $x^{-1}y^{-1}xy=x^{-1}(y^{-1}xy)\in N_{1}$, como también $x^{-1}y^{-1}xy=(x^{-1}y^{-1}x)y \in N_{2}$ y por hipótesis tenemos que $N_{1}\cap N_{2} = \lbrace 1_{G}\rbrace$, entonces será que $x^{-1}y^{-1}xy=1$, luego $xy=yx$. 
+
+Ahora, como $G=N_{1}N_{2}$, $f$ es suprayectiva. $Ker f = \lbrace (n_{1},n_{2}) \in N_{1}\times N_{2}:n_{1}n_{2}=1 \rbrace$. Si $n_{1}n_{2}=1$, entonces $n_{2}=n_{1}^{-1}\in N_{1}\cap N_{2}=\lbrace 1_{G}\rbrace$. Así, $n_{1}=n_{2}=1_{G}$ y $Ker f=\lbrace 1_{G} \rbrace$ y $f$ es inyectiva.
+
+$\hfill \square$
+
+\begin{definition}Decimos que el producto cartesiano en el que hemos descompuesto $G$ antes,$N_{1}\times N_{2}$ con $N_{1}, N_{2}\unlhd G$ tales que con $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}= \lbrace 1_{G} \rbrace$, es un \textbf{producto directo}. 
+\end{definition}
+
+\begin{proposition}Sean $N$ y $H$ grupos. Sea $\varphi \colon H \longrightarrow Aut(N)$ un homomorfismo entre $H$ y el grupo de los automorfismos de $N$. En el producto cartesiano $N \times H$ podemos definir una estructura de grupo conocida como \textbf{producto semidirecto de $H$ por $N$ vía $\varphi$} y denotada por $N\times_{\varphi} H$ de la siguiente manera:$$(n_{1},h_{1})(n_{2},h_{2}) = (n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2}),$$ donde $\varphi(h_{1})(n_{2}) = n_{2}^{h_{1}}$ normalmente, es decir, que el automorfismo en cuestión será la composición por un $h \in H$.
+
+Ahora, sea $G$ un grupo, $N \unlhd G$ y $H \leq G$. Supongamos que $G = NH$ y $N \cap H = \lbrace 1_{G}\rbrace$. Dado un $$\begin{array}{rccl}
+\varphi\colon &H & \longrightarrow & Aut(N)\\
+&h& \longmapsto &n \longmapsto n^{h} = hnh^{-1}.
+\end{array}
+$$  Entonces $$N \times_{\varphi} H \simeq G.$$
+\end{proposition}
+\emph{Demostración: }
+Comprobemos primero que es grupo. Cumple con la propiedad asociativa: \begin{center}$(n_{1},h_{1})((n_{2},h_{2})(n_{3},h_{3}))=(n_{1},h_{1})(n_{2}\varphi(h_{2})(n_{3}),h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2}\varphi(h_{2})(n_{3})),h_{1}h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
+
+$((n_{1},h_{1})(n_{2},h_{2}))(n_{3},h_{3})=(n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})(n_{3},h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
+\end{center}
+Tiene elemento neutro: 
+$$(n,h)(1,1)=(n\varphi(h)(1),h)=(1\varphi(h)(n),h)=(1,1)(n,h).$$
+
+Cada elemento $(n,h)$ tiene un inverso $(n,h)^{-1}=(\varphi(h^{-1})(n^{-1}),h^{-1})$.
+
+\begin{center}$(n,h)(\varphi(h^{-1})(n^{-1}),h^{-1})=(n\varphi(h)(\varphi(h^{-1})(n^{-1})),1)=(n\varphi(hh^{-1})(n^{-1}),1)=(nn^{-1},1)=(1,1).$
+
+$(\varphi(h^{-1})(n^{-1}),h^{-1})(n,h)=(\varphi(h^{-1})(n^{-1})\varphi(h^{-1})(n),1)=(\varphi(h^{-1})(n^{-1}n),1)=(\varphi(h^{-1})(1),1)=(1,1).$\end{center}
+
+Ahora, veamos la segunda parte. Sea $G=NH$, con $N \unlhd G$, $H\leq G$ y $N \cap H = \lbrace 1_{G} \rbrace$, y sea 
+$$\begin{array}{rccl}
+\varphi\colon &H & \longrightarrow & Aut(N)\\
+&h& \longmapsto &n \longmapsto n^{h} = hnh^{-1}.
+\end{array}
+$$
+Veamos que $\varphi$ está bien definida: como $N \unlhd G$, si $n \in N$ y $h \in H$, $hnh^{-1} \in N$. Ya sabemos que la conjugación es un automorfismo. Además $\varphi$ es homorfismo: $$\varphi(h_{1},h_{2})(n)=h_{1}h_{2}nh_{2}^{-1}h_{1}^{-1}=(\varphi(h_{1}) \circ \varphi(h_{2}))(n).$$
+Definimos ahora $$\begin{array}{rccl}
+f\colon &N \times _{\varphi} H & \longrightarrow & G\\
+&(n,h)& \longmapsto &nh.
+\end{array}
+$$
+y veamos que $f$ es homomorfismo: \begin{center}$f((n_{1},h_{1})(n_{2},h_{2}))=f((n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})=n_{1}\varphi(h_{1})(n_{2})h_{1}h_{2}=n_{1}(h_{1}n2h_{1}^{-1})h_{1}h_{2}=n_{1}h_{1}n_{2}h_{2}=f((n_{1},h_{1}))f((n_{2},h_{2})).$\end{center}
+
+Como $G=NH$ $f$ es claramente suprayectiva. Ahora, $Ker f= \lbrace (n,h) \in N\times_{\varphi} H :nh=1 \rbrace$. Y si $nh=1$ entonces $n=h^{-1}\in N \cap H$, pero como $N \cap H = \lbrace 1_{G} \rbrace$ tenemos que $n=h=1_{G}$ y así $f$ es inyectiva y por tanto isomorfismo.
+
+$\hfill \square$
+
+
+\textbf{Ejercicio} \textit{$C_{4}$ y\hspace{0.1cm} $C_{2} \times C_{2}$ son los únicos grupos de orden $4$ salvo isomorfismo.}
+
+\emph{Demostración: }Usaremos el hecho de que, dado un grupo $G$ en el que se cumple que $x^{2}=1$ $\forall x \in G$ entonces $G$ es abeliano. También se usará que, dado un grupo $G$ y $N_{1},N_{2} \unlhd G$ con $G = N_{1}N_{2}$ y $N_{1}\cap N_{2} =\lbrace 1_{G}\rbrace$ entonces $G \simeq N_{1} \times N_{2}.$
+
+Sea así $G$ un grupo tal que $|G| = 4$. Si existe un $x \in G$ tal que $o(x)=4$ entonces $G \simeq C_{4}$ y ya está. Si no, entonces todos los elementos de $G$ tienen necesariamente orden $2$ salvo el neutro. Es decir, $x^{2}=1$ $\forall x\in G$, entonces $G$ es abeliano y así todos sus subgrupos son normales. Entonces, dados $x,y \in G$ elegimos $H= \langle x \rangle$ y $K = \langle y \rangle$ subgrupos propios distintos, y se verifica que $H, K \unlhd G$, $H \cap K = \lbrace 1_{G} \rbrace$ y $$|HK| = \dfrac{|H||K|}{|H \cap K|} = \dfrac{|\langle x\rangle | |\langle y \rangle |}{1}= 2\cdot 2 = 4,$$ y así $HK = G$. Luego $G \simeq H \times K = C_{2}\times C_{2}.$
+
+$\hfill \square$
+
+\section{Grupos de permutaciones}
+
+
+\section{Acciones de grupos. Teoremas de Sylow}
+
+\subsection{Acciones de grupos sobre conjuntos}
+Primero de todo, aclarar que se va a dar una definición de acción por así decirlo más desarrollada que la que normalmente se da. Realmente en el fondo es lo mismo, pero aquí comenzaremos con la definición desarrollada hasta llegar a lo que más tarde llamaremos representación de la acción.
+
+\begin{definition} Sea $G$ un grupo y $X$ un conjunto no vacío. Entonces, una \textbf{acción de un grupo $G$ sobre un conjunto $X$} es una aplicación $$\begin{array}{rccl}
+\varphi\colon &G \times X& \longrightarrow &X\\
+&(g,x)& \longmapsto &g(x)
+\end{array}
+$$ que cumple: \begin{enumerate}
+\item $(gh)(x) = g(h(x))$ para todo $g,h \in G$ y $x \in X$.
+\item $1_{G}(x) = x$ para todo $x \in X$.
+\end{enumerate}
+Diremos así que \textbf{$G$ actúa sobre el conjunto $X$}. En concreto, ésta es la definición de \textbf{acción a izquierda} del grupo $G$ sobre el conjunto $X$, aunque simplemente la llamaremos acción. Análogamente, podemos definir una acción a derecha.
+\end{definition}
+
+\begin{proposition}
+Sea $G$ un grupo actuando sobre un conjunto $X$ con una aplicación $\varphi\colon G \times X \longrightarrow X$ tal que $\varphi(g,x)=g(x).$ Entonces: 
+\begin{enumerate}
+\item Para cada $g \in G$, la aplicación $$\begin{array}{rccl}
+\varphi_{g}\colon &X& \longrightarrow &X\\
+&x& \longmapsto &g(x)
+\end{array}
+$$ es biyectiva.
+\item Existe un homomorfismo de grupos $$\begin{array}{rccl}
+\bar{\varphi}\colon &G& \longrightarrow &Biy(X)\\
+&g& \longmapsto &\varphi_{g}
+\end{array}
+$$ 
+\end{enumerate} 
+\end{proposition}
+\emph{Demostración: }Demostremos cada parte:
+\begin{enumerate}
+\item Sea $g \in G$. Veamos primero que $\varphi_{g}$ es inyectiva:
+
+Sean $x,y \in X$ tales que $\varphi_{g}(x) = \varphi_{g}(y)$. Entonces $g(x) = g(y)$, por lo que $g^{-1}(g(x)) = g^{-1}(g(y))$. Aplicando la primera condición de acción tenemos que $(g^{-1}g)(x) = (g^{-1}g)(y)$, y así $1_{G}(x) = 1_{G}(y)$ y por la segunda, $x = y$.
+
+Ahora, para demostrar la sobreyectividad, consideremos un elemento cualquiera $y \in X$. Entonces $g^{-1}(y) \in X$ y $\varphi_{g}(g^{-1}(y)) = y$. Así, $\varphi_{g}$ es biyectiva.
+\item Veamos que $\bar{\varphi}(gh) = \bar{\varphi}(g) \bar{\varphi}(h)$, para todo $g,h \in G$, es decir que $\varphi_{gh} = \varphi_{g}\varphi_{h}$. Sea $x \in X$. Entonces, aplicando las condiciones de acción sobre un conjunto:$$\varphi_{gh}(x) =(gh)(x)= g(h(x))= g\varphi_{h}(x)= \varphi_{g}(\varphi_{h}(x)) = \varphi_{g} \varphi_{h}(x).$$ 
+\end{enumerate}
+$\hfill \square$
+
+Así que, finalmente podríamos simplemente definir la acción de un grupo $G$ sobre un conjunto $X$ como una aplicación $\rho$ de un grupo $G$ al grupo de permutaciones de $X$: 
+$$\begin{array}{rccl}
+\rho\colon &G& \longrightarrow &S_{X}\\
+&g& \longmapsto &\varphi_{g}
+\end{array}
+$$ 
+Con esto, podríamos decir que $X$ es un \textbf{\textit{$G$-conjunto}}, y que $\varphi_{g}$ es la permutación asociada al elemento $g \in G$. Así que, dado un un $x \in X$, $\varphi_{g}(x)= g(x)$ es su imagen, también en $X$ y $\varphi_{g}$ es la permutación. Y es a partir de aquí de dónde podríamos llegar a la aplicación que inicialmente hemos definido: 
+$$\begin{array}{rccl}
+\varphi\colon &G \times X& \longrightarrow &X\\
+&(g,x)& \longmapsto &g(x)
+\end{array}
+$$ 
+asignando a cada par $(g,x)$ un elemento de $g(x) \in X$ dado como antes.
+
+\begin{proposition} \label{eq:homrep} Sea $G$ un grupo y $X$ un conjunto. Supongamos que existe un homomorfismo de grupos $\rho \colon G \longrightarrow S_X$. Entonces, el grupo $G$ actúa sobre $X$, ya que podemos definir la acción $$\begin{array}{rccl}
+\varphi\colon &G \times X& \longrightarrow &X\\
+&(g,x)& \longmapsto &g(x) = (\rho(g))(x),
+\end{array}
+$$ donde $(\rho(g))(x)$ es la imagen de $x$ por la biyección $\rho(g)$.
+\end{proposition}
+
+Por lo tanto, cuando hablemos de acción podremos referirnos indistintamente a $\rho$ ó a $\varphi$. Aunque normalmente por convenio se utilizará $\rho$.
+
+Ahora, consideremos $\rho$ una acción (el homomorfismo representación $\bar{\varphi}$ de antes), entonces de acuerdo al \textit{Primer Teorema de Isomorfía} tendremos que $G/Ker\rho$ es isomorfo a un subgrupo de $S_X$. Esto nos sugiere una pregunta interesante, ¿qué ocurriría si $Ker\hspace{0.1cm} \rho = \lbrace 1_{G} \rbrace$?, en ese caso tendríamos que $G$ sería isomorfo a un subgrupo de $S_X$. Pasemos entonces a definir el \textbf{\textit{núcleo de la acción}}, $Ker\hspace{0.1cm} \rho$:
+$$Ker\hspace{0.1cm} \rho = \lbrace g \in G : g(x) = x \hspace{0.15cm} \forall x \in X \rbrace.$$ Es decir, todos los $g \in G$ cuya imagen sea la biyección identidad. Entonces la acción $\rho$ (el homomorfismo representación) será inyectiva cuando $Ker\rho = \lbrace 1_{G} \rbrace$, y se tendrá:
+
+\begin{definition} Se dirá que la acción $\rho$ de $G$ sobre $X$ es \textbf{fiel} si $Ker \rho = \lbrace 1_{G} \rbrace$. En ese caso, $G$ será isomorfo a un subgrupo de las biyecciones de $X$, $S_X$.
+\end{definition}
+
+\begin{theorem}[\textit{\textbf{Teorema de Cayley}}]
+Todo grupo $G$ es isomorfo a un subgrupo de $S_G$.
+\end{theorem}
+\emph{Demostración: } Sea $X = G$ y consideremos la acción $$\begin{array}{rccl}
+\varphi \colon &G \times G& \longrightarrow &G\\
+&(g,x)& \longmapsto &g(x) = gx
+\end{array}
+$$ donde ahora $gx$ es el producto de elementos $g$ y $x$ del grupo $G$. Desde luego es una acción, porque $$(gh)(x) = ghx = g(h(x)),$$ $$1_{G}(x) = 1_{G}x = x.$$
+
+También se podría representar como $$\begin{array}{rccl}
+\rho\colon &G& \longrightarrow &S_{G}\\
+&g& \longmapsto &\varphi_{g}(x) = gx
+\end{array}
+$$ 
+Además, esta acción es fiel, pues para cada $g \neq 1_{G}$ tenemos que $g(1_{G}) = g1_{G} = g \neq 1_{G}$, y así $g \notin Ker\rho$ ($=$ núcleo de la acción). Por lo tanto, $G$ es isomorfo a un subgrupo de $S_X = S_G$.
+
+$\hfill \square$
+
+\section{Generalidades sobre anillos}
+
+
+\end{document}
