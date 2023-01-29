@@ -1,0 +1,15 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Generalidades sobre grupos}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Primeras definiciones}{1}{}%
+\contentsline {subsection}{\numberline {1.2}Subgrupos normales y grupos cociente}{18}{}%
+\contentsline {subsection}{\numberline {1.3}Homomorfismos y teoremas de isomorfía}{26}{}%
+\contentsline {section}{\numberline {2}Grupos cíclicos}{35}{}%
+\contentsline {subsection}{\numberline {2.1}La función de Euler}{35}{}%
+\contentsline {subsection}{\numberline {2.2}Grupos cíclicos}{38}{}%
+\contentsline {section}{\numberline {3}Grupos de automorfismos}{44}{}%
+\contentsline {subsection}{\numberline {3.1}Grupos de automorfismos y automorfismos internos}{44}{}%
+\contentsline {subsection}{\numberline {3.2}Producto directo y semidirecto}{50}{}%
+\contentsline {section}{\numberline {4}Grupos de permutaciones}{52}{}%
+\contentsline {section}{\numberline {5}Acciones de grupos. Teoremas de Sylow}{52}{}%
+\contentsline {subsection}{\numberline {5.1}Acciones de grupos sobre conjuntos}{52}{}%
+\contentsline {section}{\numberline {6}Generalidades sobre anillos}{59}{}%

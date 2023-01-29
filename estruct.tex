@@ -1727,6 +1727,137 @@ Además, esta acción es fiel, pues para cada $g \neq 1_{G}$ tenemos que $g(1_{G
 
 $\hfill \square$
 
+A continuación definiremos una batería de conceptos importantes que serán esenciales para llegar a los principales resultados de la sección:
+
+\begin{definition}Sea $G \longrightarrow S_X$ una acción de un grupo $G$ sobre un conjunto $X$, y $x \in X$. Entonces, llamaremos \textbf{estabilizador} de $x$ en $G$ al conjunto $$G_{x} = \lbrace g \in G : g(x) = x \rbrace.$$
+Además diremos que $x$ es un \textbf{punto fijo} de esta acción si $G_{x} = G$.
+\end{definition}
+
+Qué es el \textit{estabilizador} con respecto a $G$ y una propiedad fundamental del mismo nos lo dice el siguiente resultado:
+\begin{proposition}
+Sea $G \longrightarrow S_X$ una acción de un grupo $G$ sobre un conjunto $X$, y $x \in X$. Entonces:
+
+\begin{enumerate}
+\item $G_{x}$ es un subgrupo de $G$.
+\item Si $a \in G$, entonces $(G_{x})^{a} = aG_{x}a^{-1} = G_{a(x)}$. Es decir, \textbf{el conjugado de un estabilizador es un estabilizador}.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Veamos:
+\begin{enumerate}
+\item Primero de todo, $1_{G} \in G_{x}$ por la segunda condición a cumplir de las acciones de grupos, así que $G_{x}$ es no vacío. Ahora, sean $g,h \in G_{x}$. Está claro que $g(x) = x$, además $$h^{-1} (x) = h^{-1}(h(x)) = (h^{-1}h)(x) = 1_{G}(x) = x.$$ Por lo que $$(gh^{-1})(x)= g(h^{-1}(x)) = g(x)= x,$$ luego $gh^{-1} \in G_{x}.$
+\item Sea $g \in G_{x}$. Como  $$(aga^{-1})(a(x)) = a(g1_{G}(x))= a(g(x)) = a(x),$$ tenemos que $aga^{-1} \in G_{a(x)}$, así que $(G_{x})^{a} \subseteq G_{a(x)}$.
+
+Recíprocamente, si $g \in G_{a(x)}$, entonces $g(a(x)) = a(x)$, y así $(a^{-1}ga)(x) \in G_{x}$, luego $g \in (G_{x})^{a}.$
+\end{enumerate}
+$\hfill \square$
+
+\begin{proposition}Sea $G$ un grupo actuando sobre un conjunto $X$ con una acción $\rho$. Entonces $$Ker\rho = \bigcap_{x\in X}G_{x}.$$
+\end{proposition}
+
+\begin{example}\label{eq:ejcorazon} Sean $G$ un grupo y $H$ un subgrupo de $G$. Llamamos $X = G/R^{H}$ y consideramos la acción de $G$ sobre $X$ definida por $$\begin{array}{rccl}
+&G\times G/R^{H}& \longrightarrow &G/R^{H}\\
+&(g,xH)& \longmapsto &gxH.
+\end{array}
+$$ Es claro que se trata de una acción, puesto que dados $f,g \in G$ : $$(fg)(xH)= fgxH = f(gxH) = f(g(xH)).$$ y también $$1_{G}(xH) = 1_{G}xH = xH.$$ Ahora calculemos los estabilizadores: dado un $xH \in G/R^{H} = X$, $g \in G_{xH}$ si y sólo si $g(xH) = xH$, esto es $gxH = xH$, es decir que $x^{-1}gx \in H$, luego $g \in H^{x^{-1}}$. Por lo que $G_{xH} = H^{x^{-1}}$. Por lo tanto, sabiendo esto, el núcleo de la acción será $$Ker\rho = \bigcap_{xH \in G/R^{H}} H^{x^{-1}} = \bigcap_{x\in G}H^{x} = K(H),$$ con $K(H)$ el \textit{corazón de $H$} que se introdujo en la definición~\ref{eq:corazon}. Notar que $K(H) \subseteq H$ es un subgrupo normal de $G$.
+\end{example}
+$\hfill \blacksquare$
+
+Ahora vamos a pasar con otro de los conceptos más importantes de la sección, fundamental para entender las acciones y los dos teoremas más importantes que veremos. 
+
+Cuando $G$ actúa sobre un conjunto $X$ define de forma natural una relación de equivalencia en $X$. Para cada $x,y \in X$ consideremos la siguiente relación binaria $\sim$: \begin{center}$x\sim y \Longleftrightarrow \hspace{0.1cm} \exists g \in G$ tal que $y = g(x)$.\end{center} 
+
+\textbf{Es simétrica}: $g^{-1}(y) =g^{-1}(g(x))= (g^{-1}g)(x) = x$, y como $g^{-1} \in G$ tenemos que si $x\sim y$ entonces $y\sim x$. 
+
+\textbf{Es reflexiva}: está claro que $x \sim x$ ya que $1 \cdot x = x$ y $1 \in G$.
+
+\textbf{Es transitiva}: si $y=g(x)$ y $z= h(y)$ para algunos $g,h \in G$, entonces $z = h(y) = h(g(x)) = (hg)(x)$ y como $hg \in G$ entonces $x \sim z$.
+
+\begin{definition} Cada clase de equivalencia de un elemento $x \in X$ de la relación de equivalencia anterior se llama \textbf{órbita} de $x$ bajo la acción de $G$ ó simplemente \textbf{$G$-órbita} de $x$, y se denota por $O_{x}$. $$O_{x} = \lbrace g(x) : g\in G \rbrace \subseteq X.$$ 
+\end{definition}
+
+Como se tratan de clases de equivalencia, las órbitas forman una \textit{partición} de $X$. Es decir, que su unión disjunta forma la totalidad de $X$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia, se tiene que, $$X = \bigsqcup_{x \in R} O_{x}.$$ Además, como la unión es disjunta, si $X$ es finito, se tiene que $$card \hspace{0.1cm} X = \sum_{x\in R} card\hspace{0.1cm} O_{x}.$$ Estas dos fórmulas equivalentes se conocen como \textit{\textbf{fórmula de las órbitas}}. Aunque $O_{x}$ sea un conjunto y no un grupo, cuando hablemos del número de elementos ó \textbf{longitud} de la órbita escribiremos por convenio $|O_{x}|$.
+
+Un tipo interesante de acciones serán las conocidas como \textit{transitivas}.
+
+\begin{definition}Sea $G \longrightarrow S_X$ una acción de un grupo $G$ sobre un conjunto $X$. Diremos que la acción es \textbf{transitiva} si $X$ es una $G$-órbita. Dicho de otra forma: si, dados $x,y \in X$, entonces existe un $g \in G$ tal que $g(x)=y$.
+\end{definition}
+
+Con todo esto nos preguntamos, sabiendo que el estabilizador de un elemento cualquiera de un conjunto sobre el que está actuando un grupo $G$ es subgrupo de $G$, entonces ¿qué relación de equivalencia definirá el estabilizador como subgrupo de $G$?
+
+\begin{theorem}[\textit{\textbf{Teorema de la órbita estabilizadora}}]\label{eq:torest}
+Sea $G$ un grupo actuando sobre un conjunto $X$, y $x \in X$. Entonces los conjuntos $O_{x}$ y $G/R^{G_{x}}$ son biyectivos.
+En particular, si $G_{x}$ es un subgrupo de índice finito en $G$, la órbita $O_{x}$ es un conjunto finito y tenemos $$|O_{x}| = \left[ G:G_{x} \right].$$ En consecuencia, $|O_{x}|$ es un divisor de $|G|$.
+\end{theorem}
+\emph{Demostración: }Consideremos la aplicación $$\begin{array}{rccl}
+\psi\colon &G/R_{G_{x}}& \longrightarrow &O_{x}\\
+&gG_{x}& \longmapsto &g(x).
+\end{array}
+$$ Veamos que está bien definida. Si $gG_{x} = hG_{x}$, se tiene que $g^{-1}h \in G_{x}$ luego $(g^{-1}h)(x) = x$, por lo que $$g(x) = g(g^{-1}h)(x) = (g^{-1}gh)(x) = h(x).$$ 
+Para la inyectividad, si $g(x) = h(x)$ se verifica que $$(g^{-1}h)(x) = g^{-1}(h(x)) = g^{-1}(g(x)) = x,$$ por lo que $g^{-1}h \in G_{x}$ y así $gG_{x} = hG_{x}$. Además, la sobreyectivad es evidente y así se tiene la biyección.
+
+$\hfill \square$
+
+Así, tenemos que $$|O_{x}| = \dfrac{|G|}{|G_{x}|}.$$
+
+Cuando un grupo $G$ actúe sobre un conjunto $X$ nos interesarán especialmente aquellos elementos de $X$ que sean fijados por todos los elementos de $G$ (el conjunto de los puntos fijos), es decir, aquellos $x \in X$ tales que $g(x) = x$ $\forall g \in G$ ó, dicho de otra forma, aquellos $x \in X$ tales que $O_{x} = \lbrace x \rbrace$. Denotaremos por $X_{0}$ a: $$X_{0} = \lbrace x \in X: |O_{x}| = 1 \rbrace.$$
+
+\begin{definition} Sea un $p$ primo. Diremos que un grupo $G$ es un \textbf{$p$-grupo finito} si $G$ es finito y su orden es una potencia de $p$, es decir, $$|G| = p^{n}, \hspace{0.2cm} n \in \mathbb{N}.$$ 
+\end{definition}
+
+\begin{theorem}\label{eq:ecClasesp}
+Sea un grupo $G$ actuando sobre un conjunto finito $X$. Escogemos $x_{1}, \ldots, x_{s}$ representantes de las órbitas de longitud mayor que $1$. Entonces $$|X| = |X_{0}| + \sum_{j=1}^{s} |O_{x_{j}}|.$$
+
+En particular, si $G$ es un $p$-grupo finito, entonces $$|X| \equiv |X_{0}| \hspace{0.2cm} mod \hspace{0.2cm} p.$$
+\end{theorem}
+\emph{Demostración: }La primera parte es evidente a partir de la fórmula de las órbitas. Para el caso particular supongamos que $|G| = p^{n}$, con $n\in \mathbb{N}$. Por el teorema de la órbita estabilizadora se tiene que $|O_{x_{j}}| = [G:G_{x_{j}}]>1$ para $j = 1, \ldots, s$. Como cada índice $[G:G_{x_{j}}]$ divide al orden de $G$, que es $p^{n}$, ya está.
+
+$\hfill \square$
+
+\begin{definition}\label{eq:accConj} Consideremos la acción $$\begin{array}{rccl}
+\rho\colon &G& \longrightarrow &S_G\\
+&g& \longmapsto &\alpha_{g}
+\end{array}
+$$
+donde ya sabemos que $\alpha_{g}(x) = x^{g}=gxg^{-1}$ con $x \in G$. Notar que en este caso el conjunto sobre el que consideramos la acción es $G$, y que también la hemos presentado antes, al comienzo del capítulo concretamente, como la \textbf{acción conjugación}.
+
+Como $\alpha_{g} \in Aut(G)$ tenemos que en particular es biyectiva. Además es claro que $\alpha_{gh}=\alpha_{g}\alpha_{h}$, luego $\varphi$ es homomorfismo.
+
+El núcleo de este homomorfismo, $Ker \hspace{0.1cm} \varphi = \lbrace g \in G: \alpha_{g} = id \rbrace = \lbrace g \in G: gxg^{-1} = x \hspace{0.1cm} \forall x \in G \rbrace =  \lbrace g \in G: gx = xg \hspace{0.1cm} \forall x \in G \rbrace$ ya lo conocemos, se presentó en el primer capítulo como \textbf{centro de $G$} y se escribe \textbf{$Z(G)$}.
+
+El estabilizador, dado un $x \in G$, $G_{x}= \lbrace g \in G: gxg^{-1} = x \rbrace = \lbrace g \in G: gx=xg \rbrace$ también se presentó en el primer capítulo y lo denominamos \textbf{centralizador de $x$ en $G$} y se escribe como \textbf{$C_{G}(x)$}. Además, ya que $G_{x} \leq G$ entonces también $C_{G}(x) \leq G$ (algo que también sabíamos).
+
+Por último, si $x \in G$, su órbita $O_{x}$ será entonces $O_{x} = \lbrace gxg^{-1}:g \in G \rbrace$. La denominaremos \textbf{clase de conjugación de $x$ en $G$}. Y, siguiendo el teorema de la órbita estabilizadora vemos que tiene $[G:C_{G}(x)] = \dfrac{|G|}{|C_{G}(x)|}$ elementos. En particular, la denotaremos por $Cl_{G}(x)$, es decir, tendremos: $$Cl_{G}(x) = \lbrace gxg^{-1} : g \in G \rbrace$$
+\end{definition}
+
+Notar que cuando consideremos la acción de $G$ sobre sí mismo por conjugación vamos a tener que, dado un $x \in G$ cualquiera, $|Cl_{G}(x)| = 1$ cuando, recordando lo visto anteriormente, ese elemento $x$ sea fijado por todos los elementos de $G$ al conjugarlo, es decir, que va a cumplirse que $g(x) = x^{g} = gxg^{-1} = x$ para todo $g \in G$. Es decir, que $gx = xg$ $\forall g \in G$. Pero el conjunto de estos elementos lo acabamos de ver, es el \textbf{\textit{centro}} del grupo $G$, es decir, que $|Cl_{G}(x)| = 1 \Leftrightarrow x \in Z(G)$. Dicho de otra forma, en este caso se tiene que $X_{0}= Z(G)$. Llegamos así a la conocida como \textit{ecuación de clases}.
+
+\begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}]\label{eq:ecClases}
+Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
+\end{theorem} 
+\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{x_{j}}| = [G:G_{j}] = [G:C_{G}(x_{j})]$ para $j=1, \ldots, s$, con los $x_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
+
+$\hfill \square$
+
+De la demostración se puede ver que esta fórmula también se puede escribir como:
+$$|G| = |Z(G)| + \sum_{j=1}^{s}[G:C_{G}(x_{j})].$$
+
+Por último, dado un grupo $G$ y el conjunto de sus subgrupos $X$, si tenemos en cuenta la siguiente acción: $$\begin{array}{rccl}
+\rho\colon &G& \longrightarrow &S_{X}\\
+&g& \longmapsto &\varphi_{g}(H) = H^{g}.
+\end{array}
+$$ 
+podemos ver claramente que el estabilizador de un $H \leq G$ cualquiera, es decir, el conjunto $$G_{H}= \lbrace g\in G: \varphi_{g}(H) = H \rbrace = \lbrace g \in G: H^{g} = H \rbrace$$ es un conjunto que ya conocemos, lo definimos en~\ref{eq:normalizador}, es el \textbf{\textit{normalizador}} de $H$ en $G$, denotado por $N_{G}(H)$. Sabemos que $H \unlhd N_{G}(H)$ y que $H \unlhd G$ si y sólo si $N_{G}(H)$. Además, una consecuencia muy interesante sobre el normalizador es que, debido al teorema de la órbita estabilizadora, tenemos que \textbf{el número de subgrupos distintos de la forma $H^{g}$ para cada $g \in G$ es $[G:N_{G}(H)]$}. Es decir, que el número de conjugados distintos de un subgrupo $H$ de $G$ viene dado por $[G:N_{G}(H)]$, algo que ya vimos en~\ref{eq:conjug}.
+
+\begin{proposition}\label{eq:indiceNormalizador} Sea $G$ un grupo finito y $H \leq G$ un subgrupo de $G$ tal que $|H| = p^{m}$, con $p$ primo. Entonces, $$[G:H] \equiv [N_{G}(H):H] \hspace{0.2cm} mod \hspace{0.2cm} p.$$
+\end{proposition}
+\emph{Demostración: }Sea $X = \lbrace xH : x \in G \rbrace$. Tenemos que $H$ actúa sobre $X$: $$\begin{array}{rccl}
+\rho\colon &H& \longrightarrow &S_{X}\\
+&h& \longmapsto &\varphi_{h}(xH) =hxH.
+\end{array}
+$$
+Calculemos el conjunto de los puntos fijos. Tenemos que $hxH = xH$ para todo $h \in H$ si y sólo si $x^{-1}hx \in H$ para todo $h \in H$ si y sólo si $H^{x^{-1}} \subseteq H$ si y sólo si $H \subseteq H^{x}$ si y sólo si $H = H^{x}$ (ya que $|H| = |H^{x}|$) si y sólo si $x \in N_{G}(H)$. Es decir, que $xH$ es punto fijo si y sólo si $x \in N_{G}(H)$. Luego $X_{0}=[N_{G}(H):H]$ y el resultado se tiene por la segunda parte de~\ref{eq:ecClasesp}.
+
+$\hfill \square$
 \section{Generalidades sobre anillos}
 
 
