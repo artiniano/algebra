@@ -1858,6 +1858,90 @@ $$
 Calculemos el conjunto de los puntos fijos. Tenemos que $hxH = xH$ para todo $h \in H$ si y sólo si $x^{-1}hx \in H$ para todo $h \in H$ si y sólo si $H^{x^{-1}} \subseteq H$ si y sólo si $H \subseteq H^{x}$ si y sólo si $H = H^{x}$ (ya que $|H| = |H^{x}|$) si y sólo si $x \in N_{G}(H)$. Es decir, que $xH$ es punto fijo si y sólo si $x \in N_{G}(H)$. Luego $X_{0}=[N_{G}(H):H]$ y el resultado se tiene por la segunda parte de~\ref{eq:ecClasesp}.
 
 $\hfill \square$
+
+\subsection{Teoremas de Sylow}
+
+Empezaremos con un resultado que es consecuencia de lo visto ahora y que básicamente nos dice que si tenemos un grupo de orden primo o múltiplo entonces contendrá un elemento de orden ese primo. Es el conocido como \textit{Teorema de Cauchy}, que lo probaremos primero para grupos abelianos y más tarde generalizaremos a todos.
+
+\begin{theorem}[\textit{\textbf{Teorema de Cauchy para grupos abelianos.}}]
+Sea $G$ un grupo abeliano finito, y $p$ un número primo que divide al orden de $G$. Entonces existirá $x \in G$ tal que $o(x) = p$.
+\end{theorem}
+\emph{Demostración: } Lo haremos por inducción sobre $|G|$. Sea $H$ un subgrupo propio de $G$ de orden lo mayor posible. Si $p \mid |H|$, por hipótesis de inducción existirá un $x \in H \subset G$ tal que $o(x) = p$. Por lo tanto podemos suponer que $ p \nmid |H|$. Como $p \mid |G| = |G/H| |H|$ por el \textit{Teorema de Lagrange} (además podemos hacer el cociente porque al ser $G$ abeliano todo subgrupo es normal), y esto quiere decir que $p \mid |G/H|$. Además, como $H$ es de orden lo mayor posible entre los subgrupos de $G$, por el \textit{Teorema de la correspondencia} $G/H$ no tiene subgrupos propios no triviales y por tanto es simple.
+
+Así, ahora partimos de que $G/H$ es simple y abeliano y que  $p \mid |G/H|$. Como los grupos simples abelianos son cíclicos de orden primo tenemos que $$G/H \simeq C_{p}.$$ Sea $H \neq xH \in G/H$. Entonces es claro que $o(xH) = p$. Tenemos un elemento de orden $p$ dentro del cociente y queremos encontrar un elemento de orden $p$ dentro del grupo. Para ello construiremos el homomorfismo sobreyectivo que ya conocemos $$\begin{array}{rccl}
+\pi \colon &G & \longrightarrow & G/H\\
+&x & \longmapsto &xH
+\end{array}
+$$ y de las propiedades de los homomorfismos sabemos que $p = o(xH) = o(\pi(x)) \mid o(x)$. Esto quiere decir que $p \mid o(x)$ y así $x^{o(x)/p} \in G$ de orden $p$, ese es el elemento que buscábamos.
+
+$\hfill \square$
+
+Ahora, el resultado general:
+
+\begin{theorem}[\textbf{\textit{Teorema de Cauchy.}}]
+Sea $G$ un grupo finito y $p$ un número primo que divide al orden de $G$. Entonces existirá un $x \in G$ tal que $o(x) = p$.
+\end{theorem}
+\emph{Demostración: } Por inducción nuevamente sobre $|G|$. Si existe un subgrupo propio $H$ de $G$ tal que $p \mid |H|$ ya hemos terminado, puesto que existirá un $x \in H \subset G$ tal que $o(x) = p$. Así, podemos suponer que $p \nmid |H|$ para todo $H$ subgrupo propio de $G$. Ahora, de la ecuación de clases: $$|G| = |Z(G)| + \sum_{i = 1}^{t}  \left[ G:C_{G}(x_{i}) \right]$$ sabemos que como $1 <  \left[ G:C_{G}(x_{i}) \right]$ entonces $p \nmid |C_{G}(x_{i})|$ $\forall i$, pero a la vez también $p \mid |G|$, esto quiere decir que $p \mid  \left[ G:C_{G}(x_{i}) \right]$ $\forall i$.
+
+Como $p \mid |G|$ y $p \mid  \left[ G:C_{G}(x_{i}) \right]$ entonces necesariamente $p \mid |Z(G)|$, pero como $p$ no divide al cardinal de ningún subgrupo propio tenemos que $Z(G) = G$ y así $G$ es abeliano. Por el resultado para grupos abelianos tenemos éste.
+
+$\hfill \square$
+
+Pasemos ya con las definiciones que emplearemos y con las que trabajaremos a partir de ahora:
+
+\begin{definition} Sea $G$ un grupo finito, y $p$ un número primo que divide al orden de $G$. Por tanto $|G| = p^{n}m$, con $m$ y $n$ enteros positivos tales que $p$ no divide a $m$, es decir, $mcd(p,m)=1$. Notar que $n=0$. Sea $H$ subgrupo de $G$. Entonces:
+\begin{enumerate}
+\item Diremos que $H$ es un \textbf{$p$-subgrupo} de $G$ si el orden de $H$ es potencia de $p$, es decir, $|H| = p^{r}$ con $r \geq 0.$
+\item Diremos que $H$ es un \textbf{$p$-subgrupo de Sylow} de $G$ si $H$ es un $p$-subgrupo de $G$ y $\left[ G:H \right]$ no es múltiplo de $p$, es decir, $|H| = p^{n}$ (la máxima potencia de $p$ que divide al orden de $G$). Al conjunto de todos los $p$-subgrupos de Sylow de $G$ los denotaremos por $$Syl_{p}(G) = \lbrace H \leq G : |H| = p^{n} \rbrace.$$
+\end{enumerate}
+\end{definition}
+
+El objetivo fundamental de esta sección es demostrar que los subgrupos de Sylow siempre existen ($Syl_{p}(G) \neq \lbrace \emptyset \rbrace$, $\forall p$) y que son conjugados entre sí. 
+
+\begin{theorem}[\textit{\textbf{Primer Teorema de Sylow}}]
+Sea $G$ es un grupo finito y $p$ un número primo, entonces $G$ tiene un $p$-subgrupo de Sylow.
+\end{theorem}
+\emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Si $|G| = 1$, entonces es evidente. Supongamos ahora que todos los grupos de orden menor que $|G|$ tienen $p$-subgrupos de Sylow y veamos que $G$ también los tiene.
+Si $p \nmid |G|$ entonces el subgrupo trivial es un $p$-subgrupo de Sylow de $G$. Por lo que supongamos que $p \mid |G|$, así $|G| = p^{n}m$ con $p$ no dividiendo a $m$ ($mcd(p,m)=1$). Entonces, podemos distinguir dos casos: 
+
+Primero, que exista un subgrupo $H \leq G$ tal que $p \nmid [G:H]$. Entonces es claro que $p^{n} \mid |H|$ y por hipótesis de inducción se tiene que $H$ tiene un $p$-subgrupo de Sylow de orden $p^{n}$, que llamaremos $P$ y que también será $p$-subgrupo de Sylow de $G$ .
+
+Segundo, que para todo subgrupo $H$ de $G$, $p \mid [G:H]$. Entonces, por la ecuación de clases~~ tenemos que $p \mid |Z(G)|$, y como éste es un grupo abeliano entonces tiene un elemento de orden $p$, ó equivalentemente tiene un subgrupo $H \leq Z(G)$ de orden $p$. Como todos los elementos de $H$ conmutan con todos los elementos de $G$ entonces es claro que $H^{g} = H$ para todo $g \in G$, es decir, $H \unlhd G$. Se cumple que $[G:H] = p^{n-1}m$ y tiene un subgrupo de Sylow $P/H$ que cumplirá $[P:H] = p^{n-1}$, por lo que $|P| = p^{n}$ y así $P$ es un $p$-subgrupo de Sylow de $G$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Segundo Teorema de Sylow}}]Si $G$ es un grupo finito, entonces todo $p$-subgrupo de $G$ está contenido en un $p$-subgrupo de Sylow y dos $p$-subgrupos de Sylow cualesquiera son conjugados.
+
+\end{theorem}
+\emph{Demostración: }Sea $P$ un $p$-subgrupo de Sylow de $G$ y sea $H$ un $p$-subgrupo arbitrario. Entonces $H$ actúa sobre $X= G/R^{P}$ por multiplicación a izquierda como vimos en~\ref{eq:ejcorazon}. Por el teorema de la órbita estabilizadora tenemos que las órbitas de $\Omega$ tienen cardinal potencia de $p$ (incluyendo $p^{0}=1$). De hecho, alguna órbita ha de tener cardinal $1$, pues de lo contrario el cardinal de $\Omega$, que es $[G:P]$, sería suma de potencias (no triviales) de $p$, así sería múltiplo de $p$.
+
+Por lo tanto, existirá un $g \in G$ tal que la clase de conjugación $x = gP$ formará una órbita trivial, con $x$ como único elemento. Concretamente $hgP = gP$ para todo $h \in H$. En particular $hg \in gP$ y así $h \in P^{g}$ para todo $h \in H$. De aquí $H \leq P^{g}$ y así $P^{g}$ es también $p$-subgrupo de Sylow.
+
+En caso de que $H$ sea un $p$-subgrupo de Sylow de $G$, entonces ha de darse la igualdad $H = P^{g}$, puesto que tenemos una inclusión y ambos tienen el mismo orden.
+
+$\hfill \square$
+
+Por lo tanto, queda claro que los $p$-subgrupos de Sylow forman una órbita en la acción de $G$ sobre el conjunto de todos sus subgrupos por conjugación. Luego, si $P$ es un $p$-subgrupo de Sylow entonces el número total es $[G: N_{G}(P)]$. Éste número es un divisor del orden de $G$ y también de $[G:P]$.
+
+\begin{corolario}Sean $p$ un número primo y $G$ un grupo finito cuyo orden es $|G| = p^{n}m$ donde $m$ y $n$ son enteros positivos y $p$ no divide a $m$. Sea $H$ un $p$-subgrupo de Sylow de $G$. Entonces $H$ es subgrupo normal si y sólo si es el único $p$-subgrupo de Sylow de $G$.
+\end{corolario}
+\emph{Demostración: }Los $p$-subgrupos de Sylow de $G$ son, por el \textit{Segundo Teorema de Sylow}, los subgrupos de $G$ conjugados de $H$, y coinciden todos con $H$ si y sólo si éste es normal. Es, por tanto, consecuencia inmediata de la definición de subgrupo normal y del \textit{Segundo Teorema de Sylow}.
+
+$\hfill \square$
+
+Finalmente veremos el último de los teoremas de Sylow:
+
+\begin{theorem}[\textit{\textbf{Tercer Teorema de Sylow}}]
+El número $v_{p}$ de $p$-subgrupos de Sylow de un grupo finito cumple que $v_{p} \equiv 1$ mod $p$.
+\end{theorem}
+\emph{Demostración: }Sea $G$ un grupo finito y $\Omega$ el conjunto de sus $p$-subgrupos de Sylow. Sea un $P \in \Omega$ y consideremos la acción de $P$ en $\Omega$ por conjugación. Es claro que $P^{g}=P$ para todo $g \in P$, luego la órbita de $P$ es trivial. Veamos que es única. Dado otro $Q \in \Omega$, entonces se tiene que $Q^{g} = Q$ para todo $g \in P$, entonces $P \leq N_{G}(Q)$ y así $P$ y $Q$ son $p$-subgrupos de Sylow de $N_{G}(Q)$, luego son conjugados en $N_{G}(Q)$. Así, existe un $g \in N_{G}(Q)$ tal que $P = Q^{g}= Q$.
+
+Las órbitas que $P$ forma en $\Omega$ tienen cardinal potencia de $p$, y se ha visto que la única que tiene cardinal $1$ es la de $P$, luego $v_{p}=|\Omega| \equiv 1$ mod $p$.
+
+$\hfill \square$
+
+La última de las consecuencias es equivalente a decir que $\left[ G:N_{G}(P) \right] \equiv 1$ $mod$ $p$, con $P$ un $p$-subgrupo de Sylow de $G$.
+
 \section{Generalidades sobre anillos}
 
 

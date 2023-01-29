@@ -12,4 +12,5 @@
 \contentsline {section}{\numberline {4}Grupos de permutaciones}{52}{}%
 \contentsline {section}{\numberline {5}Acciones de grupos. Teoremas de Sylow}{52}{}%
 \contentsline {subsection}{\numberline {5.1}Acciones de grupos sobre conjuntos}{52}{}%
-\contentsline {section}{\numberline {6}Generalidades sobre anillos}{59}{}%
+\contentsline {subsection}{\numberline {5.2}Teoremas de Sylow}{60}{}%
+\contentsline {section}{\numberline {6}Generalidades sobre anillos}{63}{}%

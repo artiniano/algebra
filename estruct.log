@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.1.27)  29 JAN 2023 20:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.1.27)  29 JAN 2023 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -983,7 +983,7 @@ l an-te-rior teo-re-ma pe-ro que podr^^S^^Pamos
  []
 
 [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55] [56] [57]
-[58] [59] (./estruct.aux
+[58] [59] [60] [61] [62] [63] (./estruct.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -992,10 +992,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 30189 strings out of 478287
- 705982 string characters out of 5849289
+ 30191 strings out of 478287
+ 706012 string characters out of 5849289
  1211968 words of memory out of 5000000
- 47843 multiletter control sequences out of 15000+600000
+ 47845 multiletter control sequences out of 15000+600000
  482812 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,13n,103p,3237b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1019,10 +1019,10 @@ ive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive
 texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/xypic/xybtip10.pfb>
-Output written on estruct.pdf (59 pages, 416533 bytes).
+Output written on estruct.pdf (63 pages, 429974 bytes).
 PDF statistics:
- 303 PDF objects out of 1000 (max. 8388607)
- 198 compressed objects within 2 object streams
+ 317 PDF objects out of 1000 (max. 8388607)
+ 207 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
