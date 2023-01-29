@@ -1635,9 +1635,6 @@ Sea así $G$ un grupo tal que $|G| = 4$. Si existe un $x \in G$ tal que $o(x)=4$
 
 $\hfill \square$
 
-\section{Grupos de permutaciones}
-
-
 \section{Acciones de grupos. Teoremas de Sylow}
 
 \subsection{Acciones de grupos sobre conjuntos}
@@ -1941,6 +1938,90 @@ Las órbitas que $P$ forma en $\Omega$ tienen cardinal potencia de $p$, y se ha 
 $\hfill \square$
 
 La última de las consecuencias es equivalente a decir que $\left[ G:N_{G}(P) \right] \equiv 1$ $mod$ $p$, con $P$ un $p$-subgrupo de Sylow de $G$.
+
+\section{Grupos de permutaciones}
+
+A lo largo de este capítulo estudiaremos los conocidos como grupos simétricos o \textit{permutaciones}. El objetivo principal será el de ver nuevamente el \textit{Teorema de Cayley}, que ya vimos en la sección anterior de acciones de grupos, así como conceptos básicos como el de ciclo, transposición o soporte. También se verá otro importante resultado como es el \textit{Teorema de Abel}, además de especificar qué es exactamente el \textit{$n$-ésimo grupo alternado}.
+
+\subsection{Introducción y Teorema de Cayley}
+
+\begin{definition} Denotaremos, para cada entero $n>0$, $E_{n} = \lbrace 1, \ldots , n\rbrace$ y $S_{n}$ como el conjunto de aplicaciones biyectivas del conjunto $E_{n}$ en sí mismo, cuyo cardinal es $n!$. Ésto ya lo vimos en~\ref{eq:cardbiy}. 
+
+Además, la composición de biyecciones es de nuevo una biyección, así que podemos hablar de $S_{n}$ como grupo. Dadas $\sigma, \tau \in S_{n}$ definiremos $$\begin{array}{rccl}
+\sigma \tau\colon &E_{n}& \longrightarrow &E_{n}\\
+&j& \longmapsto &\tau (\sigma (j)).
+\end{array}
+$$
+Es evidente que el elemento neutro de este grupo es la aplicación identidad, que denotaremos por $id$, y el inverso de una biyección $\sigma$ es la biyección $\sigma^{-1}$ definida como $\sigma^{-1}(i) = j$ si y sólo si $\sigma(j) = i$. Así, llamaremos a $S_{n}$ \textbf{grupo de permutaciones de $n$ elementos} ó \textbf{$n$-ésimo grupo simétrico}.
+
+Denotaremos a cada $\sigma \in S_{n}$ de la siguiente forma:
+$$\sigma = \left(
+\begin{matrix}
+1 & 2 & \ldots & n \\
+\sigma(1) & \sigma(2) & \ldots & \sigma(n)
+\end{matrix}
+\right).
+$$
+\end{definition}
+
+Notar que ya hemos empleado esta notación al escribir las acciones de un grupo $G$ sobre un conjunto $X$ cualquiera como una aplicación de $G$ sobre $S_X$, hablábamos de permutaciones de $X$ como las aplicaciones biyectivas de $X$ en sí mismo. Es de hecho esta notación la que utilizaremos. Para ello, en vez de hablar de $E_{n}$ como conjunto finito simplemente generalizaremos y denotaremos por $\Omega$ a un conjunto finito cualquiera (utilizado más frecuentemente que $X$ cuando estamos hablando de permutaciones) de $n$ elementos, o dicho de otra forma: que pueda ponerse en una biyección con $E_{n}$. Y denotaremos por $S_{n}$ ó $S_{\Omega}$ a su grupo de permmutaciones.
+
+Es decir, partiremos de un conjunto finito $\Omega$ cualquiera de orden $n$, y definiremos su grupo de permutaciones $S_{n}$. $Card \hspace{0.1cm} \Omega = |\Omega | = n$ y $|S_{n}| = n!$.
+
+\begin{observation}\label{eq:obsabel} Veamos algunas observaciones interesantes:
+\begin{enumerate}
+\item Dados enteros $2 \leq n \leq m$, podemos ver a $S_{n}$ como subgrupo de $S_{m}$. En efecto, para todo $\sigma \in S_{n}$ denotamos por $\sigma' \in S_{m}$ la biyección de $E_{m}$ en sí mismo que actúa como $\sigma$ sobre los primeros $n$ enteros positivos y fija los comprendidos entre $n+1$ y $m$. Es decir, la aplicación $$\begin{array}{rccl}
+&S_{n}& \longrightarrow &S_{m}\\
+&\sigma& \longmapsto &\sigma'
+\end{array}
+$$ es un homomorfismo inyectivo de grupos y, por el \textit{Primer Teorema de Isomorfía}, $S_{n}$ es isomorfo a su imagen, que es un subgrupo de $S_{m}$.
+\item De todo lo visto hasta ahora, lo realmente importante no es la naturaleza del conjunto $\Omega$ como tal, sino el hecho de que tenga $n$ elementos. Así, si $I_{n}$ es otro conjunto con $n$ elementos, el grupo $Biy(I_{n})$ de biyecciones de $I_{n}$ en sí mismo es isomorfo a $S_{n}$, y no distinguiremos entre ambos. Para verlo, fijada una biyección cualquiera $\alpha \colon \Omega \longrightarrow I_{n}$ se comprueba inmediatamente que la aplicación  $$\begin{array}{rccl}
+&Biy(I_{n})& \longrightarrow &S_{n}\\
+&\beta& \longmapsto &\alpha\circ \beta \circ \alpha^{-1}
+\end{array}
+$$ es un isomorfismo de grupos. Es por esta razón por la que hemos introducido la notación de $\Omega$ simplemente para hablar de un conjunto finito de $n$ elementos cualquiera.
+\end{enumerate}
+\end{observation}
+
+De lo primero se desprende que, dado $H = \lbrace \sigma \in S_{n} : \sigma(n) = n \rbrace \leq S_{n}$ el estabilizador de $n$ en $S_{n}$ en su acción sobre $\Omega$, si $\sigma \in H$ y definimos $\bar{\sigma} \in S_{n-1}$ como $\bar{\sigma}(i) = \sigma(i)$ para $i=1, \ldots, n-1$, entonces la aplicación $$\begin{array}{rccl}
+&H& \longrightarrow &S_{n-1}\\
+&\sigma& \longmapsto &\bar{\sigma}
+\end{array}
+$$ 
+es un isomorfismo de grupos.
+
+\begin{theorem}[\textbf{\textit{Teorema de Cayley}}]
+Todo grupo $G$ es isomorfo a un subgrupo del grupo $Biy(G)$ ($S_G$). En particular todo grupo finito es isomorfo a un subgrupo de un grupo de permutaciones.
+\end{theorem}
+\emph{Demostración: } La segunda parte es consecuencia inmediata de la primera. Para ésta, denotemos $$\begin{array}{rccl}
+\bar{g} \colon &G& \longrightarrow &G\\
+&h& \longmapsto &hg
+\end{array}
+$$ para cada $g \in G$. Esta aplicación es inyectiva pues si $\bar{g}(x) = \bar{g}(y)$ entonces $xg = yg$ y, simplificando, $x = y$. De hecho $\bar{g}$ es biyectiva pues para cada $y \in G$ se cumple la igualdad $\bar{g}(yg^{-1}) = y.$ 
+
+Ahora, la aplicación $$\begin{array}{rccl}
+\phi \colon &G& \longrightarrow &S_{G}\\
+&g& \longmapsto &\bar{g}
+\end{array}
+$$ es un homomorfismo inyectivo, por lo que $G$ es isomorfo a su imagen, que es un subgrupo de $S_{G}$, quien a su vez es isomorfo al grupo simétrico $S_{n}$. Para comprobar que $\phi$ es homomorfismo, hemos de comprobar la igualdad $\overline{g_{1}g_{2}} =  \bar{g_{1}} \bar{g_{2}}$. Ahora bien, para todo $x \in G$, $$(\bar{g_{1}} \cdot \bar{g_{2}}) (x) = \bar{g_{2}}(\bar{g_{1}}(x)) = \bar{g_{2}}(xg_{1}) = (xg_{1})g_{2} = x(g_{1}g_{2}) = \overline{g_{1}g_{2}} (x),$$ por lo que $\overline{g_{1}g_{2}} = \bar{g_{1}} \bar{g_{2}}$. En cuanto a la inyectividad, basta ver que si $g \in Ker\hspace{0.1cm} \phi$, entonces $\bar{g} = id_{G}$, o sea, $xg = x$ para cada $x \in G$, luego $g = 1_{G}$.
+
+$\hfill \square$
+
+Lo que acabamos de ver nos establece un isomorfismo entre todo grupo finito de orden $n$ y un subgrupo de $S_{n}$. Es decir, este resultado nos dice que todo grupo de orden $n$ es subgrupo de un grupo de permutaciones de orden $n!$.
+
+\begin{definition} Sean $n$ y $k$ enteros positivos, $k \leq n$. Un elemento $\sigma \in S_{n}$ se llama \textbf{ciclo de longitud $k$} o \textbf{$k$-ciclo} si existe un subconjunto con $k$ elementos $\lbrace a_{1}, \ldots, a_{k} \rbrace$ de $\Omega$ tal que 
+$$\sigma (a_{i}) = a_{i+1}, \hspace{0.2cm} 1 \leq i \leq k-1;\hspace{0.5cm}$$ 
+$$\sigma (a_{k}) = a_{1}; \hspace{3.4cm}$$ $$\sigma (j) = j, \hspace{0.2cm} j \in \Omega \setminus \lbrace a_{1}, \ldots , a_{k} \rbrace.$$ 
+Lo denotaremos $\sigma = (a_{1}, a_{2}, \ldots, a_{k})$ en vez de $$\left(
+\begin{matrix}
+a_{1}\ldots &a_{k-1} &a_{k} \ldots &j \\
+a_{2}\ldots &a_{k} &a_{1} \ldots &j
+\end{matrix}
+\right).
+$$
+Además, al conjunto $\lbrace a_{1}, \ldots, a_{k}\rbrace$ lo llamaremos \textbf{soporte} del ciclo $\sigma = (a_{1}, \ldots, a_{k})$ y lo denotaremos $sop(\sigma)$.
+\end{definition}
+
 
 \section{Generalidades sobre anillos}
 
