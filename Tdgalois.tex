@@ -1,0 +1,687 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage[all]{xy}
+\usepackage{cancel}
+\usepackage{pictexwd}
+\usepackage{parskip}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{vmargin}
+
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definicion}[theorem]{Definición}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}{Lema}[theorem]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[theorem]
+\newtheorem{corolario}{Corolario}[theorem]
+\newtheorem{observation}{Observación}[theorem]
+\newtheorem{properties}{Propiedades}[theorem]
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
+\author{Pablo Pallàs}
+\title{Introducción a la Teoría de Galois}
+\setlength{\parindent}{10pt}
+\begin{document}
+\rmfamily
+\maketitle
+\tableofcontents
+\parindent= 0cm
+
+
+\section{Introducción y contexto}
+\section{Algunas estructuras algebraicas}
+\subsection{Preliminares sobre grupos}
+\subsection{Preliminares sobre anillos y cuerpos}
+\begin{proposition} Dado un cuerpo $K$ y $p \in K[x]$. Entonces $p$ es irreducible si y sólo si $K[x]/(p)$ es un cuerpo.
+\end{proposition}
+\emph{Demostración: }Veamos la primera implicación. Sea $f + (p) \neq (p)$. Veamos que $f + (p)$ tiene inverso. Como $p$ es irreducible, el máximo común divisor de $f$ y $p$ es $1$. Por Bézout, existen $a,b \in K[x]$ tales que $1 = af + bp$. Tendríamos así que $$1 + (p) = (a+ (p))(f+(p)) + (b+(p))(p+(p)) = (a+ (p))(f+(p))$$ ya que $p+(p)=0$. Así, $a+(p)$ es el inverso de $f+(p)$. Luego, $K[x]/(p)$ es un cuerpo.
+
+Recíprocamente, supongamos que $p$ no es irreducible y sea $p = fg$, con $\delta(f) < \delta (p)$ y $\delta(g) < \delta (p)$. $0 =p +(p) = (f+(p))(g+(p))$. Entonces $f + (p)$ y $g +(p)$ serían divisores de cero en $K[x]/(p)$, lo que es imposible porque se trata de un cuerpo. Así, $p$ es irreducible.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:ac1} Sea $p \in K[x]$ irreducible. Entonces $K$ está contenido en un cuerpo en el que $p$ tiene alguna raíz.
+\end{proposition}
+\emph{Demostración: } Sea $E = K[x]/(p)$. Entonces sabemos que $E$ es un cuerpo por el resultado anterior. Consideramos la aplicación  $$\begin{array}{rccl}
+&K[x]&\longrightarrow &K[x]/(p) \\
+&f& \longmapsto &f+(p)
+\end{array}
+$$
+Si $0 \neq a \in K$ y $\bar{a}$ es su imagen en $K[x]/(p)$ por la aplicación anterior, $\bar{a} \neq 0$. Así, $K$ es isomorfo a $\bar{K} = \lbrace \bar{a}: a \in K \rbrace$ y podemos identificar $K$ con $\bar{K}$. Si $p = x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}$, $p$ considerado como polinomio en $\bar{K}[x]$ es $\bar{p} = x^{n}+ \bar{a}_{n-1}x^{n-1}+ \ldots + \bar{a}_{1}x + \bar{a}_{0}$.
+
+Ahora, $\bar{x} = x +(p)$ es raíz del polinomio $\bar{p}$ en $E= K[x]/(p)$, es decir, $\bar{p}(\bar{x}) = p+(p) = (p) = 0 +(p)$, el cero de $K[x]/(p)$. ($(x^{n}+ \bar{a}_{n-1}x^{n-1}+ \ldots + \bar{a}_{1}x + \bar{a}_{0}) + (p) = (p)$).
+
+$\hfill \square$
+
+\begin{example} Un ejemplo claro y sencillo de lo que nos dice la proposición anterior es el caso de $p(x) = x^{2}+1$. Está claro que $p(x) \in \mathbb{Q}[x]$ y que es irreducible. Entonces, de acuerdo al resultado que acabamos de ver, este cuerpo $\mathbb{Q}$ va a estar contenido en otro en el que $p(x)$ sí tenga alguna raíz. En efecto, en este caso dicho cuerpo va a ser $$\mathbb{Q}(i) = \lbrace a + bi :a,b \in \mathbb{Q} \rbrace.$$ Además, $$\mathbb{Q}[x]/(x^{2}+1) \simeq \mathbb{Q}(i)$$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition}\label{eq:ac2} Sea $p \in K[x]$ y $a \in K$. Entonces $p(a) = 0$ si, y sólo si $x-a \mid p$.
+\end{proposition}
+\emph{Demostración: } Aplicamos el algoritmo de la división a $p$ y $x-a$: $p=(x-a)q + r$, donde $r = 0$ ó $\delta(r) < \delta(x-a)$. Si $r= 0$ ya está, si no entonces es una constante y como $p(a) = 0 \Leftrightarrow r(a)= 0$ entonces $r = 0$ y así $x-a \mid p$.
+
+$\hfill \square$
+
+\begin{proposition}[\textbf{\textit{Criterio de Eisenstein}}] Sea $f= a_{0} + a_{1}x + \ldots + a_{n}x^{n} \in \mathbb{Z}[x]$. Supongamos que existe $p$ primo tal que $p \mid a_{i}$, con $0 \leq i \leq n-1$, $p \nmid a_{n}$ y $p \nmid a_{0}^{2}$. Entonces $f$ es irreducible en $\mathbb{Q}[x]$.
+\end{proposition} 
+
+\subsection{Raíces de la unidad}
+
+A las raíces del polinomio $f(x) = x^{n}-z \in \mathbb{C}[x]$, con $z \in \mathbb{C}$ y $n \geq 1$ las denominamos \textbf{\textit{raíces complejas de la unidad}}. Como, para $n \geq 2$, el polinomio derivado $f'(x) = nx^{n-1}$ tiene como única raíz el cero y los polinomios $f(x)$ y $f'(x)$ no tienen raíces en común, entonces todas las raíces $n$-ésimas de $z$ son todas distintas. Para determinarlas, usaremos la conocida como \textbf{\textit{fórmula de De Moivre}} para la multiplicación de números complejos en forma trigonométrica: $$(\cos(x) + i\sin(x))^{n} = \cos(nx) + i\sin(nx).$$ Si $$z_{1} = \rho_{1}(\cos (\theta_{1}) +i\sin (\theta_{1})) \hspace{0.2cm}z_{2} = \rho_{2}(\cos (\theta_{2}) +i\sin (\theta_{2})),$$ con $\rho_{1}, \rho_{2}$ reales positivos, ahora usando propiedades de las funciones trigonométricas tenemos que:
+$$z_{1}z_{2} = \rho_{1}\rho_{2}(\cos(\theta_{1} + \theta_{2}) + i \sin(\theta_{1} + \theta_{2})).$$ Ahora podemos simplificar y hacer que $z = \rho (\cos(\theta) + i\sin(\theta))$, con $\rho > 0$. Si $\zeta = \sigma (\cos(\varphi) + i\sin(\varphi)) $ es una raíz $n$-ésima de $z$, entonces tiene que ser que $$\sigma^{n}(\cos(n\varphi) + i\sin(n\varphi)) = \rho (\cos(\theta)+ i\sin(\theta)),$$ de lo que deducimos que $\sigma^{n} = \rho$ y $n\varphi = \theta +2k\pi$, con $k \in \mathbb{Z}$, es decir, $$\sigma = \sqrt[n]{\rho}, \hspace{0.2cm} \varphi = \dfrac{\theta+2k\pi}{n}.$$
+De todo esto concluimos que las raíces complejas $n$-ésimas de $z = \rho(\cos(\theta) + i\sin(\theta))$ se obtienen para $k = 0, 1, \ldots, n-1$ y son precisamente los números complejos $$ (\ast) \hspace{0.3cm}\zeta_{k} = \sqrt[n]{\rho} \hspace{0.1cm}\left(\cos\left(\dfrac{\theta+2k\pi}{n}\right) + i\sin\left(\dfrac{\theta+2k\pi}{n}\right)\right).$$
+
+Por ejemplo, si tenemos $z = 3i= 3\left(\cos \left( \dfrac{\pi}{2})\right) + i\sin \left( \dfrac{\pi}{2} \right)\right)$ y queremos calcular sus raíces cuadradas, entonces $$\zeta_{0} = \sqrt{3} \left( \cos \left( \dfrac{\pi}{4}\right) + i \sin \left( \dfrac{\pi}{4}\right)\right) = \dfrac{\sqrt{6}}{2} + \dfrac{\sqrt{6}}{2}i, \hspace{0.2cm} \zeta_{1} = \sqrt{3}\left( \cos \left( \dfrac{5 \pi}{4}\right) + i \sin \left( \dfrac{5 \pi}{4}\right)\right) =- \dfrac{\sqrt{6}}{2} - \dfrac{\sqrt{6}}{2}i.$$
+
+Otro ejemplo, las raíces terceras de $1 + i = \sqrt{2}\left(\cos \left( \dfrac{\pi}{4})\right) + i\sin \left( \dfrac{\pi}{4} \right)\right)$ entonces se tiene que $$ \zeta_{0} = \sqrt[6]{2}\left(\cos \left( \dfrac{\pi}{12})\right) + i\sin \left( \dfrac{\pi}{12} \right)\right),$$ $$\zeta_{1} = \sqrt[6]{2}\left(\cos \left( \dfrac{3 \pi}{4})\right) + i\sin \left( \dfrac{3 \pi}{4} \right)\right),$$ $$\zeta_{2} = \sqrt[6]{2}\left(\cos \left( \dfrac{17 \pi}{12})\right) + i\sin \left( \dfrac{17 \pi}{12} \right)\right).$$
+
+Ahora, hemos visto (o más bien recordado brevemente) cómo se calculan las raíces en general de cualquier número complejo. Pero las que nos van a interesar a lo largo del texto van a ser las raíces de $z = 1$, es decir, las \textbf{\textit{raíces complejas $n$-ésimas de la unidad}}. Vamos, por tanto, a tener el número complejo $z = 1 = \cos(2\pi) + i \sin (2\pi)$. Utilizando ahora $(\ast)$ llegamos a la fórmula para calcular las raíces de la unidad: $$\zeta_{k} = \cos \left( \dfrac{2k\pi}{n} \right) + i\sin \left( \dfrac{2k\pi}{n} \right), \hspace{0.2cm} k = 1, \ldots n.$$
+Notar que $k$ va de $1$ hasta $n$ y que sería equivalente a que fuera desde $0$ hasta $n-1$. Notar también que la fórmula de los $\zeta_{k}$ la podemos reescribir como $e^{2\pi k i/n}$.
+
+De esto, lo primero que observamos es que empleando nuevamente la fórmula de De Moivre, resulta que $\zeta_{1}^{k} = \zeta_{k}$, donde $$\zeta_{1} =  \cos \left( \dfrac{2\pi}{n} \right) + i\sin \left( \dfrac{2\pi}{n} \right) = \xi,$$ y así podemos llegar a escribir todas las $n$-ésimas raíces de la unidad como $$\zeta_{1} = \xi, \hspace{0.1cm} \zeta_{2} = \xi^{2}, \ldots, \hspace{0.1cm} \zeta_{n-1} = \xi^{n-1}, \hspace{0.1cm}\zeta_{n} = \xi^{n} = 1.$$
+
+Así, es claro cómo las raíces forman un grupo cíclico de orden $n$.
+\section{Extensiones de Cuerpos}
+Nos encuadramos en una área de las matemáticas donde las estructuras algebraicas son fundamentales de conocer, en este caso, y durante todo el texto, conocer los grupos y anillos es imprescindible. Y como ya sabemos, un tipo concreto de anillo son los cuerpos, en los que se cumple que todo elemento no nulo es una unidad, o dicho de otra manera que el grupo de las unidades es el propio anillo a excepción del cero. 
+
+Nosotros nos vamos a parar a estudiar estas estructuras, cómo se relacionan entre ellas (veremos similitudes con grupos en algunos casos) y cómo se relacionan con la \textit{Teoría de Galois}. Sin más comencemos:
+\subsection{Generalidades}
+\begin{definition} Dados dos cuerpos $E,K$, diremos que $E$ es una extensión de un cuerpo $K$ si existe un monomorfismo de cuerpos $\varphi \colon K \longrightarrow E$. Dicho de otra forma, si $K$ es un subcuerpo de $E$. A las extensiones las denotaremos por $E/K$.
+Además, se cumplirá que $E$ es un $K-$espacio vectorial. A la dimensión de este $K-$espacio vectorial la denotaremos por $dim_{K}E$. Si $dim_{K}E$ es finita, se dice que la extensión $E/K$ es finita y $dim_{K}E$ se escribirá como $| E : K|$ y se denominará \textbf{grado} de la extensión.
+\end{definition}
+
+Tal y como hemos mencionado, dada una extension $E/K$, $E$ tendrá una estructura de espacio vectorial sobre $K$. Para ver esto simplemente hay que considerar las operaciones $+$, $\cdot$ y partir de un grupo abeliano $(E, +)$. Al ser $K$ un subcuerpo de $E$ las operaciones anteriores inducen las de $K$. En este grupo definimos la siguiente operación: $$(\lambda, a) \longmapsto \lambda a = \lambda \cdot a, \hspace{0.2cm} \lambda \in K, a \in E,$$ con $\lambda \cdot a$ el producto de elementos habitual en $E$. Como además, $1_{K} = 1_{E}$ por ser $K$ subcuerpo, entonces se va a tener que $1_{K} \cdot x = x$ $\forall x$. Así es fácil ver que, con lo anterior, tenemos una estructura de espacio vectorial.
+
+\begin{example} Veamos algunos ejemplos de extensiones conocidas: \begin{enumerate}
+\item $|\mathbb{R} : \mathbb{Q}| = \infty$, pues en caso de que fuese un natural $n$ cualquiera entonces $\mathbb{R} \simeq \mathbb{Q}^{n}$ y $\mathbb{R}$ sería numerable.
+\item $|\mathbb{C} : \mathbb{R} | = 2$, puesto que $\lbrace 1, i \rbrace$ es una base de $\mathbb{C}$ como $\mathbb{R}$-espacio vectorial.
+\item Si $E$ es una extensión de $K$, entonces $|E : K | = 1$ si y sólo si $E = K$.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Veamos que ocurre si intentamos encadenar extensiones:
+\begin{proposition} \label{eq:trgr} Sea $E$ una extensión de $L$, y a su vez $L$ una extensión de $K$. Diremos entonces que $L$ es un cuerpo intermedio, ya que se tiene que $K \subseteq L \subseteq E$. Entonces $E/K$ es finita si y sólo si $E/L$ y $L/K$ lo son. En este caso, se tiene $$|E: K| = |E:L| |L:K|.$$
+\end{proposition}
+\emph{Demostración: } Partimos primero de que $E/K$ es finita, entonces $|E:K|$ es finita y que $L$ como $K$-espacio vectorial esté contenido en $E$ $K$-espacio vectorial implica que $dim_{K} L \leq dim_{K} E < \infty$, es decir, $|L:K|$ es finito. Por otro lado, si $B = \lbrace u_{1}, \ldots, u_{n}\rbrace$ es una base de $E$ como $K$-espacio vectorial y $v \in E$, entonces $v = \sum_{i} k_{i}u_{i}$, con los $k_{i} \in K \subseteq L$. Así, $B$ genera $E$ como $L$-espacio vectorial, es decir, $dim_{L}E$ es finita y así $|E:L|$ también.
+
+Recíprocamente, si $|L:K| = s$ y $|E:L| = r$, sean $\lbrace l_{1}, \ldots, l_{s} \rbrace$ y $\lbrace e_{1}, \ldots, e_{r} \rbrace$ bases de $L$ como $K$-espacio vectorial y $E$ como $L$-espacio vectorial respectivamente. Veamos ahora que $U= \lbrace v_{ij} : v_{ij} = l_{i}e_{j}, \hspace{0.1cm} \forall i,j \rbrace$ es una base de $E$ como $K$-espacio vectorial. En efecto, si $m \in E$, $m = \sum_{j}^{r}d_{j}e_{j}$, con $d_{j} \in L$, y a su vez $d_{j} = \sum_{i}^{s}c_{ji}l_{i}$, con los $c_{ji} \in K$. Por lo tanto, $$m = \sum_{j=1}^{r} \left(\sum_{i=1}^{s} c_{ji}l_{i}\right) e_{j} = \sum_{j=1}^{r} \sum_{i=1}^{s}c_{ji}v_{ij}, \hspace{0.2cm} c_{ji} \in K.$$ Con esto, $U$ genera el $E$ $K$-espacio vectorial. Ahora veamos que $U$ es también linealmente independiente, para ello supongamos que $$0 = \sum_{j=1}^{r} \sum_{i=1}^{s} c_{ji}v_{ji} = \sum_{j=1}^{r}\left(\sum_{i=1}^{s} c_{ji}l_{i}\right) e_{j}, \hspace{0.2cm} c_{ji} \in K.$$ Como $\lbrace e_{1}, \ldots, e_{r} \rbrace$ es una base de $E$ como $L$-espacio vectorial tenemos que $\sum_{i}^{s} c_{ji}l_{i} = 0$ para todo $j=1, \ldots, r$. Y como $\lbrace l_{1}, \ldots, l_{s} \rbrace$ es una base de $L$ como $K$-espacio vectorial entonces $c_{ji} = 0$ también para todo $i = 1, \ldots, s$. Así, es linealmente independiente, y además $$|E:K| = rs = |E:L| |L:K|.$$
+
+$\hfill \square$
+
+\begin{proposition} Sean $E_{1}/K_{1}$, $E_{2}/K_{2}$ extensiones, y $\sigma \colon E_{1} \longrightarrow E_{2}$ un isomorfismo de cuerpos. Si $K_{2} = \sigma (K_{1})$, entonces $$|E_{1}:K_{1}| = |E_{2}:K_{2}|.$$
+\end{proposition}
+
+Veamos ahora alguna definiciones:
+\begin{definition}\label{defac} Sea $E$ una extensión de $K$, y sean $f(x) = \sum_{i} k_{i}x^{i} \in K[x]$ y $a \in E$. Diremos que $a$ es una \textbf{raíz} de $f$ si $f(a) = \sum_{i} k_{i}a^{i} = 0$.
+\end{definition}
+
+Llegados  a este punto hay que aclarar que, como una extensión la hemos definido al fin y al cabo como un monomorfismo (una inyección) de un cuerpo en otro, estamos cometiendo un abuso de notación al identificar los $k_{i}$ anteriores con los $\varphi (k_{i})$. En realidad deberíamos poner $f(a)$ como $f^{\varphi} (a) = \sum_{i} \varphi(k_{i}) a^{i}$.
+
+Ahora, una observación que ya conocemos del capítulo anterior:
+\begin{observation} Sea $E/K$ una extensión, y $a \in E$ una raíz de un polinomio $f$ de $K[x]$. Entonces $f(x) = (x-a)g(x)$, con $g \in E[x]$.
+\end{observation} 
+
+\begin{definition} Sea $E/K$ una extensión y $X \subseteq E$. Entonces $K(X)$ es la intersección de los subcuerpos de $E$ que contienen a $K$ y a $X$, es decir, el menor subcuerpo de $E$ que contiene a $K$ y a $X$.
+\end{definition}
+
+\begin{proposition} \label{eq:kalfa} Sea $E/K$ una extensión y $\alpha \in E$. Entonces $$K (\alpha) = \left\lbrace \dfrac{f(\alpha)}{g(\alpha)} : f,g \in K[x], g(\alpha) \neq 0 \right\rbrace.$$
+\end{proposition}
+
+Además, por inducción podemos definir $K(\alpha_{1}, \ldots, \alpha_{n} ) = K(\alpha_{1}, \ldots, \alpha_{n-1})(\alpha_{n}).$
+
+Un resultado que se desprenden de forma inmediata de la transitividad del grado de las extensiones y de la noción que acabamos de ver es el siguiente:
+\begin{proposition} Sea $E/K$ una extensión de cuerpos, finita, y $|E:K|$ un número primo. Entonces cada elemento $\alpha \in E \setminus K$ cumple que $E = K(\alpha)$.
+\end{proposition}
+\emph{Demostración: } Aplicando~\ref{eq:trgr} a los cuerpos $K \subseteq K(\alpha) \subset E$ tenemos que $$|E:K| = |E: K(\alpha)| |K(\alpha) : K|$$ y como $|E:K|$ es un número primo y $|K(\alpha) :K| \neq 1$ ya que $\alpha \neq K$, entonces se tiene que $|E:K(\alpha)| = 1$, es decir, que $E = K(\alpha)$ $\forall \alpha \in E \setminus K$.
+
+$\hfill \square$
+
+\begin{definition} Sea  $E/K$ una extensión y $\alpha \in E$. Diremos que $\alpha$ es \textbf{algebraico} sobre $K$ si existe un $p \in K[x]$ no nulo tal que $p(\alpha) = 0$, es decir, que $\alpha$ sea una raíz de $p$. Si $\alpha$ no es algebraico sobre $K$ se dice entonces que es \textbf{trascendente}. La extensión $E/K$ se dirá \textbf{algebraica} si todo elemento de $E$ es algebraico sobre $K$.
+\end{definition}
+\begin{example} Algunos ejemplos: \begin{enumerate}
+\item Si $\alpha \in E$, entonces $\alpha$ es algebraico sobre $E$.
+\item $\sqrt{2}$ es algebraico sobre $\mathbb{Q}$, ya que es raíz de $x^{2}-2$.
+\item Los números $e$ y $\pi$ son trascendentes  sobre $\mathbb{Q}$.
+\item El número $\alpha = \sqrt{2 + \sqrt{5}}$ es algebraico sobre $Q$, pues $\alpha^{2} = 2 + \sqrt{5}$ ó sea $\alpha^{2}-2 = \sqrt{5}$, y entonces $\alpha^{4}-4\alpha^{2}-1 = 0$. Por tanto, $\alpha$ es raíz del polinomio $p(x) = x^{4}-4x^{2}-1 \in \mathbb{Q}[x]$.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+\begin{proposition} Toda extensión finita es algebraica.
+\end{proposition}
+\emph{Demostración: } Sea $E/K$ finita y $n = |E:K|$. Si $\alpha \in E$, la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ tienen $n+1$ elementos (iguales o repetidos). Como $dim_{K} E = n$, dicha familia tiene que ser linealmente dependiente. Así, existen $t_{0}, t_{1}, \ldots, t_{n} \in K$ no todos nulos tales que $t_{0}1 + t_{1}\alpha + \ldots + t_{n}\alpha^{n} = 0$. Sea $p(x) = t_{0} + t_{1}x + \ldots + t_{n}x^{n}$. Entonces $p(x) \in K[x]$, $p(x) \neq 0$ y $p(\alpha) = 0.$
+
+$\hfill \square$
+
+Es interesante ver que, como hemos dicho, dada una extensión $E/K$ de grado $n$ y un $\alpha \in E$, entonces la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ va a ser linealmente dependiente. Más adelante veremos qué significa esta familia, qué hay que hacer para convertirla en linealmente independiente y si será base de algo. Al fin y al cabo estamos hablando de espacios vectoriales.
+
+Ahora, estudiaremos un resultado que nos dice que a cada cuerpo le podemos asignar una extensión que contendrá una raíz de un polinomio de su anillo de polinomios.
+
+\begin{proposition} Sea $K$ un cuerpo y sea $f \in K[x]$, con $\delta(f) > 0$. Entonces existen una extensión $E$ de $K$ y $\alpha \in E$ tal que $\alpha$ es raíz de $f$.
+\end{proposition}
+\emph{Demostración: } Como $K[x]$ es un dominio de factorización única, factorizamos $f$ como producto de polinomios irreducibles en $K[x]$. Sea $p(x) = \sum_{i}^{n}a_{i}x^{i}$ uno de los factores irreducibles de $f$ y consideremos el ideal $I$ generado por $p$ en $K[x]$. Entonces $E = K[x]/I$ es un cuerpo y podemos ver que el homomorfismo $$\begin{array}{rccl}
+\varphi \colon &K&\longrightarrow &E \\
+&a& \longmapsto &a + I,
+\end{array}
+$$ es un monomorfismo de cuerpos. En efecto, $\varphi (a) = 0$ quiere decir que $a \in I$, es decir, que $p(x)$ divide a $a$. Como $\delta (p) \geq 1$ y $a \in K$, tenemos que $a = 0$.
+
+Ahora, veamos que existe $\alpha \in E$ tal que $p(\alpha) = 0$ (ó dicho de otra forma, que $p^{\varphi} (\alpha) = I$). En efecto, sea $\alpha = x + I \in E$. Entonces $p^{\varphi} (\alpha) = \sum_{i}^{n}\varphi(a_{i})\alpha^{i} = \sum_{i}^{n}(a_{i} + I) (x + I)^{i} = \sum_{i}^{n}(a_{i} + I) (x^{i} + I) = \sum_{i}^{n}a_{i}x^{i} + I = p(x) + I = I,$ es decir, $p(\alpha) = 0$. Como $p$ divide a $f$, $f(\alpha) = 0$.
+
+$\hfill \square$
+
+\begin{corolario}Sea $K$ un cuerpo y sea $f \in K[x]$, con $\delta(f) > 0$. Entonces existe una extensión $E$ de $K$ tal que $f$ tiene todas sus raíces en $E$.
+\end{corolario}
+\emph{Demostración: } Por el resultado anterior existen una extensión $K_{1}$ de $K$ y $\alpha_{1} \in K_{1}$ tal que $f(\alpha_{1}) = 0$. Luego $f(x) = (x-\alpha_{1})f_{1}(x)$ en $K_{1}[x]$. Si aplicamos nuevamente el resultado anterior a $f_{1}(x)$ obtendremos una extensión $K_{2}$ de $K_{1}$ y $\alpha_{2} \in K_{2}$ tal que $f_{1}(\alpha_{2}) = 0$ (es decir, $f(\alpha_{2} = 0$). Si continuamos haciendo esto obtendremos $$f(x) = e(x-\alpha_{1})(x-\alpha_{2}) \ldots (x-\alpha_{n}).$$ Donde $\alpha_{i} \in K_{i}$, $e \in K$, con los $K_{i}$ las sucesivas extensiones, que cumplen: $$K \subseteq K_{1} \subseteq \ldots \subseteq K_{n-1} \subseteq K_{n}.$$
+
+$\hfill \square$
+
+\begin{corolario} \label{eq:preclau} Si $K$ es un cuerpo, y $\lbrace f_{1}, f_{2}, \ldots, f_{m} \rbrace \subseteq K[x]$, con $\delta (f_{i}) \geq 1$ $\forall$ $i$, entonces existirá una extensión $E$ de $K$ que contiene a todas las raíces de $f_{i}$ $\forall$ $i$.
+\end{corolario}
+
+Ahora, dada una extensión $E/K$ y un  elemento $\alpha \in E$, una forma alternativa a~\ref{eq:kalfa} de ver $K(\alpha)$ es como la intersección de todos los cuerpos intermedios que contengan a ese elemento, es decir $$K(\alpha) = \lbrace L: L \hspace{0.2cm} \text{cuerpo}: K \subseteq L \subseteq E,\hspace{0.1cm} \alpha \in L\rbrace.$$
+
+Ahora para ver qué pasa si $|K(\alpha) : K| = \infty$ recordemos que, dado un cuerpo cualquiera $K$, su cuerpo de fracciones $K(x)$ es de la forma: $$K(x) = \left\lbrace \dfrac{f}{g} : f,g \in K[x], g\neq 0 \right\rbrace.$$
+
+\begin{proposition} Sea $E/K$ una extensión, $\alpha \in E$ trascendente, entonces $|K(\alpha): K| = \infty$ y $K(\alpha) \simeq K(x)$.
+\end{proposition}
+\emph{Demostración: } Consecuencia de que, en este caso al ser $\alpha$ trascendente, la aplicación $$\begin{array}{rccl}
+\theta \colon &K(x)&\longrightarrow &K(\alpha) \\
+&\dfrac{p(x)}{q(x)}& \longmapsto &\dfrac{p(\alpha)}{q(\alpha)}
+\end{array}
+$$ es un isomorfismo de cuerpos y de espacios vectoriales sobre $K$.
+
+$\hfill \square$
+
+\begin{definition} Sea $E/K$ y $\alpha \in K$ algebraico sobre $K$, llamaremos \textbf{polinomio irreducible de $\alpha$ sobre $K$} al único generador mónico del ideal $\lbrace f \in K[x]: f(\alpha) = 0 \rbrace$. Este polinomio se denotará por $Irr(\alpha, K)$ y su grado se denomina \textbf{grado de $\alpha$ sobre $K$}.
+\end{definition}
+
+Es importante observar que $Irr(\alpha, K)$ siempre existe, ya que $K[x]$ es $DIP$. Además, su grado es el menor posible entre los polinomios no nulos de $K[x]$ de los cuales $\alpha$ es raíz. Es decir, $Irr(\alpha, K)$ es el polinomio mónico irreducible de menor grado posible de $K[x]$ que tiene a $\alpha$ por raíz.
+
+Recordemos antes de ver el siguiente resultado que, dado un anillo conmutativo y unitario $A$, un elemento cualquiera $f$ de $A[x]$ es irreducible en $A[x]$ si: \begin{enumerate}
+\item $f$ no es invertible en $A[x]$.
+\item Si $f = qp$, con $q,p \in A[x]$, entonces $q$ es invertible o $p$ lo es.
+\end{enumerate}
+
+\begin{proposition} Sea $E/K$ una extensión, $\alpha \in K$ algebraico sobre $K$ y $Irr(\alpha, K)$. Entonces: \begin{enumerate}
+\item $Irr(\alpha, K)$ es irreducible sobre $K$.
+\item Si $\delta(Irr(\alpha, K)) = n$, entonces $\lbrace 1, \alpha, \alpha^{2}, \ldots, \alpha^{n-1} \rbrace$ es base de $K(\alpha)$ sobre $K$. Así, $K(\alpha) = K + \alpha K + \ldots + \alpha^{n-1} K.$
+\item $|K(\alpha) : K| = n = \delta (Irr(\alpha, K)).$
+\item Si $q$ es un polinomio mónico irreducible en $K[x]$ y $\alpha$ es raíz de $q$, entonces $q = Irr(\alpha, K)$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Vamos a llamar a  $Irr(\alpha, K) = p(x)$ y a definir que  $A = \lbrace f \in K[x] : f(\alpha) = 0\rbrace = (p).$ \begin{enumerate}
+\item $Irr(\alpha, K) \notin K$ pues es no nulo. Además, si $p(x) = h(x) g(x)$ en $K[x]$, se tendría que $0 = p(\alpha) = h(\alpha) g(\alpha)$ y por ejemplo  tomemos $h(\alpha) = 0$. Entonces $h \in A$, es decir, que existiría $f \in K[x]$ tal que $pf = h$, por lo que $p = pfg$ en $K[x]$. De esto se deduce que $1 = fg$ y así $g$ es invertible, por tanto $p$ irreducible.
+\item  Si $\sum_{i= 0}^{n-1}c_{i}\alpha^{i} = 0$, con $c_{i} \in K$ y algún $c_{i}$ es no nulo, entonces $\alpha$ sería raíz de $k(x) = \sum_{i = 0}^{n-1}c_{i}x^{i}$, es decir, $k \in A$ , lo cual es absurdo, ya que $\delta (k) \leq n-1.$ Por lo tanto, $c_{i} = 0$ $\forall i$ y así la familia $\lbrace 1, \alpha, \ldots, \alpha^{n-1} \rbrace$ es linealmente independiente (esto tiene sentido con lo que vimos al demostrar que toda extensión finita es algebraica). Veamos ahora que genera $K(\alpha)$. Como $$K \subseteq T = K + \alpha K + \ldots + \alpha^{n-1} K \subseteq K(\alpha),$$ para ver que $K(\alpha) \subseteq K + \alpha K + \ldots + \alpha^{n-1} K$ bastará con ver que esto último, $T$, es un cuerpo. Lo veremos en dos partes: 
+
+Primero, $p(\alpha) = 0$ y si $p(x) = x^{n} + k_{n-1}x^{n-1} + \ldots + k_{0}$, entonces $\alpha^{n} = -k_{0} - k_{1}\alpha - \ldots - k_{n-1}\alpha^{n-1} \in T$. Luego $\alpha^{n+1} \in \alpha T \subseteq  \alpha K + \ldots + \alpha^{n-1} K + \alpha^{n} K \subseteq T + \alpha^{n} K \subseteq T + T E \subseteq T + T \subseteq T.$ En general se tiene así que los $\alpha^{i} \in T$ $\forall i \geq n$, y como $1, \alpha, \ldots, \alpha^{n-1} \in T$ entonces $\alpha^{i} \in T$ $\forall i \geq 0$.
+
+Segundo, de lo que acabamos de ver se deduce que $T$ es cerrado para la suma y el producto, y es fácil ver que es anillo unitario. Ahora, si $0 \neq t \in T$, $t = \lambda_{0} + \lambda_{1} \alpha + \ldots + \lambda_{n-1} \alpha^{n-1}$, con $\lambda_{i} \in K$, veamos que $t$ es invertible en $T$. Si $v(x) = \lambda_{0} + \lambda_{1} x + \ldots + \lambda_{n-1} x^{n-1}$, entonces $v(\alpha) = t \neq 0$ y $v(x) \notin A$, es decir, $p$ no divide a $v(x)$. Como $p$ es irreducible, resulta que $p$ y $v(x)$ son coprimos, y por Bézout existirán $q,r \in K[x]$ tales que $1 = rv + qp$. Ahora, $1 = r(\alpha)v(\alpha) + q(\alpha) p(\alpha) = r(\alpha) t$, con $r(\alpha) \in T$, y así $t$ es invertible en $T$.
+\item De la segunda parte del apartado anterior se tiene que $\lbrace 1, \alpha, \alpha^{2}, \ldots, \alpha^{n-1} \rbrace$ es base de $K(\alpha)$ sobre $K$, con $n = \delta (Irr(\alpha K))$, por lo que $|K(\alpha) : K| = n = \delta (Irr(\alpha, K))$. 
+\item Como $q \in A$, $q = rp$ con $r \in K[x]$. Al ser $q$ irreducible en $K[x]$ se tiene que cumplir que $\delta (q) = \delta (p)$ ó bien $\delta (q) = \delta (r)$. En el primer caso, $r$ es constante y como $q y p$ son ambos mónicos entonces son iguales. En el segundo caso, $p$ sería constante y así reducible, lo cual es absurdo.
+\end{enumerate}
+
+$\hfill \square$
+
+De lo último además se puede deducir que, dado un $q \in K[x]$ cualquiera, $q(\alpha) = 0$ si y sólo si $Irr(\alpha, K) \mid q.$
+
+
+Ahora, bajo las mismas condiciones que en el anterior resultado, se va a tener que $K(\alpha) = \lbrace f(\alpha) : f \in K[x] \rbrace$. En efecto, si consideramos una aplicación $$\begin{array}{rccl}
+\varphi \colon &K[x]&\longrightarrow &E \\
+&f& \longmapsto &f(\alpha).
+\end{array}
+$$ Como $Ker \hspace{0.1cm} \varphi = (p)$ (el pol. irreducible) y $p$ es irreducible, $K[x]/Ker \hspace{0.1cm} (p)$ es un cuerpo. Por el \textit{Primer Teorema de Isomorfía de anillos}, $\varphi (K[x])$ también será un cuerpo, y $\varphi(K[x]) = \lbrace f(\alpha) :f \in K[x] \rbrace.$ Como $\lbrace f(\alpha) : f \in K[x] \rbrace \subseteq K(\alpha)$, entonces $K(\alpha) = \lbrace f(\alpha) : f \in K[x] \rbrace$.
+\begin{corolario}\label{eq:cor1} Sea $E/K$ una extensión y $\alpha \in E$, entonces $\alpha$ es algebraico sobre $K$ si y sólo si $|K(\alpha) : K|$ es finito.
+\end{corolario}
+
+\begin{corolario} Sea $E/K$ una extensión, $\alpha \in E$ y $|E:K| = m$, entonces el grado de $\alpha$ sobre $K$ divide a $m$.
+\end{corolario}
+Visto ya lo cómo conseguir una base de una extensión, y que para ello necesitaremos encontrar un polinomio irreducible sobre un cuerpo, importante remarcar el hecho de que sea irreducible, para comprobarlo disponemos de algunos criterios como el visto anteriormente, el criterio de Eisenstein. Ahora unos ejemplos: 
+
+\begin{example} Veamos algunos casos de polinomios irreducibles: \begin{enumerate}
+\item Si consideramos la extensión $\mathbb{Q}(i)/\mathbb{Q}$, entonces $x^{2}+1 \in \mathbb{Q}[x]$ es irreducible, mónico y tiene a $i$ por raíz, luego es el polinomio irreducible de $i$ sobre $\mathbb{Q}$. Por la proposición anterior $\lbrace 1, i \rbrace$ es una base de $\mathbb{Q}(i)$ sobre $\mathbb{Q}$, así $$\mathbb{Q}(i) = \lbrace a+bi : a,b \in \mathbb{Q} \rbrace.$$
+
+\item $x^{2}-2 = Irr(\sqrt{2}, \mathbb{Q})$, $|\mathbb{Q}(\sqrt{2}) : \mathbb{Q} | = 2$ y $\mathbb{Q}(\sqrt{2}) = \lbrace a+b\sqrt{2}: a,b \in \mathbb{Q} \rbrace$.
+\item $x^{2}-3 = Irr(\sqrt{3}, \mathbb{Q})$, $|\mathbb{Q}(\sqrt{3}) : \mathbb{Q}| = 2$ y $\mathbb{Q}(\sqrt{3}) = \lbrace a+b \sqrt{3}: a,b \in \mathbb{Q} \rbrace$.
+\item El polinomio irreducible de $\sqrt{3}$ sobre $\mathbb{Q}(\sqrt{2})$ tiene que tener a $\sqrt{3}$ por raíz, sabemos que $x^{2}-3$ lo tiene y podemos intentar ver si es irreducible sobre $\mathbb{Q}(\sqrt{2})[x]$ (lo es en $\mathbb{Q}[x]$ pero eso no nos asegura nada). 
+
+Si fuera reducible tendría que tener alguna raíz en $\mathbb{Q}(\sqrt{2})$, luego $\pm \sqrt{3} \in \mathbb{Q}(\sqrt{2})$ y así $\sqrt{3} = a+b\sqrt{2}$, con $a,b \in \mathbb{Q}$, es decir, que $\sqrt{3} -b \sqrt{2} = a \in \mathbb{Q}$. Si elevamos al cuadrado: $$3+2b^{2}-2b\sqrt{6} = a^{2} \in \mathbb{Q},$$ de lo que deducimos que $b\sqrt{6} \in \mathbb{Q}$, ya que $\mathbb{Q}$ es un cuerpo. Pero como $\sqrt{6} \notin \mathbb{Q}$ sólo puede ser $b = 0$, y así $\sqrt{3} = a \in \mathbb{Q}$, lo cual es absurdo. Por lo tanto, $x^{2}-3$ es irreducible en $\mathbb{Q}(\sqrt{2})[x]$, y así $Irr(\sqrt{3}, \mathbb{Q}(\sqrt{2}))=x^{2}-3$, luego $|\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}(\sqrt{2})| = 2$.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example} Analizaremos ahora otra extensión que veremos que guarda relación con el ejemplo anterior, la extensión $\mathbb{Q}(\sqrt{2}+\sqrt{3})/\mathbb{Q}$. Y es que se tiene que $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2}+\sqrt{3})$, esto es así ya que $\mathbb{Q}(\sqrt{2}+\sqrt{3}) \subset \mathbb{Q}(\sqrt{2}, \sqrt{3})$ es evidente y para ver el otro contenido simplemente basta comprobar que $\sqrt{2}, \sqrt{3} \in \mathbb{Q}(\sqrt{2}+\sqrt{3})$. Para ver esto último tengamos en cuenta que $$11\sqrt{2} + 9\sqrt{3} = (\sqrt{2}+ \sqrt{3})^{3} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}),$$ de lo que deducimos que $$\sqrt{2} = \dfrac{(11\sqrt{2} + 9\sqrt{3}-9(\sqrt{2}+\sqrt{3}))}{2} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}) $$ $$\sqrt{3} = \dfrac{-(11\sqrt{2} + 9\sqrt{3})+11(\sqrt{2} + \sqrt{3})}{2} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}).$$
+
+Así, $\mathbb{Q}(\sqrt{2}, \sqrt{3}) \subset \mathbb{Q}(\sqrt{2}+\sqrt{3})$ y por tanto tenemos la igualdad: $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2}+\sqrt{3})$.
+
+Una consecuencia de esto es que: $$|\mathbb{Q}(\sqrt{2} + \sqrt{3}) : \mathbb{Q}| = |\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}| = |\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}(\sqrt{2})| |\mathbb{Q}(\sqrt{2}): \mathbb{Q}| = 2 \cdot 2 = 4.$$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}Sea $\alpha = \sqrt{5} + \sqrt{-5}$ y $\beta = \sqrt[4]{5}$. Vamos a calcular el grado de la extensión $\mathbb{Q}(\alpha, \beta) /\mathbb{Q}$.
+
+Notar primero que $\beta^{2} = \sqrt{5}$ y que $\alpha = \sqrt{5} + \sqrt{5}i$, es decir, $\alpha = \beta^{2} + \beta^{2}i$. Así, $\mathbb{Q}(\alpha, \beta) = \mathbb{Q}(\beta^{2} + \beta^{2}i, \beta) = \mathbb{Q}(\beta^{2}i, \beta) = \mathbb{Q}(i, \beta) = \mathbb{Q}(\beta) (i)$. 
+
+Ahora, al estar claramente $\mathbb{Q}(\beta) \subset \mathbb{R}$ pero $i \notin \mathbb{R}$, el polinomio irreducible de $i$ sobre $\mathbb{Q}(\beta)$ va a ser el mismo que sobre $\mathbb{Q}$, es decir, $x^{2}+1$. Así, va a ser $|\mathbb{Q}(i,\beta) : \mathbb{Q}(\beta)| = 2$.
+
+Por otro lado, es claro que $|\mathbb{Q}(\beta) : \mathbb{Q}| = 4$ ya que el polinomio irreducible de $\beta = \sqrt[4]{5}$ sobre $\mathbb{Q}$ es $x^{4}-5$. (por el criterio de Eisenstein). Así, $$|\mathbb{Q}(\alpha, \beta) : \mathbb{Q}| = |\mathbb{Q}(i, \beta) : \mathbb{Q}| = |\mathbb{Q}(i, \beta) : \mathbb{Q}(\beta)| |\mathbb{Q}(\beta) : \mathbb{Q}| = 2 \cdot 4 = 8.$$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition} Sea $E/K$ una extensión, y $L$ un cuerpo intermedio. Sea $a \in E$ algebraico sobre $L$. Entonces $Irr(a, L) \mid Irr (a, K)$.
+\end{proposition}
+\emph{Demostración: }Si $a \in E$ es algebraico sobre $K$ entonces existe un $f \in K[x]$ tal que $f(a) = 0$. Como $f$ también pertenecerá a $L[x]$, $a$ también será algebraico sobre $L$. Recordemos que el polinomio irreducible de un elemento es el de menor grado (mónico) que lo anula y cualquier otro que lo anule es múltiplo suyo. Como $Irr(a,K) \in L[x]$ y anula a $a$ entonces $Irr(a, L) \mid Irr(a,K)$.
+
+$\hfill \square$
+
+\begin{proposition} Dada una extensión $E/K$ de cuerpos, y $u,v \in E$ elementos algebraicos sobre $K$. Sea $m = \delta(Irr(u, K))$ y $n = \delta(Irr(v,K))$, entonces son equivalentes: \begin{enumerate}
+\item $|K(u,v) :K(v) | = m$.
+\item $|K(u,v) : K(u) | = n$.
+\end{enumerate}
+Además, ambas se cumplen si $mcd(m,n) = 1$.
+\end{proposition}
+\emph{Demostración: }
+Está claro que $|K(u) : K| = m$ y que $|K(v) : K| = n$, luego $$\dfrac{|K(u,v):K(u)|}{|K(u,v):K(v)|} = \dfrac{|K(u,v):K|/|K(u):K)|}{|K(u,v):K|/|K(v):K|} = \dfrac{|K(v):K|}{|K(u):K|} = \dfrac{n}{m}.$$
+De lo que se desprende la equivalencia entre $1.$ y $2.$ Ahora, si $mcd(m,n) = 1$, la fracción $\dfrac{n}{m}$ no se puede simplificar, luego existirá un entero positivo $a$ tal que $$|K(u,v):K(u)| = an, \hspace{0.2cm} |K(u,v):K(v)| = am.$$ Ahora, $$n \leq an = |K(u,v):K(u)| = \delta(Irr(v, K(u))) \leq \delta (Irr(v,K)) = n,$$ donde la última desigualdad se desprende de lo visto en el anterior resultado, como $K \subset K(u)$ el polinomio $Irr(v,K)$ es múltiplo de $Irr(v,K(u))$. Así, $an = n$ y $a = 1$. Luego: $$|K(u,v):K(u)| = n, \hspace{0.2cm} |K(u,v):K(v)| = m.$$
+
+
+$\hfill \square$
+
+Vamos a ver un caso donde podamos aplicar esto que acabamos de ver:
+\begin{example} Sea $E = \mathbb{Q}(\sqrt{2}, \sqrt{3})$ y $\alpha = \sqrt[5]{2}$. Vamos a calcular $Irr(\alpha, E)$.
+
+Para empezar, si tomamos $x^{5}-2$, por el criterio de Eisenstein, es irreducible en $\mathbb{Q}[x]$. Así, $|\mathbb{Q}(\alpha) : \mathbb{Q}| = 5$. Ahora, ya hemos visto en ejemplos anteriores que si $v = \sqrt{2}+ \sqrt{3}$ entonces $E = \mathbb{Q}(v)$, y que $|\mathbb{Q}(v) : \mathbb{Q}| = 4$. Como $mcd(4,5) = 1$ entonces podemos aplicar el resultado que acabamos de ver: $$|E(\alpha) : E| = |\mathbb{Q}(\alpha,v) : \mathbb{Q}(v) | = \delta (Irr(\alpha, \mathbb{Q})) = 5.$$ Así, al ser $x^{5}-2$ un polinomio de grado $5$ en $E[x]$ que tiene por raíz a $\alpha$, entonces $$Irr(\alpha, E) = x^{5}-2.$$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{definition} Sea una extensión $E/K$, llamaremos \textbf{clausura algebraica} de $K$ en $E$ al conjunto de los elementos algebraicos de una extensión, y la denotaremos por $Cl_{K}^{E} = \lbrace \alpha \in E: \alpha \hspace{0.2cm} \text{es} \hspace{0.1cm} \text{algebraico} \hspace{0.1cm} \text{sobre} \hspace{0.1cm} K \rbrace$.
+\end{definition} 
+
+\begin{proposition} Sea $E/K$ una extensión, entonces la clausura algebraica de $K$ en $E$ es un subcuerpo de $E$.
+\end{proposition}
+\emph{Demostración: } Si $\alpha, \beta \in Cl_{K}^{E}$, entonces $|K(\alpha, \beta) : K(\beta) |$ es finito pues $\alpha$ es algebraico sobre $K$ y por lo tanto sobre $K(\beta)$. Además, como $\beta$ es algebraico sobre $K$, $|K(\beta) : K|$ es finito. Así, $|K(\alpha, \beta) : K|$ es finito y por~\ref{eq:cor1} $\alpha + \beta$, $\alpha - \beta$, $\alpha \beta \in Cl_{K}^{E}$, también $1/\alpha \in Cl_{K}^{E}$ si $\alpha \neq 0$.
+
+$\hfill \square$
+
+\begin{proposition}Sea $E/K$ una extensión, y $K$ numerable, entonces $Cl_{K}^{E}$ es numerable.
+\end{proposition}
+\emph{Demostración: } Como $K[x]$ es numerable, contiene numerables polinomios y cada uno de ellos tiene un número finito de raíces en cualquier extensión de $K$, y por lo tanto en $E$. Así, $Cl_{K}^{E}$ es numerable.
+
+$\hfill \square$
+
+\begin{corolario} $\mathbb{R}$ contiene más elementos trascendentes que algebraicos sobre $\mathbb{Q}$.
+\end{corolario}
+\emph{Demostración: }$Cl_{\mathbb{Q}}^{\mathbb{R}}$ (todos los $\alpha \in \mathbb{R}$ algebraicos sobre $\mathbb{Q}$) es numerable, pero $\mathbb{R}$ es no numerable. Si el conjunto $T$ de los $\beta	 \in \mathbb{R}$ trascendentes sobre $\mathbb{Q}$ fuese también numerable, entonces $\mathbb{R} = Cl_{\mathbb{Q}}^{\mathbb{R}} \cup T$ sería numerable.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:finalg} Sea $E/K$ una extensión. Si $\alpha_{1}, \ldots, \alpha_{n} \in E$ son algebraicos sobre $K$, $K(\alpha_{1}, \ldots, \alpha_{n})/K$ es finita, luego algebraica.
+\end{proposition}
+\emph{Demostración: } La haremos por inducción sobre $n$. Si $n = 1$, ya sabemos que $|K(\alpha_{1}):K|$ es finito. Supongamos el resultado cierto para $n-1$ y probémoslo para $n$. Como $\alpha_{n}$ es algebraico sobre $K$, también es algebraico sobre $K(\alpha_{1}, \ldots, \alpha_{n-1})$. Así, $|K(\alpha_{1}, \ldots, \alpha_{n-1}) (\alpha_{n}) : K(\alpha_{1}, \ldots, \alpha_{n-1})|$ es finito. Por inducción, $|K(\alpha_{1}, \ldots, \alpha_{n-1}) : K|$ es finito. Pero $K(\alpha_{1}, \ldots, \alpha_{n-1}) (\alpha_{n}) = K(\alpha_{1}, \ldots, \alpha_{n})$. Por~\ref{eq:trgr} $$|K(\alpha_{1}, \ldots, \alpha_{n}) : K| = |K(\alpha_{1}, \ldots, \alpha_{n}) : K(\alpha_{1}, \ldots, \alpha_{n-1})| |K(\alpha_{1}, \ldots, \alpha_{n-1}) : K|$$ es finito.
+
+$\hfill \square$
+
+Un resultado que puede parecer obvio pero que es interesante es la “transitividad” de las extensiones algebraicas, es decir, 
+
+\begin{proposition}Si $E$ es una extensión algebraica de $K$ y $F$ es una extensión algebraica de $E$, entonces $F$ es una extensión algebraica de $K$.
+\end{proposition}
+\emph{Demostración: } Si $\alpha \in F$ existirá en $E[x]$ un elemento no nulo $f = \sum _{i=0}^{n} a_{i}x^{i}$ tal que $f(\alpha)= 0$. Por hipótesis $a_{i}$ es algebraico sobre $K$, $\forall$ $i$. Si $L = K(a_{0}, a_{1}, \ldots, a_{n})$ se tiene $$|L : K| = |L:K(a_{0}, a_{1}, \ldots, a_{n-1})| |K(a_{0}, a_{1}, \ldots, a_{n-1}):K(a_{0}, a_{1}, \ldots, a_{n-2})| \ldots |K(a_{0}:K|.$$ Como $a_{i}$ es algebraico sobre $K(a_{0}, a_{1}, \ldots, a_{i-1})$ $\forall i$, cada factor es finito y por lo tanto $|L:K|$ es finito. Además, $\alpha$ es algebraico sobre $L$, pues $f \in L[x]$ y $f(\alpha) = 0$, por lo que $|L(\alpha):L|$ es finito y así $|L(\alpha) : K|$ es finito. Luego, $L(\alpha)$ es una extensión algebraica de $K$ y $\alpha$ es algebraico sobre $K$.
+
+$\hfill \square$
+
+
+\begin{lemma}Sea $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo de cuerpos. Entonces $\sigma$ se extiende a un isomorfismo de $K_{1}[x]$ en $K_{2}[x]$ haciendo que, si $f \in K_{1}[x]$ con $f = a_{0} + a_{1}x + \ldots + a_{k}x^{k}$, entonces  $\sigma (f) =  \sigma(a_{0}) + \sigma( a_{1})x + \ldots + \sigma(a_{k})x^{k}$. En particular, $$f \hspace{0.1cm} \text{es} \hspace{0.1cm} \text{irreducible} \Longleftrightarrow \sigma (f) \hspace{0.1cm} \text{es} \hspace{0.1cm} \text{irreducible}.$$
+\end{lemma}
+
+Esta extensión se produce de manera natural siempre, por lo que muchas veces se obviará. Además hay que puntualizar una cuestión de notación, tal y como comentamos al principio (tras~\ref{defac}) en este caso a $\sigma(f)$ se le denotará en ocasiones $f^{\sigma}$, ya que estrictamente hablando $\sigma$ es un isomorfismo de cuerpos y $f \in K_{1}[x]$.
+
+\begin{proposition} \label{eq:extc} Sean $E_{1}/K_{1}$ y $E_{2}/K_{2}$ dos extensiones. Sean $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo. Sea $p_{1} \in K_{1}[x]$ irreducible. Sea $p_{2} = \sigma (p_{1})$. Sea $\alpha_{i}$ raíz de $p_{i}$, $i = 1,2$. Entonces $\sigma$ se extiende a un isomorfismo de cuerpos $\theta \colon K_{1}(\alpha_{1})\longrightarrow K_{2}(\alpha_{2})$ tal que $\theta(\alpha_{1}) = \alpha_{2}$.
+
+$$\xymatrix @=2cm {K_{1}(\alpha_{1})\ar[r]^{\theta} & K_{2}(\alpha_{2})  \\ K_{1} \ar[r]^{\sigma} \ar[u] & K_{2} \ar[u]  }$$
+\end{proposition}
+\emph{Demostración: } Supongamos que $p_{1}$ es mónico, con lo que $p_{2}$ también lo es. Entonces, como $p_{1}$ y $p_{2}$ son irreducibles, $$p_{1} = Irr(\alpha_{1}, K_{1}),$$ $$p_{2} = Irr (\alpha_{2}, K_{2}).$$ Ahora, $K_{1}(\alpha_{1}) = \lbrace f(\alpha_{1}): f \in K_{1}[x]\rbrace$, $K_{2}(\alpha_{2}) = \lbrace f(\alpha_{2}) : f \in K_{2}[x]\rbrace$. Definimos $$\begin{array}{rccl}
+\theta \colon &K_{1}(\alpha_{1})&\longrightarrow &K_{2}(\alpha_{2}) \\
+&f(\alpha_{1})& \longmapsto &\sigma(f)(\alpha_{2}).
+\end{array}
+$$ 
+
+Y ahora veamos que está bien definida: si $f,g \in K_{1}[x]$, $f(\alpha_{1}) = g(\alpha_{1}) \Leftrightarrow (f-g)(\alpha_{1}) = 0 \Leftrightarrow p_{1} \mid f-g \Leftrightarrow \sigma (p_{1}) \mid \sigma(f-g) \Leftrightarrow p_{2} \mid \sigma (f) - \sigma (g) \Leftrightarrow (\sigma(f) -  \sigma (g)) (\alpha_{2}) = 0 \Leftrightarrow \sigma (f)(\alpha_{2}) = \sigma (g) (\alpha_{2})$.
+
+Es inyectiva: $\theta (f(\alpha_{1})) =  \sigma (f) (\alpha_{2}) = 0 \Rightarrow f(\alpha_{1}) = 0.$  Es fácil ver que también es suprayectiva.
+
+Y es claro que $\theta$ es homomorfismo de cuerpos: \begin{center}$\theta (f(\alpha_{1}) + g(\alpha_{1})) = \theta ((f+g) (\alpha_{1})) = \sigma (f+g) (\alpha_{2}) = (\sigma (f) + \sigma (g))(\alpha_{2}) = \sigma (f) (\alpha_{2}) + \sigma (g) (\alpha_{2}) = \theta (f(\alpha_{1})) + \theta(g(\alpha_{1})).$\end{center}
+Igual con el producto.
+
+$\hfill \square$
+
+\begin{corolario}\label{eq:irrcor} Sea $p \in K[x]$ irreducible, $\alpha$ y $\beta$ raíces de $p$ en una extensión $E$ de $K$. Existe un isomorfismo $\theta \colon K(\alpha) \longrightarrow K(\beta)$ tal que $\left. \theta \right|_K = id, \theta(\alpha) = \beta$. Recíprocamente, si $\alpha, \beta \in E$, siendo $E/K$ una extensión, y existe un isomorfismo $\theta \colon K(\alpha) \longrightarrow K(\beta)$ tal que $\left. \theta \right|_K = id, \theta(\alpha) = \beta$, entonces $Irr(\alpha, K) = Irr(\beta, K).$
+\end{corolario}
+\emph{Demostración: } La primera parte se deduce del anterior resultado, tomando $K_{1} = K_{2}$ y $\sigma = id$. Sea ahora $Irr(\alpha, K) = x^{k} + a_{k-1}x^{k-1} + \ldots + a_{1}x + a_{0}.$ Entonces, $$\alpha^{k} + a_{k-1}\alpha^{k-1} + \ldots + a_{1}\alpha + a_{0} =0.$$ Aplicando $\theta$ tenemos: $\theta( \alpha)^{k} + a_{k-1}\theta( \alpha)^{k-1} + \ldots + a_{1}\theta( \alpha) + a_{0} = \beta^{k} + a_{k-1}\beta^{k-1} + \ldots + a_{1}\beta + a_{0} = 0$ (ya que $\left. \theta \right|_K = id$). Luego, $Irr(\alpha, K) = Irr(\beta, K)$.
+
+$\hfill \square$
+
+Recordemos la necesidad de que $p \in K[x]$ sea irreducible. Entonces, dadas $\alpha$ y $\beta$ raíces en una extensión $E$ de $K$, $$\begin{array}{rccl}
+\theta \colon &K(\alpha)&\longrightarrow &K(\beta) \\
+&\alpha& \longmapsto &\beta \\
+&k& \longmapsto &k
+\end{array}
+$$ 
+\begin{definition} Si $E$ es una extensión algebraica de $K$, $\alpha, \beta \in E$, diremos que $\alpha$ y $\beta$ son \textbf{conjugados sobre $K$} si $Irr(\alpha, K) = Irr(\beta, K)$, o equivalentemente si $\alpha$ es raíz de $Irr(\beta, K)$. Lo denotaremos por $\alpha$ $conj_{K}$ $\beta$.
+\end{definition}
+
+Así, el anterior corolario nos viene a decir que todo eso ocurre si y sólo si $\alpha$ y $\beta$ son conjugados.
+
+\begin{definition} Sea $E/K$ una extensión. Diremos que $\varphi \colon E \longrightarrow E$ es un \textbf{$K$-homomorfismo de cuerpos} si \begin{enumerate}
+\item $\varphi$ es un homomorfismo de cuerpos.
+\item $ \left.\varphi \right|_K  = id_{K}$, es decir, $\varphi (k) = k$ $\forall k \in K$. 
+\end{enumerate}
+\end{definition}
+
+Un simple ejemplo de esto podría ser, dada la extensión $\mathbb{Q}(\sqrt{5})/\mathbb{Q}$ $$\begin{array}{rccl}
+\varphi \colon &\mathbb{Q}(\sqrt{5})&\longrightarrow &\mathbb{Q}(\sqrt{5}) \\
+&a+b\sqrt{5}& \longmapsto &a-b\sqrt{5}\\
+\end{array}
+$$ es un $\mathbb{Q}$-homomorfismo de cuerpos.
+
+\begin{example} Vamos a describir ahora el subcuerpo $\mathbb{Q}(\sqrt{5}, \sqrt{7})$ de $\mathbb{C}$.
+
+Lo primero, notar que $\mathbb{Q}(\sqrt{5}, \sqrt{7}) = \mathbb{Q}(\sqrt{5})(\sqrt{7})$, luego $\mathbb{Q} \subseteq \mathbb{Q}(\sqrt{5}) \subseteq \mathbb{Q}(\sqrt{5})(\sqrt{7}) \subseteq \mathbb{C}$. 
+
+Calculemos primero $|\mathbb{Q}(\sqrt{5}) : \mathbb{Q}|$. $\sqrt{5}$ es algebraico sobre $\mathbb{Q}$ porque es raíz de $x^{2}-5$, $x^{2}-5$ es irreducible en $\mathbb{Q}[x]$ y es mónico, luego $Irr(\sqrt{5}, \mathbb{Q}) = x^{2}-5$ y así $|\mathbb{Q}(\sqrt{5}):\mathbb{Q}| = 2$ y $\lbrace 1, \sqrt{5} \rbrace$ es una base de $\mathbb{Q}(\sqrt{5})$.
+
+Calculemos ahora $|\mathbb{Q}(\sqrt{5})(\sqrt{7}):\mathbb{Q}(\sqrt{5})|$, para lo cual necesitaremos $Irr(\sqrt{7}, \mathbb{Q}(\sqrt{5}))$. Sabemos que $x^{2}-7 = Irr(\sqrt{7}, \mathbb{Q})$ y que $x^{2}-7 \in \mathbb{Q}[x] \subseteq \mathbb{Q}(\sqrt{5})[x]$. Las únicas raíces del polinomio son $\sqrt{7}$ y $- \sqrt{7}$. Si dichas raíces no pertenecen  a $\mathbb{Q}(\sqrt{5})$ entonces $x^{2}-7$ será también irreducible sobre $\mathbb{Q}(\sqrt{5})[x]$.
+
+Ahora, recordemos que $\mathbb{Q}(\sqrt{5}) = \lbrace a +b \sqrt{5} : a,b \in \mathbb{Q}\rbrace$. Si $\sqrt{7} \in \mathbb{Q}(\sqrt{5})$ entonces existen $a,b \in \mathbb{Q}$ tales que $\sqrt{7} = a+b\sqrt{5}$, es decir, $7 = a^{2}+2ab\sqrt{5}+5b^{2}$. Con esto tenemos que: \begin{enumerate}
+\item Si $a = 0$, entonces $7 = 5b^{2}$ y de aquí $b = \pm  \dfrac{\sqrt{7}}{5} \notin \mathbb{Q}.$ Absurdo
+\item Si $b = 0$, entonces $7 = a^{2}$ y de aquí $a = \pm \sqrt{7} \notin \mathbb{Q}$. Absurdo.
+\item Si $a,b \neq 0$, entonces $\sqrt{5} = \dfrac{7-a^{2}-5b^{2}}{2ab}$, pero esto último es racional, luego absurdo también.
+\end{enumerate}
+Luego, como las raíces no pertenecen a $\mathbb{Q}(\sqrt{5})$, tenemos que $Irr(\sqrt{7}, \mathbb{Q}(\sqrt{5})) = x^{2}-7$, por lo que $|\mathbb{Q}(\sqrt{5})(\sqrt{7}):\mathbb{Q}(\sqrt{5})| = 2$. Así $|\mathbb{Q}(\sqrt{5})(\sqrt{7}):\mathbb{Q}| = |\mathbb{Q}(\sqrt{5})(\sqrt{7}):\mathbb{Q}(\sqrt{5})| |\mathbb{Q}(\sqrt{5}):\mathbb{Q}| = 2 \cdot 2 = 4.$
+Por tanto, podemos ver a $\mathbb{Q}(\sqrt{5}, \sqrt{7})$ como un $\mathbb{Q}$-e.v de dimensión $4$. Calcularemos ahora una base: \begin{center} $\mathbb{Q}(\sqrt{5}, \sqrt{7}) = \lbrace c +d\sqrt{7} : c,d \in \mathbb{Q}(\sqrt{5}) \rbrace = \lbrace (a_{0}+b_{0}\sqrt{5}) + (a_{1}+b_{1}\sqrt{5})\sqrt{7}: a_{0},b_{0},a_{1},b_{1} \in \mathbb{Q} \rbrace = \lbrace a_{0}+a_{1}\sqrt{7} + b_{0}\sqrt{5} + b_{1} \sqrt{5} \sqrt{7} :a_{0},b_{0},a_{1},b_{1} \in \mathbb{Q} \rbrace.$ \end{center}
+De lo que deducimos que, por ejemplo, $\lbrace 1, \sqrt{5}, \sqrt{7}, \sqrt{5}\sqrt{7} \rbrace$ es una base de $\mathbb{Q}(\sqrt{5}, \sqrt{7})$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example} Sea $a\in \mathbb{C}$ raíz de $x^{3}+x+1$. Veamos que $\mathbb{Q}(a\sqrt{2}) = \mathbb{Q}(a,\sqrt{2})$. Lo veremos por doble inclusión:
+
+Primero veamos que $\mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2})$. Como $a$ y $\sqrt{2} \in \mathbb{Q}(a,\sqrt{2})$ y $\mathbb{Q}(a,\sqrt{2})$ es un cuerpo entonces $a \sqrt{2} \in \mathbb{Q}(a,\sqrt{2})$ y como $\mathbb{Q}(a\sqrt{2})$ es el menor subcuerpo de $\mathbb{Q}$ conteniendo al mismo $\mathbb{Q}$ y a $a\sqrt{2}$, concluimos que $$\mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2}).$$
+
+Ahora veamos que $\mathbb{Q}(a, \sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2})$. Para esto basta ver que $a \in \mathbb{Q}(a\sqrt{2})$ (y así $\sqrt{2}$ ya que $\sqrt{2} = a^{-1}(a\sqrt{2})$) ya que como $\mathbb{Q}(a, \sqrt{2})$ es el menor cuerpo conteniendo a ambos elementos se tendrá que $$\mathbb{Q}(a,\sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2}).$$
+
+Como $x^{3}+x+1$ es irreducible en $\mathbb{Q}[x]$ entonces se tiene que $Irr(a, \mathbb{Q}) = x^{3}+x+1$ y $|\mathbb{Q}(a) : \mathbb{Q}| = 3$. Así, $\mathbb{Q}(a) = \lbrace ba + ca^{2} + d : b,c,d \in \mathbb{Q} \rbrace.$ Luego ó $\mathbb{Q}(a^{2}) = \mathbb{Q}(a)$ ó $\mathbb{Q}(a^{2}) = \mathbb{Q}$. Pero esto último no puede ser ya que si $\mathbb{Q}(a^{2}) = \mathbb{Q}$ entonces $a^{2} \in \mathbb{Q}$ y así $a^{2} = t \in \mathbb{Q}$ y $x^{2}-t$ tiene como raíz $a$. Absurdo porque $x^{3}+x+1$ es su polinomio irreducible. Con esto, tenemos que $a^{2}= \dfrac{(a\sqrt{2})^{2}}{2} \in \mathbb{Q}(a\sqrt{2})$ y así $\mathbb{Q}(a) = \mathbb{Q}(a^{2}) \subseteq \mathbb{Q}(a\sqrt{2})$.
+
+$$\mathbb{Q}(a,\sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2})\Rightarrow \mathbb{Q}(a\sqrt{2}) = \mathbb{Q}(a, \sqrt{2})$$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\subsection{Clausura Algebraica}
+Como ya vimos en~\ref{eq:preclau}, dado un cuerpo $K$ y un subconjunto $M$ finito de polinomios no constantes de $K[x]$, entonces existe una extensión $E$ de $K$ que contienen a todas las raíces de todos los elementos de $M$. Ahora veremos que esto es cierto aunque $M$ no sea finito.
+
+\begin{definition} Diremos que un cuerpo $K$ es \textbf{algebraicamente cerrado} si contiene a todas las raíces de los polinomios no constantes de $K[x]$.
+\end{definition}
+
+\begin{proposition}Si $K$ es un cuerpo algebraicamente cerrado y $E$ es un extensión algebraica de $K$, entonces $E = K$.
+\end{proposition}
+\emph{Demostración: } Si $\alpha \in E$, $f(x) = Irr(\alpha, K)$ es un polinomio no constante de $K[x]$. En consecuencia $\alpha$ es raíz de $f$, con $f \in K[X]$. Como $K$ es algebraicamente cerrado, $\alpha \in K$.
+
+$\hfill \square$
+
+Anteriormente ya definimos lo que era la clausura algebraica a partir de los elementos algebraicos de una extensión, pero ahora adaptaremos el concepto usando los cuerpos algebraicamente cerrados.
+\begin{definition} Sea $E/K$ una extensión de cuerpos, se dice que $E$ es una \textbf{clausura algebraica} de $K$ si \begin{enumerate}
+\item $E$ es algebraico sobre $K$.
+\item $E$ es algebraicamente cerrado.
+\end{enumerate}
+\end{definition}
+
+Ahora, se presentará el resultado más importante de esta sección:
+\begin{theorem}
+Todo cuerpo admite una clausura algebraica.
+\end{theorem}
+\emph{Demostración: } La idea de la demostración va a consistir en que para cada $f \in K[x]$ con $\delta (f) \geq 1$, y $x_{f}$ una indeterminada formaremos un conjunto infinito $S = \lbrace x_{f} : f \in K[x], \hspace{0.1cm} \delta (f) \geq 1 \rbrace$. Entonces, sea $K[S]$ el anillo de polinomios en las indeterminadas $x_{f}$ de $S$, y sea $I$ el ideal de $K[S]$ generado por el conjunto $\lbrace f(x_{f}): f \in K[x]\rbrace$. Construiremos cuerpos $E_{i}$ con $K \subseteq E_{1} \subseteq E_{2} \subseteq \ldots$ tales que todo $g \in E_{i}[x]$ con $\delta (g) \geq 1$ tenga raíces en $E_{i+1}$, y luego formaremos $E = \cup_{i=1}^{\infty} E_{i}$ que resultará un cuerpo algebraicamente cerrado con $K \subseteq E$. Finalmente, si $L = Cl_{K}^{E}$ demostraremos que $L$ es una clausura algebraica de $K$ y se habrá probado el teorema.
+
+Comenzaremos entonces construyendo los $E_{i}$. El ideal $I$ está propiamente contenido en $K[S]$, ya que si $I = K[S]$ se tiene $$ (\ast) \hspace{0.2cm} 1 = g_{1}f_{1}(x_{f_{1}})+ \ldots + g_{k}f_{k}(x_{f_{k}}), \hspace{0.2cm} g_{i} \in K[S].$$
+
+Por~\ref{eq:preclau} existe una extensión $E$ de $K$ en la cual $f_{1}, \ldots, f_{k}$ tienen todas sus raíces. Sea $\alpha_{i} \in E$ una raíz de $f_{i}$, $i = 1, \ldots, k$. Haciendo en $(\ast)$ $x_{f_{i}} = \alpha_{i}$ para $1 \leq i \leq k$, y $x_{t} = 0$ $\forall t \neq f_{i}$, se obtiene $1 = 0$, que es una contradicción. Luego $I \subset K[S]$ y por lo tanto existe un ideal maximal $M$ de $K[S]$ tal que $I \subseteq M$. Sea $\varphi =  \left.\pi \right|_K$, siendo $\pi$ la proyección canónica de $K[S]$ en $K[S]/M$. Entonces, $\varphi \colon K \longrightarrow K[S]/M$ es un monomorfismo, pues si $k \in K$ y $\varphi (k) = M$, entonces $k \in M$ por lo que $k$ debe ser no invertible, es decir, $k = 0$. Veamos ahora que $\forall f \in K[x]$ con $\delta (f) \geq 1$, $f$ tiene raíces en $E_{1} = K[S]/M$. Efectivamente, si $a_{0}+ a_{1}x + \ldots + a_{n}x^{n} = f(x) \in K[x],$ entonces $f(x_{f}) =  a_{0}+ a_{1}x_{f} + \ldots + a_{n}x_{f}^{n} \in M$ y se tiene que \begin{center}$M = \pi(f(x_{f})) = f(x_{f}) + M = (a_{0}+ M) + (a_{1}x_{f}+ M)+ \ldots + (a_{n}x_{f}^{n}) + M) = \varphi(a_{0})(1 + M) + \varphi(a_{1})(x_{f} + M) + \ldots + \varphi(a_{n})(x_{f} + M)^{n}.$\end{center} 
+Si ahora $\bar{1} = 1 + M$ y $\bar{x}_{f} = x_{f}+ M$, obtenemos que $\bar{x}_{f} \in E_{1}$ y es raíz del polinomio $h(x) = \sum_{i = 0}^{n} \varphi(a_{i})x^{i}$. Si repetimos el razonamiento anterior tomando $E_{1}$ en lugar de $K$, tendremos que $E_{2} \supseteq E_{1} \supseteq K$ tal que todo $g \in E_{1}[x]$ con $\delta (g) \geq 1$ tiene raíces en $E_{2}$. Continuando con este proceso se obtiene $K \subseteq E_{1} \subseteq E_{2} \subseteq E_{3} \ldots$, tales que todo $g \in E_{i}[x]$ con $\delta (g) \geq 1$ tiene raíces en $E_{i+1}$, Evidentemente, $E = \cup_{i}E_{i}$ es un cuerpo que contiene a $K$. Veamos que $E$ es algebraicamente cerrado: en efecto, si $p(t) = \sum_{i=0}^{n}e_{i}t^{i} \in E(t)$, entonces $p(t) \in E_{m}(t)$ para algún $m$ y por lo tanto tiene raíces en $E_{m+1}$. Por lo tanto, $p$ tiene una raíz $\alpha$ en $E$, y así $p(t) = (t-\alpha) h(t)$, con $h(t) \in E[t]$. Si aplicamos este razonamiento con $h(t)$ y los sucesivos polinomios que vayan saliendo obtendremos que $p(t)$ tiene todas sus raíces en $E$.
+
+Probaremos ahora que $L = Cl_{K}^{E}$ es una clausura algebraica de $K$. Obviamente $L$ es algebraico sobre $K$. Para ver que es algebraicamente cerrado tomaremos $f \in L[x]$ con $\delta (f) \geq 1$. Entonces $f \in E[x]$, y como $E$ es algebraicamente cerrado existirá un $\alpha \in E$ con $f(\alpha)=0$. Entonces $L(\alpha)$ es una extensión finita de $L$, luego algebraica sobre $L$. Como además $L$ es algebraico sobre $K$, y así también extension algebraica, tenemos que también $L(\alpha)$ es una extensión algebraica de $K$, luego $\alpha$ es algebraico sobre $K$. Entonces $\alpha \in Cl_{K}^{E} = L$. Hemos probado así que todo polinomio no constante de $L[x]$ tiene alguna raíz en $L$, es decir, que $L$ es algebraicamente cerrado.
+
+$\hfill \square$
+
+\begin{proposition} Sea $C/K$ una extensión algebraica. Si $C$ es una clausura algebraica de $K$, entonces dada cualquier extensión algebraica $E$ de $K$, existirá un monomorfismo $\psi \colon E \longrightarrow C$ tal que $\psi \sigma = \varphi$, es decir, el siguiente diagrama es conmutativo 
+$$\xymatrix @=2cm {K \ar[r]^{\sigma} \ar[d]_{\varphi} & E\ar[ld]^\psi  \\ C   }$$
+\end{proposition}
+\emph{Demostración: }
+Sea $\sigma \colon K \longrightarrow E$ una extensión algebraica y consideremos el conjunto $$S = \lbrace (F, F', \psi): \sigma (K) \subseteq F \subseteq E,\hspace{0.2cm} \varphi(K) \subseteq K' \subseteq C, \hspace{0.2cm} \psi \colon F \longrightarrow F' \hspace{0.1cm} \text{isomorfismo} \hspace{0.1cm}, \psi \sigma = \varphi \rbrace .$$
+Notar que $S \neq \emptyset$, ya que $(\sigma(K), \varphi(K), \varphi \sigma^{-1}) \in S$. Definiremos en $S$ un orden parcial de la siguiente manera: $$(F, F', \psi) \leq (L,L', \phi) \Longleftrightarrow F \subseteq L, \left.\phi \right|_F = \psi.$$ 
+Visto esto, es claro que se puede aplicar el lema de Zorn para obtener un elemento maximal de $S$, $(F_{0},F'_{0}, \psi_{0})$. Veamos que $F_{0} = E$. Es evidente que $F_{0} \subseteq E$, así que solo tendremos que ver el contenido contrario $E \subseteq F_{0}$. Supongamos que existe $\alpha \in E \setminus F_{0}$ y sean $f_{1} = Irr(\alpha, F_{0}) \in F_{0}[x]$ y $f_{2} = f_{1}^{\psi_{0}} \in F'_{0}[x] \subseteq C[x]$.
+
+Como $C$ es algebraicamente cerrado, existirá un $\alpha' \in C$ tal que $f_{2}(\alpha') = 0$ y, por~\ref{eq:extc}, existirá un único isomorfismo de cuerpos $\psi_{1} \colon F_{0}(\alpha) \longrightarrow F'_{0}(\alpha')$ tal que $\psi_{1}(\alpha) = \alpha'$ y $\left.\psi_{1} \right|_{F_{0}} = \psi_{0}$, es decir, que extiende $\psi_{0}$. Además, $\psi_{0}\sigma = \varphi$ y $\sigma(K) \subseteq F_{0}$, por lo que $\forall u \in K$, $\sigma(u) \in F_{0}$ y $\psi_{1}\sigma(u) = \psi_{0}\sigma(u) = \varphi(u)$, es decir, $\psi_{1}\sigma = \varphi$. Entonces $(F_{0}(\alpha), F'_{0}(\alpha'), \psi_{1}) \in S$, lo cual contradice la maximalidad de $(F_{0}, F'_{0}, \psi_{0})$. Por lo tanto, $F_{0} = E$ y $(E, F'_{0}, \psi_{0}) \in S$, y como $\psi_{0} \colon E \longrightarrow F'_{0} \subseteq C$, se tiene que el siguiente diagrama es conmutativo:
+$$\xymatrix @=2cm {K \ar[r]^{\sigma} \ar[d]_{\varphi} & E\ar[ld]^{\psi_{0}}  \\ C   }$$
+
+$\hfill \square$
+
+\subsection{Cuerpo de escisión de un polinomio}
+De lo que se trata de ver en esta sección es la existencia y unicidad (salvo isomorfismo como siempre) de los cuerpos de escisión. Pero primero vamos a definir lo que son:
+
+\begin{definition} Sea $f \in K[x]$ un polinomio y $E/K$ una extensión. Diremos que $f$ \textbf{se escinde} en $E$ si existen $a_{1}, \ldots, a_{n} \in E$ tales que $f = a(x-a_{1}) \ldots (x-a_{n})$, con $a \in K$. Si además $E = K(a_{1}, \ldots, a_{n})$ decimos que $E$ es un \textbf{cuerpo de escisión de $f$ sobre $K$}.
+\end{definition}
+
+\begin{observation} Algunas observaciones: 
+\begin{enumerate}
+\item Todo polinomio de grado $1$ de $K[x]$ se escinde en $K$.
+\item $f \in K[x]$ se escinde en $K$ si, y sólo si todos los polinomios irreducibles que aparecen en su descomposición son de grado $1$.
+\item Si $f \in K[x]$ se escinde en $K$ y $g \mid f$, entonces $g$ también se escinde en $K$.
+\end{enumerate}
+\end{observation}
+
+Pasemos ahora a probar la existencia:
+\begin{theorem}[\textbf{\textit{Existencia de cuerpos de escisión}}]Si $f \in K[x]$, existe un cuerpo de escisión de $f$ sobre $K$.
+\end{theorem}
+\emph{Demostración: }Lo haremos por inducción sobre el grado de $f$:
+Si $f$ se escinde en $K$ (en particular, si $\delta(f) = 1$), entonces $K$ es un cuerpo de escisión de $f$ sobre $K$. Supongamos que no es así y sea $f_{1}$ un factor irreducible de $f$ de grado mayor que $1$. Por~\ref{eq:ac1}, existe una extensión $E$ de $K$ en la que $f_{1}$ tiene una raíz $a$. Entonces $f(a) = 0$ ya que $f_{1}(a) = 0$. Por~\ref{eq:ac2} $x-a \mid f$ y así $f = (x-a)g$, con $g \in K(a)[x]$. Como $\delta (g) < \delta(f)$, por la hipótesis de inducción tenemos que existe un cuerpo de escisión de $g$ sobre $K(a)$. Será $g = b(x-b_{1}) \ldots (x-b_{m})$ y el cuerpo de escisión de $g$ (sobe $K(a)$) será $K(a)(b_{1}, \ldots, b_{m}) = K(a,b_{1}, \ldots, b_{m})$. Ahora, $f = b(x-a)(x-b_{1}) \ldots (x-b_{m})$ y su cuerpo de escisión sobre $K$ es $K(a, b_{1}, \ldots, b_{m})$.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:cuesc} Sea $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo, $f_{1} \in K_{1}[x]$ y $f_{2} = \sigma (f_{1}) \in K_{2}[x]$. Sean $E_{i}$, con $i = 1,2$ cuerpos de escisión de $f_{i}$ sobre $K_{i}$, $i = 1,2$. Entonces existe un isomorfismo $\tau \colon E_{1} \longrightarrow E_{2}$ que extiende $\sigma$, es decir, $ \left.\tau \right|_{K_{1}} = \sigma$.
+\end{proposition}
+\emph{Demostración: } Inducción sobre $|E_{1}: K_{1}|$ :
+
+Si $|E_{1}:K_{1}| = 1$, entonces $E_{1} = K_{1}$ es cuerpo de escisión de $f_{1}$ sobre $K_{1}$. Como $\sigma \colon K_{1}[x] \longrightarrow K_{2}[x]$ es isomorfismo de anillos, también $\sigma (f_{1})$ ($=f_{2}$) se escindirá sobre $K_{2}$. Así $E_{2} = K_{2}$ y basta tomar $\tau = \sigma$.
+
+Supongamos que $|E_{1}: K_{1}| > 1$ y que el resultado es cierto para extensiones de menor grado. Como $|E_{1}:K_{1}| > 1$, $f_{1}$ no se escinde en $K_{1}$ y existe un factor irreducible (importante esto!) $p$ de $f_{1}$ tal que $\delta (p) > 1$. Como $f_{1}$ se escinde en $E_{1}$, también $p$ se escinde en $E_{1}$ y $\sigma (p)$ se escinde en $E_{2}$. Sea $a \in E_{1}$, raíz de $p$ y sea $b \in E_{2}$ raíz de $\sigma (p)$. Por~~ existe un isomorfismo $\theta	 \colon K_{1}(a) \longrightarrow K_{2}(b)$ que extiende $\sigma$, es decir $\left.\theta \right|_{K_{1}} = \sigma$.
+
+Ahora, $E_{1}$ es cuerpo de escisión de $f_{1}$ sobre $K_{1}(a)$. Y $E_{2}$ es cuerpo de escisión de $f_{2}$ ($= \sigma(f_{1})$) sobre $K_{2}(b)$. Además, \begin{center}$|E_{1} : K_{1}| = |E_{1} : K_{1}(a)| |K_{1}(a) : K_{1} | > |E_{1}:K_{1}(a)|,$ ya que $a \notin K_{1}$ .\end{center}
+
+Por inducción, existe $\tau \colon E_{1} \longrightarrow E_{2}$ isomorfismo que extiende $\theta$, luego también extiende $\sigma$. 
+
+$$\xymatrix @=2cm {E_{1}\ar[r]^{\tau} & E_{2} \\ K_{1}(\alpha)\ar[r]^{\theta} \ar@{_(->}[u] & K_{2}(b) \ar@{_(->}[u] \\ K_{1} \ar[r]^{\sigma} \ar@{_(->}[u] & K_{2} \ar@{_(->}[u]  }$$
+
+$\hfill \square$
+
+\begin{corolario}[\textbf{\textit{Unicidad de los cuerpos de escisión}}] \label{eq:unicuer} Si $E_{1}, E_{2}$ son cuerpos de escisión de un mismo polinomio $f$ de $K[x]$ sobre $K$, existe entonces $\tau \colon E_{1} \longrightarrow E_{2}$ isomorfismo tal que $\left.\tau \right|_{K} = id.$
+\end{corolario}
+\emph{Demostración: } Basta hacer $K_{1} = K_{2} = K$ y $\sigma = id$ en la proposición anterior.
+
+$\hfill \square$
+
+\subsection{Extensiones normales}
+
+\begin{definition} Una extensión de cuerpos $E/K$ es una \textbf{extensión normal} si existe $f \in K[x]$ tal que $E$ sea cuerpo de escisión de $f$ sobre $K$.
+\end{definition}
+
+\begin{observation}Un par de observaciones: \begin{enumerate}
+\item Si $E/K$ es normal, $E/K$ es finita. Esto es así ya que $E$ lo vamos a obtener adjuntando a $K$ un número finito de elementos algebraicos y aplicar~\ref{eq:finalg}.
+\item Si $E/K$ es normal y $K \subseteq L \subseteq E$, $E/L$ también es normal. En este caso, ya que $E$ es cuerpo de escisión de un $f \in K[x]$ sobre $K$, luego también es cuerpo de escisión de $f \in L[x]$ sobre $L$.
+\end{enumerate}
+\end{observation}
+
+\begin{proposition} Toda extensión de grado $2$ es normal.
+\end{proposition}
+\emph{Demostración: }$E/K$ es algebraica ya que es finita. Sea ahora $f \in K[x]$ irreducible con una raíz $\alpha$ en $E$. Veamos que $f$ se escinde en $E$. $\alpha$ es algebraico sobre $K$ y $|K(\alpha) :K| = \delta(Irr(\alpha, K)) = \delta(f)$. Como $K \subset K(\alpha) \subset E$, entonces $|K(\alpha):K| \geq |E:K| = 2$. Luego $\delta(f) = 1$ ó $2$.
+
+Si $\delta(f) = 1$ entonces $f$ se escinde en $K$. Si $\delta(f) = 2$, como sabemos que $x -\alpha$ divide a $f$ en $E[x]$ existe un $g \in E[x]$ tal que $f=(x-\alpha)g$, y como $\delta(f) = 2$ entonces $\delta(g) = 1$ y $f$ se escinde en $E$.
+
+$\hfill \square$
+
+
+\begin{proposition} \label{eq:extcint} Sea $E/K$ una extensión normal y $K \subseteq M_{1}, M_{2} \subseteq E$ cuerpos intermedios. Sea $\sigma \colon M_{1} \longrightarrow M_{2}$ un isomorfismo tal que $\left.\sigma \right|_K  = id$. Entonce existe un isomorfismo $\tau \colon E \longrightarrow E$ que extiende $\sigma$.
+\end{proposition}
+\emph{Demostración: } Por definición de extensión normal, $E$ es cuerpo de escisión de un $f \in K[x]$ sobre $K$. Como hemos observado, $E$ también es cuerpo de escisión de $f$ sobre $M_{i}$, con $i = 1,2$. Además, $\sigma (f) = f$ ya que $\left.\sigma \right|_K  = id$. Aplicamos ahora~\ref{eq:cuesc} y tenemos $\tau \colon E \longrightarrow E$ tal que $\tau$ extiende $\sigma$.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:isoimp} Sea $E/K$ una extensión normal, $p \in K[x]$ irreducible, $a, b \in E$ raíces de $p$ en $E$. Entonces existe $\tau \colon E \longrightarrow E$ isomorfismo tal que $\tau (a) = b$ y $\left.\tau \right|_K  = id$.
+\end{proposition}
+\emph{Demostración: } Por~\ref{eq:irrcor}, existe $\theta \colon K(a) \longrightarrow K(b)$ isomorfismo tal que $\theta (a) = b$ y $\left.\theta \right|_K  = id$. Por la proposición anterior existe $\tau \colon E \longrightarrow E$ que extiende $\theta$. Entonces $\tau (a) = \theta(a) = b$ y $\left.\tau \right|_K  = id$.
+
+$\hfill \square$
+
+\begin{example}Veamos el cuerpo de escisión de $x^{3}-2 \in \mathbb{Q}[x]$ sobre $\mathbb{Q}$.
+\end{example}
+
+\begin{proposition}\label{eq:extnou} Sea $E/K$ una extensión finita. Entonces $E/K$ es normal si y sólo si todo polinomio irreducible de $K[x]$ que tenga una raíz en $E$ se escinde en $E$.
+\end{proposition}
+\emph{Demostración: } Como $E/K$ finita entonces $\lbrace a_{1}, \ldots, a_{n}$ es una base de $E$ como $K-e.v$. Entonces $E= K(a_{1}, \ldots, a_{n})$. Sea ahora $p_{i} = Irr(a_{i}, K)$, con $i = 1, \ldots, n$. Entonces, por hipótesis, $p_{i}$ se escinde en $E$, $i = 1, \ldots , n$. Sea $f = p_{1} \ldots p_{n}$. Claramente $E$ es un cuerpo de escisión de $f$ sobre $K$ ($E= K(a_{1}, \ldots, a_{n}) = K(Kerf)$, ya que los $a_{1}, \ldots, a_{n}$ anulan a $f$). Así que $E/K$ es normal.
+
+Recíprocamente, como $E/K$ es normal, $E$ es cuerpo de escisión de un polinomio $f \in K[x]$ sobre $K$. Sea $p \in K[x]$ irreducible con una raíz $a$ en $E$. Sea $b$ otra raíz de $p$ en un cuerpo de escisión de $p$ ($p \in K[x]$ luego también está en $E[x]$) sobre $E$. Tenemos que ver que $b \in E$. Para ello, por~\ref{eq:irrcor} existe un isomorfismo $\theta \colon K(a) \longrightarrow K(b)$ tal que $\left.\theta \right|_K  = id$. Ahora, $E$ es un cuerpo de escisión de $f$ sobre $K(a)$ (lo era sobre $K$). También $E(b)$ es cuerpo de escisión de $f$ sobre $K(b)$. Además, como $f \in K[x]$ y $\theta$ fija $K$, tenemos que $\theta (f) = f$. Por~~, existe un isomorfismo $\tau \colon E \longrightarrow E(b)$ que extiende $\theta$. Por~~, se tiene que $$|E:K(a)| = |E(b) :K(b)|.$$ Como $a$ y $b$ son raíces de $p \in K[x]$ irreducible, $|K(a) :K| = |K(b) : K| = \delta (p)$. Así, $$|E(b) : E| |E: K| = |E(b): K| = |E(b) :K(b)| |K(b):K| = |E:K(a)| |K(a) :K| = |E:K|,$$ luego $|E(b) :E| = 1$, es decir, $b \in E$.
+
+$$\xymatrix @=2cm {E\ar[r]^{\tau} & E_{b} \\ K(a)\ar[r]^{\theta} \ar@{_(->}[u] & K(b) \ar@{_(->}[u] \\ K \ar[r]^{id} \ar[u] & K \ar[u]  }$$
+
+$\hfill \square$
+
+\subsection{Extensiones separables}
+
+\section{La correspondencia de Galois}
+\subsection{El grupo de Galois}
+Lo que a continuación vamos a definir será el objeto de estudio del resto del texto, imprescindible para entender lo que venga en adelante y eje vertebrador de la \textit{Teoría de Galois}.
+
+Recordemos que, dado un cuerpo $E$, denotaremos por $Aut(E)$ al grupo de los automorfismos de $E$, es decir, al grupo de los isomorfismos $\sigma \colon E \longrightarrow E$ con la operación composición de aplicaciones.
+
+\begin{definition} Sea $E/K$ una extensión de cuerpos. Llamaremos \textbf{grupo de Galois de $E/K$}, y lo denotaremos por $Gal(E/K)$, a $$Gal(E/K) = \lbrace \sigma \colon E \longrightarrow E:\hspace{0.1cm} \sigma\text{ es isomorfismo}, \left.\sigma \right|_K  = id_{K} \rbrace.$$
+
+Es decir, que $\sigma \in Aut(E)$ y $\sigma(k) = k$, $\forall k \in K$. Además, va a ser un subgrupo de $Aut(E)$ con la composición de aplicaciones: $$(\sigma \circ \tau) (e) = \sigma (\tau (e)), \hspace{0.2cm} \forall e \in E.$$
+\end{definition}
+
+\begin{definition}Si $\sigma \in Aut(E)$, definimos el \textbf{cuerpo fijo de $\sigma$}, escrito $C_{E}(\sigma)$, como $$C_{E}(\sigma) = \lbrace a \in E: \sigma (a) = a \rbrace.$$
+\end{definition}
+
+\begin{observation}$C_{E}(\sigma)$ es un subcuerpo de $E$. Esto es así ya que, dados $a,b \in C_{E}(\sigma)$, se tiene que $\sigma(a-b) = \sigma(a) -\sigma(b) = a-b$. Luego $a-b \in C_{E}(\sigma)$. Y si $b\neq 0$ entonces $\sigma(ab^{-1}) = \sigma(a) \sigma(b)^{-1} = ab^{-1}$, y $ab^{-1} \in C_{E}(\sigma)$.
+\end{observation}
+
+\begin{example} El grupo de Galois de $\mathbb{Q}(\sqrt[3]{2}/\mathbb{Q})$, escrito $Gal(\mathbb{Q}(\sqrt[3]{2}/\mathbb{Q})$. Sabemos que $x^{3}-2 = Irr(\sqrt[3]{2}, \mathbb{Q})$, y que sus raíces son $\sqrt[3]{2},$  $\sqrt[3]{2}w,$  $\sqrt[3]{2}w^{2}$, con $$w = -\dfrac{1}{2} + \dfrac{\sqrt{3}}{2}i = \cos \left( \dfrac{2\pi}{3} \right) + i\sin \left( \dfrac{2\pi}{3} \right)$$ (recordar la fórmula de las raíces de la unidad).
+
+Sea $\sigma \in Gal(\mathbb{Q}(\sqrt[3]{2}/\mathbb{Q})$, debe llevar $\sqrt[3]{2}$ a otra raíz de $Irr(\sqrt[3]{2}, \mathbb{Q})$. Sabemos también que $\mathbb{Q}(\sqrt[3]{2}) \subset \mathbb{R}$, sin embargo $\sqrt[3]{2}w,$  $\sqrt[3]{2}w^{2}$ no pertenecen a $\mathbb{R}$. Por lo tanto, $\sigma (\sqrt[3]{2}) = \sqrt[3]{2}$ y $\sigma (a + b\sqrt[3]{2} + c\sqrt[3]{2}^{2}) = a + b\sqrt[3]{2} + c\sqrt[3]{2}^{2}$, ya que ha de fijar $\mathbb{Q}$ (como el irreducible es de grado $3$ entonces una base de la extensión es esa). Así, $\sigma = id$ y $Gal(\mathbb{Q}(\sqrt[3]{2}/\mathbb{Q}) = 1$.
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition}\label{eq:ggal1} Sea $E_{1}/K_{1}$ una extensión de cuerpos y $\sigma \colon E_{1} \longrightarrow E_{2}$ isomorfismo. Si $K_{2} = \sigma (K_{1})$, se cumple que $Gal(E_{1}/K_{1})$ y $Gal(E_{2}/K_{2})$ son isomorfos.
+\end{proposition}
+
+\begin{definition} Sea $f \in K[x]$. Definimos el \textbf{grupo de Galois de $f$} como $Gal(E/K)$, siendo $E$ un cuerpo de escisión de $f$ sobre $K$.
+
+Notar que si $E_{1}, E_{2}$ son cuerpos de escisión de $f$ sobre $K$, sabemos que por~\ref{eq:unicuer} existe $\tau \colon E_{1} \longrightarrow E_{2}$ isomorfismo tal que $\left.\tau \right|_K = id$. Por~\ref{eq:ggal1}, $Gal (E_{1}/K)$ es isomorfo a $Gal(E_{2}/K)$. Luego el concepto de grupo de Galois de $f$ está bien definido.
+\end{definition}
+
+\begin{proposition}\label{eq:gall} Sea $E = K(a_{1}, \ldots, a_{n})$. Sean $\sigma, \tau \in Gal(E/K)$ tal que $\sigma (a_{i}) = \tau (a_{i})$, $i = 1, \ldots, n$. Entonces $\sigma = \tau$.
+\end{proposition}
+\emph{Demostración: } 
+Por hipótesis, $\sigma(a_{i}) = \tau (a_{i})$, con $i = 1, \ldots, n$. Es decir, que $(\sigma \circ \tau^{-1})(a_{i}) = a_{i}$, con $i = 1, \ldots, 0$. Entonces $a_{i}\in C_{E}(\sigma \tau^{-1})$. Además, $K$ es subcuerpo de $C_{E}(\sigma \tau^{-1})$. Como a su vez $C_{E}(\sigma \tau^{-1})$ es subcuerpo de $E$ y $K(a_{1}, \ldots, a_{n})$ es el menor subcuerpo de $E$ que contiene a $K$ y a $a_{1}, \ldots, a_{n}$ entonces $E = K(a_{1}, \ldots, a_{n}) \in C_{E}(\sigma \tau^{-1})$. Asi, $\sigma = \tau$.
+
+$\hfill \square$
+
+Básicamente quiere decir que un elemento de $Gal(E/K)$ queda unívocamente determinado por las imágenes de los $a_{i}$.
+
+\begin{proposition}\label{eq:accgal} Sea $f \in K[x]$ y sea $a$ una raíz de $f$ en una extensión $E$ de $K$. Si $\sigma \in Gal(E/K)$, también $\sigma (a)$ es raíz de $f$. Sea $\Omega = \lbrace \text{raíces de} \hspace{0.1cm} f \text{en} \hspace{0.1cm} E \rbrace. $ La aplicación  $$\begin{array}{rccl}
+\varphi \colon &Gal(E/K)&\longrightarrow &S_{\Omega} \\
+&\sigma& \longmapsto &\left.\sigma \right|_\Omega \\
+\end{array}
+$$ es una acción de $Gal(E/K)$ sobre $\Omega$. Si $E$ es cuerpo de escisión de $f$ sobre $K$, dicha acción es fiel, es decir, cumple que $Ker \hspace{0.1cm} \varphi = 1$. Si además $f$ es irreducible, dicha acción es transitiva, es decir, tiene sólo una órbita.
+\end{proposition}
+\emph{Demostración: }
+Veamos que $\sigma(a)$ es también una raíz de $f$. Sea $f = a_{0}+a_{1}x+ \ldots + a_{k}x^{k}$, entonces $a_{0}+a_{1}a+ \ldots + a_{k}a^{k} =0$, y de aquí $\sigma(a_{0}+a_{1}a+ \ldots + a_{k}a^{k}) =\sigma(0) = 0$. Pero  $\sigma(a_{0}+a_{1}a+ \ldots + a_{k}a^{k}) =  \sigma(a_{0})+\sigma(a_{1})\sigma(a)+ \ldots + \sigma(a_{k})\sigma(a)^{k} = 0$. Como $\left.\sigma \right|_K = id$ tenemos que $a_{0}+a_{1}\sigma(a)+ \ldots + a_{k}\sigma(a)^{k} = 0$, es decir, que $\sigma(a)$ es raíz de $f$.
+
+Ahora, supongamos que $E$ es un cuerpo de escisión de $f$ sobre $K$. Así $E = K(a_{1}, \ldots, a_{n})$ siendo $\Omega = \lbrace a_{1}, \ldots, a_{n} \rbrace$. Si $\sigma \in Ker \hspace{0.1cm} \varphi$, $\sigma$ fijará $a_{1}, \ldots, a_{n}$. Por el resultado anterior~\ref{eq:gall} $\sigma = id$. Supongamos que además $f$ es irreducible. Por~\ref{eq:isoimp}, dados $a,b \in \Omega$, existe $\sigma \colon E \longrightarrow E$ isomorfismo, $\left.\sigma \right|_K = id$ y $\sigma (a) = b$. Entonces $\sigma \in Gal(E/K)$ y $a,b$ están en la misma órbita, luego hay sólo $1$ órbita y la acción es transitiva.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:sigK} Sea $E/K$ una extensión, $a_{1}, \ldots, a_{n} \in E$. Sea $L$ un cuerpo cualquiera y $\sigma \colon E \longrightarrow L$ un isomorfismo. Entonces $\sigma(K(a_{1}, \ldots, a_{n})) = \sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})).$
+\end{proposition}
+\emph{Demostración: }$\sigma(K(a_{1}, \ldots, a_{n}))$ es un cuerpo y contiene a $\sigma(K)$ y a $\sigma(a_{1}), \ldots, \sigma(a_{n})$. Como \\ $\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n}))$ es el menor subgrupo de $L$ que contiene a $\sigma(K)$ y a $\sigma(a_{1}), \ldots, \sigma(a_{n})$, será $$\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})) \subseteq \sigma(K(a_{1}, \ldots, a_{n})).$$ $\sigma^{-1}(\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})))$ es un cuerpo y contiene a $K, a_{1}, \ldots, a_{n}$. Por el mismo argumento tenemos que $$\sigma^{-1}(\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})))\supseteq K(a_{1}, \ldots, a_{n}).$$ Aplicando $\sigma:$ $$\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})) \supseteq \sigma(K(a_{1}, \ldots, a_{n})).$$
+
+$\hfill \square$
+
+\begin{proposition} Sean $K \subseteq L \subseteq E$. \begin{enumerate}
+\item $Gal(E/L) \leq Gal(E/K)$.
+\item Si $L/K$ es normal, entonces $\sigma (L) = L$ $\forall \sigma \in Gal(E/K)$.
+\item Supongamos que $E/K$ es normal. Entonces $L/K$ es normal si y sólo si $\sigma (L) = L$ $\forall \sigma \in Gal(E/K)$. Si $L/K$ es normal, $Gal(E/L) \unlhd Gal(E/K)$ y $$Gal(L/K) \simeq \dfrac{Gal(E/K)}{Gal(E/L)}.$$
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }\begin{enumerate}
+\item Si $\sigma$ fija a $L$ también fija a $K$, ya que $K \subseteq L$.
+\item Si $L/K$ es normal, $L = K(a_{1}, \ldots, a_{n})$, siendo $\Omega = \lbrace a_{1}, \ldots, a_{n} \rbrace $ el conjunto de raíces de un $f \in K[x]$. Vimos en~\ref{eq:accgal} que si $\sigma \in Gal(E/K)$, $\sigma$ permuta las raíces de $f$ y $\sigma(\Omega) = \Omega$. Por~\ref{eq:sigK} $$\sigma(K(a_{1}, \ldots, a_{n})) = \sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})).$$ Como $\lbrace \sigma(a_{1}), \ldots, \sigma(a_{n}) \rbrace = \lbrace a_{1}, \ldots, a_{n} \rbrace$ entonces $\sigma(L) = L$.
+\item Veamos que si $\sigma(L) = L$ $\forall \sigma \in Gal(E/K)$ se tiene que $L/K$ es normal. Por~\ref{eq:extnou} bastará ver que si $p \in K[x]$ es irreducible y tiene una raíz $a \in L$, entonces $p$ se escinde en $L$. Como $E/K$ es normal, de nuevo por~\ref{eq:extnou}, todas las raíces de $p$ están en $E$. Sea $b \in E$ otra raíz de $p$. Por~\ref{eq:isoimp} existe $\sigma \in Gal(E/K)$ tal que $\sigma (a) = b$. Como, por hipótesis, $\sigma (L) = L$, tenemos que $b \in L$. Así, $L/K$ es normal.
+
+Ahora, consideremos la aplicación (suponiendo que $L/K$ es normal) $$\begin{array}{rccl}
+&Gal(E/K)&\longrightarrow &Gal(L/K) \\
+&\sigma& \longmapsto &\left.\sigma \right|_L \\
+\end{array}
+$$
+Por $2.$ $\sigma(L) = L$, luego $\left.\sigma \right|_L \colon L \longrightarrow L$ y la aplicación está bien definida. Es evidentemente homomorfismo. Si $\tau \colon L \longrightarrow L$ es un isomorfismo tal que $\left.\tau \right|_K=id$, por~\ref{eq:extcint} y por ser $E/K$ normal, existe $\sigma \colon E \longrightarrow E$ isomorfismo con $\left.\sigma \right|_K = id$. Así, $\sigma \in Gal (E/K)$ y $\left.\sigma \right|_L = \tau$. Así, la aplicación  es suprayectiva. Su núcleo es $Gal(E/L)$. Así $Gal(E/L) \unlhd Gal(E/K).$ Luego, por el \textit{Primer Teorema de Isomorfía} $$Gal(L/K) \simeq \dfrac{Gal(E/K)}{Gal(E/L)}.$$
+\end{enumerate}
+
+$\hfill \square$
+
+\begin{definition} Sea $E$ un cuerpo y $H \leq Aut(E)$. Definimos el cuerpo fijo de $H$ como $$C_{E}(H) = \bigcap_{\sigma \in H} C_{E}(\sigma).$$ Que es un subcuerpo de $E$, por serlo cada $C_{E}(\sigma)$ (recordemos que $C_{E}(\sigma) = \lbrace a \in E :\sigma (a) = a \rbrace$).
+\end{definition}
+\begin{definition} Una extensión $E/K$ se dice \textbf{extensión de Galois} si es normal y separable.
+\end{definition}
+
+\begin{proposition}Sea $K\subseteq L \subseteq E$. Si $E/K$ es de Galois, $E/L$ es de Galois.
+\end{proposition}
+\emph{Demostración: }
+
+$\hfill \square$
+
+\begin{proposition}Sea $E/K$ una extensión de Galois. Entonces $$|E:K| = |Gal(E/K)|.$$
+\end{proposition}
+\emph{Demostración: }
+
+$\hfill \square$
+
+\subsection{El Teorema Fundamental de la Teoría de Galois}
+
+\end{document}
+
+
+
