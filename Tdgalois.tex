@@ -132,7 +132,7 @@ Recíprocamente, si $|L:K| = s$ y $|E:L| = r$, sean $\lbrace l_{1}, \ldots, l_{s
 
 $\hfill \square$
 
-\begin{proposition} Sean $E_{1}/K_{1}$, $E_{2}/K_{2}$ extensiones, y $\sigma \colon E_{1} \longrightarrow E_{2}$ un isomorfismo de cuerpos. Si $K_{2} = \sigma (K_{1})$, entonces $$|E_{1}:K_{1}| = |E_{2}:K_{2}|.$$
+\begin{proposition}\label{eq:propprinp} Sean $E_{1}/K_{1}$, $E_{2}/K_{2}$ extensiones, y $\sigma \colon E_{1} \longrightarrow E_{2}$ un isomorfismo de cuerpos. Si $K_{2} = \sigma (K_{1})$, entonces $$|E_{1}:K_{1}| = |E_{2}:K_{2}|.$$
 \end{proposition}
 
 Veamos ahora alguna definiciones:
@@ -573,7 +573,7 @@ $\hfill \square$
 \end{proposition}
 \emph{Demostración: } Como $E/K$ finita entonces $\lbrace a_{1}, \ldots, a_{n}$ es una base de $E$ como $K-e.v$. Entonces $E= K(a_{1}, \ldots, a_{n})$. Sea ahora $p_{i} = Irr(a_{i}, K)$, con $i = 1, \ldots, n$. Entonces, por hipótesis, $p_{i}$ se escinde en $E$, $i = 1, \ldots , n$. Sea $f = p_{1} \ldots p_{n}$. Claramente $E$ es un cuerpo de escisión de $f$ sobre $K$ ($E= K(a_{1}, \ldots, a_{n}) = K(Kerf)$, ya que los $a_{1}, \ldots, a_{n}$ anulan a $f$). Así que $E/K$ es normal.
 
-Recíprocamente, como $E/K$ es normal, $E$ es cuerpo de escisión de un polinomio $f \in K[x]$ sobre $K$. Sea $p \in K[x]$ irreducible con una raíz $a$ en $E$. Sea $b$ otra raíz de $p$ en un cuerpo de escisión de $p$ ($p \in K[x]$ luego también está en $E[x]$) sobre $E$. Tenemos que ver que $b \in E$. Para ello, por~\ref{eq:irrcor} existe un isomorfismo $\theta \colon K(a) \longrightarrow K(b)$ tal que $\left.\theta \right|_K  = id$. Ahora, $E$ es un cuerpo de escisión de $f$ sobre $K(a)$ (lo era sobre $K$). También $E(b)$ es cuerpo de escisión de $f$ sobre $K(b)$. Además, como $f \in K[x]$ y $\theta$ fija $K$, tenemos que $\theta (f) = f$. Por~~, existe un isomorfismo $\tau \colon E \longrightarrow E(b)$ que extiende $\theta$. Por~~, se tiene que $$|E:K(a)| = |E(b) :K(b)|.$$ Como $a$ y $b$ son raíces de $p \in K[x]$ irreducible, $|K(a) :K| = |K(b) : K| = \delta (p)$. Así, $$|E(b) : E| |E: K| = |E(b): K| = |E(b) :K(b)| |K(b):K| = |E:K(a)| |K(a) :K| = |E:K|,$$ luego $|E(b) :E| = 1$, es decir, $b \in E$.
+Recíprocamente, como $E/K$ es normal, $E$ es cuerpo de escisión de un polinomio $f \in K[x]$ sobre $K$. Sea $p \in K[x]$ irreducible con una raíz $a$ en $E$. Sea $b$ otra raíz de $p$ en un cuerpo de escisión de $p$ ($p \in K[x]$ luego también está en $E[x]$) sobre $E$. Tenemos que ver que $b \in E$. Para ello, por~\ref{eq:irrcor} existe un isomorfismo $\theta \colon K(a) \longrightarrow K(b)$ tal que $\left.\theta \right|_K  = id$. Ahora, $E$ es un cuerpo de escisión de $f$ sobre $K(a)$ (lo era sobre $K$). También $E(b)$ es cuerpo de escisión de $f$ sobre $K(b)$. Además, como $f \in K[x]$ y $\theta$ fija $K$, tenemos que $\theta (f) = f$. Por~\ref{eq:cuesc}, existe un isomorfismo $\tau \colon E \longrightarrow E(b)$ que extiende $\theta$. Por~\ref{eq:propprinp}, se tiene que $$|E:K(a)| = |E(b) :K(b)|.$$ Como $a$ y $b$ son raíces de $p \in K[x]$ irreducible, $|K(a) :K| = |K(b) : K| = \delta (p)$. Así, $$|E(b) : E| |E: K| = |E(b): K| = |E(b) :K(b)| |K(b):K| = |E:K(a)| |K(a) :K| = |E:K|,$$ luego $|E(b) :E| = 1$, es decir, $b \in E$.
 
 $$\xymatrix @=2cm {E\ar[r]^{\tau} & E_{b} \\ K(a)\ar[r]^{\theta} \ar@{_(->}[u] & K(b) \ar@{_(->}[u] \\ K \ar[r]^{id} \ar[u] & K \ar[u]  }$$
 
@@ -635,9 +635,9 @@ Ahora, supongamos que $E$ es un cuerpo de escisión de $f$ sobre $K$. Así $E = 
 
 $\hfill \square$
 
-\begin{proposition}\label{eq:sigK} Sea $E/K$ una extensión, $a_{1}, \ldots, a_{n} \in E$. Sea $L$ un cuerpo cualquiera y $\sigma \colon E \longrightarrow L$ un isomorfismo. Entonces $\sigma(K(a_{1}, \ldots, a_{n})) = \sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})).$
+\begin{proposition}\label{eq:sigK} Sea $E/K$ una extensión, $a_{1}, \ldots, a_{n} \in E$. Sea $L$ un cuerpo cualquiera y $\sigma \colon E \longrightarrow L$ un isomorfismo. Entonces tenemos que $\sigma(K(a_{1}, \ldots, a_{n})) = \sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})).$
 \end{proposition}
-\emph{Demostración: }$\sigma(K(a_{1}, \ldots, a_{n}))$ es un cuerpo y contiene a $\sigma(K)$ y a $\sigma(a_{1}), \ldots, \sigma(a_{n})$. Como \\ $\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n}))$ es el menor subgrupo de $L$ que contiene a $\sigma(K)$ y a $\sigma(a_{1}), \ldots, \sigma(a_{n})$, será $$\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})) \subseteq \sigma(K(a_{1}, \ldots, a_{n})).$$ $\sigma^{-1}(\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})))$ es un cuerpo y contiene a $K, a_{1}, \ldots, a_{n}$. Por el mismo argumento tenemos que $$\sigma^{-1}(\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})))\supseteq K(a_{1}, \ldots, a_{n}).$$ Aplicando $\sigma:$ $$\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})) \supseteq \sigma(K(a_{1}, \ldots, a_{n})).$$
+\emph{Demostración: }$\sigma(K(a_{1}, \ldots, a_{n}))$ es un cuerpo y contiene a $\sigma(K)$ y a $\sigma(a_{1}), \ldots, \sigma(a_{n})$. Como $\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n}))$ es el menor subcuerpo de $L$ que contiene a $\sigma(K)$ y a $\sigma(a_{1}), \ldots, \sigma(a_{n})$, será $$\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})) \subseteq \sigma(K(a_{1}, \ldots, a_{n})).$$ $\sigma^{-1}(\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})))$ es un cuerpo y contiene a $K, a_{1}, \ldots, a_{n}$. Por el mismo argumento tenemos que $$\sigma^{-1}(\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})))\supseteq K(a_{1}, \ldots, a_{n}).$$ Aplicando $\sigma:$ $$\sigma(K)(\sigma(a_{1}), \ldots, \sigma(a_{n})) \supseteq \sigma(K(a_{1}, \ldots, a_{n})).$$
 
 $\hfill \square$
 
@@ -667,7 +667,7 @@ $\hfill \square$
 \begin{definition} Una extensión $E/K$ se dice \textbf{extensión de Galois} si es normal y separable.
 \end{definition}
 
-\begin{proposition}Sea $K\subseteq L \subseteq E$. Si $E/K$ es de Galois, $E/L$ es de Galois.
+\begin{proposition}\label{eq:cuerpIntGal} Sea $K\subseteq L \subseteq E$. Si $E/K$ es de Galois, $E/L$ es de Galois.
 \end{proposition}
 \emph{Demostración: }
 
@@ -675,9 +675,31 @@ $\hfill \square$
 
 \begin{proposition}Sea $E/K$ una extensión de Galois. Entonces $$|E:K| = |Gal(E/K)|.$$
 \end{proposition}
-\emph{Demostración: }
+\emph{Demostración: } Lo haremos por inducción sobre $|E:K|$. Si $|E:K| = 1$, $E=K$ y $Gal(E/K)= 1$ y ya está.
+
+Supongamos que $|E:K|>1$. Sea $a \in E \setminus K$ y $p = Irr(a,K)$. Entonces $\delta(p)>1$. Como $E/K$ es normal, por~\ref{eq:extnou} tenemos que todas las raíces de $p$ están en $E$. Como $E/K$ es separable, todas las raíces son distintas entre sí.
+
+Sea $\Omega = \lbrace \text{raíces de p en E} \rbrace$. Entonces $|\Omega | = \delta(p)$. Por~\ref{eq:accgal} $Gal(E/K)$ actúa sobre $\Omega$. Por~\ref{eq:isoimp}, dadas dos raíces de $p$ en $E$ existe $\sigma \in Gal(E/K)$ que lleva una a la otra. Esto significa que hay sólo una órbita en esta acción, es decir, que la acción es transitiva. El estabilizador de $a$ en esta acción 
+
+$$\begin{array}{rccl}
+&Gal(E/K)&\longrightarrow &S_{\Omega} \\
+&\sigma& \longmapsto &\left.\sigma \right|_\Omega 
+\end{array}
+$$
+
+es $Gal(E/K(a))$ puesto que $\sigma(a) = a$ si y sólo si $\sigma (x) = x$ \hspace{0.1cm} $\forall x \in K(a)$. Entonces $|\Omega| = |Gal(E/K)|/|Gal(E/K(a))|$. Pero $|\Omega| = \delta(p) = |K(a):K|$. $|Gal(E/K)| = |Gal(E/K(a))| |\Omega| = |Gal(E/K(a))||K(a):K|.$ Por~\ref{eq:cuerpIntGal}, $E/K(a)$ es de Galois. Por inducción, $|E:K(a)| = |Gal(E/K(a))|$. 
+
+Sustituyendo: $$|Gal(E/K)| = |E:K(a)| |K(a):K| = |E:K|.$$ 
+
 
 $\hfill \square$
+
+\begin{example}Sea $E = \mathbb{Q}(\sqrt[4]{2}).$ Entonces $|E:\mathbb{Q}| = 4$, $|Gal(E/\mathbb{Q})| = 2$. Si $\sigma \in Gal(E/\mathbb{Q})$, $\sigma(\sqrt[4]{2})$ será raíz de $x^4-2$, $\sigma(\sqrt[4]{2}) = \sqrt[4]{2}$, $\sigma(\sqrt[4]{2}) = -\sqrt[4]{2}$, pero también están $\sqrt[4]{2}i \notin \mathbb{Q}(\sqrt[4]{2})$ y $-\sqrt[4]{2}i \notin \mathbb{Q}(\sqrt[4]{2})$.
+\end{example}
+
+$\hfill \blacksquare$
+
+
 
 \subsection{El Teorema Fundamental de la Teoría de Galois}
 
