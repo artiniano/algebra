@@ -2022,6 +2022,250 @@ $$
 Además, al conjunto $\lbrace a_{1}, \ldots, a_{k}\rbrace$ lo llamaremos \textbf{soporte} del ciclo $\sigma = (a_{1}, \ldots, a_{k})$ y lo denotaremos $sop(\sigma)$.
 \end{definition}
 
+\begin{observation} Es importante aclarar los siguientes puntos:
+\begin{enumerate}
+\item La forma de escribir un ciclo de longitud $k$ no es única; por ejemplo $$(a_{1}, \ldots, a_{k}) = (a_{k}, a_{1}, \ldots, a_{k-1}).$$ Es evidente que existen $k$ formas de escribir el mismo ciclo de longitud $k$ (tantas como maneras de elegir el primer elemento). Así, el ciclo $\sigma = (1,3,4) \in S_{4}$ se escribe $$\sigma = (1,3,4) = (4,1,3) = (3,4,1).$$ Sin embargo, $\sigma = (1,3,4) \neq (1,4,3) = \tau$ aunque ambos tengan el mismo soporte $\lbrace 1 ,3, 4\rbrace$, puesto que $$\sigma(1) = 3 \neq 4 = \tau(1).$$
+\item Dados enteros positivos $a_{1}, \ldots, a_{k}$ puede resultar confuso hablar del ciclo $\sigma = (a_{1}, \ldots, a_{k})$ si no se indica el grupo simétrico $S_{n}$ al que pertenece $\sigma$. Por ejemplo
+$$\sigma=\left(\begin{matrix}
+1 &2 &3 &4 \\
+3 &2 &4 &1
+\end{matrix}
+\right) \in S_{4}, \hspace{0.3cm} \tau = \left(\begin{matrix}
+1 &2 &3 &4 &5 \\
+3 &2 &4 &1 &5
+\end{matrix}
+\right) \in S_{5}
+$$ son distintas, aunque ambas se escriben $$\sigma = (1,3,4), \hspace{0.2cm} \tau = (1,3,4).$$
+\item Si $\sigma \in S_{n}$ es un ciclo de longitud uno, existirá $a_{1} \in \Omega$ tal que $\sigma(j) = j$ para cada $j \in \Omega \setminus \lbrace a_{1} \rbrace$. Entonces, como $\sigma$ es biyectiva ha de ser $\sigma(a_{1}) = a_{1}$ y $\sigma$ es la identidad. Así que de ahora en adelante sólo consideraremos ciclos de longitud mayor o igual que dos.
+\item A los ciclos de longitud dos los llamaremos \textbf{transposiciones}.
+\item Diremos que los ciclos $\sigma, \tau \in S_{n}$ son disjuntos si uno de ellos es la identidad, ó que se dé la condición $sop(\sigma) \cap sop(\tau) = \emptyset.$
+\end{enumerate}
+\end{observation}
+
+Una cuestión de notación y denominación será la que sigue: si por ejemplo consideramos el $\sigma$ anterior entonces tendremos que $\sigma (3) = 4$ y diremos que $sigma$ \textbf{\textit{mueve}} $3$, y en general diremos que una permutación $\sigma \in S_n$ mueve $a_{i} \in \Omega$ si $\sigma (a_i) = a_j$ con  $i \neq j \in sop(\sigma)$. En cambio, $\sigma(2) = 2$ y diremos que $\sigma$ \textbf{\textit{fija}} $2$, y en general diremos que una permutación $\sigma \in S_n$ fija $a_i \in \Omega$ si $\sigma(a_i) = a_i$.
+
+A lo largo del capítulo utilizaremos las acciones de grupos sobre conjuntos para estudiar y probar siguientes resultados. Es de hecho una de las razones por las que se dan ahora las permutaciones. Así, el grupo $S_{n}$ va a actuar sobre el conjunto $\Omega$ mediante una acción  $\varphi_{g}(\alpha)=g(\alpha)$, dado un $g \in S_{n}$ y $\alpha \in \Omega$.
+En concreto, será muy útil usar la acción por conjugación vista en~\ref{eq:accConj}.
+
+El siguiente resultado fija algunas propiedades elementales de los ciclos.
+\begin{proposition}\label{eq:asimet} Sea $\sigma = (a_{1}, \ldots, a_{k}) \in S_{n}$ un ciclo de longitud $k \geq 2$. \begin{enumerate}
+\item $\sigma^{-1} = (a_{k}, a_{k-1}, \ldots, a_{1})$. En particular $\sigma^{-1}$ es un ciclo de longitud $k$.
+\item El orden de $\sigma$ como elemento de $S_{n}$ es $k$.
+\item Si $\tau = (b_{1}, \ldots, b_{l}) \in S_{n}$ es un ciclo de longitud $l$, y $\sigma$ y $\tau$ son disjuntos, entonces $\sigma \circ \tau = \tau \circ \sigma.$
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Veamos:\begin{enumerate}
+
+\item Es evidente haciendo la composición.
+
+\item Para cada $1 \leq i < k$, $\sigma^{i}(a_{1}) = a_{1+i} \neq a_{1},$ luego $\sigma^{i}$ no es la identidad y así $o(\sigma) \geq k.$ Entonces tenemos que ver que $\sigma^{k}(j) = j$ para cada $j \in \Omega$. Pero esto es obvio si $j \notin sop(\sigma)$, pues en tal caso $\sigma(j) = j$. Ahora, dado $1 \leq i \leq k$, $\sigma^{k-i+1}(a_{i}) = a_{1},$ y por lo tanto, $\sigma^{k}(a_{i}) = \sigma^{i-1}(a_{1}) = a_{1+i-1} = a_{i}$.
+
+\item Si $\tau$ es la identidad es obvio que $\sigma \circ \tau = \tau \circ \sigma$. Supongamos que $l \geq 2$, $sop(\sigma) \cap sop(\tau) = \emptyset$. Escribimos $M = sop(\sigma) \cup sop(\tau)$. Si $j \in \Omega \setminus M$ se cumple $\sigma(j) = j = \tau(j)$, luego $$\sigma \circ \tau(j) = j = \tau \circ \sigma(j).$$
+Por otra parte, si $j \in M$, entonces $j \in sop(\sigma)$, $j \notin sop(\tau)$, ó $j \in sop(\tau)$, $j \notin sop(\sigma).$ En el primer caso, como $j \in sop(\sigma)$, también $\sigma(j) \in sop(\sigma)$ y así $\sigma(j) \notin sop(\tau)$, con lo que $$\tau(j) = j , \hspace{0.2cm} \tau(\sigma(j)) = \sigma(j).$$ Así, $\sigma \circ \tau(j) = \sigma(j) = \tau \circ \sigma(j).$ Para el segundo caso, el razonamiento es análogo.
+\end{enumerate}
+$\hfill \square$
+
+\begin{lemma}Sea un producto de ciclos disjuntos dos a dos $$\sigma= (a_{1}, \ldots, a_{m}) \cdots (b_{1}, \ldots, b_{n}),$$ y sea $G =\langle \sigma \rangle \leq S_{n}$. Entonces $\sigma^{i}(a_{1}) = a_{i+1}$ para $1 \leq i \leq m-1$, $\sigma^{m}(a_{1})=a_{1}, \ldots, \sigma^{j}(b_{1})=b_{j+1}$ para $1 \leq j \leq n-1$ y $\sigma^{n}(b_{1})=b_{1}$. Como consecuencia, los conjuntos $\lbrace a_{1}, \ldots, a_{m} \rbrace, \ldots, \lbrace b_{1}, \ldots, b_{n}\rbrace$ son órbitas de la acción de $G$ sobre $\Omega$ y las demás órbitas tienen longitud uno. Es decir, los soportes son las órbitas.
+\end{lemma}
+\emph{Demostración: }
+La primera parte es consecuencia directa de lo visto en la proposición anterior claramente. Tenemos que $\lbrace a_{1}, \ldots, a_{m} \rbrace = \lbrace \sigma^{r}(a_{1}) : r \geq 0 \rbrace, \ldots, \lbrace b_{1}, \ldots, b_{n} \rbrace = \lbrace \sigma^{r}(b_{1}) : r \geq 0 \rbrace.$
+
+$\hfill \square$
+
+Los ciclos de $S_{n}$ tienen interés, entre otras razones, porque constituyen un sistema generador de $S_{n}$ tal y como veremos a continuación.
+
+\begin{proposition}\label{eq:ciclosdis} Sea $n$ un entero positivo. Entonces cada elemento de $S_{n}$ se puede escribir como composición de ciclos disjuntos dos a dos. Dicha descomposición es además única salvo en el orden de los factores. En particular, los ciclos de $S_{n}$ constituyen un sistema generador de $S_{n}$.
+\end{proposition}
+\emph{Demostración: } 
+Sea $\sigma \in S_{n}$ y $G= \langle \sigma \rangle$. Supongamos $O$ una $G$-órbita. Si $|O| = m$ y $a \in O$ vamos a probar que $O = \lbrace a, \sigma(a), \ldots, \sigma^{m-1}(a) \rbrace$. Por el~\ref{eq:torest} \textit{Teorema de la órbita estabilizadora} tenemos que $[G:G_{a}] = m$. Así, $G/G_{a}$ es un grupo cíclico de orden $m$ generado por $\sigma G_{a}$. Luego, para cualquier entero $n$ tenemos que $\sigma^{n}(a) = a$ si y sólo si $\sigma^{n}\in G_{a}$ si y sólo si $(\sigma G_{a})^{n} = G_{a}$ si y sólo si $m \mid n$. Esto quiere decir que los elementos $a, \sigma(a), \ldots, \sigma^{m-1}(a)$ de la $G$-órbita de $a$ son distintos y que no puede haber más.
+
+Supongamos ahora que $\lbrace a, \sigma(a), \ldots, \sigma^{m-1}(a) \rbrace, \ldots, \lbrace b, \sigma(b), \ldots, \sigma^{n-1}(b) \rbrace$ son todas las distintas $G$-órbitas. Entonces tenemos que $$\sigma = (a, \sigma(a), \ldots, \sigma^{m-1}(a))\cdots (b, \sigma(b), \ldots, \sigma^{n-1}(b)),$$ puesto que la aplicación de la derecha actúa sobre cada elemento de $\Omega$ de la misma forma que $\sigma$.
+
+Por último, si $\sigma = (a_{1}, \ldots, a_{m}) \cdots(b_{1}, \ldots, b_{n})$ se escribe como producto de ciclos disjuntos, entonces por el lema inmediatamente anterior tenemos que $\sigma$ determina unívocamente los ciclos $(a_{1}, \ldots, a_{m}), \ldots, (b_{1}, \ldots, b_{n})$, quedando así probada la unicidad.
+
+$\hfill \square$
+
+Ahora, veamos un ejemplo donde se pueda apreciar lo que acabamos de probar:
+\begin{example}\label{eq:excidis} Consideremos $\sigma \in S_{9}$ dado por $$\sigma:= \left(\begin{matrix}
+1 &2 &3 &4 &5 &6 &7 &8 &9 \\
+3 &6 &5 &9 &1 &2 &8 &7 &4
+\end{matrix}
+\right)$$ Entonces es claro que la órbita de $1$ bajo la acción anterior es $$O_{1} = \lbrace 1, \sigma(1)=3, \sigma^{2}(1) = 5 \rbrace$$ y análogamente $$O_{2} = \lbrace 2,6 \rbrace, \hspace{0.2cm} O_{4} = \lbrace 4,9 \rbrace, \hspace{0.2cm} O_{7} = \lbrace 7,8 \rbrace.$$ Así, los ciclos disjuntos $$\tau_{1} = (1,3,5), \hspace{0.2cm} \tau_{2} = (2,6), \hspace{0.2cm} \tau_{3} = (4,9), \hspace{0.2cm} \tau_{4} = (7,8)$$ cumplen $\sigma = \tau_{1} \circ \tau_{2} \circ \tau_{3} \circ \tau_{4}$.
+
+$\hfill \blacksquare$
+\end{example}
+
+Como una consecuencia de esta descomposición en ciclos disjuntos vamos a ver que cualquier $k$-ciclo se puede expresar como producto de los ciclos más simples que existen: las transposiciones.
+
+\begin{corolario} Todo $k$-ciclo es producto de $k-1$ transposiciones. Luego, toda permutación $g\in S_{n}$ es producto de transposiciones (aunque no de forma única).
+\end{corolario}
+\emph{Demostración: }
+Hacemos $g = (a_{1}, \ldots, a_{m})=(a_{1},a_{2}) (a_{2},a_{3}) \cdots (a_{k-1},a_{k}).$
+
+$\hfill \square$
+
+\begin{corolario} 
+Sean $\sigma \in S_{n}$ y $\tau_{1}, \ldots, \tau_{k} \in S_{n}$ ciclos disjuntos tales que $\sigma = \tau_{1} \circ \ldots \circ \tau_{k}$. Entonces el orden de $\sigma$ como elemento de $S_{n}$ es el mínimo común múltiplo de las longitudes de los ciclos $\tau_{1}, \ldots, \tau_{k}$.
+\end{corolario} 
+\emph{Demostración: } 
+Llamemos $l_{j}$, $1 \leq j \leq k$ a la longitud del ciclo $\tau_{j}$. Por~\ref{eq:asimet}, $l_{j} = o(\tau_{j})$. Hacemos la demostración por inducción sobre $k$. El resultado es trivial si $k = 1$. Si $k > 1$, escribimos $\tau = \tau_{1} \circ \ldots \tau_{k-1}$. Por hipótesis de inducción $o(\tau)= l = mcm(l_{1}, \ldots, l_{k-1}).$ Sea $m = mcm(l,l_{k})$. Así $\tau_{k}^{m} = \tau^{m} = 1$ y por $3.$ de~\ref{eq:asimet}, $\sigma^{m} = (\tau \circ \tau_{k})^{m} = \tau^{m} \circ \tau_{k}^{m} = 1.$
+ 
+Recíprocamente, sea $s$ un entero positivo tal que $\sigma^{s} = 1$. Entonces $\tau^{s} \circ \tau^{s}_{k} = 1$ y por ello $j = (\tau^{s} \circ \tau^{s}_{k})(j) = \tau^{s}(j)$ si $j \in sop(\tau)$ pues $sop(\tau) \cap sop(\tau^{s}_{k}) = \emptyset$, $j = \tau^{s}(j)$ si $j \notin sop(\tau)$. Esto demuestra que $\tau^{s} = 1$ y análogamente $\tau^{s}_{k} = 1$. En consecuencia $s$ es múltiplo de $l_{k} = o(\tau_{k})$ y de $l = o(\tau)$, es decir, $s$ es múltiplo de $m$.
+
+Queda probado así que $o(\sigma)=  m = mcm (l,l_{k}) = mcm(l_{1}, \ldots, l_{k}).$
+
+$\hfill \square$
+
+\begin{lemma} Supongamos que $\sigma = (a_{1}, \ldots, a_{m})$ es un $m$-ciclo de $S_{n}$ y sea $\tau \in S_{n}$. Entonces $\sigma^{\tau}=(\tau(a_{1}), \ldots, \tau(a_{m}))$.
+\end{lemma}
+\emph{Demostración: }
+Tenemos que $\sigma(a_{i})=a_{i+1}$ para $i=1,\ldots, m-1$ y $\sigma(a_{m})=a_{1}$. Luego, $(\tau \sigma \tau^{-1}) \cdot (\tau(a_{i}))=\tau(a_{i+1})$ para $i=1,\ldots, m-1$ y  $(\tau \sigma \tau^{-1}) \cdot (\tau(a_{m}))=\tau(a_{1})$. 
+
+Finalmente, si $w \in \Omega \setminus \lbrace \tau(a_{1}), \ldots, \tau(a_{m})\rbrace$, entonces $\tau^{-1}(w) \in \Omega \setminus \lbrace a_{1}, \ldots, a_{m}\rbrace$. Por lo que $\sigma(\tau^{-1}(w))=\tau^{-1}(w)$ y así $\sigma^{\tau}$ fija $w$. Así que tenemos que tanto $\sigma^{\tau}$ como $(\tau(a_{1}), \ldots, \tau(a_{m}))$ actúan igual sobre cada elemento de $\Omega$, y por tanto han de ser iguales.
+
+$\hfill \square$
+
+Una consecuencia muy útil de~\ref{eq:ciclosdis} es que vamos a poder clasificar cada permutación según la longitud de los ciclos disjuntos en los que se descomponga, lo cual nos permitirá estudiarlos con mayor profundidad a través de dichas longitudes. Llamaremos así al \textbf{\textit{tipo de una permutación}} a la sucesión en orden descendente de las longitudes de los ciclos disjuntos en los que se descompone.
+
+Por ejemplo, en el ejemplo~\ref{eq:excidis} teníamos una permutación $\sigma \in S_{9}$ cuyo tipo es $[3,2,2,2]$ porque se descompone en 4 ciclos disjuntos, de longitud 3, 2, 2 y 2 respectivamente. Se suele usar la notación $()$ para denotar tipos, pero para no confundir con la permutación como tal emplearemos los corchetes. Notar que hay tantos tipos distintos como particiones tenga $n=|\Omega|$.
+
+Una de las razones por las que se introduce este concepto es porque vamos a poder elegir una permutación cualquiera de cada tipo y usarla como representante de una clase de conjugación en el $S_{n}$ que nos encontremos, es decir: 
+
+\begin{proposition}Dos permutaciones $\sigma, \tau \in S_{n}$ son conjugadas en $S_{n}$ si y sólo si tienen el mismo tipo.
+\end{proposition}
+\emph{Demostración: }
+Si $\tau =(a_{1}, \ldots, a_{m})\cdots(b_{1}, \ldots, b_{n})$ es una descomposición de $\tau$ en ciclos disjuntos y $\gamma \in S_{n}$, por el lema anterior tenemos que $$\tau^{\gamma}=(\gamma(a_{1}), \ldots, \gamma(a_{m})) \cdots (\gamma(b_{1}), \ldots, \gamma(b_{n}))$$ es una descomposición en ciclos disjuntos de $\tau^{\gamma}$. Por lo que dos permutaciones conjugadas tienen el mismo tipo.
+
+Recíprocamente, supongamos que $\tau =(a_{1}, \ldots, a_{m}) \cdots(b_{1}, \ldots, b_{n})$ y también $\gamma = (a'_{1}, \ldots, a'_{m})\cdots(b'_{1}, \ldots, b'_{n})$ tienen el mismo tipo, veamos que son conjugadas. Tenemos que $$\Omega = \lbrace a_{1}, \ldots, a_{m} \rbrace \cup \cdots \cup \lbrace b_{1}, \ldots, b_{n} \rbrace = \lbrace a'_{1}, \ldots, a'_{m} \rbrace \cup \cdots \cup \lbrace b'_{1}, \ldots, b'_{n} \rbrace$$
+son dos particiones de $\Omega$. Por lo que existe una única $\sigma \in S_{n}$ tal que $\sigma(a_{i})=\sigma(a'_{i}), \ldots, \sigma(b_{j})=\sigma(b'_{j})$ para $1\leq i \leq m, \ldots, 1 \leq j \leq n$. Luego, por el lema anterior tenemos que $\tau^{\sigma} = \gamma.$
+
+$\hfill \square$
+
+De este resultado tenemos una importante consecuencia, y es que dado un $\sigma \in S_{n}$, entonces \textbf{\textit{la clase de conjugación de $\sigma$}} (ver~\ref{eq:accConj}) \textbf{\textit{está formada por todas las permutaciones del mismo tipo que $\sigma$}}.
+
+\begin{observation} Sea $k>1$, entonces el número de $k$-ciclos que muevenn $k$ elementos distintos $a_{1}, \ldots, a_{k} \in \Omega$ es $(k-1)!$. Si $|\Omega| = n$, el número de $k$-ciclos de $S_{n}$ es ${n \choose k} (k-1)!$.
+
+Esto se puede generalizar a permutaciones de determinados tipos: es decir, si queremos saber el número de permutaciones de $S_{n}$ con $b_{j}$ ciclos de longitud $j$ tendremos $$ \dfrac{n!}{1^{b_{1}}2^{b_{2}} \cdots n^{b_{n}}b_{1}!b_{2}!\cdots b_{n}!}.$$(odio la combinatoria)
+\end{observation}
+
+\begin{example}
+Veamos las distintas clases de conjugación en $S_{5}$. Sabemos que hay 10 $2$-ciclos, 20 $3$-ciclos, 30 $4$-ciclos y 24 $5$-ciclos. Ciclos de tipo $[2,2]$ tenemos 15 ciclos. Ciclos de tipo $[3,2]$ tenemos 20 ciclos, y añadiendo la identidad tenemos: $10+20+30+24+15+20+1 = 120.$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}\label{eq:excentra} Sea $G = S_{5}$.
+\begin{enumerate}
+\item Sea $\tau = (1,2,3)$. Sabemos que $|Cl_{G}(\tau)| = 20$. Entonces $C_{G}(\tau) = \langle \tau \rangle \langle (4,5) \rangle$.
+
+Por un lado, como $|Cl_{G}(\tau)| = 20$, entonces $|C_{G}(\tau)| = \dfrac{|G|}{20} = \dfrac{120}{20} = 6$.
+
+Por otro lado, $$\langle (1,2,3) \rangle = \lbrace id, (1,2,3), (1,3,2) \rbrace,$$ y $$\langle (4,5)\rangle = \lbrace id, (4,5) \rbrace $$ (simple comprobación). Notar que $\langle (1,2,3) \rangle \cap \langle (4,5) \rangle = id$ y así $|\langle (1,2,3) \rangle \langle (4,5) \rangle|= \dfrac{|\langle (1,2,3) \rangle||\langle (4,5) \rangle|}{1} = 3 \cdot 2 = 6.$ Como $(4,5)$ es disjunta con $(1,2,3)$, entonces conmutan y así $\langle (4,5) \rangle \leq C_{G}(\tau)$, y también $\langle (1,2,3) \rangle \langle (4,5) \rangle \leq C_{G}(\tau)$ y como tienen el mismo orden se da la igualdad.
+\item Sea $\gamma$ un $5$-ciclo de $G$. Entonces $C_{G}(\gamma) = \langle \gamma \rangle$. 
+
+Como $\langle \gamma \rangle$ es un grupo cíclico, luego abeliano, entonces todos sus elementos formarán parte de $C_{G}(\gamma)$, luego $\langle \gamma \rangle \leq C_{G}(\gamma)$. Y, como $|Cl_{G}(\gamma)| = 24$, entonces $|C_{G}(\gamma)| = \dfrac{|G|}{|Cl_{G}(\gamma)|} = \dfrac{120}{24} = 5 = |\langle \gamma \rangle |$, luego se tiene la igualdad. 
+\item Sea $\sigma = (1,2)(3,4)$. Entonces $C_{G}(\sigma) = \langle (1,3,2,4),(1,3)(2,4)\rangle$. Además, este grupo es isomorfo a $\mathcal{D}_{8}$. 
+
+Por un lado, sabemos que hay $15$ ciclos de tipo $[2,2]$, luego $|Cl_{G}(\sigma)|=15 = \dfrac{|G|}{|C_{G}(\sigma)|} = \dfrac{120}{|C_{G}(\sigma)|}$, por lo que $|C_{G}(\sigma)| = \dfrac{120}{15}=8.$
+
+Por otro lado, llamemos $a = (1,3,2,4)$ y $b = (1,3)(2,4)$. Es claro que $o(a) = 4$ y $o(b)=2$ (simple comprobación). Entonces $$\langle a \rangle = \lbrace id, (1,3,2,4), (1,2)(3,4), (1,4,2,3) \rbrace,$$ y $$\langle b \rangle = \lbrace id, (1,3)(2,4) \rbrace.$$
+
+Luego $\langle a \rangle \cap \langle b \rangle = id$, y así $|\langle a \rangle \langle b \rangle | = |\langle a \rangle| |\langle b \rangle| = 4\cdot 2 = 8$. Sólo quedaría ver que $\langle (1,3,2,4),(1,3)(2,4)\rangle \leq C_{G}(\sigma)$, pero esto se desprende del hecho de que $\sigma \in \langle a \rangle$ (que es un grupo cíclico, luego abeliano) y de que $\sigma \cdot b = b \cdot \sigma = (1,4)(2,3)$ (simple comprobación). Así, tenemos un subgrupo del mismo orden que el centralizador, luego son lo mismo.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition} Sea $n \geq 3$. Entonces $Z(S_{n}) =1$.
+\end{proposition}
+\emph{Demostración: }
+Sea $1 \neq \sigma \in Z(S_{n})$. Entonces va a existir un $a \in \Omega$ tal que $\sigma (a)= b \neq a$, con $b \in \Omega$. Sea ahora $c \in \Omega \setminus \lbrace a,b \rbrace$ y sea $\tau =(b,c)$. Entonces $\tau\sigma \tau^{-1} (a)= \tau \sigma (a) =\tau (b) = c \neq b$ $(=\sigma(a))$. Luego, $\sigma^{\tau} \neq \sigma$, lo cual es absurdo puesto que $\sigma \in Z(S_{n})$.
+
+$\hfill \square$
+
+\subsection{El homomorfismo índice y el grupo alternado}
+
+\begin{definition}Para cada $\sigma \in S_{n}$ consideramos el endomorfismo $$\begin{array}{rccl}
+f_{\sigma} \colon &\mathbb{R}^{n}& \longrightarrow &\mathbb{R}^{n}\\
+&e_{j}& \longmapsto &e_{\sigma(j)}
+\end{array}
+$$ con $e_{j}$ un  vector de la base $B = \lbrace e_{1}, \ldots, e_{n} \rbrace$ de $\mathbb{R}^{n}$. La aplicación $$\begin{array}{rccl}
+\psi \colon &S_{n}& \longrightarrow &Aut(\mathbb{R}^{n})\\
+&\sigma& \longmapsto &f_{\sigma}
+\end{array}
+$$  es un homomorfismo de grupos, puesto que dados $\sigma, \tau \in S_{n}$ y $j = 1, \ldots, n$, se tiene que $$f_{\sigma \cdot \tau} = e_{(\sigma \cdot \tau)(j)}= e_{\sigma(\tau(j))} = f_{\sigma}(e_{\tau(j)}) = f_{\sigma}(f_{\tau}(e_{j})) = (f_{\sigma} \circ f_{\tau})(e_{j}),$$ 
+
+es decir, $\psi(\sigma \cdot \tau) = f_{\sigma \cdot \tau} = f_{\sigma} \circ f_{\tau} = \psi(\sigma) \circ \psi(\tau)$.
+
+Ahora, observar que la matriz $M_{f_{\sigma}}(B)$ de $f_{\sigma}$ respecto de la base estándar se obtiene a partir de la matriz identidad desordenando las columnas de ésta. Del \textit{Álgebra Lineal} sabemos que si intercambiamos dos columnas de una matriz obtenemos otra con el determinante opuesto a la de la matriz de partida, deducimos así que $det(f_{\sigma}) \in \mathcal{U}_{2} = \lbrace +1, -1 \rbrace$. Se define entonces el  \textbf{homomorfismo índice ó signatura de una permutación} como $$\begin{array}{rccl}
+\varepsilon = det \circ \psi \colon S_{n} \longrightarrow \mathcal{U}_{2} = \lbrace +1, -1 \rbrace\\
+\end{array}
+$$ donde $det \colon Aut(\mathbb{R}^{n}) \longrightarrow \mathbb{R}$ es el homomorfismo determinante. Además el homomorfismo índice es sobreyectivo pues $$\varepsilon(id) = det(f_{id}) = det (id_{\mathbb{R}^{n}}) = +1$$ y si $\sigma$ es una transposición cualquiera, la matriz $M_{f_{\sigma}}(B)$ es aquella en la que se han intercambiado dos columnas de la matriz identidad, y así $$\varepsilon(\sigma) = det(f_{\sigma}) = det(M_{f_{\sigma}}(B)) = -det (id_{\mathbb{R}^{n}}) = -1.$$
+\end{definition}
+
+Así, a partir de la construcción de este \textit{homomorfismo índice} como composición del homomorfismo determinante y $\psi$ antes definido, podemos dar una definición formal de lo que es el \textit{grupo alternado}:
+
+\begin{definition}El núcleo de $\varepsilon$ lo denotaremos $\mathcal{A}_{n}$ y lo llamaremos \textbf{$n$-ésimo grupo alternado}. Las permutaciones $\sigma \in \mathcal{A}_{n}$ se denominan \textbf{pares}, y las que pertenecen a $S_{n} \setminus \mathcal{A}_{n}$ se denominan \textbf{impares}. Al ser el homomorfismo índice $\varepsilon$ sobreyectivo, tenemos que $|\mathcal{A}_{n}| = n!/2$. Las permutaciones pares son aquellas que pueden escribirse como producto de un número par de transposiciones y tienen signatura $1$, y las impares aquellas que pueden escribirse como producto de un número impar de transposiciones y tiene signatura $-1$. Esto se puede comprobar con el siguiente resultado:
+\end{definition}
+
+\begin{proposition}\label{eq:cicimpar} Sea $\sigma = (a_{1}, \ldots, a_{k}) \in S_{n}$. Las transposiciones $\tau_{j} = (a_{j-1}, a_{j})$, donde $2\leq j \leq k$, cumplen $\sigma = \tau_{k} \cdot \tau_{k-1} \ldots \tau_{2}.$ En particular $\sigma \in \mathcal{A}_{n}$ si y sólo si $k$ es impar.
+\end{proposition}
+\emph{Demostración: }La igualdad $\sigma = \tau_{k} \cdot \tau_{k-1} \ldots \tau_{2}$ se comprueba directamente. Además, como cada $\varepsilon(\tau_{i}) = -1$ resulta que $$\varepsilon(\sigma) = \prod_{i=2}^{k}\varepsilon(\tau_{i}) = (-1)^{k-1},$$ luego $\sigma \in \mathcal{A}_{n}$ si y sólo si $1 = (-1)^{k-1}$, esto es, si $k$ es impar.
+
+$\hfill \square$
+
+Del resultado que acabamos de ver se tiene que, dado un $k$-ciclo $(a_{1}, \ldots, a_{k}) \in S_{n}$, entonces su signatura es $(-1)^{k-1}$.
+
+Con todo esto podemos resumir el grupo alternado mediante el siguiente homomorfismo:
+\begin{proposition}La aplicación signatura $$\begin{array}{rccl}
+sig \colon &S_{n}& \longrightarrow &\lbrace -1, 1\rbrace\\
+&\sigma& \longmapsto &sig(\sigma)
+\end{array}
+$$
+es un homomorfismo de grupos. Su núcleo, que está formado por las permutaciones pares, es un subgrupo de índice $2$, el \textbf{grupo alternado $\mathcal{A}_{n}$}. Además, $$S_{n}/\mathcal{A}_{n} \simeq C_{2}.$$
+\end{proposition}
+
+
+\begin{observation} Para $n \geq 4$ el grupo alternado $\mathcal{A}_{n}$ no es abeliano puesto que las permutaciones $\sigma = (1,2,3) \in \mathcal{A}_{n}$ y $\tau = (1,2)(3,4) \in \mathcal{A}_{n}$, por la proposición anterior y que $\sigma\tau(1) = 1$ y $\tau\sigma(1)=3$, cumplen $\sigma\tau \neq \tau\sigma$.
+
+Además, a partir de la proposición anterior y de~\ref{eq:ciclosdis}, podemos afirmar que las transposiciones generan el grupo $S_{n}$, o sea que cada permutación es producto de transposiciones.
+\end{observation}
+
+\begin{example} El grupo $\mathcal{A}_{4}$ tiene $12$ elementos, que son los elementos de $$K = \lbrace 1,(1,2)(3,4),(1,3)(2,4),(1,4)(2,3) \rbrace$$ y los $8$ $3$-ciclos de $S_{4}$. Además $K \unlhd \mathcal{A}_{4}$ y así $\mathcal{A}_{4}$ no es simple, de hecho es el único subgrupo normal propio de $\mathcal{A}_{4}$.
+\end{example}
+
+\subsection{El teorema de Abel}
+
+Una vez visto las primeras definiciones y propiedades de lo que son el grupo simétrico y alternado demostraremos uno de los resultados más importantes en \textit{Teoría de Grupos}: que $\mathcal{A}_{n}$ es simple si $n \geq 5$, también conocido como el \textit{Teorema de Abel}, en honor de Niels Henrik Abel.
+
+\begin{proposition}\label{eq:preabel} Si $n \geq 3$, entonces $\mathcal{A}_{n}$ es transitivo sobre $\Omega =\lbrace 1, \ldots, n \rbrace$
+\end{proposition}
+\emph{Demostración: } Si $1 \leq i <j \leq n$, elegimos $k$ distinto de $i$ y de $j$ y tenemos que $(i,j,k)(i) = j$. Claramente $(i,j,k) \in \mathcal{A}_{n}$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Teorema de Abel}}] Si $n \geq 5$, entonces $\mathcal{A}_{n}$ es simple.
+\end{theorem}
+\emph{Demostración: }\textbf{\textit{Primero demostraremos que $\mathcal{A}_{5}$ es simple}}. En $\mathcal{A}_{5}$ tenemos $20$ $3$-ciclos, $24$ $5$-ciclos y $15$ elementos del tipo $(a,b)(c,d)$. Veamos que los $3$-ciclos son conjugados en $\mathcal{A}_{5}$. Sea $g = (1,2,3)$. Sabemos de~\ref{eq:excentra} que $C_{S_{5}}(g)= \langle g\rangle \langle(4,5) \rangle$. Ahora, $$\langle g \rangle \subseteq C_{\mathcal{A}_{5}}(g) \leq C_{S_{5}}(g)$$ puesto que $(4,5) \in C_{S_{5}}(g) \setminus \mathcal{A}_{5}$. Como $|C_{S_{5}}(g)| = 6$, concluimos que $C_{\mathcal{A}_{5}}(g) = \langle g \rangle$. Por lo tanto, $|Cl_{\mathcal{A}_{5}}(g)| = 60/3 = 20.$ 
+
+Veamos ahora que los $15$ elementos del tipo $(a,b)(c,d)$ son conjugados en $\mathcal{A}_{5}$. Nuevamente por~\ref{eq:excentra} tenemos que $$\langle (1,2)(3,4),(1,3)(2,4) \rangle \subseteq C_{\mathcal{A}_{5}}((1,2)(3,4)) \leq C_{S_{5}}((1,2)(3,4))$$ puesto que $(1,3,2,4) \in C_{S_{5}}((1,2)(3,4)) \setminus \mathcal{A}_{5}$. Como $|C_{S_{5}}((1,2)(3,4))| = 8$, concluimos que $|C_{\mathcal{A}_{5}}((1,2)(3,4))| = 4$ y así la clase de conjugación de $(1,2)(3,4)$ en $\mathcal{A}_{5}$ tiene $15$ elementos. (Esto también se puede ver teniendo en cuenta que todas las permutaciones de tipo $[2,2]$ son pares, es decir, que todas forman parte del grupo alternado).
+
+Finalmente, notamos que hay dos clases de conjugación en $\mathcal{A}_{5}$ de $5$-ciclos. En efecto, sabemos que si $g$ es un $5$-ciclo, entonces $C_{S_{5}}(g) = \langle g \rangle = C_{\mathcal{A}_{5}}(g)$. Así, $|Cl_{\mathcal{A}_{5}}(g)| = 12$. Por tanto, las longitudes de las clases de conjugación de $\mathcal{A}_{5}$ son $1,12,12,15$ y $20$.
+
+Sea ahora $N$ un subgrupo normal propio de $\mathcal{A}_{5}$. Tenemos que $N$ es una unión disjunta de clases de conjugación de $\mathcal{A}_{5}$ (siendo una de ellas el $1$) y que $1 < |N| < 60$ es un divisor de $60$. Por lo tanto, $$|N| = 1 + 12a + 12b + 15c + 20d,$$ con $a,b,c,d \in \lbrace 0, 1 \rbrace$. Pero no hay ningún divisor de $60$ de esta forma quitando el $1$ y el propio $60$. Luego no existe $N$ subgrupo normal propio y así $\mathcal{A}_{5}$ es simple.
+
+\textbf{\textit{Probaremos ahora que $\mathcal{A}_{n}$ es simple}} para $n \geq 6$ por inducción sobre $n$. Supongamos que $n \geq 6$ y que $\mathcal{A}_{n-1}$ es simple. Sabemos que $\mathcal{A}_{n}$ actúa sobre $\lbrace 1,2, \ldots, n \rbrace$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Como hicimos en~\ref{eq:obsabel} para cada $\sigma \in K$, tenemos definido un $\bar{\sigma} \in S_{n-1}$. Como la descomposición de $\sigma$ y $\bar{\sigma}$ como producto de ciclos disjuntos es la misma entonces $\sigma$ es par si y sólo si $\bar{\sigma}$ lo es. Por lo tanto $K \simeq \mathcal{A}_{n-1}$ es simple.
+
+Por~\ref{eq:preabel}, $\mathcal{A}_{n}$ actúa transitivamente sobre $\lbrace 1, 2, \ldots, n \rbrace$ y por~~sabemos que todos los estabilizadores son conjugados en $\mathcal{A}_{n}$. Por lo tanto, si $\sigma \in \mathcal{A}_{n}$ fija algún elemento, entonces $\sigma \in K^{\tau}$ para cierto $\tau \in \mathcal{A}_{n}$.
+
+Sea ahora $N\unlhd \mathcal{A}_{n}$. Entonces $K \cap N \unlhd K$ y por la simplicidad de $K$ concluimos que $K \subseteq N$ ó $K \cap N = 1$. En el primer caso tenemos que $K^{\tau} \subseteq N$ para todo $\tau \in \mathcal{A}_{n}$. Por lo tanto, si una permutación $\sigma \in \mathcal{A}_{n}$ fija un elemento, entonces $\sigma \in N$. En particular, $N$ contiene todos los productos $(a,b)(c,d)$. Como toda permutación par es producto de un número par de transposiciones tenemos entonces que $N = \mathcal{A}_{n}$ en este caso.
+
+En el segundo caso, $K \cap N = 1$. Por lo tanto, $K^{\tau} \cap N = (K \cap N)^{\tau} = 1$ para todo $\tau \in \mathcal{A}_{n}$. Es decir, si $1 \neq \sigma \in \mathcal{A}_{n}$ fija algún elemento, entonces $\sigma$ no está en $N$. 
+
+Supongamos que $N > 1$ y sea $1 \neq \sigma \in N$. Supongamos primero que en la descomposición de $\sigma$ como producto de ciclos disjuntos solo aparecen transposiciones. Tenemos que $\sigma = (a,b)(c,d) \cdots$. Sea $e$ una cifra distinta de $a,b,c,d$. Entonces $$\gamma = \sigma^{(a,b)(d,e)}=(b,a)(c,e) \cdots \in N.$$
+Ahora $\sigma \gamma \in N$, $\sigma \gamma$ fija $a$ y $1 \neq \sigma \gamma$ (ya que manda $d$ a $e$). Esto es una contradicción. Finalmente, supongamos que en la descomposición de $\sigma$ como producto de ciclos disjuntos tenemos un $m$-ciclo con $m \geq 3$. Podemos escribir $\sigma (a,b,c, \ldots) \cdots$. Elegimos ahora dos cifras $d,e$ distintas de $a,b,c$ y escribimos $$\gamma = \sigma^{(c,d,e)} = (a,b,d, \ldots) \cdots \in N.$$ Tenemos que $\gamma \neq \sigma$ y $1 \neq \sigma \gamma^{-1} \in N$ fija $a$. Esta contradicción final prueba el teorema.
+
+$\hfill \square$
 
 \section{Generalidades sobre anillos}
 
