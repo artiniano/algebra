@@ -294,7 +294,7 @@ Por otro lado, es claro que $|\mathbb{Q}(\beta) : \mathbb{Q}| = 4$ ya que el pol
 
 $\hfill \blacksquare$
 
-\begin{proposition} Sea $E/K$ una extensión, y $L$ un cuerpo intermedio. Sea $a \in E$ algebraico sobre $L$. Entonces $Irr(a, L) \mid Irr (a, K)$.
+\begin{proposition}\label{eq:pirrdiv} Dada $E/K$ una extensión, y $L$ un cuerpo intermedio. Sea $a \in E$ algebraico sobre $K$. Entonces $a$ también será algebraico sobre $L$ y $$Irr(a, L) \mid Irr (a, K).$$
 \end{proposition}
 \emph{Demostración: }Si $a \in E$ es algebraico sobre $K$ entonces existe un $f \in K[x]$ tal que $f(a) = 0$. Como $f$ también pertenecerá a $L[x]$, $a$ también será algebraico sobre $L$. Recordemos que el polinomio irreducible de un elemento es el de menor grado (mónico) que lo anula y cualquier otro que lo anule es múltiplo suyo. Como $Irr(a,K) \in L[x]$ y anula a $a$ entonces $Irr(a, L) \mid Irr(a,K)$.
 
@@ -352,7 +352,7 @@ Un resultado que puede parecer obvio pero que es interesante es la “transitivi
 
 \begin{proposition}Si $E$ es una extensión algebraica de $K$ y $F$ es una extensión algebraica de $E$, entonces $F$ es una extensión algebraica de $K$.
 \end{proposition}
-\emph{Demostración: } Si $\alpha \in F$ existirá en $E[x]$ un elemento no nulo $f = \sum _{i=0}^{n} a_{i}x^{i}$ tal que $f(\alpha)= 0$. Por hipótesis $a_{i}$ es algebraico sobre $K$, $\forall$ $i$. Si $L = K(a_{0}, a_{1}, \ldots, a_{n})$ se tiene $$|L : K| = |L:K(a_{0}, a_{1}, \ldots, a_{n-1})| |K(a_{0}, a_{1}, \ldots, a_{n-1}):K(a_{0}, a_{1}, \ldots, a_{n-2})| \ldots |K(a_{0}:K|.$$ Como $a_{i}$ es algebraico sobre $K(a_{0}, a_{1}, \ldots, a_{i-1})$ $\forall i$, cada factor es finito y por lo tanto $|L:K|$ es finito. Además, $\alpha$ es algebraico sobre $L$, pues $f \in L[x]$ y $f(\alpha) = 0$, por lo que $|L(\alpha):L|$ es finito y así $|L(\alpha) : K|$ es finito. Luego, $L(\alpha)$ es una extensión algebraica de $K$ y $\alpha$ es algebraico sobre $K$.
+\emph{Demostración: } Si $\alpha \in F$ existirá en $E[x]$ un elemento no nulo $f = \sum _{i=0}^{n} a_{i}x^{i}$ tal que $f(\alpha)= 0$. Por hipótesis $a_{i}$ es algebraico sobre $K$, $\forall$ $i$. Si $L = K(a_{0}, a_{1}, \ldots, a_{n})$ se tiene \begin{center}$|L : K| = |L:K(a_{0}, a_{1}, \ldots, a_{n-1})| |K(a_{0}, a_{1}, \ldots, a_{n-1}):K(a_{0}, a_{1}, \ldots, a_{n-2})| \ldots |K(a_{0}:K|.$\end{center} Como $a_{i}$ es algebraico sobre $K(a_{0}, a_{1}, \ldots, a_{i-1})$ $\forall i$, cada factor es finito y por lo tanto $|L:K|$ es finito. Además, $\alpha$ es algebraico sobre $L$, pues $f \in L[x]$ y $f(\alpha) = 0$, por lo que $|L(\alpha):L|$ es finito y así $|L(\alpha) : K|$ es finito. Luego, $L(\alpha)$ es una extensión algebraica de $K$ y $\alpha$ es algebraico sobre $K$.
 
 $\hfill \square$
 
@@ -481,7 +481,7 @@ $\hfill \square$
 $$\xymatrix @=2cm {K \ar[r]^{\sigma} \ar[d]_{\varphi} & E\ar[ld]^\psi  \\ C   }$$
 \end{proposition}
 \emph{Demostración: }
-Sea $\sigma \colon K \longrightarrow E$ una extensión algebraica y consideremos el conjunto $$S = \lbrace (F, F', \psi): \sigma (K) \subseteq F \subseteq E,\hspace{0.2cm} \varphi(K) \subseteq K' \subseteq C, \hspace{0.2cm} \psi \colon F \longrightarrow F' \hspace{0.1cm} \text{isomorfismo} \hspace{0.1cm}, \psi \sigma = \varphi \rbrace .$$
+Sea $\sigma \colon K \longrightarrow E$ una extensión algebraica y consideremos el conjunto \begin{center}$S = \lbrace (F, F', \psi): \sigma (K) \subseteq F \subseteq E,\hspace{0.2cm} \varphi(K) \subseteq K' \subseteq C, \hspace{0.2cm} \psi \colon F \longrightarrow F' \hspace{0.1cm} \text{isomorfismo} \hspace{0.1cm}, \psi \sigma = \varphi \rbrace .$\end{center}
 Notar que $S \neq \emptyset$, ya que $(\sigma(K), \varphi(K), \varphi \sigma^{-1}) \in S$. Definiremos en $S$ un orden parcial de la siguiente manera: $$(F, F', \psi) \leq (L,L', \phi) \Longleftrightarrow F \subseteq L, \left.\phi \right|_F = \psi.$$ 
 Visto esto, es claro que se puede aplicar el lema de Zorn para obtener un elemento maximal de $S$, $(F_{0},F'_{0}, \psi_{0})$. Veamos que $F_{0} = E$. Es evidente que $F_{0} \subseteq E$, así que solo tendremos que ver el contenido contrario $E \subseteq F_{0}$. Supongamos que existe $\alpha \in E \setminus F_{0}$ y sean $f_{1} = Irr(\alpha, F_{0}) \in F_{0}[x]$ y $f_{2} = f_{1}^{\psi_{0}} \in F'_{0}[x] \subseteq C[x]$.
 
@@ -573,7 +573,7 @@ $\hfill \square$
 \end{proposition}
 \emph{Demostración: } Como $E/K$ finita entonces $\lbrace a_{1}, \ldots, a_{n}$ es una base de $E$ como $K-e.v$. Entonces $E= K(a_{1}, \ldots, a_{n})$. Sea ahora $p_{i} = Irr(a_{i}, K)$, con $i = 1, \ldots, n$. Entonces, por hipótesis, $p_{i}$ se escinde en $E$, $i = 1, \ldots , n$. Sea $f = p_{1} \ldots p_{n}$. Claramente $E$ es un cuerpo de escisión de $f$ sobre $K$ ($E= K(a_{1}, \ldots, a_{n}) = K(Kerf)$, ya que los $a_{1}, \ldots, a_{n}$ anulan a $f$). Así que $E/K$ es normal.
 
-Recíprocamente, como $E/K$ es normal, $E$ es cuerpo de escisión de un polinomio $f \in K[x]$ sobre $K$. Sea $p \in K[x]$ irreducible con una raíz $a$ en $E$. Sea $b$ otra raíz de $p$ en un cuerpo de escisión de $p$ ($p \in K[x]$ luego también está en $E[x]$) sobre $E$. Tenemos que ver que $b \in E$. Para ello, por~\ref{eq:irrcor} existe un isomorfismo $\theta \colon K(a) \longrightarrow K(b)$ tal que $\left.\theta \right|_K  = id$. Ahora, $E$ es un cuerpo de escisión de $f$ sobre $K(a)$ (lo era sobre $K$). También $E(b)$ es cuerpo de escisión de $f$ sobre $K(b)$. Además, como $f \in K[x]$ y $\theta$ fija $K$, tenemos que $\theta (f) = f$. Por~\ref{eq:cuesc}, existe un isomorfismo $\tau \colon E \longrightarrow E(b)$ que extiende $\theta$. Por~\ref{eq:propprinp}, se tiene que $$|E:K(a)| = |E(b) :K(b)|.$$ Como $a$ y $b$ son raíces de $p \in K[x]$ irreducible, $|K(a) :K| = |K(b) : K| = \delta (p)$. Así, $$|E(b) : E| |E: K| = |E(b): K| = |E(b) :K(b)| |K(b):K| = |E:K(a)| |K(a) :K| = |E:K|,$$ luego $|E(b) :E| = 1$, es decir, $b \in E$.
+Recíprocamente, como $E/K$ es normal, $E$ es cuerpo de escisión de un polinomio $f \in K[x]$ sobre $K$. Sea $p \in K[x]$ irreducible con una raíz $a$ en $E$. Sea $b$ otra raíz de $p$ en un cuerpo de escisión de $p$ ($p \in K[x]$ luego también está en $E[x]$) sobre $E$. Tenemos que ver que $b \in E$. Para ello, por~\ref{eq:irrcor} existe un isomorfismo $\theta \colon K(a) \longrightarrow K(b)$ tal que $\left.\theta \right|_K  = id$. Ahora, $E$ es un cuerpo de escisión de $f$ sobre $K(a)$ (lo era sobre $K$). También $E(b)$ es cuerpo de escisión de $f$ sobre $K(b)$. Además, como $f \in K[x]$ y $\theta$ fija $K$, tenemos que $\theta (f) = f$. Por~\ref{eq:cuesc}, existe un isomorfismo $\tau \colon E \longrightarrow E(b)$ que extiende $\theta$. Por~\ref{eq:propprinp}, se tiene que $$|E:K(a)| = |E(b) :K(b)|.$$ Como $a$ y $b$ son raíces de $p \in K[x]$ irreducible, $|K(a) :K| = |K(b) : K| = \delta (p)$. Así, \begin{center}$|E(b) : E| |E: K| = |E(b): K| = |E(b) :K(b)| |K(b):K| = |E:K(a)| |K(a) :K| = |E:K|,$\end{center} luego $|E(b) :E| = 1$, es decir, $b \in E$.
 
 $$\xymatrix @=2cm {E\ar[r]^{\tau} & E_{b} \\ K(a)\ar[r]^{\theta} \ar@{_(->}[u] & K(b) \ar@{_(->}[u] \\ K \ar[r]^{id} \ar[u] & K \ar[u]  }$$
 
@@ -608,7 +608,7 @@ $\hfill \blacksquare$
 \begin{proposition}\label{eq:ggal1} Sea $E_{1}/K_{1}$ una extensión de cuerpos y $\sigma \colon E_{1} \longrightarrow E_{2}$ isomorfismo. Si $K_{2} = \sigma (K_{1})$, se cumple que $Gal(E_{1}/K_{1})$ y $Gal(E_{2}/K_{2})$ son isomorfos.
 \end{proposition}
 
-\begin{definition} Sea $f \in K[x]$. Definimos el \textbf{grupo de Galois de $f$} como $Gal(E/K)$, siendo $E$ un cuerpo de escisión de $f$ sobre $K$.
+\begin{definition} Dado un $f \in K[x]$ definimos el \textbf{grupo de Galois de $f$} como $Gal(E/K)$, siendo $E$ un cuerpo de escisión de $f$ sobre $K$.
 
 Notar que si $E_{1}, E_{2}$ son cuerpos de escisión de $f$ sobre $K$, sabemos que por~\ref{eq:unicuer} existe $\tau \colon E_{1} \longrightarrow E_{2}$ isomorfismo tal que $\left.\tau \right|_K = id$. Por~\ref{eq:ggal1}, $Gal (E_{1}/K)$ es isomorfo a $Gal(E_{2}/K)$. Luego el concepto de grupo de Galois de $f$ está bien definido.
 \end{definition}
@@ -631,7 +631,7 @@ $$ es una acción de $Gal(E/K)$ sobre $\Omega$. Si $E$ es cuerpo de escisión de
 \emph{Demostración: }
 Veamos que $\sigma(a)$ es también una raíz de $f$. Sea $f = a_{0}+a_{1}x+ \ldots + a_{k}x^{k}$, entonces $a_{0}+a_{1}a+ \ldots + a_{k}a^{k} =0$, y de aquí $\sigma(a_{0}+a_{1}a+ \ldots + a_{k}a^{k}) =\sigma(0) = 0$. Pero  $\sigma(a_{0}+a_{1}a+ \ldots + a_{k}a^{k}) =  \sigma(a_{0})+\sigma(a_{1})\sigma(a)+ \ldots + \sigma(a_{k})\sigma(a)^{k} = 0$. Como $\left.\sigma \right|_K = id$ tenemos que $a_{0}+a_{1}\sigma(a)+ \ldots + a_{k}\sigma(a)^{k} = 0$, es decir, que $\sigma(a)$ es raíz de $f$.
 
-Ahora, supongamos que $E$ es un cuerpo de escisión de $f$ sobre $K$. Así $E = K(a_{1}, \ldots, a_{n})$ siendo $\Omega = \lbrace a_{1}, \ldots, a_{n} \rbrace$. Si $\sigma \in Ker \hspace{0.1cm} \varphi$, $\sigma$ fijará $a_{1}, \ldots, a_{n}$. Por el resultado anterior~\ref{eq:gall} $\sigma = id$. Supongamos que además $f$ es irreducible. Por~\ref{eq:isoimp}, dados $a,b \in \Omega$, existe $\sigma \colon E \longrightarrow E$ isomorfismo, $\left.\sigma \right|_K = id$ y $\sigma (a) = b$. Entonces $\sigma \in Gal(E/K)$ y $a,b$ están en la misma órbita, luego hay sólo $1$ órbita y la acción es transitiva.
+Ahora, supongamos que $E$ es un cuerpo de escisión de $f$ sobre $K$. Luego $E = K(a_{1}, \ldots, a_{n})$ siendo $\Omega = \lbrace a_{1}, \ldots, a_{n} \rbrace$. Si $\sigma \in Ker \hspace{0.1cm} \varphi$, $\sigma$ fijará $a_{1}, \ldots, a_{n}$. Por el resultado anterior~\ref{eq:gall} $\sigma = id$. Supongamos que además $f$ es irreducible. Por~\ref{eq:isoimp}, dados $a,b \in \Omega$, existe $\sigma \colon E \longrightarrow E$ isomorfismo, $\left.\sigma \right|_K = id$ y $\sigma (a) = b$. Entonces $\sigma \in Gal(E/K)$ y $a,b$ están en la misma órbita, luego hay sólo $1$ órbita y la acción es transitiva.
 
 $\hfill \square$
 
@@ -662,14 +662,18 @@ Por $2.$ $\sigma(L) = L$, luego $\left.\sigma \right|_L \colon L \longrightarrow
 
 $\hfill \square$
 
-\begin{definition} Sea $E$ un cuerpo y $H \leq Aut(E)$. Definimos el cuerpo fijo de $H$ como $$C_{E}(H) = \bigcap_{\sigma \in H} C_{E}(\sigma).$$ Que es un subcuerpo de $E$, por serlo cada $C_{E}(\sigma)$ (recordemos que $C_{E}(\sigma) = \lbrace a \in E :\sigma (a) = a \rbrace$).
+\begin{definition} Sea $E$ un cuerpo y $H \leq Aut(E)$. Definimos el cuerpo fijo de $H$ como $$C_{E}(H) = \bigcap_{\sigma \in H} C_{E}(\sigma).$$ Que es un subcuerpo de $E$, por serlo cada $C_{E}(\sigma)$ ($C_{E}(\sigma) = \lbrace a \in E :\sigma (a) = a \rbrace$).
 \end{definition}
 \begin{definition} Una extensión $E/K$ se dice \textbf{extensión de Galois} si es normal y separable.
 \end{definition}
 
 \begin{proposition}\label{eq:cuerpIntGal} Sea $K\subseteq L \subseteq E$. Si $E/K$ es de Galois, $E/L$ es de Galois.
 \end{proposition}
-\emph{Demostración: }
+\emph{Demostración: }Recordar que una extensión se dice de Galois si es normal y separable. Por lo tanto, partiremos de que $E/K$ es normal y separable. Veamos que $E/L$ también lo es.
+
+Recordar también que una extensión $E/K$ es normal si existe un $f \in K[x]$ tal que $E$ es cuerpo de escisión de $f$ sobre $K$. Pero si $E/K$ es normal entonces $E$ es un cuerpo de escisión también de un $f \in L[x]$ sobre $L$ (si lo es de $f \in K[x]$, también $f$ estará en $L$).
+
+Para ver que es separable (todo $f \in K[x]$ irreducible que tenga una raíz en $E$ no tiene raíces múltiples en $E$) sea $p \in L[x]$ irreducible con una raíz $a \in E$. Podemos suponer que $p$ es mónico y así $p = Irr(a,L)$. Entonces, por~\ref{eq:pirrdiv} $$Irr(a,L) \mid Irr(a,K).$$ Como $E/K$ es separable, $Irr(a,K)$ no tiene raíces múltiples en $E$, y así $Irr(a,L)$ tampoco. Luego $E/L$ es separable y de Galois.
 
 $\hfill \square$
 
@@ -699,9 +703,14 @@ $\hfill \square$
 
 $\hfill \blacksquare$
 
-
-
 \subsection{El Teorema Fundamental de la Teoría de Galois}
+
+Vamos a partir de una extensión $E/K$, con sus respectivos cuerpos intermedios $L$ tales que $K \subseteq L \subseteq E$, y su grupo de Galois $Gal(E(K)$, con sus respectivos subgrupos $H$. Entonces, si $E/k$ es de Galois vamos a poder establecer una biyección entre los subgrupos de $Gal(E/K)$ y los respectivos cuerpos intermedios de la extensión $E/K$. En esto consiste el teorema fundamental de la \textit{Teoría de Galois}.
+
+$$\xymatrix @=2cm {E & Gal(E/K) \\ C_{E}(H)\ar@{-}[u] &H\ar@{-}[u] \ar@{~>}[l]_g\\ L\ar@{-}[u] \ar@{~>}[r]^f &Gal(E/L)\ar@{-}[u] \\ K \ar@{-}[u] & 1 \ar@{-}[u]  }$$
+
+
+
 
 \end{document}
 
