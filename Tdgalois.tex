@@ -641,7 +641,7 @@ $\hfill \square$
 
 $\hfill \square$
 
-\begin{proposition} Sean $K \subseteq L \subseteq E$. \begin{enumerate}
+\begin{proposition}\label{eq:preGal0} Sean $K \subseteq L \subseteq E$. \begin{enumerate}
 \item $Gal(E/L) \leq Gal(E/K)$.
 \item Si $L/K$ es normal, entonces $\sigma (L) = L$ $\forall \sigma \in Gal(E/K)$.
 \item Supongamos que $E/K$ es normal. Entonces $L/K$ es normal si y sólo si $\sigma (L) = L$ $\forall \sigma \in Gal(E/K)$. Si $L/K$ es normal, $Gal(E/L) \unlhd Gal(E/K)$ y $$Gal(L/K) \simeq \dfrac{Gal(E/K)}{Gal(E/L)}.$$
@@ -677,7 +677,7 @@ Para ver que es separable (todo $f \in K[x]$ irreducible que tenga una raíz en 
 
 $\hfill \square$
 
-\begin{proposition}Sea $E/K$ una extensión de Galois. Entonces $$|E:K| = |Gal(E/K)|.$$
+\begin{proposition}\label{eq:extGalois} Sea $E/K$ una extensión de Galois. Entonces $$|E:K| = |Gal(E/K)|.$$
 \end{proposition}
 \emph{Demostración: } Lo haremos por inducción sobre $|E:K|$. Si $|E:K| = 1$, $E=K$ y $Gal(E/K)= 1$ y ya está.
 
@@ -709,7 +709,7 @@ Vamos a partir de una extensión $E/K$, con sus respectivos cuerpos intermedios 
 
 $$\xymatrix @=2cm {E & Gal(E/K) \\ C_{E}(H)\ar@{-}[u] &H\ar@{-}[u] \ar@{~>}[l]_g\\ L\ar@{-}[u] \ar@{~>}[r]^f &Gal(E/L)\ar@{-}[u] \\ K \ar@{-}[u] & 1 \ar@{-}[u]  }$$
 
-\begin{proposition}Sea $E/K$ de Galois. Entonces $C_{E}(Gal(E/K)) = K$.
+\begin{proposition}\label{eq:preGal1} Sea $E/K$ de Galois. Entonces $C_{E}(Gal(E/K)) = K$.
 \end{proposition}
 \emph{Demostración: }Podemos suponer que $E\neq K$. Sea $a \in E \setminus K$ y sea $p = Irr(a,K)$. Entonces $\delta(p) >1$. Como la extensión $E/K$ es normal, por~\ref{eq:extnou} $p$ se escinde en $K$. Como $E/K$ es separable, todas las raíces de $p$ son distintas. Sea $a \neq b$ una raíz de $p$. Ahora, por~\ref{eq:isoimp}, existe $\sigma \in Gal(E/K)$ tal que $\sigma(a)=b$. Así, $a \notin C_{E}(Gal(E/K))$ y $C_{E}(Gal(E/L))=K.$
 
@@ -718,9 +718,9 @@ $\hfill \square$
 \begin{observation}Sea $K \subseteq L \subseteq E$ y $E/K$ de Galois. Entonces $C_{E}(Gal(E/L)) = L$. Recordemos que $E/L$ también es de Galois.
 \end{observation}
 
-\begin{proposition}Sea $E/K$ extensión de Galois y $H \leq Gal(E/K)$. Entonces $Gal(E/C_{E}(H)) = H.$
+\begin{proposition}\label{eq:preGal2} Sea $E/K$ extensión de Galois y $H \leq Gal(E/K)$. Entonces $Gal(E/C_{E}(H)) = H.$
 \end{proposition}
-\emph{Demostración: }Claramente $H \leq Gal(E/C_{E}(H))$. Por~~, $E/C_{E}(H)$ es de Galois. Por~~, $|Gal(E/C_{E}(H))| = |E:C_{E}(H)|$. Así, $|H| \leq |E:C_{E}(H)|$. Bastará ver que $|E:C_{E}(H)|\leq |H|$.
+\emph{Demostración: }Claramente $H \leq Gal(E/C_{E}(H))$. Por~\ref{eq:cuerpIntGal}, $E/C_{E}(H)$ es de Galois. Por~\ref{eq:extGalois}, $|Gal(E/C_{E}(H))| = |E:C_{E}(H)|$. Así, $|H| \leq |E:C_{E}(H)|$. Bastará ver que $|E:C_{E}(H)|\leq |H|$.
 
 Sea $H= \lbrace id=\sigma_{1}, \sigma_{2},\ldots, \sigma_{n} \rbrace$. Así, $|H| = n$. Sea $F = C_{E}(H)$. Tenemos que probar que cualesquiera $n+1$ elementos de $E$ son $F$-linealmente dependientes. Sean $a_{1}, \ldots, a_{n+1} \in E$. Vamos a considerar el sistema de $n$ ecuaciones lineales con $n+1$ incógnitas $$\sigma_{1}(a_{1})x_{1}+\ldots + \sigma_{1}(a_{n+1})x_{n+1}=0$$ $$\ldots \ldots \ldots \ldots \ldots \ldots \ldots$$ $$\sigma_{n}(a_{1})x_{1}+\ldots + \sigma_{n}(a_{n+1})x_{n+1}=0$$
 
@@ -730,16 +730,55 @@ Y como toda combinación lineal de soluciones de un sistema homogéneo es tambi�
 
 $\hfill \square$
 
-\begin{proposition} Sea $K \subseteq L \subseteq E$. Sea $H = Gal(E/L) \leq Gal(E/K)$. Dado un $\tau \in Gal(E/K)$ entonces $H^\tau = Gal(E/\tau(L))$.
+\begin{proposition}\label{eq:preGal3}Sea $K \subseteq L \subseteq E$. Sea $H = Gal(E/L) \leq Gal(E/K)$. Dado un $\tau \in Gal(E/K)$ entonces $H^\tau = Gal(E/\tau(L))$.
 \end{proposition}
+\emph{Demostración: }Sea $\sigma \in Gal(E/K)$. $\sigma \in Gal(E/\tau(L))$ si y sólo si $\sigma (\tau (l)) = \tau (l)$ \hspace{0.1cm} $\forall l \in L$ si y sólo si $(\tau^{-1}\sigma \tau )(l) = l$ $\forall l \in L$ si y sólo si $\tau^{-1}\sigma \tau \in Gal(E/L) = H$ si y sólo si $\sigma \in \tau H \tau^{-1} = H^\tau.$
 
+$\hfill \square$
 
+\begin{theorem}[\textbf{\textit{Teorema fundamental de la teoría de Galois.}}]Sea $E/K$ extensión de Galois y $G = Gal(E/K)$. Consideremos los siguientes conjuntos $\mathcal{G} = \lbrace \text{subgrupo de G} \rbrace$ y $\mathcal{K} = \lbrace \text{cuerpos intermedios de E/K} \rbrace$. Entonces:
+\begin{enumerate}
+\item Las aplicaciones $$\begin{array}{rccl}
+f \colon &\mathcal{G}&\longrightarrow &\mathcal{K} \\
+&H& \longmapsto &C_{E}(H)
+\end{array}
+$$
+ $$\begin{array}{rccl}
+g \colon &\mathcal{K}&\longrightarrow &\mathcal{G} \\
+&L& \longmapsto &Gal(E/L)
+\end{array}
+$$
+son inversas una de la otra, por lo que ambas son biyectivas. Esto quiere decir que $Gal(E/C_{E}(H)) = H$, con $H \in \mathcal{G}$ y $L = C_{E}(Gal(E/L))$, con $L \in \mathcal{K}$.
 
+\item Sea $L \in \mathcal{K}$. Entonces $L/K$ es normal si y sólo si $Gal(E/L) \unlhd Gal(E/K)$. En este caso $$Gal(L/K) \simeq \dfrac{Gal(E/K)}{Gal(E/L)}.$$
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }
+\begin{enumerate}
+\item Sea $H \in \mathcal{G}$. Vimos en~\ref{eq:preGal2} que $Gal(E/C_{E}(H)) = H$ y así $(g \circ f)(H)=H$. Luego $g \circ f = id$. Sea ahora $L \in \mathcal{L}$. Como $E/K$ es de Galois, $E/L$ también lo será por~\ref{eq:cuerpIntGal}. Por~\ref{eq:preGal1}, $C_{E}(Gal(E/L)) = L$, luego $(f\circ g)(L) = L$ y $f\circ g = id$. Por lo que $f = g^{-1}$ y $g = f^{-1}$ y ambas son biyectivas.
+\item Sea $H = Gal(E/L)$. Por~\ref{eq:preGal3}, si $\tau \in G$ tenemos que $H^{\tau}= Gal(E/\tau(L))$. Ahora $H \unlhd G$ si y sólo si $H^{\tau} = H$ $\forall \tau \in G$ si y sólo si $Gal(E/\tau (L)) = Gal(E/L)$ $\forall \tau \in G$ si y sólo si $g(\tau(L)) = g(L)$ $\forall \tau \in G$ ($g$ es inyectiva) si y sólo si $\tau (L) = L$ $\forall \tau \in G$ si y sólo si $L/K$ es normal.
 
+Ahora, si suponemos que $L/K$ sea normal,~\ref{eq:preGal0} (c) nos dice que $$Gal(L/K) \simeq \dfrac{Gal(E/K)}{Gal(E/L)}.$$
+\end{enumerate}
 
+$\hfill \square$
 
+Es decir, el conjunto de los subgrupos de un grupo de Galois y el de los cuerpos intermedios de la extensión de Galois de la parte son biyectivos.
 
+\begin{corolario}Sea $E/K$ una extensión de Galois, $G = Gal(E/K)$ y $H \leq G$. Entonces $|E:C_{E}(H)| = |H|$. Además, como la aplicación $f$ de antes es suprayectiva, todo cuerpo intermedio de la extensión $E/K$ es de la forma $C_{E}(H)$ para un cierto $H \leq G$. Es decir, conociendo los subgrupos de $G$ y sus cuerpos fijos conozco todos los cuerpos intermedios de la extensión.
+\end{corolario}
+\emph{Demostración: }Por~\ref{eq:cuerpIntGal}, como $E/K$ es de Galois, $E/C_{E}(H)$ también es de Galois. Además $Gal(E/C_{E}(H))=H$ por el \textit{Teorema fundamental}. Ahora, por~\ref{eq:extGalois}, $|E/C_{E}(H)| = |Gal(E/C_{E}(H))| = |H|.$
 
+Para la segunda parte, $$\begin{array}{rccl}
+f \colon &\mathcal{G}&\longrightarrow &\mathcal{K} \\
+&H& \longmapsto &C_{E}(H)
+\end{array}
+$$ y como $f$ es suprayectiva, si $L \in \mathcal{K}$, $L = f(H) = C_{E}(H)$ para algún $H \in \mathcal{G}$.
+
+$\hfill \square$
+
+Este resultado lo podemos esquematizar tal que así: 
+$$\xymatrix @=2cm {E & Gal(E/K) \\ C_{E}(H)\ar@{-}[u]^m &H\ar@{-}[u] \\ K \ar@{-}[u] & 1 \ar@{-}[u]^m}$$
 
 \end{document}
 
