@@ -49,9 +49,31 @@
 
 
 \section{Introducción y contexto}
-\section{Algunas estructuras algebraicas}
-\subsection{Preliminares sobre grupos}
-\subsection{Preliminares sobre anillos y cuerpos}
+\section{Grupos}
+
+\subsection{Generalidades}
+
+Supongamos que $G$ es un conjunto no vacío. Entonces definimos una \textbf{operación binaria} en $G$ como una aplicación $G \times G \longrightarrow G$. Usaremos esta operación:
+ $$\begin{array}{rccl}
+&G \times G&\longrightarrow &G \\
+&(x,y)& \longmapsto &x\cdot y = xy
+\end{array}
+$$
+y notar que no todas las operaciones binarias van a ser de interés para nuestros propósitos. Para que lo sean:
+
+\begin{definition}Diremos que $G$ es un \textbf{grupo} con una operación $\cdot$ y lo denotaremos $(G,\cdot)$ si se satisfacen las siguientes condiciones:
+\begin{enumerate}
+ \renewcommand{\theenumi}{\roman{enumi}} %Números arábigos
+\item $(x\cdot y)\cdot z = x\cdot(y\cdot z)$ $\forall x,y,z \in G$. 
+\item Existe un elemento $1 \in G$, que denotaremos $e$, tal que $e\cdot x = x \cdot e = x$.
+\item $\forall x \in G$ existe $y \in G$ tal que $x\cdot y = y \cdot x = e$.
+\end{enumerate}
+
+A esta operación se le suele llamar \textbf{producto}.
+\end{definition}
+\subsection{Homomorfismos}
+\subsection{Acciones de grupos}
+\section{Anillos y cuerpos}
 \begin{proposition} Dado un cuerpo $K$ y $p \in K[x]$. Entonces $p$ es irreducible si y sólo si $K[x]/(p)$ es un cuerpo.
 \end{proposition}
 \emph{Demostración: }Veamos la primera implicación. Sea $f + (p) \neq (p)$. Veamos que $f + (p)$ tiene inverso. Como $p$ es irreducible, el máximo común divisor de $f$ y $p$ es $1$. Por Bézout, existen $a,b \in K[x]$ tales que $1 = af + bp$. Tendríamos así que $$1 + (p) = (a+ (p))(f+(p)) + (b+(p))(p+(p)) = (a+ (p))(f+(p))$$ ya que $p+(p)=0$. Así, $a+(p)$ es el inverso de $f+(p)$. Luego, $K[x]/(p)$ es un cuerpo.
@@ -87,13 +109,13 @@ $\hfill \square$
 \begin{proposition}[\textbf{\textit{Criterio de Eisenstein}}] Sea $f= a_{0} + a_{1}x + \ldots + a_{n}x^{n} \in \mathbb{Z}[x]$. Supongamos que existe $p$ primo tal que $p \mid a_{i}$, con $0 \leq i \leq n-1$, $p \nmid a_{n}$ y $p \nmid a_{0}^{2}$. Entonces $f$ es irreducible en $\mathbb{Q}[x]$.
 \end{proposition} 
 
-\subsection{Raíces de la unidad}
+\subsection{Raíces de la unidad} \label{eq:raicesUnidad}
 
 A las raíces del polinomio $f(x) = x^{n}-z \in \mathbb{C}[x]$, con $z \in \mathbb{C}$ y $n \geq 1$ las denominamos \textbf{\textit{raíces complejas de la unidad}}. Como, para $n \geq 2$, el polinomio derivado $f'(x) = nx^{n-1}$ tiene como única raíz el cero y los polinomios $f(x)$ y $f'(x)$ no tienen raíces en común, entonces todas las raíces $n$-ésimas de $z$ son todas distintas. Para determinarlas, usaremos la conocida como \textbf{\textit{fórmula de De Moivre}} para la multiplicación de números complejos en forma trigonométrica: $$(\cos(x) + i\sin(x))^{n} = \cos(nx) + i\sin(nx).$$ Si $$z_{1} = \rho_{1}(\cos (\theta_{1}) +i\sin (\theta_{1})) \hspace{0.2cm}z_{2} = \rho_{2}(\cos (\theta_{2}) +i\sin (\theta_{2})),$$ con $\rho_{1}, \rho_{2}$ reales positivos, ahora usando propiedades de las funciones trigonométricas tenemos que:
 $$z_{1}z_{2} = \rho_{1}\rho_{2}(\cos(\theta_{1} + \theta_{2}) + i \sin(\theta_{1} + \theta_{2})).$$ Ahora podemos simplificar y hacer que $z = \rho (\cos(\theta) + i\sin(\theta))$, con $\rho > 0$. Si $\zeta = \sigma (\cos(\varphi) + i\sin(\varphi)) $ es una raíz $n$-ésima de $z$, entonces tiene que ser que $$\sigma^{n}(\cos(n\varphi) + i\sin(n\varphi)) = \rho (\cos(\theta)+ i\sin(\theta)),$$ de lo que deducimos que $\sigma^{n} = \rho$ y $n\varphi = \theta +2k\pi$, con $k \in \mathbb{Z}$, es decir, $$\sigma = \sqrt[n]{\rho}, \hspace{0.2cm} \varphi = \dfrac{\theta+2k\pi}{n}.$$
 De todo esto concluimos que las raíces complejas $n$-ésimas de $z = \rho(\cos(\theta) + i\sin(\theta))$ se obtienen para $k = 0, 1, \ldots, n-1$ y son precisamente los números complejos $$ (\ast) \hspace{0.3cm}\zeta_{k} = \sqrt[n]{\rho} \hspace{0.1cm}\left(\cos\left(\dfrac{\theta+2k\pi}{n}\right) + i\sin\left(\dfrac{\theta+2k\pi}{n}\right)\right).$$
 
-Por ejemplo, si tenemos $z = 3i= 3\left(\cos \left( \dfrac{\pi}{2})\right) + i\sin \left( \dfrac{\pi}{2} \right)\right)$ y queremos calcular sus raíces cuadradas, entonces $$\zeta_{0} = \sqrt{3} \left( \cos \left( \dfrac{\pi}{4}\right) + i \sin \left( \dfrac{\pi}{4}\right)\right) = \dfrac{\sqrt{6}}{2} + \dfrac{\sqrt{6}}{2}i, \hspace{0.2cm} \zeta_{1} = \sqrt{3}\left( \cos \left( \dfrac{5 \pi}{4}\right) + i \sin \left( \dfrac{5 \pi}{4}\right)\right) =- \dfrac{\sqrt{6}}{2} - \dfrac{\sqrt{6}}{2}i.$$
+Por ejemplo, si tenemos $z = 3i= 3\left(\cos \left( \dfrac{\pi}{2})\right) + i\sin \left( \dfrac{\pi}{2} \right)\right)$ y queremos calcular sus raíces cuadradas, entonces \begin{center}$\zeta_{0} = \sqrt{3} \left( \cos \left( \dfrac{\pi}{4}\right) + i \sin \left( \dfrac{\pi}{4}\right)\right) = \dfrac{\sqrt{6}}{2} + \dfrac{\sqrt{6}}{2}i, \hspace{0.2cm} \zeta_{1} = \sqrt{3}\left( \cos \left( \dfrac{5 \pi}{4}\right) + i \sin \left( \dfrac{5 \pi}{4}\right)\right) =- \dfrac{\sqrt{6}}{2} - \dfrac{\sqrt{6}}{2}i.$\end{center}
 
 Otro ejemplo, las raíces terceras de $1 + i = \sqrt{2}\left(\cos \left( \dfrac{\pi}{4})\right) + i\sin \left( \dfrac{\pi}{4} \right)\right)$ entonces se tiene que $$ \zeta_{0} = \sqrt[6]{2}\left(\cos \left( \dfrac{\pi}{12})\right) + i\sin \left( \dfrac{\pi}{12} \right)\right),$$ $$\zeta_{1} = \sqrt[6]{2}\left(\cos \left( \dfrac{3 \pi}{4})\right) + i\sin \left( \dfrac{3 \pi}{4} \right)\right),$$ $$\zeta_{2} = \sqrt[6]{2}\left(\cos \left( \dfrac{17 \pi}{12})\right) + i\sin \left( \dfrac{17 \pi}{12} \right)\right).$$
 
@@ -779,6 +801,43 @@ $\hfill \square$
 
 Este resultado lo podemos esquematizar tal que así: 
 $$\xymatrix @=2cm {E & Gal(E/K) \\ C_{E}(H)\ar@{-}[u]^m &H\ar@{-}[u] \\ K \ar@{-}[u] & 1 \ar@{-}[u]^m}$$
+
+\section{Polinomios resolubles por radicales}
+
+\subsection{Extensiones radicales}
+
+\begin{definition}Una extensión $E/K$ se dice \textbf{radical} si existen subcuerpos $$K=K_{0} \subseteq K_{1} \subseteq \ldots \subseteq K_{n} = E$$ tales que $K_{i+1} = K_{i}(a_{i})$ y $a_{i}^{n_{i}} \in K_{i+1}$, para algún $a_{i}$ y $n_{i}$ con $i = 1, \ldots, n-1$. Dicho de otro modo, diremos que una extensión $E/K$ es \textbf{radical} si existen $a_{1}, \ldots, a_{r}$ y naturales $n_{1}, \ldots, n_{r}$ tales que $E=K(a_{1}, \ldots, a_{r})$, $a_{1}^{n_{1}} \in K$ y $a_{j}^{n_{j}} \in K(a_{1}, \ldots, a_{j-1})$ $\forall j \geq 2.$
+
+Un polinomio $f \in K[x]$ se dice que es \textbf{resoluble por radicales} si existe una extensión radical $E/K$ que contenga un cuerpo de escisión de $f$ sobre $K$.
+\end{definition}
+Por ejemplo, la extensión $\mathbb{Q}(\sqrt{2}, \sqrt[3]{5+\sqrt{2}})/\mathbb{Q}$ es radical.
+
+\begin{proposition}Toda extensión radical $E/K$ es finita.
+\end{proposition}
+\emph{Demostración: }Como $a_{1}^{n_{1}} = \alpha_{1} \in K$, $a_{1}$ es una raíz de $x^{n_{1}}-\alpha_{1} \in K[x]$ y por ello $K(a_{1})/K$ es una extensión de grado finito. En general, tendremos que $a_{j}$ es algebraico sobre $K(a_{1}, \ldots, a_{j-1})$, con $j=2, \ldots, r$, lo cual garantiza que $|K(a_{1}, \ldots,a_{r}) :K| = |E:K| < \infty.$
+
+$\hfill \square$
+
+
+De lo que se trata de ver es que, si tenemos un $f \in K[x]$ y $E$ un cuerpo de escisión de $f$ sobre $K$ entonces:
+
+\begin{enumerate}
+\item $f$ es resoluble por radicales $\Rightarrow$ $Gal(E/K)$, el grupo de Galois de $f$, es resoluble.
+\item Si el grupo de Galois de $f$ es resoluble $\Rightarrow$ $f$ es resoluble por radicales.
+\end{enumerate}
+
+Y así poder establecer el si y sólo si.
+
+Necesitaremos que $K$ contenga a las $n$ raíces de la unidad, para un cierto $n$. Tal y como se vió en~\ref{eq:raicesUnidad} las $n-$raíces de la unidad forman un grupo cíclico, por lo que podemos definir:
+
+\begin{definition} Una \textbf{$n$-raíz primitiva de la unidad} es un generador del grupo multiplicativo generado por ellas: $$ \lbrace \text{raíces de $x^{n}$-1}\rbrace =\lbrace 1, \xi, \ldots, \xi^{n-1} \rbrace,$$ con $\xi$ una $n-$raíz primitiva.
+\end{definition}
+
+Es claro que si tenemos una $n-$ésima raíz primitiva de la unidad $\xi$ sobre un cuerpo $K$, entonces la extensión $K(\xi)/K$ también será una extensión radical.
+
+
+
+
 
 \end{document}
 
