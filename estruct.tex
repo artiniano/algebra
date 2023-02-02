@@ -2324,7 +2324,7 @@ $$(a+b)^{n} = \sum_{k=0}^{n} {n \choose k}a^{n-k}b^{k}.$$ Y esto es así ya que,
 
 Una vez vistas las primeras definiciones, veamos algunos ejemplos clásicos de anillos:
 
-\begin{example} Algunos de estos ejemplos ya los conocemos, de hecho algunos son bastante familiares: \begin{enumerate}
+\begin{example}\label{eq:ejemploAnillos} Algunos de estos ejemplos ya los conocemos, de hecho algunos son bastante familiares: \begin{enumerate}
 \item El conjunto $\mathbb{Z}$ de los números enteros, dotado con la suma y producto habituales, es un anillo conmutativo y unitario. Sus únicas unidades son $1$ y $-1$, por lo que no es un cuerpo.
 \item Los números pares, $2\mathbb{Z}$, constituyen un anillo conmutativo pero no unitario, puesto que no existe ningún elemento $u \in 2\mathbb{Z}$, es decir, de la forma $2z$ con $z$ algún entero, tal que $2z \cdot 2a = 2a$ con $a \in \mathbb{Z}$.
 \item Los conjuntos $\mathbb{Q}, \mathbb{R}$ y $\mathbb{C}$ de los números racionales, reales y complejos respectivamente, son cuerpos conmutativos.
@@ -2537,6 +2537,375 @@ $$ Esta última operación además no depende de los representantes elegidos. Su
 Una vez visto esto, las propiedades  asociativa y conmutativa del producto, así como la distributiva, son inmediatas. El \textbf{elemento neutro} de $A/I$ será $1 + I$. Así, $A/I$ dotado con las dos operaciones, suma y producto respectivamente, y las demás propiedades enunciadas tiene estructura de anillo conmutativo unitario, que denominaremos \textbf{anillo cociente ó anillo de clases de restos módulo $I$}.\vspace{0.2cm}\\
 Finalmente, los ideales del cociente $A/I$ serán aquellos ideales de $A$ que contengan a $I$, de hecho se puede establecer fácilmente una biyección entre ambos conjuntos. Sea $L$ un ideal del anillo cociente y consideremos el conjunto $$J = \lbrace x \in A : x + I \in L \rbrace.$$ Entonces es claro que $J$ es un ideal de $A$ y que contiene a $I$, puesto que si $x \in I$ entonces $x + I = 0 + I \in L.$ Luego la biyección se establece entre los conjuntos de la forma $L$ y de la forma $J$, es decir, entre los ideales de $A/I$ y los ideales de $A$ que contienen a $I$ respectivamente.
 \end{definition}
+
+\begin{observation} Notar que si $x \in I$, entonces $x + I$ será el conjunto de los $x+a$ con $a \in I$, pero como $x \in I$ entonces $x+a \in I$ y así $x + I = 0 + I = I$.
+\end{observation}
+
+En resumen, llamaremos anillo cociente al conjunto $A/I$ de las clases de equivalencia de un anillo respecto a la relación de equivalencia $x \sim y$ si $x-y \in I$, con $I$ un ideal propio de $A$, y dotado con las operaciones antes definidas y que le confieren una estructura de anillo conmutativo unitario.
+
+A continuación desarrollaremos la idea de subconjuntos que generan ideales. Anteriormente vimos cuando un ideal es generado por un sólo elemento, denominado ideal principal generado por ese elemento, y ahora generalizaremos ese concepto. Definiremos ideal generado por un subconjunto a través de la siguiente proposición:
+
+\begin{proposition}[\textbf{\textit{Ideales generados por un subconjunto}}]
+Sea $A$ un anillo conmutativo y unitario, y $L$ un subconjunto de $A$, que carece de estructura algebraica. Consideremos el conjunto $I \subset A$ de todas las sumas finitas de la forma $$a_{1}x_{1} + \ldots + a_{r}x_{r}, \hspace{0.2cm} a_{1}, \ldots, a_{r} \in A, \hspace{0.2cm} x_{1}, \ldots, x_{r} \in L, \hspace{0.2cm} r \geq 1.$$ Entonces tenemos que \begin{enumerate}
+\item $I$ es un ideal.
+\item $I$ es el mínimo ideal que contiene a $L$, es decir, si $\mathcal{L}$ es la colección de todos los ideales $J \subset A$ tales que $ L \subset J$, se verifica que $$I = \bigcap_{J \in \mathcal{L}} J.$$
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Veamos $1.$. Comprobemos , para ello sean $$a = \sum_{k =1}^{r}a_{k}x_{k}, \hspace{0.2cm} b= \sum_{l=1}^{s} b_{l}y_{l} \in I, \hspace{0.3cm} c \in A.$$ Entonces es evidente que $$a+b = a_{1}x_{1} + \ldots + a_{r}x_{r} + b_{1}y_{1} + \ldots + b_{s}y_{s} \in I$$ $$c \cdot a = c(a_{1}x_{1} + \ldots + a_{r}x_{r}) =(ca_{1})x_{1} + \ldots + (ca_{r})x_{r} \in I.$$ Para probar $2.$ observar que $I \in \mathcal{L}$, puesto que $I$ es un ideal que contiene a $L$, luego $$\bigcap_{J \in \mathcal{L}} J \subset I.$$ Pero, por otra parte, si $J \in \mathcal{L}$, $a_{1}, \ldots, a_{r} \in A$, $x_{1}, \ldots, x_{r} \in L$, tenemos $a_{1}x_{1}, \ldots, a_{r}x_{r} \in J$ y $a_{1}x_{1}+ \ldots + a_{r}x_{r} \in J$ por ser $J$ un ideal de $A$ que contiene a $L$. Esto demuestra que todos los elementos de $I$ están también en $J$, así $I \subset J$. Siendo esto igual para todo ideal $J$ de $\mathcal{L}$, tenemos que $$I \subset \bigcap_{J \in \mathcal{L}} J.$$ Por tanto, la igualdad.\vspace{0.2cm}\\
+Este ideal $I$ que acabamos de construir es lo que conoceremos como \textbf{\textit{ideal generado por $L$}}.
+
+$\hfill \square$
+
+\begin{definition} Sea $A$ un anillo conmutativo y unitario. Un ideal $I \subset A$ se llama \textbf{finitamente generado} si un el ideal generado por un subconjunto finito $L = \lbrace x_{1}, \ldots, x_{r}\rbrace \subset A.$ En dicho caso, $$I = Ax_{1} + \ldots + Ax_{r} = \left\lbrace \sum_{k=1}^{r}a_{k}x_{k} : \hspace{0.1cm} a_{1}, \ldots, a_{r} \in A \right\rbrace.$$ Lo denotaremos $I = (x_{1}, \ldots, x_{r}).$ Y recordar que si $r=1$, es decir, que el ideal está generado por un solo elemento entonces $I$ se llama \textbf{ideal principal}.
+\end{definition}
+
+\begin{definition}
+Un anillo $A$ se dirá \textbf{noetheriano}, en honor a la gran matemática alemana Emmy Noether, si todos sus ideales son finitamente generados.
+\end{definition}
+
+Es claro que todo cuerpo $K$ es un anillo noetheriano.
+
+\begin{definition}[\textbf{\textit{Operaciones con ideales.}}] Sean $I$, $J$ ideales de un anillo unitario y conmutativo $A$. Veamos las operaciones que se pueden realizar con ellos:\begin{enumerate}
+\item \textbf{Suma}. La denotaremos $I + J$, y consiste en todos los elementos de la forma $x+ y$, con $x \in I$, $y \in J$. Coincide con el ideal generado por $I \cup J$. En efecto, dados $a_{1}, \ldots, a_{r}, b_{1}, \ldots, b_{s} \in A$, $x_{1}, \ldots, x_{r} \in I$, $y_{1}, \ldots, y_{s} \in J,$ podremos escribir $a_{1}x_{1} + \ldots + a_{r}x_{r} + b_{1}y_{1} + \ldots + b_{s}y_{s} = x + y$ si $x = a_{1}x_{1} + \ldots + a_{r}x_{r} \in I$, e $y= b_{1}y_{1} + \ldots + b_{s}y_{s} \in J$.
+\item \textbf{Producto}. Se denota por $I \cdot J$ ó también $IJ$, y es el ideal generado por todos los productos $xy$, con $x \in I$, $y \in J$. Consiste en el siguiente conjunto: $$IJ = \lbrace x_{1}y_{1} + \ldots + x_{r}y_{r} : \hspace{0.1cm} x_{1}, \ldots, x_{r} \in I, \hspace{0.1cm} y_{1}, \ldots, y_{r} \in J, \hspace{0.1cm} r \geq 1 \rbrace.$$
+\item \textbf{Intersección}. La denotaremos por $I \cap J$, y es, de forma inmediata, un ideal de $A$. De hecho, también es un ideal de $A$ la intersección de una colección infinita de ideales.
+\end{enumerate}
+\end{definition}
+
+De estas definiciones deducimos el siguiente resultado:
+
+\begin{proposition} Dado un anillo conmutativo y unitario $A$, y dos ideales $I$, $J$ de $A$, entonces tendremos: \begin{enumerate}
+\item $IJ \subset I \cap J.$
+\item En general $IJ$ y $I \cap J$ no coincidirán.
+\item Dada una colección finita de ideales $I_{1}, \ldots, I_{r}$ de $A$, con $r \geq 1$, entonces $$I_{1} \cdots I_{r} \subset I_{1} \cap \cdots \cap I_{r}.$$
+\end{enumerate} 
+\end{proposition}
+\emph{Demostración: }
+Para probar $1.$ simplemente hay que tener en cuenta que, como $IJ =  \lbrace x_{1}y_{1} + \ldots + x_{r}y_{r} : \hspace{0.1cm} x_{1}, \ldots, x_{r} \in I, \hspace{0.1cm} y_{1}, \ldots, y_{r} \in J, \hspace{0.1cm} r \geq 1 \rbrace$, entonces cada $x_{i}y_{i} \in I$ puesto que cada $x_{i} \in I$ y cada $y_{i} \in A$ al pertenecer a $J$, y análogamente $x_{i}y_{i} \in J$, así que $x_{i}y_{i} \in I \cap J$. Y como $I \cap J$ es ideal, entonces las sumas también pertenecerán. La comprobación de que $IJ$ es ideal es también directa.
+
+Para ver $2.$ daremos un contraejemlo. Consideremos $A = \mathbb{Z}$, $I = 4\mathbb{Z}$ y $J = 6\mathbb{Z}$, respectivamente los múltiplos de $4$ y de $6$. Entonces la $I \cap J$ estará formado por aquellos elementos que sean múltiplos de $4$ y de $6$, es decir múltiplos de $12$, luego $I \cap J = 12\mathbb{Z}$. Sin embargo, $IJ = 24\mathbb{Z}$, luego el contenido de $IJ$ en la intersección es estricto.
+
+$3.$ es evidente por recurrencia ya que $$I_{1} \cdots I_{r} \subset (I_{1} \cdots I_{r-1} ) I_{r} \subset (I_{1} \cdots I_{r-1} ) \cap I_{r} \subset (I_{1} \cap \cdots \cap I_{r-1} ) \cap I_{r} \subset I_{1} \cap \cdots \cap I_{r}.$$
+
+$\hfill \square$
+
+\begin{definition} \label{eq:comax} Sea un anillo conmutativo y unitario $A$ y dos ideales $I$, $J$ de $A$. Entonces diremos que $I$ y $J$ son \textbf{comaximales} si $I + J = A$. Además, en tal caso se tendrá que $IJ = I \cap J$.
+\end{definition}
+
+\begin{observation} Efectivamente, se tiene la igualdad $IJ = I \cap J$ ya que al ser comaximales existirán $x \in I$ e $y \in J$ tales que $x +y = 1$. Y ahora, dado un $a \in I \cap J$, $a,x \in I$ y también $a, y \in J$, así que $$a = a1 = a(x+y) = ax + ay \in IJ.$$
+\end{observation}
+
+\begin{example} En el anillo $\mathbb{Z}$ de los números enteros todos los ideales son principales, tal y como veremos más adelante. Así, para cada número entero $k$ se tiene el ideal $$(k) = I_{k} = k\mathbb{Z} = \lbrace pk : \hspace{0.1cm} p \in \mathbb{Z} \rbrace.$$ Y es claro que tanto $k$ como $-k$ generan el mismo ideal, así que tomaremos $k \geq 0$. Esto establece una biyección entre los ideales de $\mathbb{Z}$ y los enteros no negativos, con $0 = 0\mathbb{Z} = \lbrace 0 \rbrace$ y $1\mathbb{Z} = \mathbb{Z}$. Veamoslo:
+
+Supongamos que $(k) = (l)$, con $k, l \geq 0$. Entonces $k \in (l)$ y $l \in (k)$. Si $l==$, entonces $k \in (l) = (0) = \lbrace 0 \rbrace$, luego $k = l = 0$. Igualmente si $k = 0$. Ahora, sea $k,l > 0$. Entonces $$k = ql, \hspace{0.2cm} l = pk, \hspace{0.2cm} 0 < q, p \in \mathbb{Z}.$$ Y, por lo tanto, $k \geq l$ y $l \geq k$, y de aquí la igualdad.
+\end{example}
+
+$\hfill \blacksquare$
+
+Ahora se introducirá dos clases muy importantes de ideales, que serán esenciales en lo que sigue. 
+
+\begin{definition}Sea $A$ un anillo no necesariamente conmutativo ni unitario e $I$ un ideal de $A$. Diremos que $I$ es \textbf{maximal} si lo es, respecto de la inclusión, en la familia de todos los ideales propios de $A$, es decir, si no existe ningún ideal propio  $J$ de $A$ que lo contenga estrictamente ($I \subsetneq J$).
+\end{definition}
+
+A continuación daremos una caracterización de estos ideales:
+
+\begin{proposition} Sea $A$ un anillo conmutativo y unitario e $I$ un ideal de $A$. Entonces $I$ será \textbf{maximal} si se cumple algunas  de las siguientes condiciones equivalentes: \begin{enumerate}
+\item El anillo cociente $A/I$ es un cuerpo.
+\item $I$ es un ideal propio y ningún otro ideal propio lo contiene estrictamente.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -ab \in I \subset J$. Ahora como $ab \in J$, por ser $J$ un ideal, tendremos que $1 = (1- ab) + ab \in J$ y así $J = A$, lo cual es falso.
+
+Recíprocamente, sea $x + I$ un elemento no nulo de $A/I$. Entonces $x \in A \setminus I$, es decir, será un elemento de $A$ que no estará en $I$, por lo que el ideal $I + xA$ contiene estrictamente a $I$. Como este último es maximal tendremos que $I + xA = A$, es decir que existirá $b \in I$ e $y \in A$ tal que $b + xy = 1$. Así que $1 - xy \in I$, es decir, $$xy + I = (x + I)(y + I ) = 1 + I,$$ por lo que $A/I$ es un cuerpo.
+
+$\hfill \square$
+
+La siguiente proposición caracterizará a la otra clase de ideales que veremos, los ideales \textbf{\textit{primos}}:
+
+\begin{proposition} Sea $A$ un anillo conmutativo y unitario e $I$ un ideal de $A$. Diremos que $I$ es \textbf{primo} si se verifica alguna de las siguientes condiciones: \begin{enumerate}
+\item El anillo cociente $A/I$ es un dominio de integridad.
+\item $I$ es un ideal propio y para cualesquiera $x, y \in A$, si $xy \in I$, entonces $x \in I$ ó $y \in I.$
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Si $xy \in I$, entonces $0 + I = xy + I = (x + I)(y + I),$ y como $A/I$ es dominio de integridad ó $x + I = 0 + I$ y $x \in I$ ó $y + I = 0 + I$ y así $y \in I$.
+
+Recíprocamente, $0 + I = xy + I = (x+ I)( y + I)$ ya que $xy \in I$, y como ó $x \in I$ ó $y \in I$, entonces ó $(x + I)=  0 + I$ ó $(y + I) = 0 + I$ respectivamente. Así $A/I$ es dominio de integridad.
+
+$\hfill \square$
+
+El por qué del término ideal primo se debe a que los ideales primos no nulos del anillo de los enteros $\mathbb{Z}$ son precisamente los generados por los números primos, aunque esto lo veremos más adelante.
+
+\begin{observation} Todo ideal maximal es primo, ya que todo cuerpo es dominio de integridad.
+\end{observation}
+
+\begin{proposition} Sea $I$ es un ideal primo de un anillo unitario y conmutativo $A$ tal que el anillo cociente $A/I$ es finito, entonces $I$ es un ideal maximal.
+\end{proposition}
+\emph{Demostración: } Tenemos que ver que $ B = A/I$ es un cuerpo. Sea $x \in B$ un elemento no nulo, entonces la aplicación $$\begin{array}{rccl}
+h \colon &B^{\ast}&\longrightarrow &B^{\ast} \\
+&y& \longmapsto &xy,
+\end{array}
+$$ es inyectiva, puesto que $xy = xy'$ implica que $x(y-y') =0$ y como $B$ no tiene divisores de cero, por ser $A/I$ dominio de integridad, $y = y'$. Y como $B$ es finito la aplicación $h$ ha de ser necesariamente suprayectiva y así $1_{B} = xy$ para algún $y \in B^{\ast}$, luego $x$ es unidad. Como esto se puede hacer para cualquier $x \in B$ no nulo, $B$ es un cuerpo.
+
+$\hfill \square$
+
+\subsection{Homomorfismos de anillos}
+
+Ahora, al igual que con pasaba con grupos, introduciremos las aplicaciones que conservan la estructura de anillo, para a partir de ellas estudiar lo que resta.
+
+\begin{definition} Sean $A$ y $B$ dos anillos conmutativos y unitarios. Definiremos un \textbf{homomorfismo de anillos} de $A$ en $B$ como una aplicación $$f \colon A \longrightarrow B$$ tal que: \begin{enumerate}
+\item $f(x + y) = f(x) + f(y)$, $\forall x,y \in A$.
+\item $f(xy) = f(x)f(y)$, $\forall x,y \in A.$
+\item $f(1_{A}) = 1_{B}.$
+\end{enumerate}
+\end{definition}
+\begin{observation} La última condición es muy importante y de no darse no podrían excluirse algunas aplicaciones que, aunque conserven las operaciones, podrían ser contraproducentes. Ya que, si $x \in A$ $$f(x) \cdot (f(1_{A}) - 1_{B}) = f(x) f(1_{A}) - f(x)1_{B} = f(x \cdot 1_{A}) - f(x) = 0.$$ Así, si $f(1_{A}) \neq 1_{B}$, todos los elementos de $f(A)$ serían divisores de cero. 
+\end{observation}
+
+\begin{example} Veamos dos ejemplos de homomorfismos: \begin{enumerate}
+\item La conjugación $$\begin{array}{rccl}
+f \colon &\mathbb{Z}[i]&\longrightarrow &\mathbb{Z}[i] \\
+&x = a + bi& \longmapsto &\bar{x} = a-bi,
+\end{array}
+$$ es un homomorfismo. Evidentemente $f(1) = 1$ ya que es real, sea $x = a +bi$ e $y = c +di$, entonces \begin{center}$f(x+y) = \overline{x + y} = \overline{(a+bi) + (c + di)} = \overline{(a+c) + (b + d)i} = (a+c) - (b+d)i = (a-bi) + (c -di) = \overline{x} + \overline{y} = f(x) + f(y),$\end{center}\begin{center} $f(xy) = \overline{xy} = \overline{(a+bi)(c+di)} = \overline{(ac-bd) + (ad +bc)i} = (ac-bd) -(ad +bc)i = (a-bi)(c-di) = \bar{x}\bar{y} = f(x)f(y).$\end{center}
+\item Sea $A = \mathcal{C} (\mathbb{R}, \mathbb{R})$ el anillo de las funciones continuas reales de variable real definido en~\ref{eq:ejemploAnillos}. Podemos ver la composición como el siguiente homomorfismo: $$\begin{array}{rccl}
+\phi \colon &A&\longrightarrow &A \\
+&g& \longmapsto &g \circ f.
+\end{array}
+$$ Entonces 
+\begin{center}
+$\phi(g + h)(t) = ((g+h) \circ f)(t) = (g+h)(f(t)) = g(f(t)) + h(f(t)) = (g \circ f)(t) + (h \circ f)(t)  = ((g \circ f) + (h \circ f))(t) = (\phi(g) + \phi(h))(t),$ \end{center}
+y como esto es para todo $t \in \mathbb{R}$ tenemos que $$\phi(g + h) = \phi(g) + \phi(h).$$ Igualmente para el resto de condiciones.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+Veamos ahora las definiciones esenciales para homomorfismos, igual que en grupos pero en anillos: 
+
+\begin{definition} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Entonces: \begin{enumerate}
+\item Llamaremos \textbf{núcleo} de $f$ y lo denotaremos \textbf{$ker f$} al ideal $$Ker f = \lbrace x \in A:  f(x) = 0 \rbrace.$$ Es un ideal ya que, si $x,y \in ker f$, $a \in A$, tenemos que $$f(x+y) = f(x) + f(y) = 0 +0 = 0,$$ $$f(ax)=f(a) f(x) = f(a) \cdot 0 = 0.$$
+\item Llamaremos \textbf{imagen} de $f$ y la denotaremos \textbf{$Im f$} al anillo $$Im f = \lbrace y \in B: \hspace{0.1cm} \exists x \in A, \hspace{0.1cm} y = f(x) \rbrace.$$
+Es un anillo conmutativo y unitario con las operaciones heredadas de $B$, ya que si $y = f(x)$, $v = f(u)$, $x, u \in A$, tenemos que $$y-v = f(x) - f(u) = f(x-u) \in im f,$$ $$y \cdot v = f(x)f(u) = f(x u) \in im f,$$ $$1_{B} = f(1_{A}) \in imf.$$
+\end{enumerate}
+\end{definition}
+
+\begin{proposition} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Como $f(1_{A}) = 1_{B} \neq 0$, $ker f$ es un ideal propio de $A$. Además, $f$ es inyectiva si y sólo si $ker f = \lbrace 0 \rbrace.$
+\end{proposition}
+\emph{Demostración: } Sea $f$ inyectiva, como $f(0) = 0$, entonces el núcleo ha de reducirse al elemento neutro $0$. Recíprocamente, supongamos que $ker f = \lbrace 0 \rbrace$. Si $x,y \in A$ y tenemos que $f(x) = f(y)$, entonces $f(x-y)= 0$. Esto quiere decir que $x-y \in Ker f$, pero $ker f = \lbrace 0 \rbrace$ luego $x-y = 0$ y finalmente $x = y$. Y así, $f$ es inyectiva.
+
+$\hfill \square$
+
+\begin{observation} Si $f \colon K \longrightarrow B$ es un homomorfismo de anillos conmutativos y unitarios, y $K$ es un cuerpo, entonces $f$ ha de ser inyectiva. Observar que esto es así ya que al ser $ker f$ un ideal de $K$ distinto de $K$ (ya que $f(1_{K}) = 1_{B}$), por~\ref{eq:idK} sólo puede ser $\lbrace 0 \rbrace$, y así $f$ es inyectiva.
+\end{observation}
+
+Ahora, al igual que con grupos, veremos los \textit{Teoremas de Isomorfía}, que funcionan de forma análoga a los de grupos y que también nos serán muy útiles . Antes de eso definamos brevemente los distintos homomorfismos de anillos, también de forma análoga a los de los grupos.
+
+\begin{definition} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Entonces diremos que: \begin{enumerate}
+\item $f$ es un \textbf{epimorfismo}, si es una aplicación suprayectiva.
+\item $f$ es un \textbf{monomorfismo}, si es una aplicación inyectiva.
+\item $f$ es un \textbf{isomorfismo}, si es una aplicación biyectiva.
+\end{enumerate}
+\end{definition}
+
+De hecho, vamos a desarrollar un poco el concepto de \textit{anillos isomorfos} para entender mejor qué significa que dos anillos lo sean. Ya sabemos que, en álgebra, el hecho de que dos objetos sean isomorfos quiere decir que esencialmente son el mismo, sólo cambian los nombres de sus elementos. Así, dados dos anillos conmutativos y unitarios $A$ y $B$, diremos que son \textit{isomorfos} cuando existe un isomorfismo $f \colon A \longrightarrow B$. Esto así implica inmediatamente que existe la aplicación inversa $f^{-1} \colon B \longrightarrow A$ y que es también un homomorfismo. Por tanto, si tenemos dos elementos $u,v \in B$, entonces $u=f(x)$, $v=f(y)$ para ciertos $x,y \in A$, éstos son únicos (por ser biyectiva) y así, tenemos que $$f(x+y)= f(x) + f(y) = u + v.$$ $$f^{-1}(u+v) = f^{-1}(u) + f^{-1}(v)= x + y.$$
+
+Además, cuando dos anillos cualesquiera $A$ y $B$ sean isomorfos, escribiremos $A\simeq B$. También es inmediato comprobar que un isomorfismo $f$ entre dos anillos conmutativos y unitarios $A$ y $B$ induce un isomorfismo de grupos entre $\mathcal{U}(A)$ y $\mathcal{U}(B)$.
+
+\begin{theorem}[\textbf{\textit{Primer Teorema de Isomorfía}}]\label{eq:1ti} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Consideremos el diagrama siguiente:
+$$\xymatrix @=2cm {A\ar[r]^{f} \ar[d]_\pi & B  \\ A/Ker f \ar[r]^{\bar{f}} & Im f \ar[u]_{i}  }$$
+
+con $A/Ker f$ el anillo de clases módulo $Ker f$ y $$\begin{array}{rccl}
+\pi \colon &A&\longrightarrow &A/Ker f \\
+&x& \longmapsto &x + Ker f,
+\end{array}
+$$ 
+la proyección canónica, que es suprayectiva.
+$$\begin{array}{rccl}
+\bar{f} \colon &A/Ker f&\longrightarrow &Im f \\
+&x + Ker f& \longmapsto &f(x),
+\end{array}
+$$ 
+la aplicación que nos induce, que será biyectiva, es decir, un isomorfismo.
+$$\begin{array}{rccl}
+i \colon &Im f&\longrightarrow &B \\
+&f(x)& \longmapsto &f(x) =y,
+\end{array}
+$$ 
+la inclusión canónica, que será inyectiva. 
+
+Así, en estas condiciones, todas las aplicaciones son homomorfismos y el diagrama es conmutativo, es decir, $$f = i \circ \bar{f} \circ \pi.$$
+\end{theorem}
+\emph{Demostración: }Veamos que $\bar{f}$ \begin{enumerate}
+\item está bien definida, y es que si $x + Ker f = y + Ker f$ entonces tenemos que $x-y \in Ker f$ y así $f(x-y) = 0$, pero $f(x-y)= f(x) -f(y)$ y de aquí deducimos que $$f(x) = f(y),$$ y así $\bar{f}(x + Kerf)$ no depende del representante que escojamos de la clase.
+\item es inyectiva. Sean $x,y \in A$ tales que $\bar{f}(x + Kerf) = \bar{f}(y + Kerf)$. Esto quiere decir que $f(x) = f(y)$, y así $f(x) - f(y) = f(x-y) = 0$, luego $x-y \in Kerf$. Así, $x + Kerf = y + Kerf$ y $\bar{f}$ es inyectiva.
+\item es suprayectiva. Sea $y \in Imf$, entonces $y = f(x)$ para algún $x \in A$ y así, $$y = \bar{f}(x + Kerf),$$ y $\bar{f}$ es suprayectiva, es decir, $\forall y \in Imf$ existe un $x + Kef \in A/Kerf$ tal que $\bar{f}(x + Kerf) = y$.
+\end{enumerate}
+Lo último es claro ya que, dado un $x \in A$, tenemos que $$f(x) = (i \circ \bar{f} \circ \pi) (x) = i(\bar{f}(\pi(x))) = i(\bar{f}(x + Kerf)) = i(f(x)) = f(x).$$
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
+Sean $A \subset B$ dos anillos conmutativos y unitarios, e $I$ un ideal de $B$. Entonces $A + I$ es un subanillo de $B$ que contiene a $I$. Además, los anillos $(A+ I)/I$ y $A/(A \cap I)$ son isomorfos.
+\end{theorem}
+\emph{Demostración: } Que $A + I$ es subanillo de $B$ es inmediato. Para ver lo segundo consideremos el siguiente homomorfismo: $$\begin{array}{rccl}
+f \colon &A&\longrightarrow &(A + I)/I \\
+&x& \longmapsto &x + I.
+\end{array}
+$$ Su núcleo estará formado por todos los elementos $x \in A$ que también estén en $I$, es decir, $Ker f = A \cap I$. Además $f$ es suprayectiva, ya que para todo $y \in (A+ I)/I$ existen $x \in A$ y $b \in I$ tales que $y = (x +b) + I = x + I = f(x)$. Entonces, por el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti}, los anillos $A/(A \cap I)$ y $(A+I)/I$ son isomorfos.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Tercer Teorema de Isomorfía}}]
+Sean $A$ un anillo conmutativo y unitario, y $J, I$ ideales de $A$ tales que $J \subset I$. Entonces los anillos $(A/J)/(I/J)$ y $A/I$ son isomorfos.
+\end{theorem}
+\emph{Demostración: }En este caso consideraremos el siguiente homomorfismo de anillos conmutativos y unitarios: $$\begin{array}{rccl}
+f \colon &A/J&\longrightarrow &A/I \\
+&x+ J& \longmapsto &x + I.
+\end{array}
+$$ Evidentemente es suprayectivo y está bien definido, pues $J \subset I$. Ahora, $Ker f = \lbrace a + J: a \in I \rbrace = I/J$. De nuevo, por el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti} tenemos que $(A/J)/(I/J) \simeq A/I$.
+
+$\hfill \square$
+
+\begin{example} Dos ejemplos conocidos: \begin{enumerate}
+\item Sea $A$ un anillo conmutativo y unitario, e $I$ un ideal propio de $A$. Entonces podemos definir una aplicación $$\begin{array}{rccl}
+p \colon &A&\longrightarrow &A/I \\
+&x& \longmapsto &x + I,
+\end{array}
+$$ que será siempre un epimorfismo, es decir, suprayectiva.
+\item La conjugación del \textbf{anillo de los enteros de Gauss}: $$\begin{array}{rccl}
+f \colon &\mathbb{Z}[i]&\longrightarrow &\mathbb{Z}[i] \\
+&x& \longmapsto &\bar{x}
+\end{array}
+$$ es un isomorfismo. De hecho, su inversa es ella misma, ya que $$f^{2}(a+bi)= (f \circ f)(a+bi)= f(a-bi)= a+bi.$$
+También lo será cuando nos encontremos en el cuerpo de los complejos $\mathbb{C}$.
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+Finalmente, terminaremos estas generalidades de anillos enunciando y demostrando un resultado más que interesante que se conoce ya de aritmética. Es el \textit{Teorema chino de los restos}. Necesitaremos recordar la noción de ideales comaximales, presentada en~\ref{eq:comax}.
+
+\begin{theorem}[\textbf{\textit{Teorema chino de los restos.}}]
+Sea $A$ un anillo, $r \geq 2$ un número entero e $I_{1}, \cdots, I_{r}$ ideales de $A$ comaximales dos a dos, es decir, $I_{i} + I_{j} = A$ si $i \neq j$. Entonces, se tiene: \begin{enumerate}
+\item $I_{1} + (I_{2} \cdots I_{r}) = A.$
+\item $I = I_{1} \cap \cdots \cap I_{r} = I_{1} \ldots I_{r}.$
+\item El homomorfismo $$\begin{array}{rccl}
+f \colon &A&\longrightarrow &A/I_{1}\times \cdots A/I_{r} \\
+&x& \longmapsto &(x + I_{1}, \ldots, x+ I_{r}),
+\end{array}
+$$ es sobreyectivo.
+\item Los anillos $A/I$ y $A/I_{1}\times \cdots A/I_{r}$ son isomorfos.
+\end{enumerate} 
+\end{theorem}
+\emph{Demostración: } Veámoslo punto por punto: \begin{enumerate}
+\item Lo demostraremos por inducción sobre $r$, siendo obvio para $r = 2$. Sea $r \geq 3$ y supondremos probado que $I_{1} + (I_{2} \cdots I_{r-1}) = A$, como $I_{1} + I_{r} = A$ existirán $x_{1},y_{1} \in I_{1}$, $x \in I_{2} \cdots I_{r-1}$, $y \in I_{r}$ tales que $1 = x_{1} + x$ y $1 = y_{1} + y$. Por lo que $$1 = (x_{1} +x)(y_{1} + y)=(x_{1}y_{1} + x_{1}y + xy_{1}) + xy \in I_{1} + (I_{2} \cdots I_{r-1}I_{r}),$$ y así $I_{1} + (I_{2} \cdots I_{r}) = A.$
+\item En el anterior apartado se ha visto que $I_{1}$ y $J= I_{2} \cdots I_{r}$ son comaximales, y de~\ref{eq:comax} deducimos que $$I_{1} \cap \ldots \cap I_{r} = I_{1} \cap J = I_{1}J = I_{1} \cdot (I_{2} \cdots I_{r}) = I_{1} \cdots I_{r}.$$
+\item Deducimos de $1.$ que para cada índice $1 \leq i \leq r$, $I_{i} +I_{1}\cdots I_{i-1}\cdot I_{i+1} \cdots I_{r} = A.$ Por lo tanto, existen $u_{i} \in I_{i}$ y $v_{i} \in I_{1}\cdots I_{i-1}\cdot I_{i+1} \cdots I_{r}$ tales que $u_{i} + v_{i} = 1$, para cada $i = 1, \ldots, r$. Así, dados $x_{1}, \ldots, x_{r} \in A$, elegimos $x = x_{1}v_{1} + \ldots + x_{r}v_{r} \in A$ y tenemos que $$x + I_{i} = x_{1}v_{1} + \ldots + x_{r}v_{r} + I_{i} = x_{i}v_{i} + I_{i} =  x_{i}v_{i} +x_{i}u_{i} + I_{i} = x_{i}(v_{i} + u_{i}) + I_{i} = x_{i} + I_{i},$$ donde al pasar a la tercera igualdad $x_{i}u_{i}$ aparece porque $u_{i} \in I_{i}$. Así, $f(x) = f(x_{1} + I_{1}, \ldots, x_{r} + I_{r})$ y $f$ es sobreyectiva. 
+\item Se deduce fácilmente que $Ker f = I_{1} \cap \cdots \cap I_{r} = I$, y aplicando el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti} ya está.
+\end{enumerate}
+$\hfill \square$
+
+\subsection{Divisibilidad}
+
+Durante esta sección consideraremos a $A$ como un dominio de integridad.
+
+\begin{definition} Sean $x, y$ elementos de $A$ tales que $x \neq 0$. Se dice que \textbf{$x$ divide a $y$, que $x$ es un divisor de $y$, que $y$ es divisible por $x$ ó que $y$ es un múltiplo de $x$} si existe $a \in A$ tal que $y = ax$. Se escribe $x \mid y$. Si $x$ no divide a $y$ se escribe $x \nmid y$.\vspace{0.2cm}\\
+En otras palabras, $x \mid y \Leftrightarrow y \in (x)$, ó equivalentemente $(y) \subset (x)$.
+\end{definition}
+
+Esto nos presenta la divisibilidad como una relación de orden parcial que será inmediata para ideales pero que para entenderla entre elementos habrá que describir la relación de igualdad asociada: 
+\begin{center}
+$x$ está relacionado con $y$ si $x \mid y$ e $y \mid x$, o sea si $(x) = (y).$
+\end{center} 
+Estas condiciones son equivalentes a: \begin{enumerate}
+\item Existe una unidad $a \in \mathcal{U}(A)$ tal que $y = ax$. Esto es así ya que si $(y) = (x)$ tendremos que $y \in (x), x \in (y)$, luego $y = ax$ y $x = by$.Luego $y = aby$ y como $A$ es un dominio de integridad podremos simplificar y obtener $1 = ab$, y así $a$ es unidad.
+\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades diremos que $y$ es \textbf{\textit{irreducible}}.
+\item Si $y \in A^{\ast}$ genera un ideal primo diremos que $y$ es primo. \textbf{\textit{Todo elemento primo es irreducible}}. Veámoslo. \vspace{0.2cm}\\
+\emph{Demostración: } Sea $y = ax$. Si $(y)$ es primo, $a \in (y)$ ó $x \in (y)$. Si $a \in (y)$ tendremos que $a = zy$, luego $y = zyx$ y $1 = zx$. Así, $x \in \mathcal{U}(A)$ y $a = yx^{-1} \in y \cdot \mathcal{U}(A)$. Análogo si $x \in (y)$.
+
+$\hfill \square$
+
+El recíproco en general no se cumple, aunque esto lo desarrollaremos más adelante.
+\end{enumerate} 
+
+Una clase importante de dominios de integridad, en la que la relación de divisibilidad puede ser estudiada con ventaja, es:
+
+\begin{definition} \label{eq:de} Diremos que $A$ es un \textbf{dominio euclídeo}, escrito $DE$, si existe una aplicación $$\begin{array}{rccl}
+\norm{\cdot}\colon A\longrightarrow \mathbb{N}
+\end{array}
+$$
+con $\mathbb{N}$ el conjunto de los enteros no negativos, y que cumpla: \begin{enumerate}
+\item $\norm{x} = 0$ si y sólo si $x = 0$.
+\item $\norm{xy} = \norm{x} \cdot \norm{y}.$
+\item Si $x, y \in A^{\ast}$, existe $r \in A$ tal que $y \mid (x-r)$ y $\norm{r} < \norm{y}$. Esto no viene a ser más que la división de los enteros, donde $r$ es el resto y el elemento $q \in A$ tal que $x-r = qy$ el cociente. 
+\end{enumerate}
+\end{definition}
+
+En un dominio euclídeo se cumple la siguiente propiedad:
+
+\begin{proposition} Sea $A$ un dominio euclídeo. Entonces: $$\mathcal{U}(A) = \lbrace x \in A : \norm{x} = 1 \rbrace.$$
+\end{proposition}
+\emph{Demostración: } Lo primero notar que $\norm{1_{A}} = 1$, puesto que $\norm{1_{A}} = \norm{1_{A}\cdot 1_{A}} = \norm{1_{A}}^{2}$ y como $\norm{1_{A}} \neq 0$, tenemos que $\norm{1_{A}} = 1$.
+
+Veamos que $\mathcal{U}(A) \subset \lbrace x \in A : \norm{x} = 1 \rbrace$. Si $x \in A$ tiene inverso $x^{-1}$, resulta que $\norm{x} \cdot \norm{x^{-1}} = \norm{x\cdot x^{-1}} = \norm{1_{A}} = 1.$ Luego necesariamente $\norm{x} = 1$ (recordar que son naturales).
+
+Recíprocamente, sea $x \in A$ con $\norm{x} = 1$. Entonces $x \neq 0$ y por definición se tiene que $x \mid (1_{A}-r)$ para un cierto $r \in A$, con $\norm{r} < \norm{x}.$ Como $\norm{x} = 1$, sólo puede ser $\norm{r} = 0$, luego $r = 0$. Así $x \mid 1_{A}$ y por tanto se trata de una unidad. 
+ 
+$\hfill \square$
+
+Por ejemplo, en el caso de $\mathbb{Z}[i]$, si definimos el módulo de un elemento $z = a+bi \in \mathbb{Z}[i]$ como $\norm{z} = a^{2} + b^{2}$ y para calcular sus unidades veamos aquellos que cumplen que $a^{2} + b^{2} = 1$. Como $a,b \in \mathbb{Z}$, tenemos que uno de ellos es $0$ y el otro es $\pm 1$. Por lo que $$\mathcal{U}(\mathbb{Z}[i]) = \lbrace 1, -1, i, -i \rbrace.$$
+
+\begin{proposition}\label{eq:dedip} En un dominio euclídeo todos los ideales son principales.
+\end{proposition}
+\emph{Demostración: } Sea $I$ un ideal no nulo de un dominio euclídeo $A$. Elijamos un $x \in I$ tal que $$\norm{x} = \min \lbrace \norm{y} :0 \neq y \in I \rbrace.$$ Este mínimo existe y es $>0$, puesto que es el mínimo de un conjunto no vacío de números naturales positivos. Afirmamos que $I$ está generado por $x$.\vspace{0.2cm}\\
+En efecto, sea $y \in I$, $y \neq 0$. Entonces como $x \in A^{\ast}$, existirá $r \in A$ tal que $x \mid (y-r)$ y con $\norm{r} < \norm{x}$. De esto deducimos que $y-r \in (x) \subset I$, y como $y \in I$ e $I$ es ideal, $r \in I$. Pero la minimalidad de $\norm{x}$ y la condición de que $\norm{r} < \norm{x}$ implican que $r = 0$. Así, $y = y-r$ está en $(x)$, y por lo tanto $I = (x)$.
+
+$\hfill \square$
+
+Este resultado que acabamos de ver nos dice que todos los dominios euclídeos tienen todos sus ideales generados por un sólo elemento, si definimos a éstos como una nueva clase de dominios habremos encontrado otra estructura que nos facilitará mucho el trabajo con ideales. 
+
+\begin{definition} Llamaremos \textbf{dominio de ideales principales}, escrito como $DIP$, a un dominio de integridad en el que todos sus ideales son principales. Todo $DE$ es un $DIP$.
+\end{definition} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
