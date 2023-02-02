@@ -2803,7 +2803,7 @@ $$ es sobreyectivo.
 \end{enumerate}
 $\hfill \square$
 
-\subsection{Divisibilidad}
+\section{Divisibilidad de anillos}
 
 Durante esta sección consideraremos a $A$ como un dominio de integridad.
 
@@ -2827,7 +2827,7 @@ El recíproco en general no se cumple, aunque esto lo desarrollaremos más adela
 \end{enumerate} 
 
 Una clase importante de dominios de integridad, en la que la relación de divisibilidad puede ser estudiada con ventaja, es:
-
+\subsection{Dominio euclídeo}
 \begin{definition} \label{eq:de} Diremos que $A$ es un \textbf{dominio euclídeo}, escrito $DE$, si existe una aplicación $$\begin{array}{rccl}
 \norm{\cdot}\colon A\longrightarrow \mathbb{N}
 \end{array}
@@ -2862,27 +2862,264 @@ $\hfill \square$
 
 Este resultado que acabamos de ver nos dice que todos los dominios euclídeos tienen todos sus ideales generados por un sólo elemento, si definimos a éstos como una nueva clase de dominios habremos encontrado otra estructura que nos facilitará mucho el trabajo con ideales. 
 
+\subsection{Dominio de ideales principales}
+
 \begin{definition} Llamaremos \textbf{dominio de ideales principales}, escrito como $DIP$, a un dominio de integridad en el que todos sus ideales son principales. Todo $DE$ es un $DIP$.
 \end{definition} 
 
+Por ejemplo, tanto $\mathbb{Z}$ como $\mathbb{Z}[i]$ son $DIP$.
 
+\begin{proposition} Sea $A$ un $DIP$. Entonces todo elemento irreducible $a \in A^{\ast}$ genera un ideal maximal.
+\end{proposition}
+\emph{Demostración: } Sea $I \subset A$ un ideal que contiene al ideal principal $(a)$, generado por el elemento irreducible $a$. Veamos que ó bien $I = (a)$ ó $I = A$. Pero por ser $A$ un $DIP$, existirá un $b \in A$ tal que $I = (b)$. En consecuencia, $(a) \subset I = (b)$ y $b \mid a$. Como $a$ es irreducible, tendremos dos opciones: \begin{enumerate}
+\item O bien $b = u \cdot a$, con $u \in \mathcal{U}(A)$, y entonces $(a) = (b) = I$.
+\item O bien $b \in \mathcal{U}(A)$, y entonces $A = (b) = I$.
+\end{enumerate}
 
+$\hfill \square$
 
+A continuación pasaremos a dar una definición muy importante, tanto para anillos como para cuerpos, y que nos habla sobre el menor entero tal que multiplicado por el neutro de un anillo/cuerpo nos da el cero. 
 
+\begin{definition}[\textbf{\textit{Característica de un dominio de integridad.}}] Consideremos de nuevo un dominio $A$. Si $k \in \mathbb{Z}$, definimos un elemento $k \cdot 1_{A} \in A$: $$k \cdot 1_{A} = 1_{A} + \cdots + 1_{A} \hspace{0.1cm} \text{si k>0}$$ $$k \cdot 1_{A} = 0 \hspace{0.1cm} \text{si k = 0}$$ $$k \cdot 1_{A} = -((-k) \cdot 1_{A}) \hspace{0.1cm} \text{si k<0}.$$
+Entonces, $$\begin{array}{rccl}
+\phi \colon &\mathbb{Z}&\longrightarrow &A \\
+&k& \longmapsto &k\cdot 1_{A}
+\end{array}
+$$ es un homomorfismo de anillos. Consideremos su núcleo $Ker \hspace{0.1cm} \phi$. Entonces pueden darse dos casos: \begin{enumerate}
+\item $ker \hspace{0.1cm} \phi = \lbrace 0 \rbrace$. Entonces $\mathbb{Z} \subset A$ vía $\phi$, y diremos que $A$ tiene \textbf{característica $0$}. Esto ocurre, por ejemplo para $A = \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C} o \mathbb{Z}[i]$. En este caso el menor entero $k$ tal que $k \cdot 1_{A} = 0$, es el $0$.
+\item $ker \hspace{0.1cm} \phi \neq \lbrace 0 \rbrace$. Como $\mathbb{Z}/Ker \hspace{0.1cm} \phi \simeq Im \hspace{0.1cm} \phi \subset A$ y $A$ es dominio de integridad, $\mathbb{Z}/ker \hspace{0.1cm} \phi$ también lo será, y en así $ker \hspace{0.1cm} \phi$ será un ideal primo. Como $\mathbb{Z}$ es un $DIP$, $ker \hspace{0.1cm} \phi = (p)$, con $p$ primo. Diremos entonces que $A$ tiene \textbf{característica $p$}. De hecho, por el resultado anterior, $\mathbb{Z}/(p)$ es un cuerpo. Además, todo anillo finito tiene característica positiva.
+\end{enumerate}
+\end{definition}
 
+\begin{definition} Sean $x,y \in A\setminus \lbrace 0 \rbrace$. Diremos que $z \in A$ es: \begin{enumerate}
+\item Un \textbf{máximo común divisor} (mcd) de $x,y$ si $z$ divide tanto a $x$ como a $y$, y es múltiplo de cualquier otro divisor de ambos.
+\item Un \textbf{mínimo común múltiplo} (mcm) de$x,y$ si $z$ es múltiplo de $x$ y de $y$, y además divide a cualquier otro múltiplo de ambos.
+\end{enumerate}
+\end{definition}
 
+\begin{observation}\label{eq:obs} Algunas observaciones respecto a estas definiciones: \begin{enumerate}
+\item Si $z, z'$ son dos mcd de $x,y$ entonces $z \mid z'$ y $z' \mid z$, luego los elementos difieren en una unidad, es decir, $(z) = (z')$. En este sentido se tiene la unicidad del mcd. Igualmente para el mcm.
+\item Podemos expresar el mcd en términos de ideales así: $$(x) + (y) \subset (z) \subset \bigcap \lbrace I : I\supset (x) +(y), \hspace{0.1cm} I \hspace{0.1cm} \text{principal}\rbrace.$$
+\item La descripción del mcm mediante ideales es: $z$ es mcm de $x,y$ si y sólo si $$(x) \cap (y) = (z).$$ En efecto, si $z$ es el mcm, $z \subset (x)$ y $z \subset (y)$, luego se tiene el contenido $(x) \cap (y) \supset (z)$. Pero si $t \in (x) \cap (y)$, entonces $t$ e múltiplo de $x$ y de $y$, luego $z \mid t$ y $t \in (z)$. Esto da la igualdad. Recíprocamente, si $(x) \cap (y) = (z)$, entonces $x \mid z$, $y \mid z$, y si $t$ es otro múltiplo común, entonces $t \in (x) \cap (y) = (z)$ y $z \mid t$.
+\item En general, el mcd puede no existir, y esto estará relacionado con las propiedades de los elementos irreducibles de $A$.
+\end{enumerate} 
+\end{observation}
 
+\begin{proposition} \label{eq:lemdiv} Sean $x, y \in A\setminus \lbrace 0 \rbrace$, y supongamos que tienen un $mcm$ $z$. Entonces $t = xy/z \in A$ y es un $mcd$ de $x,y$.
+\end{proposition}
+\emph{Demostración: } Por definición de $mcm$, $z$ divide a $xy$, luego $t$ es un elemento de $A$ bien definido. Por otra parte, $x \mid z$ e $y\mid z$, luego $z = ax$, $z =by,$ con $a,b \in A.$ \vspace{0.2cm}\\
+Se tiene $zx =byx = btz$, y como $A$ es dominio $x = bt$ y $t \mid x$. Análogamente, $t \mid y$. Por otra parte, si $u$ es un divisor común de $x$ e $y$, entonces $x = cu, y = du$, con $c,d \in A$. Observamos que  $$xy/u = (x/u)y = cy, \hspace{0.2cm} xy/u = (y/u)x = dx,$$ luego $xy/u$ es múltiplo común de $x$ e $y$, con lo que $z$ divide a $xy/u$, y en consecuencia, $u$ divide a $xy/z = t$. Esto prueba que $t$ es múltiplo de cualquier divisor común $u$ de $x$ e $y$.
 
+$\hfill \square$
+\begin{proposition} \label{eq:mcmd} Sea $A$ un dominio de integridad, entonces son equivalentes:
+\begin{enumerate}
+\item Todo par de elementos no nulos tienen $mcm$.
+\item Todo par de elementos no nulos tienen $mcd$.
+\end{enumerate}
+Y se cumple que, si $x,y \in A^{\ast}$, entonces $$mcm(x,y) \cdot mcd(x,y) = xy.$$
+\end{proposition}
+\emph{Demostración: } Que el primero implica el segundo es claro por el lema anterior. Veamos el recíproco. Sean $x,y \in A$, $t = mcd(x,y)$. Entonces $$z = xy/t = (x/t)y = x(y/t)$$ es múltiplo de $x$ y de $y$. Consideremos otro múltiplo común $u$. Entonces $$tu = mcd(xu,yu) \hspace{0.2cm} (\ast).$$ En efecto, sea $d = mcd(xu,yu)$. Evidentemente $tu \mid d$ y así $d = tuv$. Entonces $tuv$ divide a $xu$ y a $yu$, de donde $tv$ divide a $x$ e $y$, luego $tv$ divide a $t$ y $v$ es unidad. Así, tenemos $(\ast)$.\vspace{0.2cm}\\
+Claramente $xy \mid xu$ y $xy \mid tu$, esto es, $xy / t$ divide a $u$. Así $z = xy/t = mcm(x,y)$, y multiplicando esta igualdad por $t$ queda $zt = xy$.
 
+$\hfill \square$
 
+\begin{corolario} Sea $A$ un dominio de ideales principales. Entonces el mcd y el mcm de dos elementos no nulos cualesquiera de $A$ siempre existe, y se tiene que: \begin{enumerate}
+\item $(x) + (y) = (mcd).$
+\item $(x) \cap (y) = (mcm).$
+\item $xy = mcd \cdot mcm.$
+\end{enumerate}
+\end{corolario}
+\emph{Demostración: }Por la hipótesis sobre $A$, $(x) \cap (y)$ es principal, luego por ~\ref{eq:obs} (3) existe el mcm y se cumple $2.$. Ahora, por~\ref{eq:lemdiv} existe el mcd y se cumple $3.$ Finalmente, de nuevo por ser $A$ un $DIP$, $(x) + (y)$ es principal, y de~\ref{eq:obs} (2) se sigue $1.$
 
+$\hfill \square$
 
+Anteriormente vimos que todo elemento primo es irreducible, ahora veremos que dadas unas condiciones también se cumple el recíproco.
+\begin{proposition}\label{pregauss0} Supongamos que en un dominio de integridad $A$ se cumple cualquiera de las condiciones de~\ref{eq:mcmd}. Entonces todo elemento irreducible de $A$ es primo.
+\end{proposition}
+\emph{Demostración: } Sean $a \in A$ irreducible e $I = (a)$. Para comprobar que $I$ es primo consideremos $x,y \in A$ con $xy \in I$. Entonces $xy = ab$ con $b \in A$. Por la hipótesis existen $$\alpha = mcm (y,b)$$ $$\beta = mcd(y,b)$$ y se verifica $\alpha \beta = yb.$ Observemos ahora que $xy$ es múltiplo de $b$ y de $y$, luego $\alpha \mid xy$. En consecuencia, podemos escribir $$a = \frac{xy}{\alpha} \cdot \frac{\alpha}{b}; \hspace{0.2cm} \frac{xy}{\alpha}, \frac{\alpha}{b} \in A.$$ Por ser $a$ irreducible existe una unidad $u \in A$ tal que se verifica una de las dos condiciones siguientes: \begin{enumerate}
+\item $xy/\alpha = ua$. Entonces $x = u(\alpha/y)a$, con lo que $x \in (a) = I$. (Notar que $y \mid \alpha$, luego $\alpha /y \in A$.)
+\item $a/b = ua$. Entonces $y = \alpha \beta /b = u \beta a$ y así $y \in (a) = I$.
+\end{enumerate}
 
+$\hfill \square$
 
+\begin{proposition}[\textbf{\textit{Identidad de Bézout}}] Sean $x, y \in A^{\ast}$, y supongamos que generan un ideal principal. Entonces existe $z = mcd(x,y)$ y $$z = ax + by$$ con $a,b \in A$.
+\end{proposition}
+\emph{Demostración: }Sea $z \in A$ un generador de $(x) + (y)$. Entonces: \begin{enumerate}
+\item $x,y \in (z)$, luego $z$ es un divisor común de $x$ e $y$.
+\item $z = ax + by$ para ciertos $a,b \in A$.
+\end{enumerate}
+Por último, además, si $t \mid x$ y $t \mid y$, es claro que $t \mid z$. Por lo que tendremos que $z = mcd(x,y).$
 
+$\hfill \square$
 
+\begin{definition} Dos elementos $x,y \in A^{\ast}$ se denominan \textbf{primos entre sí} cuando no comparten más divisores comunes que las unidades, es decir, cuando $mcd(x,y) = 1$.
+\end{definition}
 
+Por ejemplo, si tenemos que $1 = ax+by$, con $a,b \in A$, entonces $x$ e $y$ son primos entre sí, pues la condición impuesta significa $1 \in (x)+(y)$ y por~\ref{eq:obs} (2) se tiene $1 = mcd(x,y)$.
 
+Con todo esto, hemos visto las nociones básicas de divisibilidad y también se ha podido comprobar que en los dominios de ideales principales se cumple: 
+\begin{enumerate}
+\item (P) Todo elemento irreducible es primo.
+\item (MC) Siempre existen mcd y mcm.
+\item (B) La identidad de Bézout.
+\end{enumerate}
+
+A partir de aquí y con esto, vamos a poder definir una nueva estructura algebraica, que presentaremos más adelante, aunque necesitaremos añadir otra propiedad a estas 3 ya conocidas.
+
+\subsection{Dominio de factorización única}
+
+\begin{proposition} Sea $A$ un dominio de ideales principales. Para cada elemento $x \in A^{\ast}$ que no es unidad se verifica: \begin{enumerate}
+\item Existen elementos irreducibles $a_{1}, \ldots, a_{r}$ dos a dos primos entre sí, enteros $\alpha_{1}, \ldots, \alpha_{r} > 0$ y $u \in \mathcal{U}(A)$ tales que $$x = ua_{1}^{\alpha_{1}}\ldots a_{r}^{\alpha_{r}}.$$ Estos $a_{i}$ se llaman \textbf{factores irreducibles} de $x$.
+\item Los elementos $a_{1}, \ldots, a_{r}$ son únicos, salvo producto por unidades de $A$, así como los enteros $\alpha_{1}, \ldots,\alpha_{r}$. 
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Veamos primero (2). Sea $$x = a_{1}^{\alpha_{1}} \ldots  a_{r}^{\alpha_{r}} = b_{1}^{\beta_{1}} \ldots  a_{s}^{\beta_{s}}.$$ Para cada $i$ tenemos $a_{i} \mid b_{1}^{\beta_{1}} \ldots b_{s}^{\beta_{s}}.$ Como $a_{i}$ es irreducible, de~~ tenemos que $$a_{i} \mid b_{\sigma (i)}$$ para algún $\sigma (i)$. Análogamente $$b_{\sigma(i)}\mid a_{j}$$ para algún $j$. Por tanto, $a_{i} \mid a_{j}$, luego $a_{i}$ y $a_{j}$ no son primos entre sí, e $i = j$. Así, existe una unidad $u_{i} \in \mathcal{U}(A)$ con $$b_{\sigma(i)} = u_{i}a_{i}.$$ Se observa que $\sigma(i) \neq \sigma (j)$ si $i \neq j$, pues en otro caso $u_{i}a_{i} = u_{j}a_{j}$, o sea, $a_{j} = (u_{j}^{-1}u_{i})a_{i}$ y se tendría $a_{i} \mid a_{j}$ con $i \neq j$. Así, $\sigma \colon i \longrightarrow \sigma (i)$ es inyectiva, y $r \leq s$. Por simetría $r = s$, y $\sigma$ es una permutación de $\lbrace 1, \ldots, r \rbrace$ tal que: $$b_{\sigma(1)} = u_{1}a_{1}, \ldots, b_{\sigma(r)} = u_{r}a_{r}; \hspace{0.2cm} u_{1}, \ldots, u_{r} \in \mathcal{U}(A).$$
+En fin, $\beta_{\sigma(i)} = \alpha_{i} $ \hspace{0.1cm} $\forall i$. En efecto, $$a_{i}^{\alpha_{i}} \mid x = u a_{1}^{\beta_{\sigma(1)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ donde $u = u_{1}^{\beta_{\sigma(1)}} \ldots u_{r}^{\beta_{\sigma(r)}} \in \mathcal{U}(A).$ Si $\alpha_{i} > \beta_{\sigma(i)}$, simplificando $a_{i}^{\beta_{\sigma(i)}}$ obtendríamos $$a_{i} \mid a_{i}^{y_{i}} \mid  u a_{1}^{\beta_{\sigma(1)}} \ldots a_{i}^{\beta_{\sigma(i)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ pues $y_{i} = \alpha_{i} - \beta_{\sigma(i)} \geq 1.$ Entonces $a_{i} \mid a_{j}$ para algún $i \neq j$, que es absurdo. Tiene que ser $\alpha_{i} \leq \beta_{\sigma(i)}$, y por simetría se tiene la igualdad. 
+
+Pasemos a probar ahora $(1)$. Primeramente, afirmamos que $x$ tiene algún divisor irreducible. Ciertamente, pues de no tenerlo entonces el propio $x$ sería reducible (si no lo fuera sería un divisor irreducible de sí mismo), y tendría algún divisor $x_{1}$ con $(x) \subset (x_{1}) \subset A.$ A su vez $x_{1}$ sería reducible, y existiría $x_{2} \in A$ con $(x_{1}) \subset (x_{2}) \subset A$. Recurrentemente obtendríamos una sucesión $x = x_{0}, x_{1}, x_{2}, \ldots , x_{n}, \ldots$ tal que $$(x_{0}) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots .$$ Y esto no es posible. Para verlo, sea: $$ I = \bigcup_{i \geq 0} (x_{i}).$$ Entonces $I$ es un ideal: \begin{enumerate}
+\item Si $a,b \in I$ es $a \in (x_{i}), b \in (x_{j})$, escribimos $k = max {i,j}$ y tenemos $a,b \in (x_{k})$, luego $a + b \in (x_{k}) \subset I$.
+\item  Si $a \in I, b \in A$, entonces $a \in (x_{i})$ para algún $i$, y $ba \in (x_{i}) \subset I$. 
+\end{enumerate}
+Como $I$ tiene que ser principal, existe un $z \in A$ con $$(z) = \bigcup_{i \geq 0} (x_{i}).$$ Luego $z \in (x_{i_{0}})$ para algún $i_{0}$, con lo que $$(x_{i_{0}+1}) \subset I = (z) \subset (x_{i_{0}}),$$ y así $(x_{i_{0}+1}) = (x_{i_{0}})$, que es absurdo.
+
+Sea ahora $a_{1}$ un divisor irreducible de $x$. Entonces $$x = a_{1}x_{1}, \hspace{0.2cm} x_{1} \in A.$$ Si $x_{1}$ es unidad ya hemos acabado. Si no, $x_{1}$ tendrá algún divisor irreducible $a_{2}$ y $x_{1} = a_{2}x_{2}$, donde o bien $x_{2}$ es unidad, y así habremos acabado, o bien $x_{2}$ tiene un divisor irreducible $a_{3}$. Si después de una cantidad finita de pasos encontramos una unidad $u = u_{r} \in \mathcal{U}(A)$, será $$x = a_{1}a_{2} \ldots a_{r}u,$$ y agrupando los $a_{i}$ iguales tendremos la descomposición que buscábamos. Sólo queda ver que este proceso es finito. Si no lo fuera obtendríamos una sucesión $$(x) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots .$$ Y, como hicimos anteriormente, se tendría $(x_{i_{0}}) = (x_{i_{0}+1})$ para cierto $i_{0}$, es decir, $$a_{i_{0}+1} = x_{i_{0}}/ x_{i_{0}+1} \in \mathcal{U}(A),$$ lo que es absurdo.
+
+$\hfill \square$
+
+Esta factorización que acabamos de describir nos permite establecer un nuevo tipo de anillos que definiremos a continuación:
+
+\begin{definition}\label{eq:defdfu} Un \textbf{dominio de factorización única}, escrito $DFU$ es un dominio de integridad en el que se cumple: \begin{enumerate}
+\item Todo elemento irreducible es primo.
+\item Todo elemento no nulo que no sea unidad es producto de elementos irreducibles.
+\end{enumerate}
+\end{definition}
+
+\begin{observation} Algunas observaciones:\begin{enumerate}
+\item Que todo elemento no nulo que no sea unidad sea producto de elementos irreducibles no garantiza la unicidad de dicha factorización. Es necesaria también la primera condición, ya que la unicidad se desprende de que ésta se cumple sobre un dominio de ideales principales.
+\item En un DFU siempre existen mcd y mcm. Efectivamente, puesto que el mcd es el producto de los factores irreducibles comunes elevados al menor exponente y el mcm es el producto de todos los factores irreducibles (comunes y no comunes) elevados al mayor exponente.
+\item Las relaciones entre las distintas estructuras algebraicas estudiadas se puede resumir en: $$Cuerpos \subseteq DE \subseteq DIP \subseteq DFU 	\subseteq DI \subseteq Anillo.$$
+Por ejemplo, las matrices constituyen un anillo pero no un DI, $\mathbb{Z}[\sqrt{-3}]$ es un DI que no es DFU (puesto que $(1+\sqrt{-3})(1-\sqrt{-3}) = 4 = 2 \cdot 2$), el anillo de los polinomios con coeficientes enteros $\mathbb{Z}[X]$ es un DFU que no es DIP o $\mathbb{Z}$ es un DE que no es un cuerpo. \vspace{0.3cm}\\
+Los anillos $\mathbb{Z}$ y $\mathbb{Z}[i]$ son DE y por tanto DFU. Es precisamente en $\mathbb{Z}$ donde éste resultado se manifiesta como el \textbf{\textit{teorema fundamental de la Aritmética}}: \textit{todo número entero positivo $n$ se escribe de modo único como producto de números primos positivos $p_{1}, \ldots, p_{r}$ de la forma $n = p_{1}^{\alpha_{1}} \ldots p_{r}^{\alpha_{r}}.$}
+\end{enumerate}
+\end{observation}
+
+A continuación veremos todas las propiedades vistas hasta ahora a través de un ejemplo bastante completo:
+
+\begin{example} Nos situaremos en el subanillo $A \subset \mathbb{C}$ de los números complejos de la forma $a +b\sqrt{-5}$, $a,b \in \mathbb{Z}$. Lo denotaremos $A = \mathbb{Z}[\sqrt{-5}]$ y efectivamente $$\mathbb{Z}[\sqrt{-5}] = \lbrace a + b\sqrt{-5} : a,b \in \mathbb{Z} \rbrace.$$ A lo largo del ejemplo se usará indistintamente tanto $A$ como $\mathbb{Z}[\sqrt{-5}]$. 
+
+ Estudiaremos primero las unidades. Sea un elemento $a +b\sqrt{-5} \in \mathbb{Z}[\sqrt{-5}]$, entonces $a +b\sqrt{-5} \in \mathcal{U}(\mathbb{Z}[\sqrt{-5}])$ si y sólo si existen $c,d \in \mathbb{Z}$ tales que $$1 = (c + d\sqrt{-5})(a +b\sqrt{-5}) = (ca-5db) + (cb + da)\sqrt{-5}.$$ Y esto quiere decir que $ca-5db = 1$ y $cb + da = 0$. De lo que se obtiene las siguientes soluciones $$c = \dfrac{a}{a^{2}+5b^{2}}, \hspace{0.2cm} d = \dfrac{-b}{a^{2}+5b^{2}}.$$ Esto quiere decir que $(a^{2}+5b^{2}) \mid a$ y que $(a^{2} + 5b^{2}) \mid b$; por lo que $|b| \geq a^{2}+5b^{2}$ y de esto $|b| = 0$ ya que de lo contrario tendríamos que $a^{2} + 5b^{2} \geq 5b^{2} > b^{2} \geq |b|$, que es una contradicción. Así $|b| = 0$ y $b = 0$, y como nuevamente $|a| \geq a^{2} + 5b^{2} = a^{2}$ entonces $|a| \leq 1$. Pero $a$ no puede ser $0$ porque sino también lo sería $a + b\sqrt{-5}$, luego $a = \pm 1$. Esto deja como posibles soluciones $(a,b) = (\pm 1, 0).$ Así, $\mathcal{U} (\mathbb{Z}[\sqrt{-5}]) = \lbrace 1, -1 \rbrace$.\vspace{0.3cm}\\
+ 
+Por lo tanto, las unidades de $\mathbb{Z}[\sqrt{-5}]$ son los elementos $a + b\sqrt{-5}$ tales que $a^{2} + 5b^{2} = 1$. Ahora, definamos una aplicación $$\begin{array}{rccl}
+\phi \colon &A&\longrightarrow &\mathbb{N} \\
+&a+b\sqrt{-5}& \longmapsto &a^{2}+ 5b^{2}.
+\end{array}
+$$ El haber definido una aplicación así nos puede sugerir que, entonces, $A$ sea un $DE$, sin embargo no va a ser el caso puesto que no va a cumplir la última de las condiciones vistas cuando definimos los $DE$ en~\ref{eq:de}. Esto tiene todo el sentido del mundo ya que, de ser un $DE$, entonces todo elemento irreducible sería primo y veremos más adelante que esto no es así.
+
+Aunque esta última condición no se cumpla sí lo hace la otra de los $DFU$, es decir, todo elemento no nulo que no sea unidad es producto de elementos irreducibles. Para ver esto es suficiente con ver que $A$ no contiene sucesiones infinitas de la forma $$(x_{0}) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots.$$ Y efectivamente así es, de no serlo tendríamos $x_{i} = a_{i+1}x_{i+1}$, con $a_{i+1} \notin  \mathcal{U}(A)$ y por tanto $\phi (a_{i+}) > 1$, luego $\phi (x_{i}) > \phi (x_{i+1}).$ Y como está claro que no puede existir la sucesión de números naturales $$\phi(x_{0}) > \phi (x_{1}) > \ldots > \phi(x_{n}) > \ldots, $$ entonces tampoco lo hará $$(x_{0}) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots.$$ 
+
+Además, en $\mathbb{Z}[\sqrt{-5}]$ no hay unicidad de factorización: $$3 \cdot 2 = (1 + \sqrt{-5}) (1- \sqrt{-5}),$$ y los elementos $2,3, 1+ \sqrt{-5}, 1 - \sqrt{-5}$ son irreducibles. De lo contrario, si alguno de estos elementos, que denotaremos por $x$, fuera reducible tendríamos $x = x_{1}x_{2},  x_{i} \notin \mathcal{U}(A)$, luego $\phi(x) = \phi(x_{1}) \phi(x_{2})$ con $\phi(x_{i}) >1$, donde $\phi(x) = 4,9,6,6$ respectivamente. Sea $\phi(x_{i}) = a_{i}^{2} + 5b_{i}^{2}$. En $\mathbb{Z}$ sí hay unicidad de factorización, luego en cualquiera de los casos $a_{i}^{2}+5b_{i}^{2} = 2$ ó $3$ para $i = 1,2$, lo cual es imposible.
+
+Por todo esto, $A$ no es un $DFU$, sin embargo hemos visto que sí cumple con la condición de que todo elemento no nulo que no sea unidad es producto de elementos irreducibles, así que entonces debe fallar la otra condición: hay elementos irreducibles que no son primos. Esto es así, por ejemplo $1+\sqrt{-5}$.
+
+Por lo que acabamos de ver es claro que habrá al menos dos elementos $x,y \in A$ que no tienen $mcd$, y tiene sentido porque no es $DFU$. Busquemos un par que lo cumpla: para eso sean $$x = 2 \cdot 3 = (1 + \sqrt{-5})\cdot(1- \sqrt{-5})$$ $$y = 2 \cdot (1 + \sqrt{-5}).$$ Supongamos que existe $z = mcd(xy)$. Al ser $2$ y $1 + \sqrt{-5}$ divisores tanto de $x$ como de $y$ existirán entonces $u,v \in A$ tales que $z = 2u = (1 + \sqrt{-5})v.$ Como $2$ y $1+ \sqrt{-5}$ son primos entre sí, $u$ no puede ser unidad, así que $$\phi(u) > 1.$$ También tenemos que $z \mid x$, $z \mid y$, luego $x = zx_{1}$, $y = zy_{1}$ con $x_{1}, y_{1} \in A$. Conocemos los valores de $\phi(x)$ y $\phi(y)$ de antes, luego $$4 \cdot 9 = \phi(x) = \phi(z) \phi (x_{1}) = 4\phi(u) \phi(x_{1}).$$ $$4 \cdot 6 = \phi(y) = \phi(z) \phi(y_{1}) = 4 \phi(u) \phi(y_{1}).$$ De aquí sacamos que $9 = \phi(u) \phi(x_{1})$, $ 6 = \phi(u) \phi(y_{1})$ y como $\phi(u) >1$, necesariamente $$3 = \phi(u) = a^{2} + 5b^{2}, \hspace{0.2cm} u = a+b\sqrt{-5}.$$ Esto es absurdo.
+
+Veamos ahora que la identidad de Bézout no se cumple en $\mathbb{Z}[\sqrt{-5}]$. Por ejemplo, si tomamos $x = 2$, $y = 1-\sqrt{-5}$ entonces $x$ e $y$ son primos entre sí luego $1 = mcd(x,y)$. Sin embargo, vamos a comprobar que no existen $u,v \in A$ tales que $1 = ux + vy$. Supongamos lo contrario y lleguemos a una contradicción: sean $u = a+b\sqrt{-5}$, $v = c + d\sqrt{-5}$ entonces $$1 = 2a + c+ 5d,$$ $$0 = 2b - c + d$$ y de aquí sumándolas $$1 = 2a + 2b + 6d = 2(a + b + 3d).$$ Esto último es imposible ya que $a,b,d \in \mathbb{Z}$.
+
+Por último veamos que no todo par de elementos de $A$ tienen mínimo común múltiplo. Por ejemplo, si escogemos nuevamente el mismo par de antes $x = 2$, $y = 1- \sqrt{-5}$ ya sabemos entonces que su $mcd$ es $1$, luego por~\ref{eq:mcmd} su $mcm$ ha de ser $xy$. Pero claro, $$6 = 3 \cdot 2 = 3x, $$ $$6 = (1 + \sqrt{-5}) \cdot (1 - \sqrt{-5}) = (1 + \sqrt{-5})y,$$ luego el $mcm$ dividirá a $6$. Luego existirá un $u \in A$ tal que $6 = uxy = (a+ b\sqrt{-5}) \cdot 2 \cdot (1- \sqrt{-5})$. Operando, obtenemos $$6 = 2a + 10b,$$ $$0 = -2a + 2b.$$ De esto deducimos que $6 = 12b$, que es imposible teniendo en cuenta que $b \in \mathbb{Z}$, luego no tienen solución entera.
+
+\end{example}
+$\hfill \blacksquare$
+
+\subsection{Anillos de restos}
+
+A lo largo de la presente sección se llevará a cabo el estudio de los cocientes del anillo de los números enteros $\mathbb{Z}$. Pero antes de eso veamos algunas propiedades del anillo en el que nos encontramos y que ya conocemos gracias a todo lo visto en las secciones anteriores: 
+\begin{enumerate}
+\item Un número entero $p$ es \textit{irreducible} si y solo si es primo, si y sólo si genera un ideal maximal y si y sólo si $\mathbb{Z}/(p)$ es un cuerpo.
+\item El anillo $\mathbb{Z}$ es un \textit{dominio de factorización única} (en particular es un $DE$). Todo entero $n >1$ se escribe de manera única como sigue: $$n = p_{1}^{\alpha_{1}} \ldots p_{s}^{\alpha_{s}},$$ con $p_{i}$ números primos conocidos como factores primos de $n$.
+\item El conjunto de los números primos es infinito. Para verlo, dado un primo $p$, si definimos el número $n = p!+1$ y consideramos un factor primo cualquiera $p'$ de $n$, entonces $p'$ es estrictamente mayor que $p$ (y así sucesivamente). Si no lo fuera, entonces necesariamente $p' \mid p! = n-1$ y así, como $p'$ divide tanto a $n$ (por ser un factor suyo) y a $n-1$, $p' \mid (n-(n-1)) = 1$, y esto es absurdo.
+\end{enumerate}
+
+Con esto ya podemos pasar a describir los cocientes de $\mathbb{Z}$:
+
+\begin{definition} Sea $n$ un número entero. Llamaremos \textbf{anillo de restos módulo $n$} al cociente $\mathbb{Z}/(n)$. Como $(n) = (-n)$ al ser $-1$ unidad, podremos suponer que $n \geq 0$. Si $n = 0$ el cociente es el propio $\mathbb{Z}$ y si $n=1$ entonces $(n) = \mathbb{Z}$  y no tendría sentido considerar el cociente. Luego $n >1$.
+
+Sea $k \in \mathbb{Z}$. Denotaremos $[k]_{n}$, ó simplemente $[k]$ si no es necesario especificar, la clase de $k$ $$k + (n) = \lbrace k + qn: q \in \mathbb{Z}\rbrace.$$ 
+Para obtener otro representante de la clase de $k$, $[k]$, dividiremos por $n$ y tendremos $k = qn + r$. El resto ha de ser positivo o nulo y esto plantea un problema si $k <0$ (porque recordemos que $k$ es un entero), bastará dividir por exceso en vez de por defecto y ya está. Con esto $k -r = qn \in (n)$, por lo tanto $[k] = [r]$. 
+
+Por ejemplo, en $\mathbb{Z}/(3)$ si $k = -8$ tenemos que $-8 = -3 \cdot 3 + 1$, luego $-8$ pertenece a la clase de $[1]$ y así la clase de $[-8] = [1] = \lbrace \ldots, -11, -8, -5, -2, 1, 4, 7, 10, \ldots \rbrace$ (notar que en $\mathbb{Z}/(3)$ la clase de $8$ no es la de $-8$). 
+
+Consideremos ahora dos restos $0 \leq r < s < n$. Si $[r] = [s]$, entonces $s-r \in (n)$, y así $n \mid (s-r)$, y en particular $n  \leq s-r$. Esto es absurdo porque $s-r \leq s < n$. Por lo tanto, en $\mathbb{Z}/(n)$ cada clase de equivalencia está determinada por un \textbf{único} representante $r$ tal que $0 \leq r <n$, es decir, $$\mathbb{Z}/(n) = \lbrace [0], [1], \ldots, [n-1] \rbrace.$$
+En particular, $\mathbb{Z}/(n)$ tiene $n$ elementos. $[0]$ y $[1]$ son el cero y el uno de $\mathbb{Z}/(n)$. Es evidente que si sumamos $n$ veces la clase del uno tenemos: $[1] + \ldots +[1] = [n] = [0]$, y que $-[1] = [-1] = [n-1]$. Con esto recordemos que las igualdades entre clases las podemos escribir como $$k \equiv l \hspace{0.1cm}\text{mod}\hspace{0.1cm} n$$ y viene a decir que $[k] = [l]$, es decir, que $k-l = qn$ con un $q \in \mathbb{Z}$. 
+
+Si nos situamos, por ejemplo, en $\mathbb{Z}/(5)$, tenemos que $[3] + [1] = [4]$, que $[2] + [0] = [2]$ y que $[4]+ [3] = [2]$, además $[2] \cdot [2] = [4]$, $[4] \cdot [1] = [4]$ y $[2] \cdot [4] = [3]$; esto por poner sólo unos ejemplos. En $\mathbb{Z}/(6)$, sin embargo, $[2] \cdot [4] = [2]$ y $[4] + [3] = [1]$.
+\end{definition}
+
+Pasemos a ver ahora cómo son los ideales de un anillo de restos:
+
+\begin{definition} Sea $n > 1$. Ya vimos en~\ref{eq:ancoci} que los ideales de $\mathbb{Z}/(n)$ están en biyección con los ideales $I \subset \mathbb{Z}$ que contienen $(n)$. Sea entonces un ideal $I = (m) \subset \mathbb{Z}$ tal que $(m) \supset (n)$. Entonces $m \mid n$, y así los ideales de $\mathbb{Z}/(n)$ están en biyección con aquellos ideales generados por los divisores positivos de $n$ (positivos porque $I = (-m) = (m)$).
+\end{definition}
+
+Y veamos también los homomorfismos entre anillos de restos:
+\begin{definition} Vamos a centrarnos en 5 puntos:\begin{enumerate}
+\item No existe ningún homomorfismo de anillos unitarios de la forma $f \colon \mathbb{Z}/(n) \longrightarrow \mathbb{Z}$ con $n > 0$. De no ser así tendríamos que $$0 = f([0]) = f([1] \overbrace{+ \ldots +}^{n} [1]) = f([1]) \overbrace{+ \ldots +}^{n} f([1])= 1 \overbrace{+ \ldots +}^{n} 1 = n,$$ que es absurdo.
+\item La identidad es el único homomorfismo de anillos unitarios $f \colon \mathbb{Z} \longrightarrow \mathbb{Z}.$ En efecto, sea $f \colon \mathbb{Z} \longrightarrow \mathbb{Z}$ uno de ellos, como $f(1) = 1$ entonces, dado un entero $k$, $$f(k) = f(1 \overbrace{+ \ldots +}^{k} 1) = f(1) \overbrace{+ \ldots +}^{k}  f(1) = 1 \overbrace{+ \ldots +}^{k}  1 = k,$$ $$f(-k) = -f(k) = -k.$$ Y este homomorfismo es la identidad: $f = id_{\mathbb{Z}}$.
+\item Nos situamos ahora en los homomorfismos de $\mathbb{Z}$ en $\mathbb{Z}/(n)$ con $n>1$. Sea $k$ un entero positivo. Entonces $$f(k) = f(k) = f(1 \overbrace{+ \ldots +}^{k} 1) = f(1) \overbrace{+ \ldots +}^{k}  f(1) = [1]  \overbrace{+ \ldots +}^{k}  [1] = [k],$$ $$f(-k) = -f(k) = -[k] = [-k].$$ Este es el único homomorfismo de anillos unitarios $f \colon \mathbb{Z} \longrightarrow \mathbb{Z}/(n).$
+\item Veamos ahora qué ocurre en los homomorfismos del tipo $f \colon \mathbb{Z}/(m) \longrightarrow \mathbb{Z}/(n)$. Sea $f$ uno de ellos, entonces: \begin{center}$[0]_{n} = f([0]_{m}) = f([1]_{m} \overbrace{+ \ldots +}^{m}  [1]_{m}) =   f([1]_{m})  \overbrace{+ \ldots +}^{m}  f([1]_{m}) =  [1]_{n}  \overbrace{+ \ldots +}^{m}  [1]_{n} = [m]_{n}.$\end{center} Y esto quiere decir que $m \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$, luego $n \mid m$. Por lo tanto, $n$ ha de dividir a $m$.
+\item Si $n>1$ y $n\mid m$ entonces existirá un único homomorfismo de anillos unitarios $f \colon \mathbb{Z}/(m) \longrightarrow \mathbb{Z}/(n)$, y además será un epimorfismo. Dicho homomorfismo lo podremos definir como: $$\begin{array}{rccl}
+f \colon &\mathbb{Z}/(m)&\longrightarrow &\mathbb{Z}/(n) \\
+&[k]_{m}& \longmapsto &[k]_{n}
+\end{array}
+$$
+El cuál ya sabemos que existe por el punto anterior, y está bien definido porque si $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} m$ entonces $m \mid (k-l)$, y como $n \mid m$ tendremos entonces que $n \mid (k-l)$, es decir, que $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$.
+\end{enumerate}
+\end{definition}
+
+Podemos dar una versión alternativa del teorema chino de los restos:
+
+\begin{theorem}[\textbf{\textit{Teorema Chino del resto}}]
+Si $a,b$ son enteros primos entre sí, entonces se tendrá un isomorfismo de anillos unitarios $$\mathbb{Z}(ab) \simeq \mathbb{Z}/(a) \times \mathbb{Z}/(b).$$
+\end{theorem}
+\emph{Demostración: } Definimos $$\begin{array}{rccl}
+f \colon &\mathbb{Z}/(ab)&\longrightarrow &\mathbb{Z}/(a) \times \mathbb{Z}/(b)\\
+&[k]_{ab}& \longmapsto &([k]_{a}, [k]_{b}).
+\end{array}
+$$ Está bien definido, pues si $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} ab$ entonces $ab \mid (k-l)$ y así tanto $a$ como $b$ dividen a $k-l$ y tenemos que $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} a$ y $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} b$. 
+
+Que es homomorfismo es evidente. Es inyectiva, sea $k$ un entero tal que $f([k]_{ab}) = 0$, entonces $([k]_{a}, [k]_{b}) = (0,0)$ y así $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} a$$ $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} b.$$ Esto quiere decir que $a \mid k$ y $b \mid k$, luego $mcm(a,b) \mid k$; pero como $a$ y $b$ son primos entre sí tenemos que $mcm(a,b) = ab$. Por lo tanto, $ab \mid k$, es decir, $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} ab.$$ Luego $ker f = \lbrace 0 \rbrace$ y $f$ es  inyectiva.
+
+Como es una aplicación inyectiva entre dos conjuntos finitos de igual cardinal $ab$ entonces también será biyectiva, y así isomorfismo.
+
+$\hfill \square$
+
+Veamos las unidades de los anillos de restos:
+
+\begin{proposition} Sean $n >1$ y $k \in \mathbb{Z}$. Entonces son equivalentes: \begin{enumerate}
+\item $[k] \in \mathcal{U}(\mathbb{Z}/(n)).$
+\item $mcd (k,n) = 1.$
+\item $[k] \neq 0$ y no es divisor de cero en $\mathbb{Z}/(n)$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Si $[k]$ es unidad, existirá un $l \in \mathbb{Z}$ tal que $$[1] = [l] \cdot [k] = [lk],$$ y así $1-lk \in (n)$, es decir, $1-lk = mn$ para algún $m \in \mathbb{Z}$. Con esto, $$1 = lk  + mn,$$ y por tanto, $mcd(k,n) = 1$. Tenemos así la primera implicación. Haciendo lo mismo al revés tenemos la implicación inversa y en cualquier anillo $1.\Rightarrow 3.$
+
+Veamos ahora que $3. \Rightarrow 2.$, es decir, dado $mcd(k,n) = d>1$ entonces o bien $[k] = [0]$ o bien es un divisor de cero. Como $$n \mid \left( \dfrac{k}{d}\right) n = k\left( \dfrac{n}{d}\right),$$ o bien $[k] = [0]$, ó $[k]$ es divisor de cero, ó $\left[\dfrac{n}{d} \right] = [0]$, pero en este último caso se tendría que $n \mid \dfrac{n}{d}$ luego $d = 1$, lo cuál contradice la hipótesis.
+
+$\hfill \square$
+
+Con este último resultado del capítulo llegamos a un concepto que ya vimos antes:
+ 
+\begin{definition} Dado un $m$ entero positivo. Denotaremos por $\phi (m)$ el número de enteros $k$ que cumplen: \begin{enumerate}
+\item $0 < k \leq m$.
+\item $mcd(k,m) = 1$.
+\end{enumerate}
+Esta aplicación $\phi$ ya la conocemos, es la llamada \textbf{función de Euler}.
+\end{definition}
+
+Sobre los anillos la \textit{función de Euler} puede tomar una interpretación diferente: si $n>1$, entonces $\phi(n)$ es el número de unidades de $\mathbb{Z}/(n)$. En efecto, por la proposición anterior $$\mathcal{U}(\mathbb{Z}/(n)) = \lbrace [k]: 0 < k < n, \hspace{0.1cm} mcd(k,n) = 1 \rbrace.$$
+
+Ya sabemos que, dado un primo $p>1$, $\phi(p) = p-1$. Esto está relacionado con el hecho de que si $p$ es primo entonces el cociente $\mathbb{Z}/(p)$ es un cuerpo. Entonces: $$\mathcal{U}(\mathbb{Z}/(p)) = \lbrace [1], \ldots, [p-1] \rbrace.$$
+
+\section{Anillos de polinomios}
 
 
 
