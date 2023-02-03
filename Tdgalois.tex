@@ -70,10 +70,68 @@ y notar que no todas las operaciones binarias van a ser de interés para nuestro
 \end{enumerate}
 
 A esta operación se le suele llamar \textbf{producto}.
+
+Si $G$ es un grupo, el elemento neutro es único, ya que si tenemos $e,e'\in G$ dos elementos neutros de $G$ entonces $$e=e\cdot e' = e'.$$
+También el elemento inverso de un $x\in G$ cualquiera es único, ya que si $y,z \in G$ son inversos de $x$ entonces $$y = y \cdot e = y \cdot (x \cdot z) = (y \cdot x) \cdot z = e \cdot z = z.$$
+Al inverso de un $x \in G$ lo denotaremos por $x^{-1}$ y al producto lo podremos denotar por $xy$ en vez de $x \cdot y$, con $x,y \in G$.
 \end{definition}
+
+\begin{definition}Diremos que un grupo $G$ es \textbf{finito} si $G$ es un conjunto finito. En ese caso, llamaremos \textbf{orden} de $G$ a su número de elementos, y lo denotaremos por $|G|$.
+\end{definition}
+
+\begin{example} Algunos ejemplos de grupos:
+\begin{enumerate}
+\item $\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$ son grupos con la suma usual. También lo son $\mathbb{Q}^*, \mathbb{R}^*, \mathbb{C}^*$ con la multiplicación usual.
+\item Dado un conjunto no vacío $\Omega$, consideramos $S_{\Omega}$ el conjunto de las aplicaciones biyectivas $\alpha \colon \Omega \longrightarrow \Omega$. Si $\alpha, \beta \in S_{\Omega}$ podemos componerlas y $\alpha \circ \beta \in S_{\Omega}$, así $S_{\Omega}$ es un grupo con la operación $$\alpha \beta = \alpha \circ \beta.$$ A este grupo lo denominaremos \textbf{grupo simétrico} sobre $\Omega$. Si $\Omega$ tiene $n$ elementos, entonces hay $n!$ aplicaciones biyectivas $\Omega \longrightarrow \Omega$, por lo que $|S_{\Omega}| = n!$. Cuando $\Omega = \lbrace 1, 2, \ldots, n \rbrace$ entonces escribiremos $S_{n}$.
+\item Dado $K = \mathbb{Q}, \mathbb{R}, \mathbb{C}$ o, en general, cualquier cuerpo entonces el conjunto $GL_{n}(K)$ de matrices $n\times n$ con coeficientes en $K$ y cuyo determinante es no nulo es un grupo conocido como \textbf{grupo general lineal}.
+\item Consideremos el siguiente subconjunto de los números complejos $$C = \lbrace a+bi \in \mathbb{C}: a^2+b^2 = 1 \rbrace,$$ formado por los elementos de la circunferencia de radio $1$. Entonces $C$ es un grupo con la multiplicación de números complejos. Es lo que conocemos como \textbf{grupo circular}. Si tenemos un $n$ entero positivo, el subconjunto de $C$ formado por las $n$ raíces $n-$ésimas de la unidad $$C_{n}= \lbrace \xi^k : k =0, \ldots, n-1 \rbrace,$$ con $\xi = \cos\left( \dfrac{2\pi}{n} \right) + i\sin\left(\dfrac{2\pi}{n}\right)$ es también un grupo con la misma multiplicación, de un tipo que veremos más tarde conocido como \textbf{grupo cíclico}.
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+
+En general, dado un grupo $G$, no será cierto que $xy = yx$ para cualesquiera $x,y \in G$. Por ejemplo, en $S_{3}$, si $\alpha, \beta \in S_{3}$ con $\alpha(1) = 2, \alpha (2)=3, \alpha (3) = 1$, $\beta (1)=2, \beta(2)=1, \beta (3) = 3$, entonces $\alpha \beta \neq \beta \alpha$. En aquellos grupos $G$ en los que sí se cumpla la igualdad, es decir $xy = yx$ $\forall x,y \in G$, los denominaremos \textbf{abelianos}.
+
+Cuando trabajemos con grupos abelianos, en ocasión emplearemos la notación aditiva y escribiremos $x+y$ en lugar de $xy$, $-x$ en lugar de $x^{-1}$ y el elemento neutro será $0$.
+
+\begin{proposition}Dado un grupo $G$ tenemos:
+\begin{enumerate}
+\item Dados $x,y \in G$, si $xy = e$ entonces $x = y^{-1}$, $y = x^{-1}$. En particular, $(xy)^{-1} = y^{-1}x^{-1}$.
+\item La aplicación $$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x& \longmapsto &x^{-1}
+\end{array}
+$$ e una biyección.
+\item Dado un $g \in G$, las aplicaciones $$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x& \longmapsto &xg
+\end{array}
+$$
+$$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x& \longmapsto &gx
+\end{array}
+$$ son biyectivas.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Veamos: \begin{enumerate}
+\item Si $xy = 1$ entonces $x^{-1} = x^{-1}e= x^{-1}(xy) = y$, y análogo con $y^{-1}$. Ahora, como $(xy) (y^{-1}x^{-1})=xex^{-1} = e$, de la primera parte ya se tiene.
+\item Veamos que la aplicación es biyectiva. Si $x^{-1} = y^{-1}$, con $x,y \in G$, entonces $x = (x^{-1})^{-1} = (y^{-1})^{-1}=y$ y así es inyectiva. Ahora, dado un $z \in G$ tenemos que $z$ es el inverso de $z^{-1}$ y también es suprayectiva.
+\item Veamos que la aplicación $$\begin{array}{rccl}
+&G&\longrightarrow &G\\
+&x& \longmapsto &xg
+\end{array}
+$$ es biyectiva. Si $xg = yg$, multiplicando por $g^{-1}$ a la derecha tenemos que $x = y$ y así es inyectiva. Si $z \in G$ entonces existirá un elemento $zg^{-1} \in G$ por ser $G$ grupo y la aplicación manda $zg^{-1}$ a $z$ y es suprayectiva también.
+\end{enumerate}
+
+$\hfill \square$
+
 \subsection{Homomorfismos}
+
 \subsection{Acciones de grupos}
+
 \section{Anillos y cuerpos}
+
 \begin{proposition} Dado un cuerpo $K$ y $p \in K[x]$. Entonces $p$ es irreducible si y sólo si $K[x]/(p)$ es un cuerpo.
 \end{proposition}
 \emph{Demostración: }Veamos la primera implicación. Sea $f + (p) \neq (p)$. Veamos que $f + (p)$ tiene inverso. Como $p$ es irreducible, el máximo común divisor de $f$ y $p$ es $1$. Por Bézout, existen $a,b \in K[x]$ tales que $1 = af + bp$. Tendríamos así que $$1 + (p) = (a+ (p))(f+(p)) + (b+(p))(p+(p)) = (a+ (p))(f+(p))$$ ya que $p+(p)=0$. Así, $a+(p)$ es el inverso de $f+(p)$. Luego, $K[x]/(p)$ es un cuerpo.
