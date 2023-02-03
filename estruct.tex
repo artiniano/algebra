@@ -2816,7 +2816,7 @@ Esto nos presenta la divisibilidad como una relación de orden parcial que será
 $x$ está relacionado con $y$ si $x \mid y$ e $y \mid x$, o sea si $(x) = (y).$
 \end{center} 
 Estas condiciones son equivalentes a: \begin{enumerate}
-\item Existe una unidad $a \in \mathcal{U}(A)$ tal que $y = ax$. Esto es así ya que si $(y) = (x)$ tendremos que $y \in (x), x \in (y)$, luego $y = ax$ y $x = by$.Luego $y = aby$ y como $A$ es un dominio de integridad podremos simplificar y obtener $1 = ab$, y así $a$ es unidad.
+\item Existe una unidad $a \in \mathcal{U}(A)$ tal que $y = ax$. Esto es así ya que si $(y) = (x)$ tendremos que $y \in (x), x \in (y)$, luego $y = ax$ y $x = by$. Luego $y = aby$ y como $A$ es un dominio de integridad podremos simplificar y obtener $1 = ab$, y así $a$ es unidad.
 \item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades diremos que $y$ es \textbf{\textit{irreducible}}.
 \item Si $y \in A^{\ast}$ genera un ideal primo diremos que $y$ es primo. \textbf{\textit{Todo elemento primo es irreducible}}. Veámoslo. \vspace{0.2cm}\\
 \emph{Demostración: } Sea $y = ax$. Si $(y)$ es primo, $a \in (y)$ ó $x \in (y)$. Si $a \in (y)$ tendremos que $a = zy$, luego $y = zyx$ y $1 = zx$. Así, $x \in \mathcal{U}(A)$ y $a = yx^{-1} \in y \cdot \mathcal{U}(A)$. Análogo si $x \in (y)$.
@@ -3121,15 +3121,33 @@ Ya sabemos que, dado un primo $p>1$, $\phi(p) = p-1$. Esto está relacionado con
 
 \section{Anillos de polinomios}
 
+\begin{definition}Sea $A$ un anillo conmutativo y unitario. Diremos que $X$ es una \textbf{indeterminada} ó \textbf{variable} si sus potencias son algebraicamente independientes, es decir, $$\sum_{i=0}^{n} a_{i}X^{i}=0, \hspace{0.2cm} a_{i}\in A \Longleftrightarrow a_0 = \ldots = a_n = 0 \forall n.$$
 
+Un \textbf{polinomio en $X$} con coeficientes en $A$ es una suma finita $$f(X) = a_0+a_1X+\ldots + a_nXn, \hspace{0.1cm} a_0, a_1, \ldots, a_n \in A$$ a la que se puede agregar un número finito y arbitrario de ceros.  
+\end{definition}
 
+\begin{definition}Dados polinomios $f(X) = \sum_{i=0}^n a_iX^i$ y $g(X) = \sum_{j=0}^m b_jX^j$ y $s = max\lbrace n,m \rbrace$ definimos su \textbf{suma} por $$f(X) +g(X) = \sum_{k\geq 0}^s(a_k+b_k)X^k = (a_0+b_0)+\ldots + (a_k+b_k)X^k + \ldots + (a_s+b_s)X^s,$$
+y su \textbf{producto} como $$f(X)\cdot g(X) = \sum_{k=1}^{n+m}c_k X^k, \hspace{0.2cm} c_k = \sum_{i+j=k}a_ib_j,$$ teniendo en cuenta que sii algún coeficiente $a_i$ ó $b_j$ no aparece es $0$.
 
+Así, construimos un nuevo anillo $A[X]$ cuyo \textbf{cero} es $0 = 0X + \ldots + 0X^n$, y cuyo \textbf{uno} es $1 = 1+ 0X + \ldots + 0X^n$. Diremos que $A[X]$ es el \textbf{anillo de polinomios en la variable $X$ con coeficientes en $A$}.
+\end{definition}
 
+\begin{observation}Este nuevo anillo, $A[X]$, contiene a $A$ ya que los elementos de $A$ son polinomios de la forma $a = a+0X+\ldots + 0X^n$.
+\end{observation}
 
+\begin{definition}Dados dos anillos $A \leq B$, si $f(X) \in A[X]$ y $b \in B$, al elemento $f(b) \in B$ se le suele llamar \textbf{\textit{valor}} de $f(X)$ en $b$.  De igual forma, al conjunto $$A[b]= \lbrace f(b) : f(X) \in A[x] \rbrace,$$ de todos ellos lo llamaremos \textbf{\textit{anillo de valores de $b$}} en $A[X]$. Si el valor $f(b)=0$ se dice que $b$ es una \textbf{raíz} de $f(X)$. 
+\end{definition}
 
+Si $X_1, \ldots, X_n$ son variables independientes, el \textbf{anillo de polinomios} $A[X_1, \ldots, X_n]$ en las variables $X_1, \ldots, X_n$ con coeficientes en $A$ entonces podemos definir de manera inductiva $$A[X_1, \ldots, X_n] = (A[X_1, \ldots, X_{n-1}])[X_n].$$
 
+A partir de ahora supondremos que $A$ es un dominio de integridad.
 
+\begin{definition}Si $0 \neq f(X) = \sum_{i=0}^n a_nX^n \in A[X]$, el \textbf{grado} de $f(X)$ es el mayor entero $n \geq 0$ tal que $a_n \neq 0$ y se denota $\delta (f)$. Los polinomios de grados $0,1,2,3,4$ los llamaremos constantes, lineales, cuadráticos, cúbicos y cuárticos respectivamente.
 
+Diremos que un $a_iX^i$ es el término de grado $i$. El de grado $0$ se denomina \textbf{término independiente}. El coeficiente del término de mayor grado lo llamaremos \textbf{coeficiente director de $f(X)$}. Diremos que un $f(X)$ es mónico si su coeficiente director es una unidad del anillo.
+\end{definition}
+
+Ahora, dado $0 \neq f(X_1, \ldots, X_n) \in A[X_1,\ldots, X_n]$ el grado 
 
 
 
