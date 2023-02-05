@@ -276,7 +276,7 @@ Dado un $n$ entero positivo y $x\in G$, tenemos que $$x^n = x\underbrace{\ldots}
 
 Notar que por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \rbrace= \langle 1 \rangle,$$ es un grupo cíclico infinito. O también el grupo visto antes $$C_n = \langle \xi \rangle, \quad \xi = \cos\left(\dfrac{2\pi}{n}\right)+i\sin\left(\dfrac{2\pi}{n}\right),$$ es un grupo cíclico finito de orden $n$. Notar también que los grupos cíclicos son abelianos, ya que dados dos elementos $y,z \in G$ entonces $yz = x^nx^m=x^{n+m}=x^{m+n} = x^mx^n=zy.$
 
-\begin{proposition}Dado un grupo $G$ cíclico y $H \leq G$. Entonces $H$ es cíclico.
+\begin{proposition}\label{eq:subciclico} Dado un grupo $G$ cíclico y $H \leq G$. Entonces $H$ es cíclico.
 \end{proposition}
 \emph{Demostración: } Si $H = \lbrace 1 \rbrace$ no hay nada que probar. Sea $H \neq \lbrace 1 \rbrace$ y veamos que $H = \langle x^{k} \rangle$, con $k$ el menor entero positivo tal que $x^{k} \in H$.
 
@@ -321,12 +321,12 @@ Sea $G$ un grupo y $x \in G$ de orden $n$. Entonces:
 \item Si $m$ es un entero, $x^m =1$ si y sólo si $n$ divide a $m$.
 \item $\langle x \rangle = \lbrace 1, x, x^2, \ldots, x^{n-1} \rbrace$ y $|\langle x \rangle | = n$. En particular, el orden de $x$ coincide con el del subgrupo que genera.
 \item Si $0\neq m$ es un entero, entonces $$o(x^m)= \dfrac{n}{mcd(n,m)}.$$ En particular, $x^m$ genera $\langle x \rangle$ si y sólo si $n$ y $m$ son coprimos.
-\item Para cada divisor $d$ de $n$, $\langle x \rangle$ tiene un único subgrupo de orden $d$. Este es $\langle x^{\dfrac{n}{d}} \rangle$.
+\item Para cada divisor $d$ de $n$, $\langle x \rangle$ tiene un único subgrupo de orden $d$. Este es $\langle x^{n/d} \rangle$.
 \end{enumerate}
 \end{theorem}
 \emph{Demostración: }Veamos:
 \begin{enumerate}
-\item Si $m = np$ es múltiplo de $n$, $a^{m} = a^{np} = (a^{n})^{p} = 1.$ Recíprocamente, si $m$ no es múltiplo de $n$, $m = np + r, \hspace{0.1cm} 1\leq r\leq n-1$ por el algoritmo de la división, luego $a^{m} = a^{np + r} = (a^{n})^{p}a^{r} = 1^{p}a^{r} = a^{r} \neq 1$.
+\item Si $m = np$ es múltiplo de $n$, $x^{m} = x^{np} = (x^{n})^{p} = 1.$ Recíprocamente, si $m$ no es múltiplo de $n$, $m = np + r, \hspace{0.1cm} 1\leq r\leq n-1$ por el algoritmo de la división, luego $x^{m} = x^{np + r} = (x^{n})^{p}x^{r} = 1^{p}x^{r} = x^{r} \neq 1$.
 \item Sea $n$ el menor natural que cumple $x^{n} = 1$. Si probamos que $$\langle x \rangle = \lbrace 1, x,x^2, \ldots, x^{n-1} \rbrace$$ y que todos los miembros de la derecha son distintos, entonces tendremos que $| \langle x\rangle | = n$.
 Evidentemente el elemento de la izquierda de la igualdad contiene al de la derecha. Recíprocamente, si $y = x^{k}$, $k \in \mathbb{Z}$, dividimos por $n$ y por el algoritmo de la división sabemos que: $$k = qn + r, \hspace{0.1cm} 0\leq r \leq n-1,$$ luego $y = x^{qn+r}= (x^{n})^{q}x^{r} = 1^{q}x^{r} = x^{r}, \hspace{0.1cm}  0\leq r \leq n-1.$ Por último, si existieran $0\leq r < s \leq n-1$ tales que $x^{r} = x^{s},$ sería $x^{s-r} = x^{s}x^{-r} = x^{r}x^{-r} = x^{0} = 1, \hspace{0.1cm} s-r \leq n-1 < n,$ pero esto es absurdo porque $n$ es el menor positivo tal que $x^{n} = 1$.
 \item Llamaremos $d = mcd(n,m)$ y veamos que $n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$.
@@ -334,6 +334,7 @@ Evidentemente el elemento de la izquierda de la igualdad contiene al de la derec
 Para comenzar, $$(x^{m})^{n/d} = (x^{n})^{m/d} = 1^{m/d} = 1$$ ya que $d$ divide a $m$ por ser $d = mcd(n,m)$ y que el orden de $x$ es $n$.
 
 Por otra parte, si $t$ es un entero positivo tal que $(x^{m})^{t} = 1$, entonces $mt$ es múltiplo de $n$, es decir que existe un $t'$ entero positivo tal que $kt = nt'$. De aquí, puesto que $d$ divide a $m$  y a $n$, $$\left( \dfrac{m}{d}\right)t =\left( \dfrac{n}{d}\right) t',$$ luego $\left( \dfrac{n}{d}\right) $ divide a $\left( \dfrac{m}{d}\right) t$. Pero como $n/d$ y $m/d$ son primos entre sí, necesariamente $(n/d)$ divide a $t$, como queríamos demostrar. ($n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$).
+\item Si $d$ divide a $n$, tenemos que $\langle x^{n/d} \rangle$ es un subgrupo de orden $d$ por los apartados anteriores. Supongamos ahora que $H \leq \langle x \rangle $ tiene orden $d$. Entonces $H$ es cíclico por~\ref{eq:subciclico} y deducimos que existe un entero $s$ tal que $H = \langle x^s \rangle$. Ahora, por el apartado $2.$ tenemos que $$1 = (x^s)^{o(x^s)} = (x^s)^{|H|} = (x^s)^d = x^{sd},$$ y por tanto $n$ divide a $sd$ por el apartado $1.$ Se sigue que $n/d$ divide a $s$. Por tanto, $x^s \in \langle x^{n/d} \rangle$ y así, $H = \langle x^s \rangle \subseteq \langle x^{n/d} \rangle$. Como ambos conjuntos tienen el mismo número de elementos, deben coincidir.
 \end{enumerate}
 
 $\hfill \square$
