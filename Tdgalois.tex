@@ -94,7 +94,7 @@ En general, dado un grupo $G$, no será cierto que $xy = yx$ para cualesquiera $
 
 Cuando trabajemos con grupos abelianos, en ocasión emplearemos la notación aditiva y escribiremos $x+y$ en lugar de $xy$, $-x$ en lugar de $x^{-1}$ y el elemento neutro será $0$.
 
-\begin{proposition}Dado un grupo $G$ tenemos:
+\begin{proposition}\label{eq:primGrup} Dado un grupo $G$ tenemos:
 \begin{enumerate}
 \item Dados $x,y \in G$, si $xy = e$ entonces $x = y^{-1}$, $y = x^{-1}$. En particular, $(xy)^{-1} = y^{-1}x^{-1}$.
 \item La aplicación $$\begin{array}{rccl}
@@ -125,6 +125,121 @@ $$ es biyectiva. Si $xg = yg$, multiplicando por $g^{-1}$ a la derecha tenemos q
 \end{enumerate}
 
 $\hfill \square$
+
+Una vez definida una estructura algebtaica cualquiera siempre nos interesaremos por su subestructura. Esto es particularmente relevante en \textit{Teoría de grupos}.
+
+\begin{definition}Un \textbf{subgrupo} $H$ de $G$, denotado $H \leq G$, es un subconjunto n ovacío $H \subseteq G$ tal que $xy \in H$ para todos $x,y \in H$ y $x^{-1} \in H$ para todo $x \in H$. Es decir, que también es un grupo con la operación de $G$: la asociatividad se sigue de la de $G$, que $xy \in H$ para cualesquiera $x,y \in H$ quiere decir que la operación es binaria y como $x^{-1} \in H$ entonces $xx^{-1} = 1 \in H$.
+\end{definition}
+
+\begin{example}Por ejemplo el subconjunto $SL_{n}(K)$ de matrices de determinante $1$ con coeficientes en $K$ es un subgrupo de $GL_n(K)$ conocido como \textbf{subgrupo especial lineal}.
+\end{example}
+
+Observar que un grupo $G$ siempre tiene al menos los subgrupos $ \lbrace 1 \rbrace$ y el propio $G$. Son los conocidos como \textbf{subgrupos triviales}. El resto de subgrupos, aquellos $H \leq G $ tales que $H \neq G$, son los llamados subgrupos \textbf{propios}.
+
+\begin{proposition}Sea $G$ un grupo y sea $H$ un subconjunto no vacío de $G$. Entonces $H \leq G$ si y sólo si $xy^{-1} \in H$ para cualesquiera $x,y \in H$.
+\end{proposition}
+\emph{Demostración: }
+Supongamos que $H \leq G$ y sean $x,y \in H$. Entonces $y^{-1} \in H$ y $xy^{-1} \in H$ por definición. Recíprocamente, supongamos que $xy^{-1} \in H$ $\forall x,y \in H$. Eligiendo cualquier $h \in H$ tenemos que $1 = h h^{-1} \in H$. Luego $y^{-1} = 1y^{-1} \in H$ $\forall y \in H$. Finalmente, si $x,y \in H$ entonces $xy = x(y^{-1})^{-1} \in H$. Así, $H$ es grupo.
+
+$\hfill \square$
+
+Si tenemos dos subgrupos cualesquiera $H$ y $K$ de $G$ está claro que $H \cap K$ es subgrupo también. Sin embargo, en general $HK$ no lo será.
+
+\begin{proposition}Sean $H,K \leq G$. Entonces $HK \leq G$ si y sólo si $HK = KH$.
+\end{proposition}
+\emph{Demostración: }Supongamos que $HK$ es subgrupo de $G$. Si $x = hk \in HK$ entonces $k^{-1}h^{-1} = x^{-1} \in HK$, luego $k^{-1}h^{-1} = uv$ con $u \in H$, $v \in K$ y así $x = hk = (k^{-1}h^{-1})^{-1} = (uv)^{-1} = v^{-1}u^{-1} \in KH$ y esto prueba $HK \subseteq KH$.Sea ahora $y = kh \in KH$. Entonces $z = h^{-1}k^{-1} \in HK$, y como $HK$ es subgrupo $y = kh = (h^{-1}k^{-1})^{-1} = z^{-1} \in HK$, y así $KH \subseteq HK$.
+ 
+Recíprocamente, supongamos que $HK = KH$. Evidentemente $HK$ es no vacío, pues $1 = 1 \cdot 1 \in HK$. Además, dados $x = h_{1}k_{1}$, $y = h_{2}k_{2}$, con $x,y \in HK$,$xy^{-1} = h_{1}k_{1}k_{2}^{-1}h_{2}^{-1} = h_{1}k_{3}h_{2}^{-1}$, con $k_{3} = k_{1}k_{2}^{-1} \in K$. Como $k_{3}h_{2}^{-1} \in KH = HK$, $k_{3}h_{2}^{-1} = h_{3}k$, con $h_{3} \in H$, $k \in K$. Así, $xy^{-1} = h_{1}h_{3}k = hk \in HK$, con $h = h_{1}h_{3} \in H$.
+
+$\hfill \square$
+
+\begin{definition}Si $H \leq G$ y $x \in G$, llamamos a $$Hx = \lbrace hx : h \in H \rbrace$$ \textbf{clase a derecha} de $x$ módulo $H$. Análogamente, a $$xH = \lbrace xh : h \in H \rbrace$$ lo llamamos \textbf{clase a izquierda} de $x$ módulo $H$. 
+\end{definition}
+
+En general, aunque ambos conjuntos contienen al elemento $x$, se tiene que $xH \neq Hx$.
+
+\begin{proposition} Sea $H \leq G$ y $x,y \in G$. Entonces: \begin{enumerate}
+\item $xH = H$ si y sólo si $x \in H$.
+\item $xH = yH$ si y sólo si $x^{-1}y \in H$.
+\item $xH \cap yH \neq 0$ si y sólo si $xH = yH$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }\begin{enumerate}
+\item Si $x \in H$ ya sabemos por~\ref{eq:primGrup} que $xH = H$. Recíprocamente, si $xH = H$ entonces $x = x1 \in xH = H$.
+\item Sea $xH = yH$, entonces $y \in yH = xH$ luego $y = xh$ para algún $h \in H$. De aquí tenemos que $x^{-1}y = h \in H$. Recíprocamente, sea $x^{-1}y \in H$, luego $x^{-1}y = h \in H$ y se tiene que $y = xh$ y $x = yh^{-1}$. Sea $a \in xH$, entonces $a = xh'$, $h' ,\in H$. Ahora $a = xh' = yh^{-1}h' = y(h^{-1}h') \in yH$ ya que $h^{-1}h' \in H$. Así, $xH \subseteq yH$. Al revés es análogo. Así, $xH = yH$.
+\item Sea $z \in (xH \cap yH)$. Entonces $z = xh \in xH$ y también $z= yh' \in yH$, luego $x^{-1}z \in H$ e $y^{-1}z \in H$. Como $H$ es grupo, $(y^{-1}z)^{-1} = z^{-1}y \in H$ y $(x^{-1}z)(z^{-1}y) = x^{-1}y \in H$. Ahora, por el apartado anterior $xH = yH$. El recíproco es evidente.
+\end{enumerate}
+
+$\hfill \square$
+
+Con esto, es fácilmente comprobable que la relación en $G$ definida por: dados $x,y \in G$, entonces $x\sim_{H} y \Longleftrightarrow xH = yH$ es una relación de equivalencia, de hecho la clase de equivalencia de $x \in G$ es $xH$, es decir, una coclase a derecha. Luego las coclases, tanto a izquierda como a derecha, forman una partición de $G$. Así, $G$ es unión disjunta de estas clases: $$G = \bigcup_{x \in R} xH,$$ con $R$ un conjunto de representantes de las clases de equivalencia.
+
+\begin{definition}A los conjuntos de estas clases los llamaremos \textbf{conjuntos cocientes} definidos por las respectivas relaciones de equivalencia (a izquierda o derecha). Los denotaremos: $$G/\sim_{H} = \lbrace xH : x \in G \rbrace,$$ $$G/\sim^{H} = \lbrace Hx : x \in G \rbrace.$$
+\end{definition}
+
+\begin{proposition}
+Sea $H \leq G$. Entonces:
+$$card(G/\sim_{H})= card(G/\sim^{H}).$$
+\end{proposition}
+\emph{Demostración: } Veamos que la aplicación
+$$
+\begin{array}{rccl}
+\Psi \colon &G/\sim_{H} & \longrightarrow & G/\sim^{H}\\
+&xH & \longmapsto &Hx^{-1}
+\end{array}
+$$
+es biyectiva. \begin{enumerate} 
+\item Veamos primero que $\Psi$ está \textit{bien definida}, es decir, si $xH = yH$ entonces $Hx^{-1} = Hb^{-1}$. En efecto, si $xH = yH$, entonces tenemos que $x\sim_{H} y$, es decir que $x^{-1}y \in H$. Y como $H$ es subgrupo de $G$, $(x^{-1}y)^{-1} \in H$, y como $(x^{-1}y)^{-1} = y^{-1}(x^{-1})^{-1}$ se tiene que $y^{-1}\sim^{H} x^{-1}$ y por tanto $Hy^{-1} = Hx^{-1}$.
+\item Veamos ahora que es \textit{inyectiva}. Supongamos que $xH, \hspace{0.1cm} yH \in G/\sim_{H}$. Si $\Psi (xH) = \Psi (yH)$, entonces $Hx^{-1} = Hy^{-1}$, luego $y^{-1}R_{H}x^{-1}$ y así $y^{-1}(x^{-1})^{-1} = (x^{-1}y)^{-1} \in H$ por lo que también $x^{-1}y \in H$, pero esto quiere decir que $x R^{H}y$ o lo que es lo mismo: que $xH = yH$. Así $\Psi$ es inyectiva.
+\item Veamos que es \textit{suprayectiva}. Si $Hx \in G/\sim^{H}$, como $x^{-1}H \in G/\sim_{H}$ y $\Psi (x^{-1}H) = H(x^{-1})^{-1} = Hx$ tenemos que $\Psi$ es suprayectiva.
+\end{enumerate}
+Por lo tanto, $\Psi$ es una aplicación biyectiva y así $$card(G/\sim_{H}) = card(G/\sim^{H}).$$
+$\hfill \square$
+
+Si tenemos que estos conjuntos de coclases son finitos (y por tanto de igual cardinal por el resultado que acabamos de ver) entonces:
+
+\begin{definition}Dado $H \leq G$, llamamos \textbf{índice} de $H$ en $G$, y lo denotamos por $[G:H]$, al número de elementos de $G/\sim_{H}$ (el mismo que $G/\sim^{H}$). Es decir, el número de coclases a izquierda (ó a derecha).
+\end{definition}
+
+\begin{theorem}[\textbf{\textit{Teorema de Lagrange}}]
+Sea $H \leq G$. Si $G$ es finito, entonces $|H|$ divide a $|G|$ y $$|G| = |H|\cdot \left[ G:H \right].$$
+\end{theorem}
+\emph{Demostración: }Ya sabemos que $$G = \bigcup_{x\in G} xH,$$ y que $G$ es la unión disjunta de estas coclases a izquierda , cuyo número es $[G:H]$. Basta ver que todas estas clases a izquierda tienen cardinal $|H|$, pero esto ya lo vimos en~\ref{eq:primGrup} cuando vimos que la aplicación que manda $g \longmapsto xg$ es biyectiva.
+
+$\hfill \square$
+
+Notar que, al ser grupos finitos podemos poner la anterior expresión como $$[G:H] = \dfrac{|G|}{|H|}.$$
+Notar también que, si tenemos $H \leq K \leq G$ entonces, aplicando dos veces el \textit{Teorema de Lagrange} tenemos $$[G:H]=[G:K][K:H],$$ es lo que se conoce como \textbf{\textit{transitividad del índice}}.
+
+En diagramas como el siguiente se nos presenta información útil para representar una serie de relaciones en un grupo, esquemas así serán utilizados con frecuencia. En éste podemos apreciar una serie de nodos, que son grupos y subgrupos, en este caso $G$ y dos subgrupos suyos: $H$ y $K$ cualesquiera. Las líneas representan \textit{contenido}, el subgrupo de abajo está contenido en el de arriba. En este caso $G=HK$ y lo expresaremos como un diamante. 
+$$\xymatrix @=2cm {&G \ar@{-}[ld]_n \ar@{-}[rd]^m  \\ H \ar@{-}[rd]_m & & K \ar@{-}[ld]^n \\ &H \cap K }$$
+
+Además si $G$ es un grupo finito, entonces se va a cumplir que $n= [G:H] = [K: K \cap H]$ y $m= [G:K] = [H : H \cap K]$.
+
+Dentro de la \textbf{Teoría de grupos}, un concepto fundamental es el de subgrupo \textit{normal}.
+
+\begin{definition} Un subgrupo $N$ de $G$ se dice \textbf{normal} si $$xN = Nx,$$ para todo $x \in G$. En ese caso, escribimos $N \unlhd G$. También denotaremos por $$G/N = \lbrace gN : g\in G\rbrace$$ al conjunto de las clases a izquierda de $G$ módulo $N$. Si el conjunto $G/N$ es finito, tenemos que $$|G/N| = [G:N].$$
+\end{definition}
+
+Notar que todo grupo posee al menos dos subgrupos normales, $1 \unlhd G$, $G \unlhd G$.
+
+\begin{definition} Un grupo $G$ cuyos únicos subgrupos normales sean $\lbrace 1 \rbrace$ y él mismo se dice que es \textbf{simple}.
+\end{definition}
+
+\begin{theorem}[\textbf{\textit{Criterio de normalidad}}]
+Sea $N$ un subgrupo de $G$. Entonces son equivalentes:
+\begin{enumerate}
+\item $N\unlhd G$.
+\item $xN x^{-1} = N$ $\forall x \in G$.
+\item $xNx^{-1} \subseteq N$ $\forall x \in G$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }Veamos primero que $1.\Rightarrow 2.$, para ello notemos que si $y\in xNx^{-1}$ entonces $x^{-1}yx = n \in N$. Como $yx = xn \in xN = Nx$ existirá algún $n' \in N$ tal que $yx = n'x$, y simplificando tendremos que $y = n' \in N$, luego $xNx^{-1} subseteq N$. Como esto es válido para todo $x \in G$, en particular si aplicamos este contenido para $x^{-1}$ tenemos que $x^{-1}N(x^{-1})^{-1}= x^{-1}Nx \subseteq N$. Así, $N = xx^{-1}Nxx^{-1} = x(x^{-1}Nx)x^{-1} \subseteq xNx^{-1}$ y tenemos la igualdad. 
+
+Es evidente que $2.\Rightarrow 3.$, así que veamos que $3.\Rightarrow 1.$ Sabiendo que $xNx^{-1} \subseteq N$ $\forall x\in G$, lo aplicamos a $x^{-1}$ y tenemos nuevamente que $N \subseteq xNx^{-1}$ $\forall x \in G$, así, tenemos la igualdad ($2.$) y de aquí sacamos que $xN = Nx$ y $N$ es normal.
+
+$\hfill \square$
+
 
 \subsection{Homomorfismos}
 
