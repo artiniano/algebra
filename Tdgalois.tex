@@ -145,7 +145,7 @@ $\hfill \square$
 
 Si tenemos dos subgrupos cualesquiera $H$ y $K$ de $G$ está claro que $H \cap K$ es subgrupo también. Sin embargo, en general $HK$ no lo será.
 
-\begin{proposition}Sean $H,K \leq G$. Entonces $HK \leq G$ si y sólo si $HK = KH$.
+\begin{proposition}\label{eq:progruesgru} Sean $H,K \leq G$. Entonces $HK \leq G$ si y sólo si $HK = KH$.
 \end{proposition}
 \emph{Demostración: }Supongamos que $HK$ es subgrupo de $G$. Si $x = hk \in HK$ entonces $k^{-1}h^{-1} = x^{-1} \in HK$, luego $k^{-1}h^{-1} = uv$ con $u \in H$, $v \in K$ y así $x = hk = (k^{-1}h^{-1})^{-1} = (uv)^{-1} = v^{-1}u^{-1} \in KH$ y esto prueba $HK \subseteq KH$.Sea ahora $y = kh \in KH$. Entonces $z = h^{-1}k^{-1} \in HK$, y como $HK$ es subgrupo $y = kh = (h^{-1}k^{-1})^{-1} = z^{-1} \in HK$, y así $KH \subseteq HK$.
  
@@ -158,7 +158,7 @@ $\hfill \square$
 
 En general, aunque ambos conjuntos contienen al elemento $x$, se tiene que $xH \neq Hx$.
 
-\begin{proposition} Sea $H \leq G$ y $x,y \in G$. Entonces: \begin{enumerate}
+\begin{proposition}\label{eq:partiGrupo} Sea $H \leq G$ y $x,y \in G$. Entonces: \begin{enumerate}
 \item $xH = H$ si y sólo si $x \in H$.
 \item $xH = yH$ si y sólo si $x^{-1}y \in H$.
 \item $xH \cap yH \neq 0$ si y sólo si $xH = yH$.
@@ -240,6 +240,103 @@ Es evidente que $2.\Rightarrow 3.$, así que veamos que $3.\Rightarrow 1.$ Sabie
 
 $\hfill \square$
 
+Los subgrupos normales son importantes porque nos permiten construir un nuevo tipo de grupo.
+
+\begin{proposition}Supongamos que $N \unlhd G$. El conjunto $G/N$ de las coclases a izquierda módulo $N$ es un grupo con la operación de $G$ 
+$$(xN)(yN)=xyN,$$ con $x,y \in G$. El elemento neutro del grupo $G/N$ es $N$ y $(xN)^{-1} = x^{-1}N$ para tod $x \in G$.
+\end{proposition}
+\emph{Demostración: }Tenemos que $$(xN)(yN)=x(Ny)N = x(yN)N = xyN.$$ Luego es una operación binaria. 
+
+Veamos que la operación está bien definida: sean $xN = x'N$, $yN = y'N$, veamos que $xyN = x'y'N$. Por~\ref{eq:partiGrupo}, $x^{-1}x' \in N$, $y^{-1}y' \in N$. Ahora $(xy)^{-1}(x'y') = y^{-1}x^{-1}x'y' = y^{-1}x^{-1}x'yy^{-1}y'=y^{-1}(x^{-1}x')y(y^{-1}y') \in N$. Nuevamente por~\ref{eq:partiGrupo} se tiene.
+
+Como $N = 1N$ por lo primero tenemos que $$(xN)N=xN = N(xN)$$ y así es el elemento neutro de $G/N$. También tenemmos que $$(xN)(x^{-1}N) = N = (x^{-1}N)(xN),$$ para todo $x	\in G$.
+
+$\hfill \square$
+
+\begin{definition}Dado $N \unlhd G$, llamaremos \textbf{grupo cociente} de $G$ por $N$ al grupo $G/N$.
+\end{definition}
+
+Notar que en un grupo abeliano $G$, todo subgrupo $H$ va a cumplir que $xH = Hx$, por lo que en un grupo abeliano todos sus subgrupos son normales.
+
+\begin{proposition}Sea $N \unlhd G$ y $H \leq G$. Entonces $HN \leq G$.
+\end{proposition}
+\emph{Demostración: }Como $N$ es subgrupo normal: $$NH = \bigcup_{h\in H} hN = \bigcup_{h\in H} Nh = HN.$$ Aplicamos~\ref{eq:progruesgru} y ya está.
+
+$\hfill \square$
+
+Veamos ahora una clase especial de grupos, los conocidos como grupos cíclicos. 
+
+Dado un $n$ entero positivo y $x\in G$, tenemos que $$x^n = x\underbrace{\ldots}_{n} x, \quad x^{-n} = x^{-1} \underbrace{\ldots}_n x^{-1}.$$ También convenimos que $x^0 = 1$. Si $G$ es un grupo abeliano escribiremos $$nx = x\underbrace{+\ldots +}_n x, \quad (-n)x=(-x)\underbrace{+\ldots +}_n(-x), \quad 0x = 0.$$ También es claro que $$x^{n+m} = x^nx^m, \quad (x^n)^m=x^{nm}.$$
+
+\begin{definition}Si consideramos un grupo $G$ y un $x\in G$, entonces $$\langle x \rangle = \lbrace x^n:n \in \mathbb{Z} \rbrace,$$ es un subgrupo de $G$ que lo denominaremos \textbf{subgrupo generado por $x$}. Es claro que si $H$ es un subgrupo de $G$ que contiene a $x$, entonces $\langle x \rangle \subseteq H$.
+\end{definition}
+
+\begin{definition}Decimos que un grupo $G$ es \textbf{cíclico} si existe un $x \in G$ tal que $$\langle x \rangle = G.$$ A este elemento $x$ lo llamamos \textbf{generador} de $G$. En general, un grupo cíclico puede tener varios elementos generadores.
+\end{definition}
+
+Notar que por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \rbrace= \langle 1 \rangle,$$ es un grupo cíclico infinito. O también el grupo visto antes $$C_n = \langle \xi \rangle, \quad \xi = \cos\left(\dfrac{2\pi}{n}\right)+i\sin\left(\dfrac{2\pi}{n}\right),$$ es un grupo cíclico finito de orden $n$. Notar también que los grupos cíclicos son abelianos, ya que dados dos elementos $y,z \in G$ entonces $yz = x^nx^m=x^{n+m}=x^{m+n} = x^mx^n=zy.$
+
+\begin{proposition}Dado un grupo $G$ cíclico y $H \leq G$. Entonces $H$ es cíclico.
+\end{proposition}
+\emph{Demostración: } Si $H = \lbrace 1 \rbrace$ no hay nada que probar. Sea $H \neq \lbrace 1 \rbrace$ y veamos que $H = \langle x^{k} \rangle$, con $k$ el menor entero positivo tal que $x^{k} \in H$.
+
+Es claro, por ser el producto una operación interna en $H$, que $\langle x^{k} \rangle \in H$.
+
+Ahora, dado $x ^{p} \in H$, comprobemos que $x^{p} \in \langle x^{k} \rangle$, es decir, que $p$ es múltiplo de $k$. Podemos suponer que $p \geq 0$ pues $p$ será múltiplo de $k$ si y sólo si lo es $-p$. Por el algoritmo de la división, al dividir $p$ entre $k$ existirán enteros no negativos $q,r$ , $0 \leq r < k$, tales que $p = kq + r$. Entonces, 
+\begin{center}
+$x^{p} = x^{kq+r} = (x^{k})^{q}x^{r}$, por tanto $x^{r} = x^{p}(x^{k})^{-q} \in H$
+\end{center}
+pero por la elección de $k$ (el menor entero positivo tal que $x^{k} \in H$) necesariamente $r = 0$. Esto implica que $x^{p} = (x^{k})^{q} \in \langle x^{k} \rangle$.
+
+$\hfill \square$
+
+Por ejemplo, los subgrupos de $\mathbb{Z}$ son de la forma $$m\mathbb{Z} = \lbrace mz : z \in \mathbb{Z} \rbrace = \langle m \rangle.$$
+
+\begin{corolario}Sea $H$ un subconjunto no vacío de $\mathbb{Z}$. Entonces $H \leq Z$ si y sólo si existe un único entero no negativo $d$ tal que $H = d\mathbb{Z}$. Además, si $e \in \mathbb{Z}$, entonces $d\mathbb{Z} \subseteq e\mathbb{Z}$ si y sólo si $e$ divide a $d$.
+\end{corolario}
+\emph{Demostración: }Si $H = d\mathbb{Z}$, ya sabemos que $H$ es subgrupo de $\mathbb{Z}$. Recíprocamente, si $H \leq \mathbb{Z}$, por el resultado anterior existirá un $d \in \mathbb{Z}$ tal que $H = d\mathbb{Z}$. Como $d\mathbb{Z} = (-d)\mathbb{Z}$ podemos elegir $d \geq 0$. Finalmente, $d\mathbb{Z} \subseteq e\mathbb{Z}$ si y sólo si $d \in e\mathbb{Z}$ si y sólo si $e$ divide a $d$.
+
+$\hfill \square$
+
+\begin{corolario}Sean $0\neq a,b \in \mathbb{Z}$. Entonces:
+\begin{enumerate}
+\item Existe un único entero positivo $d \in \mathbb{Z}$ tal que $$a\mathbb{Z}+b\mathbb{Z} = d\mathbb{Z}.$$ Además, $d = mcd(a,b)$.
+\item Si $d = mcd(a,b)$, entonces $mcd \left(\dfrac{a}{d}, \dfrac{b}{d} \right) = 1.$
+\end{enumerate}
+\end{corolario}
+\emph{Demostración: }Ya sabemos que $a\mathbb{Z}+b\mathbb{Z}$ es subgrupo de $\mathbb{Z}$. Por el corolario anterior sabemos que existe un único entero no negativo $d$ tal que $a\mathbb{Z}+b\mathbb{Z} = d\mathbb{Z}$. Como $0\neq a,b \in a\mathbb{Z}+b\mathbb{Z}$ deducimos que $d\neq 0$. Como $a\mathbb{Z}, b\mathbb{Z} \subseteq d\mathbb{Z}$, tenemos que $d$ divide a $a$ y a $b$. Como $a\mathbb{Z}+b\mathbb{Z}$ existen enteros $u,v$ tales que $au+bv = d$. Supongamos ahora que tenemos un $e\in \mathbb{Z}$ que divide a $a$ y a $b$. Entonces $e$ divide a $au+bv = d$, y esto prueba $1.$
+
+Si un entero positivo $n$ divide a $a/d$ y a $b/d$, entonces $nd$ divide a $a$ y a $b$. Entonces es claro que $nd$ divide a $d$ (por ser éste el mcd) y de aquí $n=1$. Esto prueba $2.$
+
+$\hfill \square$
+
+\begin{definition}Sea $G$ un grupo y $x \in G$. Si no existe ningún entero positivo $m$ tal que $x^m=1$ decimos entonces que el \textbf{orden} de $x$ es \textbf{infinito}. En caso contrario, diremos que el \textbf{orden} de $x$ es \textbf{finito} y llamaremos \textbf{orden} de $x$ al menor entero positivo $m$ tal que $x^m =1$. Lo escribiremos como $o(x) = m$ ó también $|x| = m$.
+\end{definition}
+
+Estudiemos ahora los subgrupos de un grupo cíclico finito $\langle x \rangle$ de orden $n$.
+
+\begin{theorem}
+Sea $G$ un grupo y $x \in G$ de orden $n$. Entonces:
+\begin{enumerate}
+\item Si $m$ es un entero, $x^m =1$ si y sólo si $n$ divide a $m$.
+\item $\langle x \rangle = \lbrace 1, x, x^2, \ldots, x^{n-1} \rbrace$ y $|\langle x \rangle | = n$. En particular, el orden de $x$ coincide con el del subgrupo que genera.
+\item Si $0\neq m$ es un entero, entonces $$o(x^m)= \dfrac{n}{mcd(n,m)}.$$ En particular, $x^m$ genera $\langle x \rangle$ si y sólo si $n$ y $m$ son coprimos.
+\item Para cada divisor $d$ de $n$, $\langle x \rangle$ tiene un único subgrupo de orden $d$. Este es $\langle x^{\dfrac{n}{d}} \rangle$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }Veamos:
+\begin{enumerate}
+\item Si $m = np$ es múltiplo de $n$, $a^{m} = a^{np} = (a^{n})^{p} = 1.$ Recíprocamente, si $m$ no es múltiplo de $n$, $m = np + r, \hspace{0.1cm} 1\leq r\leq n-1$ por el algoritmo de la división, luego $a^{m} = a^{np + r} = (a^{n})^{p}a^{r} = 1^{p}a^{r} = a^{r} \neq 1$.
+\item Sea $n$ el menor natural que cumple $x^{n} = 1$. Si probamos que $$\langle x \rangle = \lbrace 1, x,x^2, \ldots, x^{n-1} \rbrace$$ y que todos los miembros de la derecha son distintos, entonces tendremos que $| \langle x\rangle | = n$.
+Evidentemente el elemento de la izquierda de la igualdad contiene al de la derecha. Recíprocamente, si $y = x^{k}$, $k \in \mathbb{Z}$, dividimos por $n$ y por el algoritmo de la división sabemos que: $$k = qn + r, \hspace{0.1cm} 0\leq r \leq n-1,$$ luego $y = x^{qn+r}= (x^{n})^{q}x^{r} = 1^{q}x^{r} = x^{r}, \hspace{0.1cm}  0\leq r \leq n-1.$ Por último, si existieran $0\leq r < s \leq n-1$ tales que $x^{r} = x^{s},$ sería $x^{s-r} = x^{s}x^{-r} = x^{r}x^{-r} = x^{0} = 1, \hspace{0.1cm} s-r \leq n-1 < n,$ pero esto es absurdo porque $n$ es el menor positivo tal que $x^{n} = 1$.
+\item Llamaremos $d = mcd(n,m)$ y veamos que $n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$.
+
+Para comenzar, $$(x^{m})^{n/d} = (x^{n})^{m/d} = 1^{m/d} = 1$$ ya que $d$ divide a $m$ por ser $d = mcd(n,m)$ y que el orden de $x$ es $n$.
+
+Por otra parte, si $t$ es un entero positivo tal que $(x^{m})^{t} = 1$, entonces $mt$ es múltiplo de $n$, es decir que existe un $t'$ entero positivo tal que $kt = nt'$. De aquí, puesto que $d$ divide a $m$  y a $n$, $$\left( \dfrac{m}{d}\right)t =\left( \dfrac{n}{d}\right) t',$$ luego $\left( \dfrac{n}{d}\right) $ divide a $\left( \dfrac{m}{d}\right) t$. Pero como $n/d$ y $m/d$ son primos entre sí, necesariamente $(n/d)$ divide a $t$, como queríamos demostrar. ($n/d$ es el menor entero positivo tal que $(x^{m})^{n/d} = 1$).
+\end{enumerate}
+
+$\hfill \square$
 
 \subsection{Homomorfismos}
 
