@@ -315,7 +315,7 @@ $\hfill \square$
 
 Estudiemos ahora los subgrupos de un grupo cíclico finito $\langle x \rangle$ de orden $n$.
 
-\begin{theorem}
+\begin{theorem}\label{eq:prelgrupcic}
 Sea $G$ un grupo y $x \in G$ de orden $n$. Entonces:
 \begin{enumerate}
 \item Si $m$ es un entero, $x^m =1$ si y sólo si $n$ divide a $m$.
@@ -339,7 +339,134 @@ Por otra parte, si $t$ es un entero positivo tal que $(x^{m})^{t} = 1$, entonces
 
 $\hfill \square$
 
+Ya hemos analizado $\mathbb{Z}$ pero no sus cocientes. Si $n$ es un entero, el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ es un objeto matemático de interés. Ya sabemos que si $x,y \in \mathbb{Z}$ entonces $x+n\mathbb{Z} = y + n\mathbb{Z}$ si y sólo si $x-y \in n\mathbb{Z}$ si y sólo si $n$ divide a $x-y$. Esto lo escribiremos como $x \equiv y$ mod $n$.
+
+\begin{proposition}Si $n \geq 1$, entonces $$\mathbb{Z}/n\mathbb{Z} = \lbrace n\mathbb{Z}, 1+n\mathbb{Z}, \ldots, (n-1)+n\mathbb{Z} \rbrace$$ es un grupo cíclico de orden $n$.
+\end{proposition}
+\emph{Demostración: }Como $\mathbb{Z}$ es abeliano, $n\mathbb{Z} \unlhd \mathbb{Z}$ y el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ está bien definido. Si $x,y \in \mathbb{Z}$, entonces $x +n\mathbb{Z} = y + n\mathbb{Z}$ si y sólo si $n$ divide a $x-y$. Así, tenemos que las clases $n\mathbb{Z}, 1+n\mathbb{Z}, \ldots, (n-1) +n\mathbb{Z}$ son necesariamente distintas. Como $k(1+n\mathbb{Z}) = k + n\mathbb{Z}$, con $k \in \mathbb{Z}$ deducimos que $o(1+n\mathbb{Z})=n$. Por lo que $|\mathbb{Z}/n\mathbb{Z}| = n$.
+
+$\hfill \square$
+
+\begin{definition}Si $n$ es un entero positivo, llamamos \textbf{función de Euler}, y la denotamos por $\varphi$, a $$\varphi(n)=| \lbrace m \in \mathbb{Z}:1\leq m \leq n, \hspace{0.1cm} mcd(n,m)=1 \rbrace|.$$
+\end{definition}
+
+Notar que por~\ref{eq:prelgrupcic}, $\varphi(n)$ es el número de generadores en un grupo cíclico de orden $n$.
+
 \subsection{Homomorfismos}
+
+Estudiaremos ahora aquellas aplicaciones \textit{buenas} entre grupos, es decir, aquellas que preservan la estructura de grupo.
+
+\begin{definition}Dados $G$ y $H$ grupos, una aplicación $f \colon G \longrightarrow H$ es un \textbf{homomorfismo de grupos} si cumple $$f(xy) = f(x)f(y) \quad \forall x,y \in G.$$
+\end{definition}
+
+Los homomorfismos son una potente herramienta para analizar los grupos que relaciona. Si estudiamos los de los grupos más importantes: $S_{\Omega}$ y $GL_n(K)$ llegaremos a dos subramas de la teoría de grupos: la teoría de permutaciones para el primero y la de representaciones de grupos para el segundo.
+
+\begin{example}\label{eq:ejsHoms} Algunos ejemplos importantes de homomorfismos:
+\begin{enumerate}
+\item La aplicación determinante $$\begin{array}{rccl}
+&GL_n(K)&\longrightarrow &K^* \\
+&A& \longmapsto &det(A)
+\end{array}
+$$
+\item Dado un grupo $G$ y $N \unlhd G$, la aplicación $$\begin{array}{rccl}
+&G&\longrightarrow &G/N \\
+&g& \longmapsto &gN
+\end{array}
+$$
+\item Dado $G = \langle x \rangle$ un grupo cíclico, la aplicación $$\begin{array}{rccl}
+&\mathbb{Z}&\longrightarrow &G \\
+&m& \longmapsto &x^m
+\end{array}
+$$
+\end{enumerate}
+\end{example}
+
+\begin{properties}\label{eq:propHoms} Consideremos un homomorfismo $f \colon G \longrightarrow H$. Entonces algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta:
+\begin{enumerate}
+\item $f(1_{G}) = 1_{H}$ ya que $1_{H}f(1_{G}) = f(1_{G}) = f(1_{G}1_{G}) = f(1_{G})f(1_{G}) \Longrightarrow 1_{H} = f(1_{G}).$
+\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{H},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{H}.$$
+\item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G}$ se tiene que $1_{H} = f(1_{G}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
+\item Si $Y$ es un subgrupo de $H$, $$f^{-1}(Y) = \lbrace x \in G : f(x) \in Y\rbrace$$ es un subgrupo de $G$. Además si $Y$ es subgrupo normal de $H$, $f^{-1}(Y)$ lo es de $G$.
+
+En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$. Para probar la normalidad de $f^{-1}(Y)$ usamos la última de las condiciones: Si $ab \in f^{-1}(Y)$ se sigue que $f(a)f(b) = f(ab) \in Y$ y como $Y$ es normal, $f(ab) = f(b)f(a) \in Y.$ Por lo tanto $ba \in f^{-1}(Y).$
+ 
+\item Si además consideramos otro homomorfismo $
+\begin{array}{rccl}
+g\colon H \longrightarrow  Z
+\end{array}
+$entonces,
+
+$\begin{array}{rccl}
+g \circ f\colon G \longrightarrow  Z
+\end{array}
+$ también es homomorfismo, pues $$ (g \circ f)(xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = (g \circ f)(x) (g \circ f)(y).$$
+\end{enumerate}
+\end{properties}
+$\hfill \blacksquare$
+
+\begin{definition}Si $f \colon G \longrightarrow H$ es un homomorfismo de grupos, llamaremos \textbf{núcleo de $f$} a $$Ker f= \lbrace g \in G: f(g) = 1_H \rbrace.$$
+
+De igual manera, llamaremos \textbf{imagen de $f$} al conjunto $$Im f = \lbrace f(x) : x \in G\rbrace.$$
+\end{definition}
+
+De hecho, en el ejemplo~\ref{eq:ejsHoms}($1.$) tenemos que $Ker(det) = SL_n(K)$ es el grupo especial lineal. Y en el ejemplo~\ref{eq:ejsHoms}($2.$) es el propio $N$.
+
+\begin{proposition}Si $f \colon G \longrightarrow H$ es un homomorfismo de grupos, entonces $Ker f \unlhd G$. Además, $f$ es inyectiva si y sólo si $Ker f= \lbrace 1 \rbrace.$
+\end{proposition}
+\emph{Demostración: }Como $Ker f=f^{-1} (1)$, por~\ref{eq:propHoms}($4.$) tenemos que $Ker f$ es subgrupo de $G$. Probaremos ahora que, dados $x \in G$ y $z \in Ker f$, $xzx^{-1} \in Ker f$. Esto es claro, ya que $$f(xzx^{-1})=f(x)f(z)f(x)^{-1} = f(x)f(x)^{-1} = 1.$$
+
+Ahora, si $f$ es inyectiva y $x \in Ker f$ entonces $f(x) = 1 = f(1)$, por lo que $x = 1$ y así $Ker f = \lbrace 1 \rbrace$. Recíprocamente, si $Ker f = \lbrace 1 \rbrace$ y $x,y \in G$ son tales que $f(x) = f(y)$, entonces $f(xy^{-1}) = f(x)f(y)^{-1} = 1$, luego $xy^{-1} \in Ker f = \lbrace 1 \rbrace$ y así $x=y$.
+
+$\hfill \square$
+
+\begin{definition}Diremos que un homomorfismo de grupos $f \colon G \longrightarrow H$ es un \textbf{isomorfismo} si la aplicación $f$ es biyectiva. En tal caso diremos que $G$ es \textbf{isomorfo} a $H$ y lo denotaremos por $G \cong H$.
+\end{definition}
+
+\begin{theorem}[\textbf{\textit{Primer Teorema de Isomorfía}}]
+Sea $f \colon G \longrightarrow H$ un homomorfismo de grupos. Entonces, la aplicación $$\begin{array}{rccl}
+\bar{f} &G/Ker f&\longrightarrow &f(G) \\
+&xKer f& \longmapsto &f(x)
+\end{array}
+$$
+es un isomorfismo de grupos.
+\end{theorem}
+\emph{Demostración: }Sea $N = Ker f$. Sabemos por~\ref{eq:partiGrupo} que $xN = yN$ si y sólo si $x^{-1}y \in N$ si y sólo si $f(x^{-1}y)=1$ si y sólo si $f(x)^{-1}f(y) = 1$ si y sólo si $f(x)=f(y)$. Si leemos esto de izquierda a derecha estamos probando que la aplicación $\bar{f}$ está bien definida, es decir, que la imagen por $\bar{f}$ de un elemento $xN \in G/N$ no depende del representante que escojamos. Si lo leemos de derecha a izquierda estaremos probando que $\bar{f}$ es inyectiva. Si $y \in f(G)$ (imagen de $G$ por $f$) entonces $y=f(x)=\bar{f}(xKer f)$ con $x\in G$ y esto prueba la sobreyectividad. Además, es homomorfismo: $$\bar{f}(xNyN)= \bar{f}(xyN)=f(xy)=f(x)f(y) =\bar{f}(xN) \bar{f}(yN).$$ 
+
+$\hfill \square$
+
+\begin{proposition}Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
+\end{proposition}
+\emph{Demostración: }Si $H \leq G$ sabemos que $NH$ es subgrupo de $G$. Como $N \unlhd G$ y $N \subseteq NH$, tenemos que $N \unlhd NH$. Ahora, $$f(H) = \lbrace hN : h \in H \rbrace = \lbrace nhN :n, \in N, h \in H \rbrace = NH/N.$$ Por~\ref{eq:propHoms}, $NH/N$ es un subgrupo de $G/N$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
+Sea $N \unlhd G$ y sea $H \leq G$. Entonces $H \cap N \unlhd H$ y $$H/H\cap N \cong NH/N.$$
+
+\end{theorem}
+\emph{Demostración: }Consideremos el siguiente homomorfismo de grupos: $$\begin{array}{rccl}
+f\colon &G&\longrightarrow &G/N \\
+&x& \longmapsto &xN
+\end{array}
+$$
+y sea $g = \left.f \right|_H \colon H \longrightarrow G/N$ la restricción a $H$. Por el resultado anterior tenemos que $g(H) = f(H) = NH/N$. El núcleo de $g$ es:
+$$Ker g = \lbrace x \in H :xN = N \rbrace = N \cap H.$$ El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Tercer Teorema de Isomorfía}}]
+Sea $G$ un grupo. Sean $N,M \unlhd G$ y $N \subseteq M$. Entonces $$G/M \cong (G/N)/(M/N).$$
+\end{theorem}
+\emph{Demostración: }Consideremos la aplicación suprayectiva $$\begin{array}{rccl}
+f \colon &G/N&\longrightarrow &G/M\\
+&gN& \longmapsto &gM
+\end{array}
+$$
+Entonces $f$ está bien definida ya que si $gN = hN$ entonces $g^{-1}h \in N \subseteq M$ y así $gM =hM$. Es claro que es homomorfismo y el núcleo es $$Ker f = \lbrace gN \in G/N : gM = M \rbrace = \lbrace gN \in G/N : g \in M \rbrace = M/N.$$
+El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
+
+$\hfill \square$
+
 
 \subsection{Acciones de grupos}
 
@@ -355,7 +482,7 @@ $\hfill \square$
 
 \begin{proposition}\label{eq:ac1} Sea $p \in K[x]$ irreducible. Entonces $K$ está contenido en un cuerpo en el que $p$ tiene alguna raíz.
 \end{proposition}
-\emph{Demostración: } Sea $E = K[x]/(p)$. Entonces sabemos que $E$ es un cuerpo por el resultado anterior. Consideramos la aplicación  $$\begin{array}{rccl}
+\emph{Demostración: } Sea $E = K[x]/(p)$. Entonces sabemos que $E$ es un cuerpo por el resultado anterior. Consideramos la aplicación $$\begin{array}{rccl}
 &K[x]&\longrightarrow &K[x]/(p) \\
 &f& \longmapsto &f+(p)
 \end{array}
@@ -731,7 +858,7 @@ Ahora veamos que $\mathbb{Q}(a, \sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2})$. Para
 
 Como $x^{3}+x+1$ es irreducible en $\mathbb{Q}[x]$ entonces se tiene que $Irr(a, \mathbb{Q}) = x^{3}+x+1$ y $|\mathbb{Q}(a) : \mathbb{Q}| = 3$. Así, $\mathbb{Q}(a) = \lbrace ba + ca^{2} + d : b,c,d \in \mathbb{Q} \rbrace.$ Luego ó $\mathbb{Q}(a^{2}) = \mathbb{Q}(a)$ ó $\mathbb{Q}(a^{2}) = \mathbb{Q}$. Pero esto último no puede ser ya que si $\mathbb{Q}(a^{2}) = \mathbb{Q}$ entonces $a^{2} \in \mathbb{Q}$ y así $a^{2} = t \in \mathbb{Q}$ y $x^{2}-t$ tiene como raíz $a$. Absurdo porque $x^{3}+x+1$ es su polinomio irreducible. Con esto, tenemos que $a^{2}= \dfrac{(a\sqrt{2})^{2}}{2} \in \mathbb{Q}(a\sqrt{2})$ y así $\mathbb{Q}(a) = \mathbb{Q}(a^{2}) \subseteq \mathbb{Q}(a\sqrt{2})$.
 
-$$\mathbb{Q}(a,\sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2})\Rightarrow \mathbb{Q}(a\sqrt{2}) = \mathbb{Q}(a, \sqrt{2})$$.
+$$\mathbb{Q}(a,\sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2})\Rightarrow \mathbb{Q}(a\sqrt{2}) = \mathbb{Q}(a, \sqrt{2}).$$
 \end{example}
 
 $\hfill \blacksquare$

@@ -790,23 +790,23 @@ $f(ab) = f(a)f(b)$ para cada $a,b \in G_{1}$.
 
 Además, nuevamente recordar que, al igual que al comienzo del capítulo lo comentamos en general, a la hora de denotar homomorfismos, la operación que definamos en el grupo de salida y/o grupo de llegada (ya sea la aditiva $+$ o la multiplicativa $\cdot$) se omitirá cuando no haya lugar a dudas y se especificará cuando convenga.
 
-\begin{properties} Algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta:
+\begin{properties}Consideremos un homomorfismo $f \colon G \longrightarrow H$. Entonces algunas propiedades sobre los homomorfismos de grupos que serán importantes tenerlas en cuenta:
 \begin{enumerate}
-\item $f(1_{G_{1}}) = 1_{G_{2}}$ ya que $1_{G_{2}}f(1_{G_{1}}) = f(1_{G_{1}}) = f(1_{G_{1}}1_{G_{1}}) = f(1_{G_{1}})f(1_{G_{1}}) \Longrightarrow 1_{G_{2}} = f(1_{G_{1}}).$
-\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G_{1}}) = 1_{G_{2}},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G_{1}}) = 1_{G_{2}}.$$
-\item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G_{1}}$ se tiene que $1_{G_{2}} = f(1_{G_{1}}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
-\item Si $H$ es un subgrupo de $G_{2}$, $$f^{-1}(H) = \lbrace x \in G_{1} : f(x) \in H\rbrace$$ es un subgrupo de $G_{1}$. Además si $H$ es subgrupo normal de $G_{2}$, $f^{-1}(H)$ lo es de $G_{1}$.
+\item $f(1_{G}) = 1_{H}$ ya que $1_{H}f(1_{G}) = f(1_{G}) = f(1_{G}1_{G}) = f(1_{G})f(1_{G}) \Longrightarrow 1_{H} = f(1_{G}).$
+\item $f(a^{-1}) = (f(a))^{-1}$ para cada $a \in G$, puesto que $$f(a)f(a^{-1}) = f(aa^{-1}) = f(1_{G}) = 1_{H},$$ $$f(a^{-1})f(a) = f(a^{-1}a) = f(1_{G}) = 1_{H}.$$
+\item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G}$ se tiene que $1_{H} = f(1_{G}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
+\item Si $Y$ es un subgrupo de $H$, $$f^{-1}(Y) = \lbrace x \in G : f(x) \in Y\rbrace$$ es un subgrupo de $G$. Además si $Y$ es subgrupo normal de $H$, $f^{-1}(Y)$ lo es de $G$.
 
-En efecto, si $x,y \in f^{-1}(H)$, entonces $f(x),f(y) \in H$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in H$, luego $xy^{-1} \in f^{-1}(H)$. Para probar la normalidad de $f^{-1}(H)$ usamos la última de las condiciones: Si $ab \in f^{-1}(H)$ se sigue que $f(a)f(b) = f(ab) \in H$ y como $H$ es normal, $f(ab) = f(b)f(a) \in H.$ Por lo tanto $ba \in f^{-1}(H).$
+En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$. Para probar la normalidad de $f^{-1}(Y)$ usamos la última de las condiciones: Si $ab \in f^{-1}(Y)$ se sigue que $f(a)f(b) = f(ab) \in Y$ y como $Y$ es normal, $f(ab) = f(b)f(a) \in Y.$ Por lo tanto $ba \in f^{-1}(Y).$
  
 \item Si además consideramos otro homomorfismo $
 \begin{array}{rccl}
-g\colon G_{2} \longrightarrow  G_{3}
+g\colon H \longrightarrow  Z
 \end{array}
 $entonces,
 
 $\begin{array}{rccl}
-g \circ f\colon G_{1} \longrightarrow  G_{3}
+g \circ f\colon G \longrightarrow  Z
 \end{array}
 $ también es homomorfismo, pues $$ (g \circ f)(xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = (g \circ f)(x) (g \circ f)(y).$$
 \end{enumerate}
