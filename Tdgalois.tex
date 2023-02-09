@@ -434,7 +434,7 @@ es un isomorfismo de grupos.
 
 $\hfill \square$
 
-\begin{proposition}Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
+\begin{proposition}\label{eq:lemIsom} Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
 \end{proposition}
 \emph{Demostración: }Si $H \leq G$ sabemos que $NH$ es subgrupo de $G$. Como $N \unlhd G$ y $N \subseteq NH$, tenemos que $N \unlhd NH$. Ahora, $$f(H) = \lbrace hN : h \in H \rbrace = \lbrace nhN :n, \in N, h \in H \rbrace = NH/N.$$ Por~\ref{eq:propHoms}, $NH/N$ es un subgrupo de $G/N$.
 
@@ -467,6 +467,54 @@ El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}.
 
 $\hfill \square$
 
+También podemos estudiar los subgrupos de un grupo cociente $G/N$:
+
+\begin{theorem}[\textbf{\textit{Teorema de la correspondencia}}]
+Sea $N \unlhd G$. La aplicación $K \longrightarrow G/N$ es una biyección entre el conjunto $\lbrace K: N \subseteq K \leq G \rbrace$ y los subgrupos de $G/N$.
+\end{theorem}
+\emph{Demostración: }Sea $f \colon G \longrightarrow G/N$ el homomorfismo dado por $f(g) = gN$. Supongamos que $K$ es un subgrupo de $G$ que contiene a $N$. Por~\ref{eq:lemIsom}, $K/N = f(K)$ es un subgrupo de $G/N$. Supongamos que $J$ es otro subgrupo de $G$ que contiene a $N$ con $K/N = J/N$. Si $k \in K$, entonces $kN \in K/N = J/N$, por lo que existirá $j \in J$ tal que $kN = jN$. Así, $k \in jN \subseteq J$. Esto prueba que $K \subseteq J$. Análogamente, $J \subseteq K$ y tenemos que $K=J$. Esto prueba que la aplicación $K \longrightarrow K/N$ es inyectiva. Si $X \leq G/N$, entonces $f(f^{-1}(X)) = X$ pues $f$ es suprayectiva. Sea $K = f^{-1}(X)$. Sabemos que $K \leq G$ por~\ref{eq:propHoms}. Está claro que $N \subseteq K$ pues $f(n) = N \in X$ para $n \in N$. Ahora, $X=f(K) = K/N$ y ya está.
+
+$\hfill \square$
+
+\begin{definition}Un \textbf{automorfismo} $\alpha$ de $G$ es un isomorfismo $\alpha \colon G \longrightarrow G$. Denotaremos por $Aut(G)$ el conjunto de los automorfismos de $G$. Es claro que $Aut(G)$ forma unn grupo con la operación composición de aplicaciones: $$\alpha \circ \beta = \alpha \beta.$$
+\end{definition}
+
+Aunque en general no es sencillo calcular el grupo de automorfismos de un grupo $G$, nosotros estudiaremos un caso más simple, para ello tenemos que:
+
+\begin{definition} Dado $G$ un grupo y $x,g \in G$ tenemos que $$x^g=gxg^{-1}.$$ A este $x^g$ lo denominaremos \textbf{conjugado} de $x$ por $g$. Igualmente, si $X \subseteq G$, $g \in G$ escribiremos $$X^g = \lbrace x^g:x \in X \rbrace.$$ También definimos la \textbf{aplicación conjugación por $g$} como $$\begin{array}{rccl}
+\alpha_g \colon &G&\longrightarrow &G \\
+&x& \longmapsto &x^g = gxg^{-1}
+\end{array}
+$$
+\end{definition}
+
+Notar que la conjugación la hemos definido para subconjuntos en general.
+
+\begin{proposition}Sea $G$ un grupo y $g \in G$. Entonces:
+\begin{enumerate}
+\item La aplicación $\alpha_g$ es un automorfismo de $G$. En particular, si $x,y \in G$ entonces $(xy)^g = x^gy^g.$
+\item Si $h \in G$, entonces $\alpha_h \alpha_g = \alpha_{hg}$. En particular, si $x \in G$ entonces $(x^g)^h = x^{hg}$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Veamos:
+\begin{enumerate}
+\item Tenemos que $\alpha_g \alpha_{g^{-1}} = \alpha_{g^{-1}} \alpha_g = 1$, luego $(\alpha_g)^{-1}=\alpha_{g^{-1}}$ y así $\alpha_g$ es biyectiva. Sean ahora $x,y \in G$, entonces: $$(xy)^g = g(xy)g^{-1} = gxg^{-1}gyg^{-1} = x^gy^g.$$ Luego $\alpha_g$ es un homomorfismo, y notar que $\alpha_1$ es la identidad.
+\item Sea $h \in G$, entonces: $$(x^g)^h=h(gxg^{-1})h^{-1} = (hg)x(g^{-1}h^{-1}) = (hg)x(hg)^{-1} = x^{hg}.$$ Luego, $\alpha_h\alpha_g(x) =\alpha_h(\alpha_g(x)) = (x^g)^h = x^hg = \alpha_{hg}(x).$ Así, $\alpha_h\alpha_g = \alpha_{hg}$. 
+\end{enumerate}
+
+$\hfill \square$
+
+Resulta que estos automorfismos especiales, las conjugaciones, forman un grupo y tienen características interesantes.
+
+\begin{definition}Definimos $$Int (G) = \lbrace \alpha_g :g \in G \rbrace$$ como el conjunto de los \textbf{automorfismos internos} de $G$.
+\end{definition}
+
+\begin{proposition}Si $G$ es un grupo, entonces $Int(G) \unlhd Aut(G)$. Además, $$Int(G) \cong G/Z(G).$$
+\end{proposition}
+\emph{Demostración: }Sabemos que $\alpha_g\alpha_h = \alpha_{gh}$ y que $(\alpha_g)^{-1}$ por el resultado anterior. Así, tenemos que $Int(G) \leq Aut(G)$. Si $f \in Aut(G)$, veamos que $(\alpha_g)^f=\alpha_{f(g)}$: \begin{center}$((\alpha_g)^f)(x) = (f\alpha_g f^{-1})(x) = f(\alpha_g(f^{-1}(x))) = f(g(f^{-1}(x))g^{-1}) = f(g)xf(g^{-1}) =f(g)x(f(g))^{-1} =\alpha_{f(g)}(x) = x^{f(g)}.$\end{center}
+Esto demuestra que $Int(G) \unlhd Aut(G)$. Ahora, si consideramos la aplicación $G \longrightarrow Int(G)$ dada por $g \longmapsto \alpha_g$, es evidentemente suprayectiva y homomorfismo. El núcleo de esta aplicación será el conjunto $\lbrace g \in G : \alpha_g = id \rbrace = \lbrace g \in G: gxg^{-1}=x\hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G : gx = xg\hspace{0.1cm} \forall x \in G \rbrace$, y este conjunto es el centro $Z(G)$. El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}. 
+
+$\hfill \square$
 
 \subsection{Acciones de grupos}
 
