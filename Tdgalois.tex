@@ -509,12 +509,38 @@ Resulta que estos automorfismos especiales, las conjugaciones, forman un grupo y
 \begin{definition}Definimos $$Int (G) = \lbrace \alpha_g :g \in G \rbrace$$ como el conjunto de los \textbf{automorfismos internos} de $G$.
 \end{definition}
 
+\begin{definition}Llamamos \textbf{centro de $G$}, y lo denotamos $Z(G)$, a $$Z(G) = \lbrace g \in G: gx = xg \hspace{0.1cm} \forall x \in G \rbrace.$$
+\end{definition}
+
 \begin{proposition}Si $G$ es un grupo, entonces $Int(G) \unlhd Aut(G)$. Además, $$Int(G) \cong G/Z(G).$$
 \end{proposition}
 \emph{Demostración: }Sabemos que $\alpha_g\alpha_h = \alpha_{gh}$ y que $(\alpha_g)^{-1}$ por el resultado anterior. Así, tenemos que $Int(G) \leq Aut(G)$. Si $f \in Aut(G)$, veamos que $(\alpha_g)^f=\alpha_{f(g)}$: \begin{center}$((\alpha_g)^f)(x) = (f\alpha_g f^{-1})(x) = f(\alpha_g(f^{-1}(x))) = f(g(f^{-1}(x))g^{-1}) = f(g)xf(g^{-1}) =f(g)x(f(g))^{-1} =\alpha_{f(g)}(x) = x^{f(g)}.$\end{center}
 Esto demuestra que $Int(G) \unlhd Aut(G)$. Ahora, si consideramos la aplicación $G \longrightarrow Int(G)$ dada por $g \longmapsto \alpha_g$, es evidentemente suprayectiva y homomorfismo. El núcleo de esta aplicación será el conjunto $\lbrace g \in G : \alpha_g = id \rbrace = \lbrace g \in G: gxg^{-1}=x\hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G : gx = xg\hspace{0.1cm} \forall x \in G \rbrace$, y este conjunto es el centro $Z(G)$. El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}. 
 
 $\hfill \square$
+
+Finalmente, calculemos el grupo de automorfismos de un grupo cíclico. Será muy útil saber más adelante que este grupo es abeliano, veámoslo: si $G = \langle x \rangle $ y $\alpha, \beta \in Aut(G)$, entonces $\alpha (x) = x^d$ y $\beta(x) = x^e$ para algunos enteros $d,e$. Ahora, $\alpha\beta(x)=x^{de} = x^{ed}=\beta \alpha (x)$ y así $\alpha \beta = \because \alpha$ (esto es así porque todos los elementos de $G$ son potencias de $x$). Ahora examinaremos exactamente cómo es este grupo de automorfismos: 
+
+Si $n \in \mathbb{Z}$, consideramos el grupo abeliano $\mathbb{Z}/n\mathbb{Z}$. En $\mathbb{Z}/n\mathbb{Z}$ también se pueden multiplicar elementos: si $x+n\mathbb{Z}=x'+n\mathbb{Z}$, $y +n\mathbb{Z}=y'+n\mathbb{Z}$ tenemos que $$xy-x'y' = xy-xy'+xy'-x'y'= x(y-y')+y'(x-x') \in n\mathbb{Z},$$ luego es divisible por $n$. Luego $xy + n\mathbb{Z} = x'y' +n\mathbb{Z}$ y la multiplicación $$(x+n\mathbb{Z})(y+n\mathbb{Z})=xy+n\mathbb{Z},$$ está bien definida. Esta multiplicación es asociativa, por serlo la de $\mathbb{Z}$, y tiene elemento neutro $1 + n\mathbb{Z}$. Llamaremos \textbf{$\mathcal{U}_n$} al conjunto de los elementos de $\mathbb{Z}/n\mathbb{Z}$ para los que existe un inverso respecto a la multiplicación.
+
+\begin{proposition}Sea $n \geq 1$ y sea $0 \neq u \in \mathbb{Z}$, entonces $u + n\mathbb{Z}$ es invertible en $\mathbb{Z}/n\mathbb{Z}$ para la multiplicación si y sólo si $mcd(u,n)=1.$ En particular $|\mathcal{U}_n| = \varphi(n)$.
+\end{proposition}
+\emph{Demostración: }Se tiene que $u + n\mathbb{Z}$ es invertible en $\mathbb{Z}/n\mathbb{Z}$ si y sólo si existe $v \in \mathbb{Z}$ tal que $(u +n\mathbb{Z})(v+n\mathbb{Z})=1+n\mathbb{Z}$. Por lo que $u +n\mathbb{Z}$ si y sólo si existe $v \in \mathbb{Z}$ tal que $uv-1$ es divisible por $n$. Si esto ocurre, entonces $uv-1 = kn$ para cierto $k$. Ahora, si $d$ divide a $u$ y a $n$, entonces $d$ divide a $uv-kn = 1$, por lo que $mcd(u,n)=1$. Recíprocamente, supongamos que $mcd(u,n)=1$. Por la identidad de Bézout sabemos que existen $a,b \in \mathbb{Z}$ tales que $au+bn = 1$. Luego, $au-1$ es divisible por $n$ y así $u+n\mathbb{Z}$ tiene inverso.
+
+$\hfill \square$
+
+Así, es claro que $$\mathcal{U}_n = \lbrace u \in \mathbb{Z}/n\mathbb{Z}:mcd(u,n)=1 \rbrace.$$
+
+\begin{proposition}Si $C_n$ es un grupo cíclico de orden $n$, entonces $Aut(C_n) \cong \mathcal{U}_n$. En particular, $Aut(C_n)$ es abeliano.
+\end{proposition}
+\emph{Demostración: }Sea $C_n = \langle x \rangle$, con $o(x)=n$. Si $n = 1$ el resultado está claro. Sea $n \geq 2$. Sea $d$ un entero cualquiera y definimos $$\begin{array}{rccl}
+f_d \colon &C_n&\longrightarrow &C_n \\
+&x^s& \longmapsto &x^{ds}
+\end{array}
+$$
+con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que 
+$\hfill \square$
+
 
 \subsection{Acciones de grupos}
 
