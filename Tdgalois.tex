@@ -538,7 +538,13 @@ f_d \colon &C_n&\longrightarrow &C_n \\
 &x^s& \longmapsto &x^{ds}
 \end{array}
 $$
-con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que 
+con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que $f(x^s) = x^{ds}$ por~~ y deducimos que $f=f_d$.
+
+Notamos también que $f_d \circ f_e = f_{ed} = f_e \circ f_d$ y que $f_e = f_d$ si y sólo si $x^d = x^e$ si y sólo si $x^{d-e}=1$ si y sólo si $n$ divide a $d-e$ si y sólo si $e+n\mathbb{Z} = d+n\mathbb{Z}.$
+
+Ahora, $f_d( \langle x \rangle ) = \langle x^d \rangle$ por~~. Si $d = 0$, entonces la aplicación $f_d$ no es biyectiva (pues $n\geq 2$). Si $d \neq 0$, tenemos que $f_d$ es biyectiva si y sólo si $f_d$ es suprayectiva si y sólo si $\langle x^d \rangle = \langle x \rangle$ si y sólo si $mcd(d,n)=1$, por~~.
+
+Queda probado así que la aplicación $\mathcal{U}_n \longrightarrow Aut(C_n)$ dada por $d+n\mathbb{Z} \longmapsto f_d$ está bien definida y es un isomorfismo de grupos.
 
 $\hfill \square$
 
