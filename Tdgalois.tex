@@ -538,18 +538,129 @@ f_d \colon &C_n&\longrightarrow &C_n \\
 &x^s& \longmapsto &x^{ds}
 \end{array}
 $$
-con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que $f(x^s) = x^{ds}$ por~~ y deducimos que $f=f_d$.
+con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que $f(x^s) = x^{ds}$ por~\ref{eq:propHoms} y deducimos que $f=f_d$.
 
 Notamos también que $f_d \circ f_e = f_{ed} = f_e \circ f_d$ y que $f_e = f_d$ si y sólo si $x^d = x^e$ si y sólo si $x^{d-e}=1$ si y sólo si $n$ divide a $d-e$ si y sólo si $e+n\mathbb{Z} = d+n\mathbb{Z}.$
 
-Ahora, $f_d( \langle x \rangle ) = \langle x^d \rangle$ por~~. Si $d = 0$, entonces la aplicación $f_d$ no es biyectiva (pues $n\geq 2$). Si $d \neq 0$, tenemos que $f_d$ es biyectiva si y sólo si $f_d$ es suprayectiva si y sólo si $\langle x^d \rangle = \langle x \rangle$ si y sólo si $mcd(d,n)=1$, por~~.
+Ahora, $f_d( \langle x \rangle ) = \langle x^d \rangle$ por~\ref{eq:propHoms}. Si $d = 0$, entonces la aplicación $f_d$ no es biyectiva (pues $n\geq 2$). Si $d \neq 0$, tenemos que $f_d$ es biyectiva si y sólo si $f_d$ es suprayectiva si y sólo si $\langle x^d \rangle = \langle x \rangle$ si y sólo si $mcd(d,n)=1$, por~\ref{eq:prelgrupcic}.
 
 Queda probado así que la aplicación $\mathcal{U}_n \longrightarrow Aut(C_n)$ dada por $d+n\mathbb{Z} \longmapsto f_d$ está bien definida y es un isomorfismo de grupos.
 
 $\hfill \square$
 
+Gracias a estos dos últimos resultados concluimos que $|Aut(C_p)| = p-1$. De hecho, este grupo es cíclico.
+
+Finalmente, veamos el producto directo y semidirecto:
+
+\begin{proposition}Sean $G_{1}$ y $G_{2}$ grupos. Dado el producto cartesiano $G_{1} \times G_{2}$ podemos convertirlo en un grupo con la siguiente operación: $$\cdot \colon (g_{1},g_{2})(g'_{1},g'_{2})=(g_{1}g'_{1},g_{2},g'_{2}).$$
+Además, dado un grupo $G$ y $N_{1},N_{2} \unlhd G$ subgrupos normales tales que $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}=\lbrace 1_{G} \rbrace$. Entonces $$N_{1} \times N_{2} \cong G.$$
+\end{proposition}
+\emph{Demostración: }Para ver que es grupo con $\cdot$ basta con una simple comprobación. Para la segunda parte definimos la siguiente aplicación: 
+$$\begin{array}{rccl}
+f\colon &N_{1}\times N_{2} & \longrightarrow & G\\
+&(n_{1},n_{2})& \longmapsto &n_{1}n_{2}
+\end{array}
+$$ 
+
+Para ver que $f$ es homomorfismo: $$f((n_{1},n_{2})(n'_{1},n'_{2}))=f((n_{1}n'_{1},n_{2}n'_{2}))=n_{1}n'_{1}n_{2}n'_{2}.$$
+$$f((n_{1},n_{2}))f((n'_{1},n'_{2}))=n_{1}n_{2}n'_{1}n'_{2}.$$
+Para comprobar que son iguales bastará probar que $xy=yx$ para todo $x\in N_{1}$, $y\in N_{2}$. Sea $x^{-1}y^{-1}xy=x^{-1}(y^{-1}xy)\in N_{1}$, como también $x^{-1}y^{-1}xy=(x^{-1}y^{-1}x)y \in N_{2}$ y por hipótesis tenemos que $N_{1}\cap N_{2} = \lbrace 1_{G}\rbrace$, entonces será que $x^{-1}y^{-1}xy=1$, luego $xy=yx$. 
+
+Ahora, como $G=N_{1}N_{2}$, $f$ es suprayectiva. $Ker f = \lbrace (n_{1},n_{2}) \in N_{1}\times N_{2}:n_{1}n_{2}=1 \rbrace$. Si $n_{1}n_{2}=1$, entonces $n_{2}=n_{1}^{-1}\in N_{1}\cap N_{2}=\lbrace 1_{G}\rbrace$. Así, $n_{1}=n_{2}=1_{G}$ y $Ker f=\lbrace 1_{G} \rbrace$ y $f$ es inyectiva.
+
+$\hfill \square$
+
+\begin{definition}Decimos que el producto cartesiano en el que hemos descompuesto $G$ antes, $N_{1}\times N_{2}$ con $N_{1}, N_{2}\unlhd G$ tales que con $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}= \lbrace 1_{G} \rbrace$, es un \textbf{producto directo}. 
+\end{definition}
+
+\begin{proposition}Sean $N$ y $H$ grupos. Sea $\varphi \colon H \longrightarrow Aut(N)$ un homomorfismo entre $H$ y el grupo de los automorfismos de $N$. En el producto cartesiano $N \times H$ podemos definir una estructura de grupo conocida como \textbf{producto semidirecto de $H$ por $N$ vía $\varphi$} y denotada por $N\times_{\varphi} H$ de la siguiente manera:$$(n_{1},h_{1})(n_{2},h_{2}) = (n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2}),$$ donde $\varphi(h_{1})(n_{2}) = n_{2}^{h_{1}}$ normalmente, es decir, que el automorfismo en cuestión será la composición por un $h \in H$.
+
+Ahora, sea $G$ un grupo, $N \unlhd G$ y $H \leq G$. Supongamos que $G = NH$ y $N \cap H = \lbrace 1_{G}\rbrace$. Dado un $$\begin{array}{rccl}
+\varphi\colon &H & \longrightarrow & Aut(N)\\
+&h& \longmapsto &n \longmapsto n^{h} = hnh^{-1}.
+\end{array}
+$$  Entonces $$N \times_{\varphi} H \cong G.$$
+\end{proposition}
+\emph{Demostración: }
+Comprobemos primero que es grupo. Cumple con la propiedad asociativa: \begin{center}$(n_{1},h_{1})((n_{2},h_{2})(n_{3},h_{3}))=(n_{1},h_{1})(n_{2}\varphi(h_{2})(n_{3}),h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2}\varphi(h_{2})(n_{3})),h_{1}h_{2}h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
+
+$((n_{1},h_{1})(n_{2},h_{2}))(n_{3},h_{3})=(n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})(n_{3},h_{3})=(n_{1}\varphi(h_{1})(n_{2})\varphi(h_{1}h_{2})(n_{3}),h_{1}h_{2}h_{3}).$
+\end{center}
+Tiene elemento neutro: 
+$$(n,h)(1,1)=(n\varphi(h)(1),h)=(1\varphi(h)(n),h)=(1,1)(n,h).$$
+
+Cada elemento $(n,h)$ tiene un inverso $(n,h)^{-1}=(\varphi(h^{-1})(n^{-1}),h^{-1})$.
+
+\begin{center}$(n,h)(\varphi(h^{-1})(n^{-1}),h^{-1})=(n\varphi(h)(\varphi(h^{-1})(n^{-1})),1)=(n\varphi(hh^{-1})(n^{-1}),1)=(nn^{-1},1)=(1,1).$
+
+$(\varphi(h^{-1})(n^{-1}),h^{-1})(n,h)=(\varphi(h^{-1})(n^{-1})\varphi(h^{-1})(n),1)=(\varphi(h^{-1})(n^{-1}n),1)=(\varphi(h^{-1})(1),1)=(1,1).$\end{center}
+
+Ahora, veamos la segunda parte. Sea $G=NH$, con $N \unlhd G$, $H\leq G$ y $N \cap H = \lbrace 1_{G} \rbrace$, y sea 
+$$\begin{array}{rccl}
+\varphi\colon &H & \longrightarrow & Aut(N)\\
+&h& \longmapsto &n \longmapsto n^{h} = hnh^{-1}.
+\end{array}
+$$
+Veamos que $\varphi$ está bien definida: como $N \unlhd G$, si $n \in N$ y $h \in H$, $hnh^{-1} \in N$. Ya sabemos que la conjugación es un automorfismo. Además $\varphi$ es homorfismo: $$\varphi(h_{1},h_{2})(n)=h_{1}h_{2}nh_{2}^{-1}h_{1}^{-1}=(\varphi(h_{1}) \circ \varphi(h_{2}))(n).$$
+Definimos ahora $$\begin{array}{rccl}
+f\colon &N \times _{\varphi} H & \longrightarrow & G\\
+&(n,h)& \longmapsto &nh.
+\end{array}
+$$
+y veamos que $f$ es homomorfismo: \begin{center}$f((n_{1},h_{1})(n_{2},h_{2}))=f((n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})=n_{1}\varphi(h_{1})(n_{2})h_{1}h_{2}=n_{1}(h_{1}n2h_{1}^{-1})h_{1}h_{2}=n_{1}h_{1}n_{2}h_{2}=f((n_{1},h_{1}))f((n_{2},h_{2})).$\end{center}
+
+Como $G=NH$ $f$ es claramente suprayectiva. Ahora, $Ker f= \lbrace (n,h) \in N\times_{\varphi} H :nh=1 \rbrace$. Y si $nh=1$ entonces $n=h^{-1}\in N \cap H$, pero como $N \cap H = \lbrace 1_{G} \rbrace$ tenemos que $n=h=1_{G}$ y así $f$ es inyectiva y por tanto isomorfismo.
+
+$\hfill \square$
 
 \subsection{Acciones de grupos}
+
+Los grupos se manifiestan a través de sus acciones sobre espacios vectoriales, sobre otros grupos o, en general, sobre conjuntos. En esta sección veremos las acciones sobre conjuntos, o equivalentemente, los homomorfismos de $G$ sobre grupos simétricos.
+
+\begin{definition}Sea $\Omega$ un conjunto no vacío y sea $G$ un grupo. Diremos que $G$ \textbf{actúa} sobre $\Omega$ si para todo $\alpha \in \Omega$ y $g \in G$ tenemos definido un único elemento $g \cdot \alpha$ de tal forma que:
+\begin{enumerate}
+\item $h \cdot (g \cdot \alpha)=(hg) \cdot \alpha$ $\forall \alpha \in \Omega$, $g,h \in G$.
+\item $1 \cdot \alpha =\alpha$ $\forall \alpha \in \Omega$.
+\end{enumerate}
+
+En este caso, diremos que $\cdot$ define una \textbf{acción} de $G$ sobre $\Omega$.
+\end{definition}
+
+\begin{example}Los siguientes ejemplos son acciones de grupos sobre conjuntos:
+\begin{enumerate}
+\item Sea $G$ un grupo y $H \leq G$. Sea $\Omega = \lbrace xH : x \in G \rbrace$. Si $g \in G$ y $\alpha \in \Omega$, definimos $g \cdot \alpha = g\alpha$, es decir: $$g \cdot(xH) = gxH, \quad \forall x,g \in G.$$ Esta es la acción de $G$ sobre el conjunto de las coclases a izquierda de $H$ en $G$.
+\item Sea $G$ un grupo y $\Omega = G$. Dado un $\alpha \in \Omega, g \in G$ definimos $$g \cdot \alpha= \alpha^g.$$ Esta es la \textbf{acción de $G$ sobre $G$ por conjugación}.
+\item Sea $\Omega = \lbrace H : H \leq G \rbrace$ el conjunto de subgrupos de $G$. Si $H \in \Omega$, $g \in G$ definimos $$ g \cdot H = H ^g.$$ Esta es la acción de $G$ sobre los subgrupos de $G$ por conjugación.
+\item Sea $\Omega$ un conjunto no vacío y sea $G \leq S_{\Omega}$. Si $g \in G$, $\alpha \in \Omega$ definimos $$g \cdot \alpha = g(\alpha).$$ Esta es la \textbf{acción natural de $G$ sobre $\Omega$}.
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+Como se verá ahora, una acción de un grupo $G$ sobre un conjunto $\Omega$ no es más que un homomorfismo de grupos $G \longrightarrow S_{\Omega}$.
+
+\begin{theorem}
+Sea $G$ un grupo y $\Omega$ un conjunto no vacío. Entonces: 
+\begin{enumerate}
+\item Supongamos que $G$ actúa sobre $\Omega$. Para cada $g \in G$ consideremos la aplicación $$\begin{array}{rccl}
+\rho_g \colon &\Omega&\longrightarrow &\Omega \\
+&\alpha& \longmapsto &g \cdot \alpha
+\end{array}
+$$
+Tenemos que $\rho_g$ es biyectiva y además la aplicación 
+$$\begin{array}{rccl}
+\rho \colon &G&\longrightarrow &S_{\Omega} \\
+&g& \longmapsto &\rho_g
+\end{array}
+$$ es un homomorfismo de grupos.
+\item Sea $\rho \colon G \longrightarrow S_{\Omega}$ homomorfismo de grupos. Para cada $g \in G$ y $\alpha \in \Omega$ definimos $g \cdot \alpha = \rho(g)(\alpha)$. Entonces $\cdot$ define una acción de $G$ sobre $\Omega$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }Veamos primero $1.$, sea $g \in G$, veamos que $\rho_g$ es inyectiva. Si $\rho_g(\alpha)=\rho_g(\beta)$, con $\alpha, \beta \in \Omega$ entonces $g \cdot \alpha = g \cdot \beta$, por lo que $g^{-1} \cdot (g\cdot \alpha) = g^{-1}  \cdot (g \cdot \beta$) y aplicando las condiciones de las acciones tenemos que $ (g^{-1}g) \cdot \alpha = (g^{-1}g) \cdot \beta \Rightarrow 1 \cdot \alpha = 1 \cdot \beta \Rightarrow \alpha = \beta$. Para la sobreyectividad consideremos $\beta \in \Omega$, entonces $ g^{-1} \cdot \beta \in \Omega$ y $\rho_g(g^{-1}\cdot \beta)= g \cdot (g^{-1} \cdot \beta )= \beta.$. Luego $\rho_g$ es biyectiva.
+
+Veamos ahora $2.$, como $\rho (1)$ es la identidad tenemos que $1 \cdot \alpha = \alpha$, $\forall \alpha \in \Omega$. Ahora, si $g,h \in G$ y $\alpha \in \Omega$ tenemos que $$(\rho(g)\rho(h))(\alpha) = \rho(g)(\rho(h)(\alpha)) = g \cdot(h \cdot \alpha ) = (gh) \cdot \alpha = \rho_{gh}(\alpha) = \rho(gh)(\alpha).$$
+
+
+$\hfill \blacksquare$
 
 \section{Anillos y cuerpos}
 
