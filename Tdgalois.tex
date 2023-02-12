@@ -90,7 +90,7 @@ Al inverso de un $x \in G$ lo denotaremos por $x^{-1}$ y al producto lo podremos
 $\hfill \blacksquare$
 
 
-En general, dado un grupo $G$, no será cierto que $xy = yx$ para cualesquiera $x,y \in G$. Por ejemplo, en $S_{3}$, si $\alpha, \beta \in S_{3}$ con $\alpha(1) = 2, \alpha (2)=3, \alpha (3) = 1$, $\beta (1)=2, \beta(2)=1, \beta (3) = 3$, entonces $\alpha \beta \neq \beta \alpha$. En aquellos grupos $G$ en los que sí se cumpla la igualdad, es decir $xy = yx$ $\forall x,y \in G$, los denominaremos \textbf{abelianos}.
+En general, dado un grupo $G$, no será cierto que $xy = yx$ para cualesquiera $x,y \in G$. Por ejemplo, en $S_{3}$, si $\alpha, \beta \in S_{3}$ con $\alpha(1) = 2, \alpha (2)=3, \alpha (3) = 1$, $\beta (1)=2, \beta(2)=1, \beta (3) = 3$, entonces $\alpha \beta \neq \beta \alpha$. En aquellos grupos $G$ en los que sí se cumpla la igualdad, es decir $xy = yx$ $\forall x,y \in G$, los denominaremos \textbf{ grupos abelianos}.
 
 Cuando trabajemos con grupos abelianos, en ocasión emplearemos la notación aditiva y escribiremos $x+y$ en lugar de $xy$, $-x$ en lugar de $x^{-1}$ y el elemento neutro será $0$.
 
@@ -638,7 +638,7 @@ $\hfill \blacksquare$
 
 Como se verá ahora, una acción de un grupo $G$ sobre un conjunto $\Omega$ no es más que un homomorfismo de grupos $G \longrightarrow S_{\Omega}$.
 
-\begin{theorem}
+\begin{theorem} \label{eq:princAcci}
 Sea $G$ un grupo y $\Omega$ un conjunto no vacío. Entonces: 
 \begin{enumerate}
 \item Supongamos que $G$ actúa sobre $\Omega$. Para cada $g \in G$ consideremos la aplicación $$\begin{array}{rccl}
@@ -660,7 +660,50 @@ $$ es un homomorfismo de grupos.
 Veamos ahora $2.$, como $\rho (1)$ es la identidad tenemos que $1 \cdot \alpha = \alpha$, $\forall \alpha \in \Omega$. Ahora, si $g,h \in G$ y $\alpha \in \Omega$ tenemos que $$(\rho(g)\rho(h))(\alpha) = \rho(g)(\rho(h)(\alpha)) = g \cdot(h \cdot \alpha ) = (gh) \cdot \alpha = \rho_{gh}(\alpha) = \rho(gh)(\alpha).$$
 
 
-$\hfill \blacksquare$
+$\hfill \square$
+
+\begin{definition}Si un grupo $G$ actúa sobre un conjunto $\Omega$, entonces podemos definir el siguiente conjunto. $$K = \lbrace g \in G : g\cdot \alpha = \alpha \hspace{0.1cm} \forall \alpha \in \Omega \rbrace,$$ como el \textbf{núcleo} de la acción. Notar que $K = Ker(\rho) \unlhd G$. Diremos que la acción de $G$ sobre $\Omega$ es \textbf{fiel} si $K = \lbrace 1 \rbrace.$
+\end{definition}
+
+De hecho, el núcleo de la acción (que veremos más adelante en profundidad) de $G$ sobre $G$ por conjugación es $$K = \lbrace g \in G : x^g =x \hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G:gx=xg \hspace{0.1cm} \forall x \in G \rbrace = Z(G).$$
+
+Veamos ahora cuál es el núcleo de la acción del primer ejemplo:
+
+\begin{proposition}Sea $H \leq G$ y sea $K = \cap_{x \in G} H^x$. Entonces $K$ es el núcleo de la acción de $G$ sobre $\Omega = \lbrace xH :x \in G \rbrace$ por multiplicación a izquierda.
+\end{proposition}
+\emph{Demostración: }Sea $g \in G$, entonces $g \in Ker (\rho)$ si y sólo si $gxH = xH$ $\forall x \in G$ si y sólo si $x^{-1}gx H = H$  $\forall x \in G$ si y sólo si $x^{-1}gx \in H$ $\forall x \in G$ si y sólo si $g \in H^x$ $\forall x \in G$ si y sólo si $g \in K$.
+
+$\hfill \square$
+
+Todo grupo finito es subgrupo de un grupo simétrico.
+
+\begin{theorem}[\textbf{\textit{Teorema de Cayley}}]
+Sea $H \leq G$, con $[G:H] = n$. Entonces, existe $K \unlhd G$ contenido en $H$ tal que $G/K$ es isomorfo a un subgrupo de $S_n$. En particular, si $G$ tiene orden $n$, entonces $G$ es isomorfo a un subgrupo de $S_n$.
+\end{theorem}
+\emph{Demostración: }Sea $\Omega$ el conjunto de las clases a izquierda de $H$ en $G$. Luego, $|\Omega | = n$. Sea $K \unlhd G$ el núcleo de la acción de $G$ sobre $\Omega$ Por el resultado anterior tenemos que $K \subseteq H$. Por la primera parte de~\ref{eq:princAcci} existe un homomorfismo de grupos $G \longrightarrow S_{\Omega}$ de núcleo $K$. Por el \textit{Primer Teorema de Isomorfía}, tenemos que $G/K$ es isomorfo a un subgrupo de $S_{\Omega} = S_n$. Para lo segundo tomar simplemente $H = \lbrace 1 \rbrace$.
+
+$\hfill \square$
+
+De este resultado podemos sacar algo de información para los grupos finitos simples:
+
+\begin{corolario}Sea $G$ un grupo finito simple y supongamos que $H \leq G$ es un subgrupo de índice $n > 1$. Entonces $G$ es isomorfo a un subgrupo de $S_n$. En particular, $|G|$ divide a $n!$.
+\end{corolario}
+\emph{Demostración: }Teniendo en cuenta lo que hemos visto en el resultado anterior tenemos que $K$ es un subgrupo normal de $G$ contenido en $H\leq G$, por lo que $K = 1$. Así, $G$ es isomorfo a un subgrupo de $S_n$ por el resultado anterior. Para lo segundo basta aplicar el \textit{Teorema de Lagrange}.
+
+$\hfill \square$
+
+Ahora veremos que una acción de $G$ puede definir una relación de equivalencia en $\Omega$. En efecto, si $\alpha, \beta \in \Omega$ escribiremos $\alpha \sim \beta $ si existe $g \in G$ tal que $g \cdot \alpha = \beta$. Es decir, $\alpha$ y $\beta$ van a estar relacionados si existe un elemento de $G$ que actuando sobre $\alpha$ dé $\beta$. Esta relación va a dar mucho de que hablar, veamos que es de equivalencia:
+
+$$g^{-1} \cdot \beta = g^{-1} \cdot (g \cdot \alpha ) = (g^{-1}g) \cdot \alpha = \alpha, $$ luego si $\alpha \sim \beta$ entonces $\beta \sim \alpha$ y tenemos que esta relación es simétrica. Además es claro que $1 \cdot \alpha = \alpha$, luego $\alpha \sim \alpha$ y esta relación es reflexiva. Finalmente, si $g \cdot \alpha = \beta$ ($\alpha \sim \beta$) y $h \cdot \beta = \gamma$ ($\beta \sim \gamma$), con $g, h \in G$, entonces $$\gamma = h \cdot (g \cdot \alpha) = (gh) \cdot \alpha,$$ y como $gh \in G$ por ser $G$ grupo entonces $\alpha \sim \gamma$ y esta relación es transitiva.
+
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, $\alpha \in \Omega$ y considerando la relación de equivalencia $\sim$ que acabamos de ver, entonces la clase de equivalencia de $\alpha$ es $$O_a = \lbrace g\cdot \alpha : g \in G \rbrace.$$ A este conjunto lo llamamos \textbf{órbita} de $\alpha$ por $G$ ó \textbf{$G$-órbita} de $\alpha$. Notar que su \textbf{longitud} es $|O_a|$.
+\end{definition}
+
+Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia, tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $||$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
+
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, si $\alpha \in \Omega$ entonces definimos el \textbf{estabilizador} de $\alpha$ en $G$ como $$G_\alpha = \lbrace g \in G : g\cdot \alpha = \alpha \rbrace.$$
+\end{definition}
+
 
 \section{Anillos y cuerpos}
 
