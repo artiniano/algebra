@@ -699,11 +699,61 @@ $$g^{-1} \cdot \beta = g^{-1} \cdot (g \cdot \alpha ) = (g^{-1}g) \cdot \alpha =
 \begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, $\alpha \in \Omega$ y considerando la relación de equivalencia $\sim$ que acabamos de ver, entonces la clase de equivalencia de $\alpha$ es $$O_a = \lbrace g\cdot \alpha : g \in G \rbrace.$$ A este conjunto lo llamamos \textbf{órbita} de $\alpha$ por $G$ ó \textbf{$G$-órbita} de $\alpha$. Notar que su \textbf{longitud} es $|O_a|$.
 \end{definition}
 
-Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia, tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $||$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
+Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia (órbitas de la acción), tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $||$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
 
 \begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, si $\alpha \in \Omega$ entonces definimos el \textbf{estabilizador} de $\alpha$ en $G$ como $$G_\alpha = \lbrace g \in G : g\cdot \alpha = \alpha \rbrace.$$
 \end{definition}
 
+\begin{theorem}[\textbf{\textit{Teorema de la órbita-estabilizadora}}] \label{eq:torest}
+Sea $G$ un grupo que actúa sobre un conjunto $\Omega$ y sea $\alpha \in \Omega$. Entonces $G_\alpha \leq G$ y $$|O_\alpha| = [G:G_\alpha].$$
+\end{theorem}
+\emph{Demostración: }Sea $g,h \in G_\alpha$. Entonces $(gh) \cdot \alpha = g \cdot (h\cdot \alpha) = g \cdot \alpha = \alpha.$ Por lo que $gh \in G_\alpha$, además si $g\cdot \alpha = \alpha$ entonces $g^{-1} \cdot \alpha = g^{-1} \cdot (g\cdot \alpha)= (g^{-1}g) \cdot \alpha = \alpha,$ luego $g^{-1} \in G_\alpha$ y así $G_\alpha \leq G$.
+
+Ahora, busquemos una aplicación biyectiva $f \colon \lbrace xG_\alpha : x \in G \rbrace \longrightarrow O_\alpha$. Definimos $f(xG_\alpha) = x\cdot \alpha$. Ahora, $xG_\alpha = y G_\alpha$ si y sólo si $x^{-1}y \in G_\alpha$ si y sólo si $(x^{-1}y) \cdot \alpha = \alpha$ si y sólo si $x \cdot ((x^{-1}y) \cdot \alpha) = x \cdot \alpha$ si y sólo si $y \cdot \alpha = x \cdot \alpha$, luego $f$ está bien definida y es inyectiva. Al ser $f$ claramente suprayectiva, ya está.
+
+$\hfill \square$
+
+Cuando un grupo $G$ actúa sobre un conjunto $\Omega$, de entre todos los elementos de $\Omega$ destacamos aquellos que son fijados por todos los elementos de $G$:
+
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, y dado un $\alpha \in \Omega$ decimos que $\alpha$ es un \textbf{punto fijo} de $\Omega$ si $g \cdot \alpha = \alpha$ $\forall g \in G$, es decir aquellos $\alpha \in \Omega$ tales que $O_\alpha = \lbrace \alpha \rbrace$. Igualmente escribimos $$\Omega_0 = \lbrace \alpha \in \Omega : |O_\alpha | = 1. \rbrace.$$
+\end{definition}
+
+\begin{definition}Sea $p$ un número primo. Un grupo $G$ es un \textbf{$p$-grupo finito} si $G$ es finito y $|G|$ es una potencia de $p$.
+\end{definition}
+
+\begin{theorem}\label{eq:ecClasesp}
+Sea $G$ un grupo actuando sobre un conjunto finito $\Omega$. Escogemos $\alpha_1, \ldots, \alpha_s$ representantes de las órbitas de longitud mayor que 1. Entonces $$|\Omega| = |\Omega_0| + \sum_{j=1}^s |O_{\alpha_j}|.$$ En particular, si $G$ es un $p$-grupo finito, entonces $$|\Omega| \equiv |\Omega_0|\hspace{0.1cm} \text{mod}\hspace{0.1cm} p.$$
+\end{theorem}
+\emph{Demostración: }La primera parte se deduce de la fórmula de las órbitas y del teorema de la órbita estabilizadora. Sea ahora $G$ un grupo tal que $|G| = p^n$. Por~\ref{eq:torest}, tendremos que $|O_{\alpha_j}| = [G:G_{\alpha_j}] > 1$, con $j = 1, \ldots , s$. Como $[G:G_{\alpha_j}]$ divide a $|G| = p^n$, ya está.
+
+$\hfill \square$
+
+La descomposición del conjunto $\Omega$ en unión de las diferentes órbitas tiene especial interés cuando la acción es la conjugación de un grupo $G$ sobre sí mismo. En este caso consideraremos: 
+
+\begin{definition}Consideremos la acción $$\begin{array}{rccl}
+\rho\colon &G& \longrightarrow &S_G\\
+&g& \longmapsto &\alpha_{g}
+\end{array}
+$$
+donde ya sabemos que $\alpha_{g}(x) = x^{g}=gxg^{-1}$ con $x \in G$. Notar que en este caso el conjunto sobre el que consideramos la acción es $G$, y que también la hemos presentado antes, al comienzo del capítulo concretamente, como la \textbf{acción conjugación}.
+
+Como $\alpha_{g} \in Aut(G)$ tenemos que en particular es biyectiva. Además es claro que $\alpha_{gh}=\alpha_{g}\alpha_{h}$, luego $\varphi$ es homomorfismo.
+
+El núcleo de este homomorfismo, $Ker \hspace{0.1cm} \varphi = \lbrace g \in G: \alpha_{g} = id \rbrace = \lbrace g \in G: gxg^{-1} = x \hspace{0.1cm} \forall x \in G \rbrace =  \lbrace g \in G: gx = xg \hspace{0.1cm} \forall x \in G \rbrace$ es el \textbf{centro de $G$} y se escribe \textbf{$Z(G)$}.
+
+El estabilizador, dado un $x \in G$, $G_{x}= \lbrace g \in G: gxg^{-1} = x \rbrace = \lbrace g \in G: gx=xg \rbrace$ también se presentó en el primer capítulo y lo denominamos \textbf{centralizador de $x$ en $G$} y se escribe como \textbf{$C_{G}(x)$}. Además, ya que $G_{x} \leq G$ entonces también $C_{G}(x) \leq G$.
+
+Por último, si $x \in G$, su órbita $O_{x}$ será entonces $O_{x} = \lbrace gxg^{-1}:g \in G \rbrace$. La denominaremos \textbf{clase de conjugación de $x$ en $G$}. Y, siguiendo el teorema de la órbita estabilizadora vemos que tiene $[G:C_{G}(x)] = \dfrac{|G|}{|C_{G}(x)|}$ elementos. En particular, la denotaremos por $Cl_{G}(x)$, es decir, tendremos: $$Cl_{G}(x) = \lbrace gxg^{-1} : g \in G \rbrace$$ $$|Cl_{G}(x)| = [G :C_G(x)] = \dfrac{|G|}{|C_G(x)|}.$$
+\end{definition}
+
+Notar que $|Cl_G(x) | = 1$ si y sólo si $gx = xg$ $\forall g \in G$, es decir, si y sólo si $x \in Z(G)$. Luego, en este caso $\Omega_0 = Z(G).$
+
+\begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}]
+Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
+\end{theorem} 
+\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
+
+$\hfill \square$
 
 \section{Anillos y cuerpos}
 
