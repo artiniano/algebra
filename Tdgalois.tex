@@ -339,6 +339,12 @@ Por otra parte, si $t$ es un entero positivo tal que $(x^{m})^{t} = 1$, entonces
 
 $\hfill \square$
 
+\begin{corolario}\label{eq:abSimple} Sea $G \neq \lbrace 1 \rbrace$ un grupo finito. Entonces $G$ no tiene subgrupos propios si y sólo si $|G|$ es primo. Por lo tanto, un grupo simple abeliano finito es de orden primo.
+\end{corolario}
+\emph{Demostración: }Si $|G|$ es primo, entonces $G$ no tiene subgrupos propios por el \textit{Teorema de Lagrange}. Supongamos ahora que $G$ no tiene subgrupos propios. Sea $1 \neq x \in G$, entonces $\langle x \rangle = G$. Si $p$ es un número primo que divide a $|G|$ entonces $G$ tiene un subgrupo $H$ de orden $p$ por~\ref{eq:prelgrupcic}. Luego $G = H$ tiene orden $p$. Por último, como en un grupo abeliano todos sus subgrupos son normales ya está.
+
+$\hfill \square$
+
 Ya hemos analizado $\mathbb{Z}$ pero no sus cocientes. Si $n$ es un entero, el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ es un objeto matemático de interés. Ya sabemos que si $x,y \in \mathbb{Z}$ entonces $x+n\mathbb{Z} = y + n\mathbb{Z}$ si y sólo si $x-y \in n\mathbb{Z}$ si y sólo si $n$ divide a $x-y$. Esto lo escribiremos como $x \equiv y$ mod $n$.
 
 \begin{proposition}Si $n \geq 1$, entonces $$\mathbb{Z}/n\mathbb{Z} = \lbrace n\mathbb{Z}, 1+n\mathbb{Z}, \ldots, (n-1)+n\mathbb{Z} \rbrace$$ es un grupo cíclico de orden $n$.
@@ -609,7 +615,7 @@ f\colon &N \times _{\varphi} H & \longrightarrow & G\\
 $$
 y veamos que $f$ es homomorfismo: \begin{center}$f((n_{1},h_{1})(n_{2},h_{2}))=f((n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2})=n_{1}\varphi(h_{1})(n_{2})h_{1}h_{2}=n_{1}(h_{1}n2h_{1}^{-1})h_{1}h_{2}=n_{1}h_{1}n_{2}h_{2}=f((n_{1},h_{1}))f((n_{2},h_{2})).$\end{center}
 
-Como $G=NH$ $f$ es claramente suprayectiva. Ahora, $Ker f= \lbrace (n,h) \in N\times_{\varphi} H :nh=1 \rbrace$. Y si $nh=1$ entonces $n=h^{-1}\in N \cap H$, pero como $N \cap H = \lbrace 1_{G} \rbrace$ tenemos que $n=h=1_{G}$ y así $f$ es inyectiva y por tanto isomorfismo.
+Como $G=NH$ entonces $f$ es claramente suprayectiva. Ahora, $Ker f= \lbrace (n,h) \in N\times_{\varphi} H :nh=1 \rbrace$. Y si $nh=1$ entonces $n=h^{-1}\in N \cap H$, pero como $N \cap H = \lbrace 1_{G} \rbrace$ tenemos que $n=h=1_{G}$ y así $f$ es inyectiva y por tanto isomorfismo.
 
 $\hfill \square$
 
@@ -715,7 +721,7 @@ $\hfill \square$
 
 Cuando un grupo $G$ actúa sobre un conjunto $\Omega$, de entre todos los elementos de $\Omega$ destacamos aquellos que son fijados por todos los elementos de $G$:
 
-\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, y dado un $\alpha \in \Omega$ decimos que $\alpha$ es un \textbf{punto fijo} de $\Omega$ si $g \cdot \alpha = \alpha$ $\forall g \in G$, es decir aquellos $\alpha \in \Omega$ tales que $O_\alpha = \lbrace \alpha \rbrace$. Igualmente escribimos $$\Omega_0 = \lbrace \alpha \in \Omega : |O_\alpha | = 1. \rbrace.$$
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, y dado un $\alpha \in \Omega$ decimos que $\alpha$ es un \textbf{punto fijo} de $\Omega$ si $g \cdot \alpha = \alpha$ $\forall g \in G$, es decir aquellos $\alpha \in \Omega$ tales que $O_\alpha = \lbrace \alpha \rbrace$. Igualmente escribimos $$\Omega_0 = \lbrace \alpha \in \Omega : |O_\alpha | = 1. \rbrace$$ para referirnos al conjunto de los puntos fijos de $\Omega$.
 \end{definition}
 
 \begin{definition}Sea $p$ un número primo. Un grupo $G$ es un \textbf{$p$-grupo finito} si $G$ es finito y $|G|$ es una potencia de $p$.
@@ -748,12 +754,64 @@ Por último, si $x \in G$, su órbita $O_{x}$ será entonces $O_{x} = \lbrace gx
 
 Notar que $|Cl_G(x) | = 1$ si y sólo si $gx = xg$ $\forall g \in G$, es decir, si y sólo si $x \in Z(G)$. Luego, en este caso $\Omega_0 = Z(G).$
 
-\begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}]
+\begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}] \label{eq:ecClases}
 Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
 \end{theorem} 
 \emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
 
 $\hfill \square$
+
+\begin{proposition}Sea $G \neq \lbrace 1 \rbrace$ un $p$-grupo finito. Entonces tenemos que $Z(G) \neq \lbrace 1 \rbrace$.
+\end{proposition}
+\emph{Demostración: }Por~\ref{eq:ecClasesp} y~\ref{eq:ecClases} tenemos que $|G| \equiv |Z(G)|\hspace{0.1cm}\text{mod}\hspace{0.1cm} p$. Como $|G| = p^a$ y $p^a \not\equiv 1 \hspace{0.1cm}\text{mod}\hspace{0.1cm}p$ ya está.
+
+$\hfill \square$
+
+\begin{corolario}Sea $G$ un $p$-grupo finito simple. Entonces $|G| = p$.
+\end{corolario}
+\emph{Demostración: }Si $G$ es simple entonces $Z(G) = G$, ya que sabemos por el resultado anterior que $Z(G) \neq \lbrace 1 \rbrace$, y como el centro es un subgrupo normal y $G$ es simple entonces necesariamente $Z(G) = G$. Luego $G$ es abeliano y el resultado se sigue de~\ref{eq:abSimple}.
+
+$\hfill \square$
+
+\begin{definition}Si $H \leq G$ definimos el \textbf{normalizador} de $H$ en $G$ como $$N_G(H) = \lbrace g \in G : H^g = H \rbrace.$$
+\end{definition}
+
+Notar que $N_G(H)$ es el estabilizador de $H$ en la acción de $G$ sobre sus subgrupos por conjugación. Es claro que $H \unlhd N_G(H)$ y que $H \unlhd G$ si y sólo si $N_G(H) =G$. Por el \textit{Teorema de la órbita estabilizadora} tenemos que el número de subgrupos distintos de la forma $H^g$, con $g \in G$, es $[G:N_G(H)]$.
+
+\begin{proposition}Sea $G$ un grupo finito y $H \leq G$ con $|H| = p^a$ para cierto primo $p$. Entonces $$[G:H] \equiv [N_G(H):H] \hspace{0.1cm}\text{mod} \hspace{0.1cm} p.$$
+\end{proposition}
+\emph{Demostración: }Consideremos el conjunto $\Omega = \lbrace xH : x \in G \rbrace$. Tenemos que $H$ actúa sobre $\Omega$ por multiplicación a izquierda. Calculamos el número de puntos fijos, es decir $\Omega_0$. Se tiene que $hxH = xH$ $\forall h \in H$ si y sólo si $x^{-1}hx \in H$ $\forall h \in H$ si y sólo si $H^{x^{-1}} \subseteq H$ si y sólo si $H \subseteq H ^x$ si y sólo si $H = H^x$ (ya que $|H| = |H^x|$) si y sólo si $x\in N_G(H)$. El resultado se sigue de la segunda parte de~\ref{eq:ecClasesp}.
+
+$\hfill \square$
+
+\begin{corolario}Sea $G$ un $p$-grupo finito. Si $H \leq G$ entonces $H \leq N_G(H)$.
+\end{corolario}
+\emph{Demostración: }Como $p^a \not\equiv 1 \hspace{0.1cm}\text{mod} \hspace{0.1cm} p$ si $a \geq 1$, aplicando el resultado anterior ya está.
+
+$\hfill \square$
+
+Es decir, en los $p$-grupos los normalizadores crecen.
+
+\begin{corolario}Sea $G$ un $p$-grupo finito. Si $p^a$ divide a $|G|$, entonces $G$ tiene un subgrupo de orden $p^a$.
+\end{corolario}
+\emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Podemos suponer que $G \neq \lbrace 1 \rbrace$ y que $p^a < |G|$. Entre los subgrupos propios de $G$ elegimos el de mayor orden posible, $H$. Por el corolario anterior sabemos que $H \unlhd G$. Por el \textit{Teorema de correspondencia} tenemos que $G/H$ no tiene subgrupos propios. Por~\ref{eq:abSimple}, se tiene que $[G:H] = p$. Ahora, $p^a$ divide a $|H|$ y el resultado se sigue por inducción.
+
+$\hfill \square$
+
+Finalmente, hablaremos de las acciones transitivas.
+
+\begin{definition}Diremos que una acción de un grupo $G$ sobre un conjunto $\Omega$ es \textbf{transitiva} si sólo hay una órbita, es decir, si $\Omega$ es una $G$-órbita. Dicho de otra manera: la acción de $G$ sobre $\Omega$ es transitiva si dados $\alpha, \beta \in \Omega$ existe un $g \in G$ tal que $g \cdot \alpha = \beta$.
+\end{definition}
+
+\begin{proposition}Sea $G$ un grupo actuando sobre un conjunto $\Omega$. Dados $\alpha \in \Omega$ y $g \in G$, entonces $$(G_\alpha)^g = G_{g\cdot \alpha}.$$ En particular, si la acción de $G$ sobre $\Omega$ es transitiva, entonces todos los estabilizadores son conjugados.
+\end{proposition}
+\emph{Demostración: }Se tiene que $x \in G_{g\cdot \alpha}$ si y sólo si $x \cdot(g\cdot \alpha) = g \cdot \alpha$ si y sólo si $g^{-1} \cdot(xg \cdot \alpha) = \alpha$ si y sólo si $(g^{-1}xg) \cdot \alpha = \alpha$ si y sólo si $g^{-1}xg \in G_\alpha$ si y sólo si $x \in (G_\alpha)^g$, luego se tiene la igualdad.
+
+Supongamos ahora que la acción de $G$ sobre $\Omega$ es transitiva y sean $\alpha, \beta \in \Omega$. Entonces existe $g \in G$ tal que $g \cdot \alpha = \beta$ y $$(G_\alpha)^g = G_\beta.$$
+
+$\hfill \square$
+
+\subsection{Grupos de permutaciones}
 
 \section{Anillos y cuerpos}
 
