@@ -101,7 +101,7 @@ Cuando trabajemos con grupos abelianos, en ocasión emplearemos la notación adi
 &G&\longrightarrow &G\\
 &x& \longmapsto &x^{-1}
 \end{array}
-$$ e una biyección.
+$$ es una biyección.
 \item Dado un $g \in G$, las aplicaciones $$\begin{array}{rccl}
 &G&\longrightarrow &G\\
 &x& \longmapsto &xg
@@ -261,6 +261,16 @@ Notar que en un grupo abeliano $G$, todo subgrupo $H$ va a cumplir que $xH = Hx$
 \begin{proposition}Sea $N \unlhd G$ y $H \leq G$. Entonces $HN \leq G$.
 \end{proposition}
 \emph{Demostración: }Como $N$ es subgrupo normal: $$NH = \bigcup_{h\in H} hN = \bigcup_{h\in H} Nh = HN.$$ Aplicamos~\ref{eq:progruesgru} y ya está.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:ej218} Sea $N \unlhd G$, sean $H, K \leq G$ tales que $H \unlhd K$. Entonces $HN$ es subgrupo normal de $KN$.
+\end{proposition}
+\emph{Demostración: }Primeramente veamos que $NH=HN$ y así $NH$ es subgrupo de $G$:
+
+En particular $NH$ es subgrupo de $NK$, pues $NH \subseteq NK$. Pero si $x \in NH$ se escribirá $x = nh, \hspace{0.1cm} n \in N, \hspace{0.1cm} h \in H$. Así $x \in Nh = hN \subseteq HN$, la igualdad $Nh = hN$ se tiene por ser $N$ subgrupo normal de $G$. Esto prueba el contenido $NH \subseteq HN$. El otro es análogo. De igual forma se prueba que $NK = KN$, luego $NK$ es subgrupo de $G$, y así es grupo. Ahora veamos la normalidad:
+
+Veamos ahora que si $a \in NK$, entonces $a(NH) = (NH)a$. Como $a \in NK$ se escribirá $a = nk, \hspace{0.1cm} n \in N, \hspace{0.1cm} k \in K$. Si $x \in a(NH) = a(HN)$ se tendrá $x = ahn_{1}, \hspace{0.1cm} h \in H, \hspace{0.1cm} n_{1} \in N.$ Como $x \in (ah)N = N(ah)$ por ser $N$ subgrupo normal de $G$, tendremos entonces $x = n_{2}ah = n_{2}nkh, \hspace{0.1cm} n_{2} \in N.$ Como $kh \in kH = Hk$ por ser $H$ subgrupo normal de $K$, $x = n_{2}nh_{1}k, \hspace{0.1cm} h_{1} \in H,$ o también, $x = n_{2}nh_{1}n^{-1}nk = n_{2}nh_{1}n^{-1}a$. Ahora $h_{1}n^{-1} \in HN = NH$, con lo que se tiene $h_{1}n^{-1} = n_{3}h_{2}$, $n_{3} \in N$, $h_{2} \in H$. Finalmente, $x = n_{2}nn_{3}h_{2}a \in (NH)a$. Y así $a(NH) \subseteq (NH)a$. Para el otro contenido se procede de igual forma.
 
 $\hfill \square$
 
@@ -479,6 +489,12 @@ También podemos estudiar los subgrupos de un grupo cociente $G/N$:
 Sea $N \unlhd G$. La aplicación $K \longrightarrow G/N$ es una biyección entre el conjunto $\lbrace K: N \subseteq K \leq G \rbrace$ y los subgrupos de $G/N$.
 \end{theorem}
 \emph{Demostración: }Sea $f \colon G \longrightarrow G/N$ el homomorfismo dado por $f(g) = gN$. Supongamos que $K$ es un subgrupo de $G$ que contiene a $N$. Por~\ref{eq:lemIsom}, $K/N = f(K)$ es un subgrupo de $G/N$. Supongamos que $J$ es otro subgrupo de $G$ que contiene a $N$ con $K/N = J/N$. Si $k \in K$, entonces $kN \in K/N = J/N$, por lo que existirá $j \in J$ tal que $kN = jN$. Así, $k \in jN \subseteq J$. Esto prueba que $K \subseteq J$. Análogamente, $J \subseteq K$ y tenemos que $K=J$. Esto prueba que la aplicación $K \longrightarrow K/N$ es inyectiva. Si $X \leq G/N$, entonces $f(f^{-1}(X)) = X$ pues $f$ es suprayectiva. Sea $K = f^{-1}(X)$. Sabemos que $K \leq G$ por~\ref{eq:propHoms}. Está claro que $N \subseteq K$ pues $f(n) = N \in X$ para $n \in N$. Ahora, $X=f(K) = K/N$ y ya está.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:ej32} K es subgrupo normal de $G$ si y sólo si $K/H$ es subgrupo normal de $G/H$.\end{proposition}
+
+\emph{Demostración: }Sea $K \unlhd G$. Dados $aH, bH$ con $(aH)(bH) \in K/H$, entonces $(ab)H \in K/H$, es decir, $ab \in K$. Como $K$ es normal, y $ab \in K$, deducimos que $ba \in K$, luego $(bH)(aH) = (ba)H \in K/H,$ y así $K/H$ es normal. Para el recíproco es análogo.
 
 $\hfill \square$
 
@@ -736,7 +752,7 @@ $\hfill \square$
 
 La descomposición del conjunto $\Omega$ en unión de las diferentes órbitas tiene especial interés cuando la acción es la conjugación de un grupo $G$ sobre sí mismo. En este caso consideraremos: 
 
-\begin{definition}Consideremos la acción $$\begin{array}{rccl}
+\begin{definition}\label{eq:accConj} Consideremos la acción $$\begin{array}{rccl}
 \rho\colon &G& \longrightarrow &S_G\\
 &g& \longmapsto &\alpha_{g}
 \end{array}
@@ -784,7 +800,7 @@ Notar que $N_G(H)$ es el estabilizador de $H$ en la acción de $G$ sobre sus sub
 
 $\hfill \square$
 
-\begin{corolario}Sea $G$ un $p$-grupo finito. Si $H \leq G$ entonces $H \leq N_G(H)$.
+\begin{corolario}\label{eq:cor411} Sea $G$ un $p$-grupo finito. Si $H \leq G$ entonces $H \leq N_G(H)$.
 \end{corolario}
 \emph{Demostración: }Como $p^a \not\equiv 1 \hspace{0.1cm}\text{mod} \hspace{0.1cm} p$ si $a \geq 1$, aplicando el resultado anterior ya está.
 
@@ -792,7 +808,7 @@ $\hfill \square$
 
 Es decir, en los $p$-grupos los normalizadores crecen.
 
-\begin{corolario}Sea $G$ un $p$-grupo finito. Si $p^a$ divide a $|G|$, entonces $G$ tiene un subgrupo de orden $p^a$.
+\begin{corolario}\label{eq:cor412} Sea $G$ un $p$-grupo finito. Si $p^a$ divide a $|G|$, entonces $G$ tiene un subgrupo de orden $p^a$.
 \end{corolario}
 \emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Podemos suponer que $G \neq \lbrace 1 \rbrace$ y que $p^a < |G|$. Entre los subgrupos propios de $G$ elegimos el de mayor orden posible, $H$. Por el corolario anterior sabemos que $H \unlhd G$. Por el \textit{Teorema de correspondencia} tenemos que $G/H$ no tiene subgrupos propios. Por~\ref{eq:abSimple}, se tiene que $[G:H] = p$. Ahora, $p^a$ divide a $|H|$ y el resultado se sigue por inducción.
 
@@ -812,6 +828,384 @@ Supongamos ahora que la acción de $G$ sobre $\Omega$ es transitiva y sean $\alp
 $\hfill \square$
 
 \subsection{Grupos de permutaciones}
+
+Partimos de un conjunto finito $\Omega$. Una \textbf{\textit{permutación}} de $\Omega$ es una aplicación biyectiva $f \colon \Omega \longrightarrow \Omega$. A lo largo de esta sección estudiaremos el grupo $S_\Omega$ de permutaciones de $\Omega$ con la operación composición (producto) $g \circ f = gf$, con $g,f \in S_\Omega$. Recordemos que $$|S_\Omega| = |\Omega|!.$$
+
+\begin{definition}Dados $\alpha_1, \ldots, \alpha_n$ $n$ elementos distintos de $\Omega$, entonces designaremos por $(\alpha_1, \ldots, \alpha_n)$ a la única permutación $\sigma \in S_\Omega$ tal que $\sigma (\alpha) = \alpha$ si $\alpha \in \Omega \setminus \lbrace \alpha_1, \ldots, \alpha_n \rbrace$, $\sigma (\alpha_1)=\alpha_2$, $\sigma (\alpha_2) = \alpha_3$, $\ldots$, $\sigma(\alpha_{n-1}) = \alpha_n$ y $\sigma(\alpha_n) = \alpha_1$. A la permutación $\sigma = (\alpha_1, \ldots, \alpha_n ) \in S_\Omega$ la denominamos \textbf{$n$-ciclo} o \textbf{ciclo de longitud $n$}.
+
+Notar que los $1$-ciclos son la aplicación identidad. A los $2$-ciclos, dada la importancia especial que tienen y que iremos viendo, los llamaremos \textbf{trasposiciones}.
+\end{definition}
+
+\begin{definition}Dada una permutación $\sigma \in S_n$, diremos que $\sigma$ \textbf{mueve} un $\alpha_i \in \Omega$ si $\sigma( \alpha_i) = \alpha_j$, con $i\neq j$. Por el contrario, diremos que $\sigma$ \textbf{fija} un $\alpha_i \in \Omega$ si $\sigma (\alpha_i ) = \alpha_i$.
+\end{definition}
+
+Del conjunto $\Omega$ realmente lo que nos interesa desde el punto de vista de las permutaciones no es la naturaleza propia del conjunto o los elementos que la forman, sino que contiene un número $n$ de elementos cualesquiera, por lo que podríamos simplemente escribir $S_n$ para referirnos al grupo de permutaciones de un conjunto finito cualquiera $\Omega$ de $n$ elementos en lugar de $S_\Omega$. Veámoslo también así:
+
+\begin{observation}\label{eq:obsabel} Veamos algunas observaciones interesantes:
+\begin{enumerate}
+\item Dados enteros $2 \leq n \leq m$, podemos ver a $S_{n}$ como subgrupo de $S_{m}$. En efecto, para todo $\sigma \in S_{n}$ denotamos por $\sigma' \in S_{m}$ a la biyección de $\lbrace 1, \ldots, m \rbrace$ en sí mismo que actúa como $\sigma$ sobre los primeros $n$ enteros positivos y fija los comprendidos entre $n+1$ y $m$. Es decir, la aplicación $$\begin{array}{rccl}
+&S_{n}& \longrightarrow &S_{m}\\
+&\sigma& \longmapsto &\sigma'
+\end{array}
+$$ es un homomorfismo inyectivo de grupos y, por el \textit{Primer Teorema de Isomorfía}, $S_{n}$ es isomorfo a su imagen, que es un subgrupo de $S_{m}$.
+\item De todo lo visto hasta ahora, lo realmente importante no es la naturaleza del conjunto $\Omega$ como tal, sino el hecho de que tenga $n$ elementos. Así, si $I_{n}$ es otro conjunto con $n$ elementos, el grupo $Biy(I_{n})$ de biyecciones de $I_{n}$ en sí mismo es isomorfo a $S_{n}$, y no distinguiremos entre ambos. Para verlo, fijada una biyección cualquiera $\alpha \colon \Omega \longrightarrow I_{n}$ se comprueba inmediatamente que la aplicación  $$\begin{array}{rccl}
+&Biy(I_{n})& \longrightarrow &S_{n}\\
+&\beta& \longmapsto &\alpha\circ \beta \circ \alpha^{-1}
+\end{array}
+$$ es un isomorfismo de grupos. Es por esta razón por la que hemos introducido la notación de $\Omega$ simplemente para hablar de un conjunto finito de $n$ elementos cualquiera.
+\end{enumerate}
+\end{observation}
+
+Cada elemento de $S_n$ lo escribiremos en ocasiones de una forma un tanto especial, como sigue: 
+$$\sigma = \left(
+\begin{matrix}
+1 & 2 & \ldots & n \\
+\sigma(1) & \sigma(2) & \ldots & \sigma(n)
+\end{matrix}
+\right).
+$$
+
+Esta notación nos ahorrará confusiones, ya que muestra el número $n$ de elementos del que partimos, cosa que no aparece en la notación de ciclos. Es decir, si hablamos de la permutación $(1,2,3)$ no sabemos si estamos en $S_3$ o en $S_5$ o en cualquier $S_n$ con $n>3$, porque los elementos fijados no aparecen. En cambio, en la segunda notación sí apreciamos de que $n$ partimos, por lo que sí sabemos en qué $S_n$ nos encontramos.
+
+Observar también que $$(\alpha_1, \ldots, \alpha_n) = (\alpha_n, \alpha_1, \ldots, \alpha_{n-1}) = \ldots = (\alpha_2, \alpha_3, \ldots, \alpha_n, \alpha_1),$$ luego cada $n$-ciclo se puede escribir de $n$ maneras distintas.
+
+Para estudiar los grupos de permutaciones podemos usar las acciones de grupos sobre conjuntos, en concreto vemos que $S_\Omega$ actúa sobre $\Omega$ mediante $\sigma \cdot \alpha = \sigma(\alpha)$, con $\sigma \in S_\Omega$, $\alpha \in \Omega$.
+
+\begin{definition}Decimos que dos ciclos $(\alpha_1, \ldots, \alpha_m)$, $(\beta_1, \ldots, \beta_n)$ son \textbf{disjuntos} si los conjuntos $\lbrace \alpha_1, \ldots, \alpha_m \rbrace$ y $\lbrace \beta_1, \ldots, \beta_n \rbrace$ son disjuntos.
+\end{definition}
+
+\begin{proposition}Dado $\Omega$ un conjunto. Entonces:
+\begin{enumerate}
+\item Sea $\sigma = (\alpha_1, \ldots, \alpha_m) \in S_\Omega$. Entonces $\sigma^i(\alpha_1) = \alpha_{i+1}$, con $1 \leq i \leq m-1$ y $\sigma^m(\alpha_1)=\alpha_1$. En particular, $o(\sigma) = m$.
+\item Si $\gamma = (\beta_1, \ldots, \beta_n) \in S_\Omega$ es disjunto con $\sigma = (\alpha_1, \ldots, \alpha_m) \in S_\Omega$, entonces $\gamma \sigma = \sigma \gamma$.
+\item Sea un producto de ciclos disjuntos dos a dos $$\sigma= (a_{1}, \ldots, a_{m}) \cdots (b_{1}, \ldots, b_{n}),$$ y sea $G =\langle \sigma \rangle \leq S_{n}$. Entonces $\sigma^{i}(a_{1}) = a_{i+1}$ para $1 \leq i \leq m-1$, $\sigma^{m}(a_{1})=a_{1}, \ldots, \sigma^{j}(b_{1})=b_{j+1}$ para $1 \leq j \leq n-1$ y $\sigma^{n}(b_{1})=b_{1}$. Como consecuencia, los conjuntos $\lbrace a_{1}, \ldots, a_{m} \rbrace, \ldots, \lbrace b_{1}, \ldots, b_{n}\rbrace$ son órbitas de la acción de $G$ sobre $\Omega$ y las demás órbitas tienen longitud uno.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }$1.$ es inmediato a partir de la definición de ciclo. 
+
+Para ver $2.$ comprobemos que $(\gamma \sigma) \cdot w = (\sigma \gamma) \cdot w$, $\forall w \in \Omega$. Si $w \neq \alpha_i$ y $w \neq \beta_j$, entonces es claro que $(\gamma \sigma) \cdot w = (\sigma \gamma) \cdot w$. Ahora, si $w \in \lbrace \alpha_1, \ldots, \alpha_m \rbrace$ entonces $\sigma \cdot w \in \lbrace \alpha_1, \ldots, \alpha_m \rbrace$, luego $\gamma \cdot w = w$, y así $$(\gamma \sigma) \cdot w = \gamma \cdot (\sigma \cdot w) = \sigma \cdot w = \sigma \cdot (\gamma \cdot w) = (\sigma \gamma) \cdot w.$$
+
+Y se razonaría de forma análoga si $w \in \lbrace \beta_1, \ldots, \beta_n \rbrace$.
+
+Ahora veamos $3.$. La primera parte es consecuencia directa de lo visto en los apartados anteriores. Tenemos que $\lbrace a_{1}, \ldots, a_{m} \rbrace = \lbrace \sigma^{r}(a_{1}) : r \geq 0 \rbrace, \ldots, \lbrace b_{1}, \ldots, b_{n} \rbrace = \lbrace \sigma^{r}(b_{1}) : r \geq 0 \rbrace.$
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:ciclosdis} Sea $n$ un entero positivo. Entonces cada elemento de $S_{n}$ se puede escribir como composición de ciclos disjuntos dos a dos. Dicha descomposición es además única salvo en el orden de los factores. En particular, los ciclos de $S_{n}$ constituyen un sistema generador de $S_{n}$.
+\end{proposition}
+\emph{Demostración: } 
+Sea $\sigma \in S_{n}$ y $G= \langle \sigma \rangle$. Supongamos $O$ una $G$-órbita. Si $|O| = m$ y $a \in O$ vamos a probar que $O = \lbrace a, \sigma(a), \ldots, \sigma^{m-1}(a) \rbrace$. Por el \textit{Teorema de la órbita estabilizadora} tenemos que $[G:G_{a}] = m$. Así, $G/G_{a}$ es un grupo cíclico de orden $m$ generado por $\sigma G_{a}$. Luego, para cualquier entero $n$ tenemos que $\sigma^{n}(a) = a$ si y sólo si $\sigma^{n}\in G_{a}$ si y sólo si $(\sigma G_{a})^{n} = G_{a}$ si y sólo si $m \mid n$. Esto quiere decir que los elementos $a, \sigma(a), \ldots, \sigma^{m-1}(a)$ de la $G$-órbita de $a$ son distintos y que no puede haber más.
+
+Supongamos ahora que $\lbrace a, \sigma(a), \ldots, \sigma^{m-1}(a) \rbrace, \ldots, \lbrace b, \sigma(b), \ldots, \sigma^{n-1}(b) \rbrace$ son todas las distintas $G$-órbitas. Entonces tenemos que $$\sigma = (a, \sigma(a), \ldots, \sigma^{m-1}(a))\cdots (b, \sigma(b), \ldots, \sigma^{n-1}(b)),$$ puesto que la aplicación de la derecha actúa sobre cada elemento de $\Omega$ de la misma forma que $\sigma$.
+
+Por último, si $\sigma = (a_{1}, \ldots, a_{m}) \cdots(b_{1}, \ldots, b_{n})$ se escribe como producto de ciclos disjuntos, entonces por el lema inmediatamente anterior tenemos que $\sigma$ determina unívocamente los ciclos $(a_{1}, \ldots, a_{m}), \ldots, (b_{1}, \ldots, b_{n})$, quedando así probada la unicidad.
+
+$\hfill \square$
+
+\begin{corolario} Todo $k$-ciclo es producto de $k-1$ transposiciones. Luego, toda permutación $g\in S_{n}$ es producto de transposiciones (aunque no de forma única).
+\end{corolario}
+\emph{Demostración: }
+Hacemos $g = (a_{1}, \ldots, a_{m})=(a_{1},a_{2}) (a_{2},a_{3}) \cdots (a_{k-1},a_{k}).$
+
+$\hfill \square$
+
+\begin{corolario} 
+Sean $\sigma \in S_{n}$ y $\tau_{1}, \ldots, \tau_{k} \in S_{n}$ ciclos disjuntos tales que $\sigma = \tau_{1} \circ \ldots \circ \tau_{k}$. Entonces el orden de $\sigma$ como elemento de $S_{n}$ es el mínimo común múltiplo de las longitudes de los ciclos $\tau_{1}, \ldots, \tau_{k}$.
+\end{corolario} 
+\emph{Demostración: }Sea $h$ el mínimo común múltiplo de los números $o(\tau_i)$ para $1 \leq i \leq m$. Es decir, tenemos que $o(\tau_i)$ divide a $h$ $\forall i$ y que si $o(\tau_i)$ divide a un entero $m$ $\forall i$, luego $h$ divide a $m$.
+
+Como $\tau_i\tau_j = \tau_j \tau_i$ $\forall i,j$, por~~ tenemos que $(\tau_1 \ldots \tau_k)^n= (\tau_1)^n \ldots (\tau_k)^n$ para todo entero $n$. Así, observamos que $\sigma^h = 1$ y se deduce que $o(\sigma)$ divide a $h$.
+
+Si $o(\sigma) = r$, entonces $(\tau_1)^r\ldots (\tau_k)^r = 1$. Probamos que $(\tau_i)^r=1$ para todo $1 \leq i \leq k$. Para ello, basta probar que $(\tau_i)^r$ fija todos los elementos de $\Omega$. Dado un $\alpha \in \Omega$, si $\alpha$ es fijado por $\tau_i$, entonces $\alpha$ es fijado por $(\tau_i)^r$. Si $\tau_i$ mueve $\alpha$, entonces $\alpha$ es fijado por $\tau_j$ para $j \neq i$ (en particular por $(\tau_j)^r$). Por tanto $\alpha = (\tau_k)^r \ldots (\tau_1)^r \cdot \alpha = (\tau_i)^r \cdot \alpha$ y deducimos que $(\tau_i)^r$ fija $\alpha$. Concluimos que $(\tau_i)^r = 1$. Por lo tanto, $o(\tau_i)$ divide a $r$ para todo $i$ y tenemos que $h$ divide a $r = o(\sigma).$
+
+
+$\hfill \square$
+
+\begin{proposition}Sea $\sigma = (\alpha_1, \ldots, \alpha_k)$ es un $k$-ciclo de $S_n$ y sea $\gamma \in S_n$. Entonces $\sigma^\gamma = (\gamma(\alpha_1), \ldots, \gamma(\alpha_k))$.
+\end{proposition}
+\emph{Demostración: }Sabemos que $\sigma(\alpha_i) = \alpha_{i+1}$, con $i=1, \ldots, k-1$ y $\sigma(\alpha_k)= \alpha_1$ (recordemos que la acción es $\sigma \cdot \alpha = \sigma(\alpha)$). Así, $(\gamma \sigma \gamma^{-1}) (\gamma(\alpha_i)) = \gamma(\alpha_{i+1})$, con $i=1, \ldots, k-1$ y $(\gamma \sigma \gamma^{-1}) (\gamma(\alpha_k)) = \gamma(\alpha_{1})$. Finalmente, si $\beta \in \Omega \setminus \lbrace \sigma(\alpha_1), \ldots, \sigma(\alpha_K) \rbrace$ entonces $\gamma^{-1}(\beta) \in \Omega \setminus \lbrace \alpha_1, \ldots, \alpha_k \rbrace$. Por lo que $\sigma \cdot (\gamma^{-1} (\beta)) = \gamma^{-1}(\beta)$ y así $\sigma^\gamma$ fija $\beta$. Luego $\sigma^\gamma$ y $(\gamma(\alpha_1), \ldots, \gamma(\alpha_k))$ actúan igual sobre cada elemento de $\Omega$ y así son iguales.
+
+$\hfill \square$
+
+Una consecuencia muy útil de~\ref{eq:ciclosdis} es que vamos a poder clasificar cada permutación según la longitud de los ciclos disjuntos en los que se descomponga, lo cual nos permitirá estudiarlos con mayor profundidad a través de dichas longitudes. Llamaremos así al \textbf{\textit{tipo de una permutación}} a la sucesión en orden descendente de las longitudes de los ciclos disjuntos en los que se descompone. En ocasiones también será conocido como \textbf{estructura de ciclos}, y habrá tantas distintas como particiones del número $|\Omega|$.
+
+\begin{proposition}Dos permutaciones $\sigma, \tau \in S_{n}$ son conjugadas en $S_{n}$ si y sólo si tienen el mismo tipo.
+\end{proposition}
+\emph{Demostración: }
+Si $\tau =(a_{1}, \ldots, a_{m})\cdots(b_{1}, \ldots, b_{n})$ es una descomposición de $\tau$ en ciclos disjuntos y $\gamma \in S_{n}$, por el resultado anterior tenemos que $$\tau^{\gamma}=(\gamma(a_{1}), \ldots, \gamma(a_{m})) \cdots (\gamma(b_{1}), \ldots, \gamma(b_{n}))$$ es una descomposición en ciclos disjuntos de $\tau^{\gamma}$. Por lo que dos permutaciones conjugadas tienen el mismo tipo.
+
+Recíprocamente, supongamos que $\tau =(a_{1}, \ldots, a_{m}) \cdots(b_{1}, \ldots, b_{n})$ y también $\gamma = (a'_{1}, \ldots, a'_{m})\cdots(b'_{1}, \ldots, b'_{n})$ tienen el mismo tipo, veamos que son conjugadas (en estas expresiones se han incluido los $1$-ciclos también). Tenemos que $$\Omega = \lbrace a_{1}, \ldots, a_{m} \rbrace \cup \cdots \cup \lbrace b_{1}, \ldots, b_{n} \rbrace = \lbrace a'_{1}, \ldots, a'_{m} \rbrace \cup \cdots \cup \lbrace b'_{1}, \ldots, b'_{n} \rbrace$$
+son dos particiones de $\Omega$. Por lo que existe una única $\sigma \in S_{n}$ tal que $\sigma(a_{i})=a'_{i}, \ldots, \sigma(b_{j})=b'_{j}$ para $1\leq i \leq m, \ldots, 1 \leq j \leq n$. Luego, por el resultado anterior tenemos que $\tau^{\sigma} = \gamma.$
+
+$\hfill \square$
+
+De este resultado tenemos una importante consecuencia, y es que dado un $\sigma \in S_{n}$, entonces \textbf{\textit{la clase de conjugación de $\sigma$}} (ver~\ref{eq:accConj}) \textbf{\textit{está formada por todas las permutaciones del mismo tipo que $\sigma$}}.
+
+\begin{observation} Sea $k>1$, entonces el número de $k$-ciclos que muevenn $k$ elementos distintos $a_{1}, \ldots, a_{k} \in \Omega$ es $(k-1)!$. Si $|\Omega| = n$, el número de $k$-ciclos de $S_{n}$ es ${n \choose k} (k-1)!$.
+
+Esto se puede generalizar a permutaciones de determinados tipos: es decir, si queremos saber el número de permutaciones de $S_{n}$ con $b_{j}$ ciclos de longitud $j$ tendremos $$ \dfrac{n!}{1^{b_{1}}2^{b_{2}} \cdots n^{b_{n}}b_{1}!b_{2}!\cdots b_{n}!}.$$(odio la combinatoria)
+\end{observation}
+
+\begin{example}
+Veamos las distintas clases de conjugación en $S_{5}$. Sabemos que hay 10 $2$-ciclos, 20 $3$-ciclos, 30 $4$-ciclos y 24 $5$-ciclos. Ciclos de tipo $[2,2]$ tenemos 15 ciclos. Ciclos de tipo $[3,2]$ tenemos 20 ciclos, y añadiendo la identidad tenemos: $10+20+30+24+15+20+1 = 120.$
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}\label{eq:excentra} Sea $G = S_{5}$.
+\begin{enumerate}
+\item Sea $\tau = (1,2,3)$. Sabemos que $|Cl_{G}(\tau)| = 20$. Entonces $C_{G}(\tau) = \langle \tau \rangle \langle (4,5) \rangle$.
+
+Por un lado, como $|Cl_{G}(\tau)| = 20$, entonces $|C_{G}(\tau)| = \dfrac{|G|}{20} = \dfrac{120}{20} = 6$. Por otro lado, $\langle (1,2,3) \rangle = \lbrace id, (1,2,3), (1,3,2) \rbrace,$ y $\langle (4,5)\rangle = \lbrace id, (4,5) \rbrace $ (simple comprobación). 
+
+$\langle (1,2,3) \rangle \cap \langle (4,5) \rangle = id$ y así $|\langle (1,2,3) \rangle \langle (4,5) \rangle| = \dfrac{|\langle (1,2,3) \rangle||\langle (4,5) \rangle|}{1} = 3 \cdot 2 = 6.$ Como $(4,5)$ es disjunta con $(1,2,3)$, entonces conmutan y así $\langle (4,5) \rangle \leq C_{G}(\tau)$, y también $\langle (1,2,3) \rangle \langle (4,5) \rangle \leq C_{G}(\tau)$ y como tienen el mismo orden se da la igualdad.
+\item Sea $\gamma$ un $5$-ciclo de $G$. Entonces $C_{G}(\gamma) = \langle \gamma \rangle$. 
+
+Como $\langle \gamma \rangle$ es un grupo cíclico, luego abeliano, entonces todos sus elementos formarán parte de $C_{G}(\gamma)$, luego $\langle \gamma \rangle \leq C_{G}(\gamma)$. Y, como $|Cl_{G}(\gamma)| = 24$, entonces $|C_{G}(\gamma)| = \dfrac{|G|}{|Cl_{G}(\gamma)|} = \dfrac{120}{24} = 5 = |\langle \gamma \rangle |$, luego se tiene la igualdad. 
+\item Sea $\sigma = (1,2)(3,4)$. Entonces $C_{G}(\sigma) = \langle (1,3,2,4),(1,3)(2,4)\rangle$. Además, este grupo es isomorfo a $\mathcal{D}_{8}$. 
+
+Por un lado, sabemos que hay $15$ ciclos de tipo $[2,2]$, luego $|Cl_{G}(\sigma)|=15 = \dfrac{|G|}{|C_{G}(\sigma)|} = \dfrac{120}{|C_{G}(\sigma)|}$, por lo que $|C_{G}(\sigma)| = \dfrac{120}{15}=8.$
+
+Por otro lado, llamemos $a = (1,3,2,4)$ y $b = (1,3)(2,4)$. Es claro que $o(a) = 4$ y $o(b)=2$ (simple comprobación). Entonces $$\langle a \rangle = \lbrace id, (1,3,2,4), (1,2)(3,4), (1,4,2,3) \rbrace,$$ y $$\langle b \rangle = \lbrace id, (1,3)(2,4) \rbrace.$$
+
+Luego $\langle a \rangle \cap \langle b \rangle = id$, y así $|\langle a \rangle \langle b \rangle | = |\langle a \rangle| |\langle b \rangle| = 4\cdot 2 = 8$. Sólo quedaría ver que $\langle (1,3,2,4),(1,3)(2,4)\rangle \leq C_{G}(\sigma)$, pero esto se desprende del hecho de que $\sigma \in \langle a \rangle$ (que es un grupo cíclico, luego abeliano) y de que $\sigma \cdot b = b \cdot \sigma = (1,4)(2,3)$ (simple comprobación). Así, tenemos un subgrupo del mismo orden que el centralizador, luego son lo mismo.
+\end{enumerate}
+\end{example}
+
+
+\begin{proposition} Sea $n \geq 3$. Entonces $Z(S_{n}) =1$.
+\end{proposition}
+\emph{Demostración: }
+Sea $1 \neq \sigma \in Z(S_{n})$. Entonces va a existir un $a \in \Omega$ tal que $\sigma (a)= b \neq a$, con $b \in \Omega$. Sea ahora $c \in \Omega \setminus \lbrace a,b \rbrace$ y sea $\tau =(b,c)$. Entonces $\tau\sigma \tau^{-1} (a)= \tau \sigma (a) =\tau (b) = c \neq b$ $(=\sigma(a))$. Luego, $\sigma^{\tau} \neq \sigma$, lo cual es absurdo puesto que $\sigma \in Z(S_{n})$.
+
+$\hfill \square$
+
+Ahora, estudiaremos el conocido como \textit{grupo alternado}, pero antes veamos qué son las permutaciones pares e impares.
+
+Sea $\Omega = \lbrace 1, 2, \ldots, n \rbrace$, ya sabemos que en este caso hablaremos de $S_n$ en lugar de $S_\Omega$. Ahora, consideremos el conjunto $\mathcal{C}$ de los subconjuntos de $\Omega$ que tienen dos elementos, es decir, $$\mathcal{C} = \lbrace X \subseteq \Omega : |X| = 2 \rbrace.$$
+
+Sea ahora un $\sigma \in S_n$, y sea $X = \lbrace i,j \rbrace \in \mathcal{C}$. Puede pasar que el signo del entero $i-j$ sea el mismo que el signo del entero $\sigma(i)-\sigma(j)$. En este caso, el signo de $j-i$ también es el signo de $\sigma(j) - \sigma(i)$, por lo que no importa si $i<j$ ó $j<i$. En este caso, escribiremos $$inv_\sigma(X)=0$$ y diremos que $\sigma$ \textbf{\textit{no invierte}} $X$. También puede ocurrir que los enteros $i-j$ y $\sigma(i)-\sigma(j)$ tengan signos opuestos. En este caso también lo tendrán $j-i$ y $\sigma(j) -\sigma(i)$ y escribiremos $$inv_\sigma(X) = 1$$ y diremos que $\sigma$ \textbf{\textit{invierte}} $X$. 
+
+Así, definimos:
+
+\begin{definition}Dado un $\sigma \in S_n$, su \textbf{signatura} es $$sig(\sigma) = (-1)^{\sum_{X\in \mathcal{C}}inv_\sigma(X)}.$$
+Diremos que $\sigma$ es \textbf{par} si $sig(\sigma)=1$ y que $\sigma$ es \textbf{impar} si $sig(\sigma)=-1$.
+\end{definition}
+
+Otra forma de definirla es:
+
+\begin{definition}Para cada $\sigma \in S_{n}$ consideramos el endomorfismo $$\begin{array}{rccl}
+f_{\sigma} \colon &\mathbb{R}^{n}& \longrightarrow &\mathbb{R}^{n}\\
+&e_{j}& \longmapsto &e_{\sigma(j)}
+\end{array}
+$$ con $e_{j}$ un  vector de la base $B = \lbrace e_{1}, \ldots, e_{n} \rbrace$ de $\mathbb{R}^{n}$. La aplicación $$\begin{array}{rccl}
+\psi \colon &S_{n}& \longrightarrow &Aut(\mathbb{R}^{n})\\
+&\sigma& \longmapsto &f_{\sigma}
+\end{array}
+$$  es un homomorfismo de grupos, puesto que dados $\sigma, \tau \in S_{n}$ y $j = 1, \ldots, n$, se tiene que $$f_{\sigma \cdot \tau} = e_{(\sigma \cdot \tau)(j)}= e_{\sigma(\tau(j))} = f_{\sigma}(e_{\tau(j)}) = f_{\sigma}(f_{\tau}(e_{j})) = (f_{\sigma} \circ f_{\tau})(e_{j}),$$ 
+
+es decir, $\psi(\sigma \cdot \tau) = f_{\sigma \cdot \tau} = f_{\sigma} \circ f_{\tau} = \psi(\sigma) \circ \psi(\tau)$.
+
+Ahora, observar que la matriz $M_{f_{\sigma}}(B)$ de $f_{\sigma}$ respecto de la base estándar se obtiene a partir de la matriz identidad desordenando las columnas de ésta. Del \textit{Álgebra Lineal} sabemos que si intercambiamos dos columnas de una matriz obtenemos otra con el determinante opuesto a la de la matriz de partida, deducimos así que $det(f_{\sigma}) \in \mathcal{U}_{2} = \lbrace +1, -1 \rbrace$. Se define entonces el  \textbf{homomorfismo índice ó signatura de una permutación} como $$\begin{array}{rccl}
+\varepsilon = det \circ \psi \colon S_{n} \longrightarrow \mathcal{U}_{2} = \lbrace +1, -1 \rbrace\\
+\end{array}
+$$ donde $det \colon Aut(\mathbb{R}^{n}) \longrightarrow \mathbb{R}$ es el homomorfismo determinante. Además el homomorfismo índice es sobreyectivo pues $$\varepsilon(id) = det(f_{id}) = det (id_{\mathbb{R}^{n}}) = +1$$ y si $\sigma$ es una transposición cualquiera, la matriz $M_{f_{\sigma}}(B)$ es aquella en la que se han intercambiado dos columnas de la matriz identidad, y así $$\varepsilon(\sigma) = det(f_{\sigma}) = det(M_{f_{\sigma}}(B)) = -det (id_{\mathbb{R}^{n}}) = -1.$$
+\end{definition}
+
+Así, a partir de la construcción de este \textit{homomorfismo índice} como composición del homomorfismo determinante y $\psi$ antes definido, podemos dar una definición formal de lo que es el \textit{grupo alternado}:
+
+\begin{definition}El núcleo de $\varepsilon$ lo denotaremos $\mathcal{A}_{n}$ y lo llamaremos \textbf{$n$-ésimo grupo alternado}. Las permutaciones $\sigma \in \mathcal{A}_{n}$ se denominan \textbf{pares}, y las que pertenecen a $S_{n} \setminus \mathcal{A}_{n}$ se denominan \textbf{impares}. Al ser el homomorfismo índice $\varepsilon$ sobreyectivo, tenemos que $|\mathcal{A}_{n}| = n!/2$. Las permutaciones pares son aquellas que pueden escribirse como producto de un número par de transposiciones y tienen signatura $1$, y las impares aquellas que pueden escribirse como producto de un número impar de transposiciones y tiene signatura $-1$. Esto se puede comprobar con el siguiente resultado:
+\end{definition}
+
+\begin{proposition}\label{eq:cicimpar} Sea $\sigma = (a_{1}, \ldots, a_{k}) \in S_{n}$. Las transposiciones $\tau_{j} = (a_{j-1}, a_{j})$, donde $2\leq j \leq k$, cumplen $\sigma = \tau_{k} \cdot \tau_{k-1} \ldots \tau_{2}.$ En particular $\sigma \in \mathcal{A}_{n}$ si y sólo si $k$ es impar.
+\end{proposition}
+\emph{Demostración: }La igualdad $\sigma = \tau_{k} \cdot \tau_{k-1} \ldots \tau_{2}$ se comprueba directamente. Además, como cada $\varepsilon(\tau_{i}) = -1$ resulta que $$\varepsilon(\sigma) = \prod_{i=2}^{k}\varepsilon(\tau_{i}) = (-1)^{k-1},$$ luego $\sigma \in \mathcal{A}_{n}$ si y sólo si $1 = (-1)^{k-1}$, esto es, si $k$ es impar.
+
+$\hfill \square$
+
+Del resultado que acabamos de ver se tiene que, dado un $k$-ciclo $(a_{1}, \ldots, a_{k}) \in S_{n}$, entonces su signatura es $(-1)^{k-1}$.
+
+Con todo esto podemos resumir el grupo alternado mediante el siguiente homomorfismo:
+\begin{proposition}La aplicación signatura $$\begin{array}{rccl}
+sig \colon &S_{n}& \longrightarrow &\lbrace -1, 1\rbrace\\
+&\sigma& \longmapsto &sig(\sigma)
+\end{array}
+$$
+es un homomorfismo de grupos. Su núcleo, que está formado por las permutaciones pares, es un subgrupo de índice $2$, el \textbf{grupo alternado $\mathcal{A}_{n}$}. Además, $$S_{n}/\mathcal{A}_{n} \simeq C_{2}.$$
+\end{proposition}
+
+
+\begin{observation} Para $n \geq 4$ el grupo alternado $\mathcal{A}_{n}$ no es abeliano puesto que las permutaciones $\sigma = (1,2,3) \in \mathcal{A}_{n}$ y $\tau = (1,2)(3,4) \in \mathcal{A}_{n}$, por la proposición anterior y que $\sigma\tau(1) = 1$ y $\tau\sigma(1)=3$, cumplen $\sigma\tau \neq \tau\sigma$.
+
+Además, a partir de la proposición anterior y de~\ref{eq:ciclosdis}, podemos afirmar que las transposiciones generan el grupo $S_{n}$, o sea que cada permutación es producto de transposiciones.
+\end{observation}
+
+\begin{example} El grupo $\mathcal{A}_{4}$ tiene $12$ elementos, que son los elementos de $$K = \lbrace 1,(1,2)(3,4),(1,3)(2,4),(1,4)(2,3) \rbrace$$ y los $8$ $3$-ciclos de $S_{4}$. Además $K \unlhd \mathcal{A}_{4}$ y así $\mathcal{A}_{4}$ no es simple, de hecho es el único subgrupo normal propio de $\mathcal{A}_{4}$.
+\end{example}
+
+Una vez visto las primeras definiciones y propiedades de los grupos de permutaciones demostraremos uno de los resultados más importantes en \textit{Teoría de Grupos}: que $\mathcal{A}_{n}$ es simple si $n \geq 5$, también conocido como el \textit{Teorema de Abel}, en honor de Niels Henrik Abel.
+
+\begin{proposition}\label{eq:preabel} Si $n \geq 3$, entonces $\mathcal{A}_{n}$ es transitivo sobre $\Omega =\lbrace 1, \ldots, n \rbrace$
+\end{proposition}
+\emph{Demostración: } Si $1 \leq i <j \leq n$, elegimos $k$ distinto de $i$ y de $j$ y tenemos que $(i,j,k)(i) = j$. Claramente $(i,j,k) \in \mathcal{A}_{n}$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Teorema de Abel}}] Si $n \geq 5$, entonces $\mathcal{A}_{n}$ es simple.
+\end{theorem}
+\emph{Demostración: }\textbf{\textit{Primero demostraremos que $\mathcal{A}_{5}$ es simple}}. En $\mathcal{A}_{5}$ tenemos $20$ $3$-ciclos, $24$ $5$-ciclos y $15$ elementos del tipo $(a,b)(c,d)$. Veamos que los $3$-ciclos son conjugados en $\mathcal{A}_{5}$. Sea $g = (1,2,3)$. Sabemos de~\ref{eq:excentra} que $C_{S_{5}}(g)= \langle g\rangle \langle(4,5) \rangle$. Ahora, $$\langle g \rangle \subseteq C_{\mathcal{A}_{5}}(g) \leq C_{S_{5}}(g)$$ puesto que $(4,5) \in C_{S_{5}}(g) \setminus \mathcal{A}_{5}$. Como $|C_{S_{5}}(g)| = 6$, concluimos que $C_{\mathcal{A}_{5}}(g) = \langle g \rangle$. Por lo tanto, $|Cl_{\mathcal{A}_{5}}(g)| = 60/3 = 20.$ 
+
+Veamos ahora que los $15$ elementos del tipo $(a,b)(c,d)$ son conjugados en $\mathcal{A}_{5}$. Nuevamente por~\ref{eq:excentra} tenemos que $$\langle (1,2)(3,4),(1,3)(2,4) \rangle \subseteq C_{\mathcal{A}_{5}}((1,2)(3,4)) \leq C_{S_{5}}((1,2)(3,4))$$ puesto que $(1,3,2,4) \in C_{S_{5}}((1,2)(3,4)) \setminus \mathcal{A}_{5}$. Como $|C_{S_{5}}((1,2)(3,4))| = 8$, concluimos que $|C_{\mathcal{A}_{5}}((1,2)(3,4))| = 4$ y así la clase de conjugación de $(1,2)(3,4)$ en $\mathcal{A}_{5}$ tiene $15$ elementos. (Esto también se puede ver teniendo en cuenta que todas las permutaciones de tipo $[2,2]$ son pares, es decir, que todas forman parte del grupo alternado).
+
+Finalmente, notamos que hay dos clases de conjugación en $\mathcal{A}_{5}$ de $5$-ciclos. En efecto, sabemos que si $g$ es un $5$-ciclo, entonces $C_{S_{5}}(g) = \langle g \rangle = C_{\mathcal{A}_{5}}(g)$. Así, $|Cl_{\mathcal{A}_{5}}(g)| = 12$. Por tanto, las longitudes de las clases de conjugación de $\mathcal{A}_{5}$ son $1,12,12,15$ y $20$.
+
+Sea ahora $N$ un subgrupo normal propio de $\mathcal{A}_{5}$. Tenemos que $N$ es una unión disjunta de clases de conjugación de $\mathcal{A}_{5}$ (siendo una de ellas el $1$) y que $1 < |N| < 60$ es un divisor de $60$. Por lo tanto, $$|N| = 1 + 12a + 12b + 15c + 20d,$$ con $a,b,c,d \in \lbrace 0, 1 \rbrace$. Pero no hay ningún divisor de $60$ de esta forma quitando el $1$ y el propio $60$. Luego no existe $N$ subgrupo normal propio y así $\mathcal{A}_{5}$ es simple.
+
+\textbf{\textit{Probaremos ahora que $\mathcal{A}_{n}$ es simple}} para $n \geq 6$ por inducción sobre $n$. Supongamos que $n \geq 6$ y que $\mathcal{A}_{n-1}$ es simple. Sabemos que $\mathcal{A}_{n}$ actúa sobre $\lbrace 1,2, \ldots, n \rbrace$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Como hicimos en~\ref{eq:obsabel} para cada $\sigma \in K$, tenemos definido un $\bar{\sigma} \in S_{n-1}$. Como la descomposición de $\sigma$ y $\bar{\sigma}$ como producto de ciclos disjuntos es la misma entonces $\sigma$ es par si y sólo si $\bar{\sigma}$ lo es. Por lo tanto $K \simeq \mathcal{A}_{n-1}$ es simple.
+
+Por el resultado anterior $\mathcal{A}_{n}$ actúa transitivamente sobre $\lbrace 1, 2, \ldots, n \rbrace$ y por~~sabemos que todos los estabilizadores son conjugados en $\mathcal{A}_{n}$. Por lo tanto, si $\sigma \in \mathcal{A}_{n}$ fija algún elemento, entonces $\sigma \in K^{\tau}$ para cierto $\tau \in \mathcal{A}_{n}$.
+
+Sea ahora $N\unlhd \mathcal{A}_{n}$. Entonces $K \cap N \unlhd K$ y por la simplicidad de $K$ concluimos que $K \subseteq N$ ó $K \cap N = 1$. En el primer caso tenemos que $K^{\tau} \subseteq N$ para todo $\tau \in \mathcal{A}_{n}$. Por lo tanto, si una permutación $\sigma \in \mathcal{A}_{n}$ fija un elemento, entonces $\sigma \in N$. En particular, $N$ contiene todos los productos $(a,b)(c,d)$. Como toda permutación par es producto de un número par de transposiciones tenemos entonces que $N = \mathcal{A}_{n}$ en este caso.
+
+En el segundo caso, $K \cap N = 1$. Por lo tanto, $K^{\tau} \cap N = (K \cap N)^{\tau} = 1$ para todo $\tau \in \mathcal{A}_{n}$. Es decir, si $1 \neq \sigma \in \mathcal{A}_{n}$ fija algún elemento, entonces $\sigma$ no está en $N$. 
+
+Supongamos que $N > 1$ y sea $1 \neq \sigma \in N$. Supongamos primero que en la descomposición de $\sigma$ como producto de ciclos disjuntos solo aparecen transposiciones. Tenemos que $\sigma = (a,b)(c,d) \cdots$. Sea $e$ una cifra distinta de $a,b,c,d$. Entonces $$\gamma = \sigma^{(a,b)(d,e)}=(b,a)(c,e) \cdots \in N.$$
+Ahora $\sigma \gamma \in N$, $\sigma \gamma$ fija $a$ y $1 \neq \sigma \gamma$ (ya que manda $d$ a $e$). Esto es una contradicción. Finalmente, supongamos que en la descomposición de $\sigma$ como producto de ciclos disjuntos tenemos un $m$-ciclo con $m \geq 3$. Podemos escribir $\sigma (a,b,c, \ldots) \cdots$. Elegimos ahora dos cifras $d,e$ distintas de $a,b,c$ y escribimos $$\gamma = \sigma^{(c,d,e)} = (a,b,d, \ldots) \cdots \in N.$$ Tenemos que $\gamma \neq \sigma$ y $1 \neq \sigma \gamma^{-1} \in N$ fija $a$. Esta contradicción final prueba el teorema.
+
+$\hfill \square$
+
+\subsection{Teoremas de Sylow}
+
+Empezaremos con un resultado que es consecuencia de lo visto ahora y que básicamente nos dice que si tenemos un grupo de orden primo o múltiplo entonces contendrá un elemento de orden ese primo. Es el conocido como \textit{Teorema de Cauchy}, que lo probaremos primero para grupos abelianos y más tarde generalizaremos a todos.
+
+\begin{theorem}[\textit{\textbf{Teorema de Cauchy para grupos abelianos.}}]
+Sea $G$ un grupo abeliano finito, y $p$ un número primo que divide al orden de $G$. Entonces existirá $x \in G$ tal que $o(x) = p$.
+\end{theorem}
+\emph{Demostración: } Lo haremos por inducción sobre $|G|$. Sea $H$ un subgrupo propio de $G$ de orden lo mayor posible. Si $p \mid |H|$, por hipótesis de inducción existirá un $x \in H \subset G$ tal que $o(x) = p$. Por lo tanto podemos suponer que $ p \nmid |H|$. Como $p \mid |G| = |G/H| |H|$ por el \textit{Teorema de Lagrange} (además podemos hacer el cociente porque al ser $G$ abeliano todo subgrupo es normal), y esto quiere decir que $p \mid |G/H|$. Además, como $H$ es de orden lo mayor posible entre los subgrupos de $G$, por el \textit{Teorema de la correspondencia} $G/H$ no tiene subgrupos propios no triviales y por tanto es simple.
+
+Así, ahora partimos de que $G/H$ es simple y abeliano y que  $p \mid |G/H|$. Como los grupos simples abelianos son cíclicos de orden primo tenemos que $$G/H \simeq C_{p}.$$ Sea $H \neq xH \in G/H$. Entonces es claro que $o(xH) = p$. Tenemos un elemento de orden $p$ dentro del cociente y queremos encontrar un elemento de orden $p$ dentro del grupo. Para ello construiremos el homomorfismo sobreyectivo que ya conocemos $$\begin{array}{rccl}
+\pi \colon &G & \longrightarrow & G/H\\
+&x & \longmapsto &xH
+\end{array}
+$$ y de las propiedades de los homomorfismos sabemos que $p = o(xH) = o(\pi(x)) \mid o(x)$. Esto quiere decir que $p \mid o(x)$ y así $x^{o(x)/p} \in G$ de orden $p$, ese es el elemento que buscábamos.
+
+$\hfill \square$
+
+Ahora, el resultado general:
+
+\begin{theorem}[\textbf{\textit{Teorema de Cauchy.}}]
+Sea $G$ un grupo finito y $p$ un número primo que divide al orden de $G$. Entonces existirá un $x \in G$ tal que $o(x) = p$.
+\end{theorem}
+\emph{Demostración: } Por inducción nuevamente sobre $|G|$. Si existe un subgrupo propio $H$ de $G$ tal que $p \mid |H|$ ya hemos terminado, puesto que existirá un $x \in H \subset G$ tal que $o(x) = p$. Así, podemos suponer que $p \nmid |H|$ para todo $H$ subgrupo propio de $G$. Ahora, de la ecuación de clases: $$|G| = |Z(G)| + \sum_{i = 1}^{t}  \left[ G:C_{G}(x_{i}) \right]$$ sabemos que como $1 <  \left[ G:C_{G}(x_{i}) \right]$ entonces $p \nmid |C_{G}(x_{i})|$ $\forall i$, pero a la vez también $p \mid |G|$, esto quiere decir que $p \mid  \left[ G:C_{G}(x_{i}) \right]$ $\forall i$.
+
+Como $p \mid |G|$ y $p \mid  \left[ G:C_{G}(x_{i}) \right]$ entonces necesariamente $p \mid |Z(G)|$, pero como $p$ no divide al cardinal de ningún subgrupo propio tenemos que $Z(G) = G$ y así $G$ es abeliano. Por el resultado para grupos abelianos tenemos éste.
+
+$\hfill \square$
+
+Pasemos ya con las definiciones que emplearemos y con las que trabajaremos a partir de ahora:
+
+\begin{definition} Sea $G$ un grupo finito, y $p$ un número primo que divide al orden de $G$. Por tanto $|G| = p^{n}m$, con $m$ y $n$ enteros positivos tales que $p$ no divide a $m$, es decir, $mcd(p,m)=1$. Notar que $n=0$. Sea $H$ subgrupo de $G$. Entonces:
+\begin{enumerate}
+\item Diremos que $H$ es un \textbf{$p$-subgrupo} de $G$ si el orden de $H$ es potencia de $p$, es decir, $|H| = p^{r}$ con $r \geq 0.$
+\item Diremos que $H$ es un \textbf{$p$-subgrupo de Sylow} de $G$ si $H$ es un $p$-subgrupo de $G$ y $\left[ G:H \right]$ no es múltiplo de $p$, es decir, $|H| = p^{n}$ (la máxima potencia de $p$ que divide al orden de $G$). Al conjunto de todos los $p$-subgrupos de Sylow de $G$ los denotaremos por $$Syl_{p}(G) = \lbrace H \leq G : |H| = p^{n} \rbrace.$$
+\end{enumerate}
+\end{definition}
+
+El objetivo fundamental de esta sección es demostrar que los subgrupos de Sylow siempre existen ($Syl_{p}(G) \neq \lbrace \emptyset \rbrace$, $\forall p$) y que son conjugados entre sí. 
+
+\begin{theorem}[\textit{\textbf{Primer Teorema de Sylow}}]
+Sea $G$ es un grupo finito y $p$ un número primo, entonces $G$ tiene un $p$-subgrupo de Sylow.
+\end{theorem}
+\emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Si $|G| = 1$, entonces es evidente. Supongamos ahora que todos los grupos de orden menor que $|G|$ tienen $p$-subgrupos de Sylow y veamos que $G$ también los tiene.
+Si $p \nmid |G|$ entonces el subgrupo trivial es un $p$-subgrupo de Sylow de $G$. Por lo que supongamos que $p \mid |G|$, así $|G| = p^{n}m$ con $p$ no dividiendo a $m$ ($mcd(p,m)=1$). Entonces, podemos distinguir dos casos: 
+
+Primero, que exista un subgrupo $H \leq G$ tal que $p \nmid [G:H]$. Entonces es claro que $p^{n} \mid |H|$ y por hipótesis de inducción se tiene que $H$ tiene un $p$-subgrupo de Sylow de orden $p^{n}$, que llamaremos $P$ y que también será $p$-subgrupo de Sylow de $G$ .
+
+Segundo, que para todo subgrupo $H$ de $G$, $p \mid [G:H]$. Entonces, por la ecuación de clases~~ tenemos que $p \mid |Z(G)|$, y como éste es un grupo abeliano entonces tiene un elemento de orden $p$, ó equivalentemente tiene un subgrupo $H \leq Z(G)$ de orden $p$. Como todos los elementos de $H$ conmutan con todos los elementos de $G$ entonces es claro que $H^{g} = H$ para todo $g \in G$, es decir, $H \unlhd G$. Se cumple que $[G:H] = p^{n-1}m$ y tiene un subgrupo de Sylow $P/H$ que cumplirá $[P:H] = p^{n-1}$, por lo que $|P| = p^{n}$ y así $P$ es un $p$-subgrupo de Sylow de $G$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Segundo Teorema de Sylow}}]Si $G$ es un grupo finito, entonces todo $p$-subgrupo de $G$ está contenido en un $p$-subgrupo de Sylow y dos $p$-subgrupos de Sylow cualesquiera son conjugados.
+
+\end{theorem}
+\emph{Demostración: }Sea $P$ un $p$-subgrupo de Sylow de $G$ y sea $H$ un $p$-subgrupo arbitrario. Entonces $H$ actúa sobre $X= G/R^{P}$ por multiplicación a izquierda como vimos en~\ref{eq:ejcorazon}. Por el teorema de la órbita estabilizadora tenemos que las órbitas de $\Omega$ tienen cardinal potencia de $p$ (incluyendo $p^{0}=1$). De hecho, alguna órbita ha de tener cardinal $1$, pues de lo contrario el cardinal de $\Omega$, que es $[G:P]$, sería suma de potencias (no triviales) de $p$, así sería múltiplo de $p$.
+
+Por lo tanto, existirá un $g \in G$ tal que la clase de conjugación $x = gP$ formará una órbita trivial, con $x$ como único elemento. Concretamente $hgP = gP$ para todo $h \in H$. En particular $hg \in gP$ y así $h \in P^{g}$ para todo $h \in H$. De aquí $H \leq P^{g}$ y así $P^{g}$ es también $p$-subgrupo de Sylow.
+
+En caso de que $H$ sea un $p$-subgrupo de Sylow de $G$, entonces ha de darse la igualdad $H = P^{g}$, puesto que tenemos una inclusión y ambos tienen el mismo orden.
+
+$\hfill \square$
+
+Por lo tanto, queda claro que los $p$-subgrupos de Sylow forman una órbita en la acción de $G$ sobre el conjunto de todos sus subgrupos por conjugación. Luego, si $P$ es un $p$-subgrupo de Sylow entonces el número total es $[G: N_{G}(P)]$. Éste número es un divisor del orden de $G$ y también de $[G:P]$.
+
+\begin{corolario}Sean $p$ un número primo y $G$ un grupo finito cuyo orden es $|G| = p^{n}m$ donde $m$ y $n$ son enteros positivos y $p$ no divide a $m$. Sea $H$ un $p$-subgrupo de Sylow de $G$. Entonces $H$ es subgrupo normal si y sólo si es el único $p$-subgrupo de Sylow de $G$.
+\end{corolario}
+\emph{Demostración: }Los $p$-subgrupos de Sylow de $G$ son, por el \textit{Segundo Teorema de Sylow}, los subgrupos de $G$ conjugados de $H$, y coinciden todos con $H$ si y sólo si éste es normal. Es, por tanto, consecuencia inmediata de la definición de subgrupo normal y del \textit{Segundo Teorema de Sylow}.
+
+$\hfill \square$
+
+\begin{definition}Los grupos finitos con un único $p$-Sylow para cada divisor primo $p$ de $|G|$ se llaman \textbf{grupos nilpotentes finitos}.
+\end{definition}
+
+Finalmente veremos el último de los teoremas de Sylow:
+
+\begin{theorem}[\textit{\textbf{Tercer Teorema de Sylow}}]
+El número $v_{p}$ de $p$-subgrupos de Sylow de un grupo finito cumple que $v_{p} \equiv 1$ mod $p$.
+\end{theorem}
+\emph{Demostración: }Sea $G$ un grupo finito y $\Omega$ el conjunto de sus $p$-subgrupos de Sylow. Sea un $P \in \Omega$ y consideremos la acción de $P$ en $\Omega$ por conjugación. Es claro que $P^{g}=P$ para todo $g \in P$, luego la órbita de $P$ es trivial. Veamos que es única. Dado otro $Q \in \Omega$, entonces se tiene que $Q^{g} = Q$ para todo $g \in P$, entonces $P \leq N_{G}(Q)$ y así $P$ y $Q$ son $p$-subgrupos de Sylow de $N_{G}(Q)$, luego son conjugados en $N_{G}(Q)$. Así, existe un $g \in N_{G}(Q)$ tal que $P = Q^{g}= Q$.
+
+Las órbitas que $P$ forma en $\Omega$ tienen cardinal potencia de $p$, y se ha visto que la única que tiene cardinal $1$ es la de $P$, luego $v_{p}=|\Omega| \equiv 1$ mod $p$.
+
+$\hfill \square$
+
+La última de las consecuencias es equivalente a decir que $\left[ G:N_{G}(P) \right] \equiv 1$ $mod$ $p$, con $P$ un $p$-subgrupo de Sylow de $G$.
+
+\subsection{Resolubilidad}
+
+\begin{definition}Un grupo $G$ se dice \textbf{resoluble} si existen subgrupos $$1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_{k-1} \unlhd G_{k} = G$$ tales que $G_{i+1}/G_i$ es abeliano para todo $i= 0, \ldots, k-1$. Como $G_{i+1}/G_i$ es abeliano si y sólo si $$xG_iyG_i = yG_ixG_i$$ para todos $x,y \in G_{i+1}$, concluimos que $G_{i+1}/G_i$ es abeliano si y sólo $xyx^{-1}y^{-1} \in G_i$ para todo $x,y \in G_{i+1}$.
+\end{definition}
+
+\begin{proposition} \label{eq:reso1} Sea $G$ un grupo.
+\begin{enumerate}
+\item Si $H \leq G$ y $G$ es resoluble, entonces $H$ es resoluble.
+\item Supongamos que $N \unlhd G$. Entonces $G$ es resoluble si y sólo si $N$ y $G/N$ son resolubles.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Supongamos que $$1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_{k-1} \unlhd G_k = G$$ son tales que $G_{i+1}/G_i$ es abeliano para todo $i = 0, \ldots, k-1$. Por tanto, $xyx^{-1}y^{-1} \in G_i$ para todos $x,y \in G_{i+1}$ y para todo $i = 0, \ldots, k -1$.
+
+Supongamos ahora que $H \leq G$. Sea $H_i = H \cap G_i$ para $i = 0, \ldots, k$. Tenemos que $H \cap G_{i+1} \leq G_{i+1}$ y $G_i \unlhd G_{i+1}$. Por el \textit{Segundo Teorema de Isomorfía}, tenemos que $H_i = H \cap G_i \unlhd H \cap G_{i+1} = H_{i+1}$ y $$H_{i+1}G_i/G_i \cong H_{i+1}/H_{i}.$$
+
+Este grupo es abeliano ya que es isomorfo a un subgrupo de $G_{i+1}/G_i$. Tenemos que la serie $1 = H_0 \unlhd H_1 \unlhd \ldots \unlhd H_{k-1} \unlhd H_k = H,$ es tal que $H_{i+1}/H_{i}$ es abeliano. 
+
+Supongamos ahora que $N \unlhd G$. Como $G_i \unlhd G_{i+1}$, se tiene que $NG_i \unlhd NG_{i+1}$ por~\ref{eq:ej218}. Por tanto, $NG_i/N \unlhd NG_{i+1}/N$ por~\ref{eq:ej32}. Así, tenemos una serie $$N = NG_0/N \unlhd NG_1/N \unlhd \ldots \unlhd NG_{k-1}/N \unlhd NG_k/N = G/N.$$ Notar que $NG_{i+1}/N = \lbrace Nx : x \in G_{i+1} \rbrace$. Ahora, $$(Nx)(Ny)(Nx)^{-1}(Ny)^{-1} = Nxyx^{-1}y^{-1} \in NG_i/N, \quad \forall x,y \in G_{i+1}.$$ Esto prueba que $G/N$ es resoluble. 
+
+Supongamos finalmente que $N$ y $G/N$ son resolubles. Entonces existen series $$1 = N_0 \unlhd N_1 \unlhd \ldots \unlhd N_k = N$$ $$N = G_0 \unlhd G_1/N \unlhd \ldots \unlhd G_n/N = G/N$$ tales que $N_{i+1}/N_i$ y $(G_{j+1}/N)/(G_j/N)$ son abelianos para $i = 0, \ldots, k-1$ y $j = 0, \ldots, n-1$. Como $G_{j+1}/G_j \cong (G_{j+1}/N)/(G_j/N)$ por el \textit{Tercer Teorema de Isomorfía} la serie $$1 = N_0 \unlhd \ldots \unlhd N_k = N = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_n = G$$ prueba que $G$ es resoluble.
+
+$\hfill \square$
+
+\begin{proposition}Si $G$ es un grupo nilpotente finito, entonces $G$ es resoluble.
+\end{proposition}
+\emph{Demostración: }Por inducción sobre $|G|$. Sea $p$ un divisor primo de $|G|$. Si $G$ es unn $p$-grupo, por~\ref{eq:cor412} podemos hallar subgrupos $$1 = G_0 < G_1 <\ldots < G_k = G$$ tales que $[G_{i+1}:G_i] = p$, con $i=0, \ldots, k-1$. Por~\ref{eq:cor411}, tenemos que $G_i \unlhd G_{i+1}$. Por tanto, $G_{i+1}/G_i$ es cíclico de orden $p$ y $G$ es resoluble. 
+
+Por tanto, podemos suponer que $G$ no es un $p$-grupo. Sea $P \in Syl_p(G)$. Tenemos que $G/P$ es nilpotente. Por inducción, $G/P$ es resoluble. Como ya sabemos que $P$ es resoluble, el resultado queda demostrado aplicando el segundo apartado del resultado anterior. 
+
+$\hfill \square$
+
+Ahora podemos redefinir la caracterización de los grupos resolubles: 
+
+\begin{theorem}
+Un grupo finito $G$ es resoluble si y sólo si $G$ tiene una serie $$1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_k =G,$$ donde $G_{i+1}/G_i$ es cíclico de orden primo, con $i= 0, \ldots, k-1$.
+\end{theorem}
+\emph{Demostración: }Si $G$ tiene tal serie está claro que es resoluble. Para ver el recíproco, lo probaremos por inducción sobre $|G|$. Por ser $G$ resoluble, existe $N \unlhd G$ de orden más pequeño que el orden de $G$ tal que $G/N$ es abeliano. Sea $M/N$ un subgrupo propio de $G/N$ de orden el más mayor posible. Por el \textit{Teorema de la correspondencia} y de~\ref{eq:abSimple} tenemos que $G/M$ es cíclico de orden primo. Ahora, por la primera parte de~\ref{eq:reso1}, $M$ es resoluble y aplicamos la hipótesis de inducción.
+
+$\hfill \square$
+
+\begin{proposition}Si $n\geq 5$, entonces $S_n$ no es resoluble.
+\end{proposition}
+\emph{Demostración: }Si $S_n$ es resoluble, entonces $A_n$ es resoluble aplicando la primera parte de~\ref{eq:reso1}. Por tanto, existe $N \unlhd A_n$, con $N < A_n$, tal que $A_n/N$ es abeliano. Como $A_n$ es simple, tenemos que $N = 1$. Pero $A_n$ no es abeliano, contradicción
+
+$\hfill \square$
+
 
 \section{Anillos y cuerpos}
 
@@ -849,6 +1243,7 @@ $\hfill \square$
 
 \begin{proposition}[\textbf{\textit{Criterio de Eisenstein}}] Sea $f= a_{0} + a_{1}x + \ldots + a_{n}x^{n} \in \mathbb{Z}[x]$. Supongamos que existe $p$ primo tal que $p \mid a_{i}$, con $0 \leq i \leq n-1$, $p \nmid a_{n}$ y $p \nmid a_{0}^{2}$. Entonces $f$ es irreducible en $\mathbb{Q}[x]$.
 \end{proposition} 
+
 
 \subsection{Raíces de la unidad} \label{eq:raicesUnidad}
 
