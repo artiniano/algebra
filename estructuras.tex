@@ -1923,6 +1923,11 @@ e_{21}\delta & e_{22}\delta
 \right)$$ y, por tanto, $e_{11}\delta = e_{22}\delta = 1$, y así $\delta \in \mathcal{U}(A).$\vspace{0.2cm}\\ En resumen, $a \in \mathcal{U}(M_{2})$ si y sólo si $det(a) \in \mathcal{U}(A)$. Por ejemplo, si $A = \mathbb{Z}$, los enteros, $a$ será unidad si y sólo si $det(a) = \pm 1$. Pero si $A = \mathbb{Q}$ (ó cualquier cuerpo), $a$ será unidad si y sólo si $det(a) \neq 0$, ya que en un cuerpo todos los elementos menos el $0$ son unidades.\vspace{0.2cm}\\ De todo esto podemos decir que el \textbf{determinante} nos puede caracterizar las unidades y nos permite, como ya sabemos del álgebra lineal, el cálculo de inversos. Si lo vemos como un homomorfismo de grupos, es fácil demostrar que, dados $a,b \in M_{2}$ $$det(ab) = det(a)det(b).$$ Finalmente apuntar que todo lo visto en este ejemplo es aplicable para matrices de un orden $n \geq 2$ cualquiera.
 \item Sea $A = \mathcal{C}(\mathbb{R}, \mathbb{R})$ el conjunto de las funciones continuas reales de variable real. En este caso, dicho conjunto es un anillo; en efecto dados $t \in \mathbb{R}$ y $f,g \in A$, podemos definir las operaciones $$(f+g)(t) = f(t) + g(t)$$ $$(f \cdot g)(t) = f(t) \cdot g(t)$$
 Además, es conmutativo y unitario, con el elemento neutro la función constante $$c_{1}(t) = 1.$$
+\item Si $A$ es un anillo, podemos construir el \textbf{anillo de polinomios} $A[x]$ sobre $A$. Más adelante detallaremos en una sección propia este particular anillo, pero ahora podemos presentarlo en líneas generales para poder ver algunos resultados referentes a él en las siguientes páginas. 
+
+Un polinomio $p \in A[x]$ es una suma de la forma $$p = \sum_n a_nx^n,$$ con $a_n \in A$ para todo $n$ y donde existe un $m$ tal que $a_n=0$ si $n>m$. En ocasiones también podremos escribir estos elementos como $p(x)$. Si tenemos que $p=a_mx^m+\ldots+a_1x+a_0,$ y $a_m\neq 0$ entonces podremos decir que el \textbf{grado} de $p$, $\delta(p)$, es $m$. También diremos que los términos $a_m,\ldots, a_1, a_0$ son los \textbf{coeficientes} de $p$ y concretamente que $a_m$ es el \textbf{coeficiente director} de $p$. Si este coeficiente director $a_m =1$ diremos que $p$ es mónico. El polinomio $0$ se suele convenir que tiene grado $-\infty$.
+
+Diremos que dos polinomios $p = \sum_n a_nx^n$, $q = \sum	_n b_nx^n$ son iguales si y sólo si $a_n = b_n$ para todo $n$. También los podremos sumar y multiplicar: $$p+q= \sum_n(a_n+b_n)x^n,$$ $$pq = \sum_n\left(\sum_{i+j=n \atop i,j\geq 0} a_ib_j \right) x^n.$$
 \end{enumerate}
 \end{example}
 
@@ -2204,6 +2209,19 @@ y como esto es para todo $t \in \mathbb{R}$ tenemos que $$\phi(g + h) = \phi(g) 
 
 $\hfill \blacksquare$
 
+Un homomorfismo muy importante es el conocido como \textit{homomorfismo evaluación}, que involucra anillos de polinomios. Si $p(x) = a_kx^k + \ldots + a_1x+a_0 \in A[x]$ y $a \in A$, con $A$ un anillo conmutativo y unitario, entonces definimos $p(b)=a_kb^k + \ldots + a_1b +a_0$.` 
+
+\begin{proposition}[\textbf{\textit{Homomorfismo evaluación}}]
+Sea $A$ un anillo conmutativo y unitario, y supongamos que $a \in R$. Entonces, la aplicación $$\begin{array}{rccl}
+e_a \colon &A[x]&\longrightarrow &A \\
+&p& \longmapsto &p(a)
+\end{array}
+$$ es un homomorfismo de anillos.
+\end{proposition}
+\emph{Demostración: }Observar que $e_a(1) = 1$. Si $p(x) = \sum_n a_nx^n$ y $q(x) = \sum_n b_nx^n$ hay que comprobar que $(p+q)(a)=p(a)+q(a)$ y que $pq(a) = p(a)q(a)$. Es un simple ejercicio.
+
+$\hfill \square$
+
 Veamos ahora las definiciones esenciales para homomorfismos, igual que en grupos pero en anillos: 
 
 \begin{definition} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Entonces: \begin{enumerate}
@@ -2289,13 +2307,13 @@ $$ Su núcleo estará formado por todos los elementos $x \in A$ que también est
 $\hfill \square$
 
 \begin{theorem}[\textbf{\textit{Tercer Teorema de Isomorfía}}]
-Sean $A$ un anillo conmutativo y unitario, y $J, I$ ideales de $A$ tales que $J \subset I$. Entonces los anillos $(A/J)/(I/J)$ y $A/I$ son isomorfos.
+Sean $A$ un anillo conmutativo y unitario, y $J, I$ ideales de $A$ tales que $J \subseteq I$. Entonces los anillos $(A/J)/(I/J)$ y $A/I$ son isomorfos.
 \end{theorem}
 \emph{Demostración: }En este caso consideraremos el siguiente homomorfismo de anillos conmutativos y unitarios: $$\begin{array}{rccl}
 f \colon &A/J&\longrightarrow &A/I \\
 &x+ J& \longmapsto &x + I.
 \end{array}
-$$ Evidentemente es suprayectivo y está bien definido, pues $J \subset I$. Ahora, $Ker f = \lbrace a + J: a \in I \rbrace = I/J$. De nuevo, por el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti} tenemos que $(A/J)/(I/J) \simeq A/I$.
+$$ Evidentemente es suprayectivo y está bien definido, pues $J \subseteq I$. Ahora, $Ker f = \lbrace a + J: a \in I \rbrace = I/J$. De nuevo, por el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti} tenemos que $(A/J)/(I/J) \cong A/I$.
 
 $\hfill \square$
 
@@ -2444,8 +2462,8 @@ $$ es un homomorfismo de anillos. Consideremos su núcleo $Ker \hspace{0.1cm} \p
 
 \begin{observation}\label{eq:obs} Algunas observaciones respecto a estas definiciones: \begin{enumerate}
 \item Si $z, z'$ son dos mcd de $x,y$ entonces $z \mid z'$ y $z' \mid z$, luego los elementos difieren en una unidad, es decir, $(z) = (z')$. En este sentido se tiene la unicidad del mcd. Igualmente para el mcm.
-\item Podemos expresar el mcd en términos de ideales así: $$(x) + (y) \subset (z) \subset \bigcap \lbrace I : I\supset (x) +(y), \hspace{0.1cm} I \hspace{0.1cm} \text{principal}\rbrace.$$
-\item La descripción del mcm mediante ideales es: $z$ es mcm de $x,y$ si y sólo si $$(x) \cap (y) = (z).$$ En efecto, si $z$ es el mcm, $z \subset (x)$ y $z \subset (y)$, luego se tiene el contenido $(x) \cap (y) \supset (z)$. Pero si $t \in (x) \cap (y)$, entonces $t$ e múltiplo de $x$ y de $y$, luego $z \mid t$ y $t \in (z)$. Esto da la igualdad. Recíprocamente, si $(x) \cap (y) = (z)$, entonces $x \mid z$, $y \mid z$, y si $t$ es otro múltiplo común, entonces $t \in (x) \cap (y) = (z)$ y $z \mid t$.
+\item Podemos expresar el mcd en términos de ideales así: $$(x) + (y) \subseteq (z) \subseteq \bigcap \lbrace I : I\supseteq (x) +(y), \hspace{0.1cm} I \hspace{0.1cm} \text{principal}\rbrace.$$
+\item La descripción del mcm mediante ideales es: $z$ es mcm de $x,y$ si y sólo si $$(x) \cap (y) = (z).$$ En efecto, si $z$ es el mcm, $z \subseteq (x)$ y $z \subseteq (y)$, luego se tiene el contenido $(x) \cap (y) \supseteq (z)$. Pero si $t \in (x) \cap (y)$, entonces $t$ e múltiplo de $x$ y de $y$, luego $z \mid t$ y $t \in (z)$. Esto da la igualdad. Recíprocamente, si $(x) \cap (y) = (z)$, entonces $x \mid z$, $y \mid z$, y si $t$ es otro múltiplo común, entonces $t \in (x) \cap (y) = (z)$ y $z \mid t$.
 \item En general, el mcd puede no existir, y esto estará relacionado con las propiedades de los elementos irreducibles de $A$.
 \end{enumerate} 
 \end{observation}
@@ -2522,13 +2540,13 @@ A partir de aquí y con esto, vamos a poder definir una nueva estructura algebra
 \emph{Demostración: } Veamos primero (2). Sea $$x = a_{1}^{\alpha_{1}} \ldots  a_{r}^{\alpha_{r}} = b_{1}^{\beta_{1}} \ldots  a_{s}^{\beta_{s}}.$$ Para cada $i$ tenemos $a_{i} \mid b_{1}^{\beta_{1}} \ldots b_{s}^{\beta_{s}}.$ Como $a_{i}$ es irreducible, de~~ tenemos que $$a_{i} \mid b_{\sigma (i)}$$ para algún $\sigma (i)$. Análogamente $$b_{\sigma(i)}\mid a_{j}$$ para algún $j$. Por tanto, $a_{i} \mid a_{j}$, luego $a_{i}$ y $a_{j}$ no son primos entre sí, e $i = j$. Así, existe una unidad $u_{i} \in \mathcal{U}(A)$ con $$b_{\sigma(i)} = u_{i}a_{i}.$$ Se observa que $\sigma(i) \neq \sigma (j)$ si $i \neq j$, pues en otro caso $u_{i}a_{i} = u_{j}a_{j}$, o sea, $a_{j} = (u_{j}^{-1}u_{i})a_{i}$ y se tendría $a_{i} \mid a_{j}$ con $i \neq j$. Así, $\sigma \colon i \longrightarrow \sigma (i)$ es inyectiva, y $r \leq s$. Por simetría $r = s$, y $\sigma$ es una permutación de $\lbrace 1, \ldots, r \rbrace$ tal que: $$b_{\sigma(1)} = u_{1}a_{1}, \ldots, b_{\sigma(r)} = u_{r}a_{r}; \hspace{0.2cm} u_{1}, \ldots, u_{r} \in \mathcal{U}(A).$$
 En fin, $\beta_{\sigma(i)} = \alpha_{i} $ \hspace{0.1cm} $\forall i$. En efecto, $$a_{i}^{\alpha_{i}} \mid x = u a_{1}^{\beta_{\sigma(1)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ donde $u = u_{1}^{\beta_{\sigma(1)}} \ldots u_{r}^{\beta_{\sigma(r)}} \in \mathcal{U}(A).$ Si $\alpha_{i} > \beta_{\sigma(i)}$, simplificando $a_{i}^{\beta_{\sigma(i)}}$ obtendríamos $$a_{i} \mid a_{i}^{y_{i}} \mid  u a_{1}^{\beta_{\sigma(1)}} \ldots a_{i}^{\beta_{\sigma(i)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ pues $y_{i} = \alpha_{i} - \beta_{\sigma(i)} \geq 1.$ Entonces $a_{i} \mid a_{j}$ para algún $i \neq j$, que es absurdo. Tiene que ser $\alpha_{i} \leq \beta_{\sigma(i)}$, y por simetría se tiene la igualdad. 
 
-Pasemos a probar ahora $(1)$. Primeramente, afirmamos que $x$ tiene algún divisor irreducible. Ciertamente, pues de no tenerlo entonces el propio $x$ sería reducible (si no lo fuera sería un divisor irreducible de sí mismo), y tendría algún divisor $x_{1}$ con $(x) \subset (x_{1}) \subset A.$ A su vez $x_{1}$ sería reducible, y existiría $x_{2} \in A$ con $(x_{1}) \subset (x_{2}) \subset A$. Recurrentemente obtendríamos una sucesión $x = x_{0}, x_{1}, x_{2}, \ldots , x_{n}, \ldots$ tal que $$(x_{0}) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots .$$ Y esto no es posible. Para verlo, sea: $$ I = \bigcup_{i \geq 0} (x_{i}).$$ Entonces $I$ es un ideal: \begin{enumerate}
-\item Si $a,b \in I$ es $a \in (x_{i}), b \in (x_{j})$, escribimos $k = max {i,j}$ y tenemos $a,b \in (x_{k})$, luego $a + b \in (x_{k}) \subset I$.
+Pasemos a probar ahora $(1)$. Primeramente, afirmamos que $x$ tiene algún divisor irreducible. Ciertamente, pues de no tenerlo entonces el propio $x$ sería reducible (si no lo fuera sería un divisor irreducible de sí mismo), y tendría algún divisor $x_{1}$ con $(x) \subseteq (x_{1}) \subseteq A.$ A su vez $x_{1}$ sería reducible, y existiría $x_{2} \in A$ con $(x_{1}) \subseteq (x_{2}) \subseteq A$. Recurrentemente obtendríamos una sucesión $x = x_{0}, x_{1}, x_{2}, \ldots , x_{n}, \ldots$ tal que $$(x_{0}) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subseteq \ldots .$$ Y esto no es posible. Para verlo, sea: $$ I = \bigcup_{i \geq 0} (x_{i}).$$ Entonces $I$ es un ideal: \begin{enumerate}
+\item Si $a,b \in I$ es $a \in (x_{i}), b \in (x_{j})$, escribimos $k = max {i,j}$ y tenemos $a,b \in (x_{k})$, luego $a + b \in (x_{k}) \subseteq I$.
 \item  Si $a \in I, b \in A$, entonces $a \in (x_{i})$ para algún $i$, y $ba \in (x_{i}) \subset I$. 
 \end{enumerate}
-Como $I$ tiene que ser principal, existe un $z \in A$ con $$(z) = \bigcup_{i \geq 0} (x_{i}).$$ Luego $z \in (x_{i_{0}})$ para algún $i_{0}$, con lo que $$(x_{i_{0}+1}) \subset I = (z) \subset (x_{i_{0}}),$$ y así $(x_{i_{0}+1}) = (x_{i_{0}})$, que es absurdo.
+Como $I$ tiene que ser principal, existe un $z \in A$ con $$(z) = \bigcup_{i \geq 0} (x_{i}).$$ Luego $z \in (x_{i_{0}})$ para algún $i_{0}$, con lo que $$(x_{i_{0}+1}) \subseteq I = (z) \subseteq (x_{i_{0}}),$$ y así $(x_{i_{0}+1}) = (x_{i_{0}})$, que es absurdo.
 
-Sea ahora $a_{1}$ un divisor irreducible de $x$. Entonces $$x = a_{1}x_{1}, \hspace{0.2cm} x_{1} \in A.$$ Si $x_{1}$ es unidad ya hemos acabado. Si no, $x_{1}$ tendrá algún divisor irreducible $a_{2}$ y $x_{1} = a_{2}x_{2}$, donde o bien $x_{2}$ es unidad, y así habremos acabado, o bien $x_{2}$ tiene un divisor irreducible $a_{3}$. Si después de una cantidad finita de pasos encontramos una unidad $u = u_{r} \in \mathcal{U}(A)$, será $$x = a_{1}a_{2} \ldots a_{r}u,$$ y agrupando los $a_{i}$ iguales tendremos la descomposición que buscábamos. Sólo queda ver que este proceso es finito. Si no lo fuera obtendríamos una sucesión $$(x) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots .$$ Y, como hicimos anteriormente, se tendría $(x_{i_{0}}) = (x_{i_{0}+1})$ para cierto $i_{0}$, es decir, $$a_{i_{0}+1} = x_{i_{0}}/ x_{i_{0}+1} \in \mathcal{U}(A),$$ lo que es absurdo.
+Sea ahora $a_{1}$ un divisor irreducible de $x$. Entonces $$x = a_{1}x_{1}, \hspace{0.2cm} x_{1} \in A.$$ Si $x_{1}$ es unidad ya hemos acabado. Si no, $x_{1}$ tendrá algún divisor irreducible $a_{2}$ y $x_{1} = a_{2}x_{2}$, donde o bien $x_{2}$ es unidad, y así habremos acabado, o bien $x_{2}$ tiene un divisor irreducible $a_{3}$. Si después de una cantidad finita de pasos encontramos una unidad $u = u_{r} \in \mathcal{U}(A)$, será $$x = a_{1}a_{2} \ldots a_{r}u,$$ y agrupando los $a_{i}$ iguales tendremos la descomposición que buscábamos. Sólo queda ver que este proceso es finito. Si no lo fuera obtendríamos una sucesión $$(x) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subset \ldots .$$ Y, como hicimos anteriormente, se tendría $(x_{i_{0}}) = (x_{i_{0}+1})$ para cierto $i_{0}$, es decir, $$a_{i_{0}+1} = x_{i_{0}}/ x_{i_{0}+1} \in \mathcal{U}(A),$$ lo que es absurdo.
 
 $\hfill \square$
 
@@ -2553,7 +2571,7 @@ A continuación veremos todas las propiedades vistas hasta ahora a través de un
 
 \begin{example} Nos situaremos en el subanillo $A \subset \mathbb{C}$ de los números complejos de la forma $a +b\sqrt{-5}$, $a,b \in \mathbb{Z}$. Lo denotaremos $A = \mathbb{Z}[\sqrt{-5}]$ y efectivamente $$\mathbb{Z}[\sqrt{-5}] = \lbrace a + b\sqrt{-5} : a,b \in \mathbb{Z} \rbrace.$$ A lo largo del ejemplo se usará indistintamente tanto $A$ como $\mathbb{Z}[\sqrt{-5}]$. 
 
- Estudiaremos primero las unidades. Sea un elemento $a +b\sqrt{-5} \in \mathbb{Z}[\sqrt{-5}]$, entonces $a +b\sqrt{-5} \in \mathcal{U}(\mathbb{Z}[\sqrt{-5}])$ si y sólo si existen $c,d \in \mathbb{Z}$ tales que $$1 = (c + d\sqrt{-5})(a +b\sqrt{-5}) = (ca-5db) + (cb + da)\sqrt{-5}.$$ Y esto quiere decir que $ca-5db = 1$ y $cb + da = 0$. De lo que se obtiene las siguientes soluciones $$c = \dfrac{a}{a^{2}+5b^{2}}, \hspace{0.2cm} d = \dfrac{-b}{a^{2}+5b^{2}}.$$ Esto quiere decir que $(a^{2}+5b^{2}) \mid a$ y que $(a^{2} + 5b^{2}) \mid b$; por lo que $|b| \geq a^{2}+5b^{2}$ y de esto $|b| = 0$ ya que de lo contrario tendríamos que $a^{2} + 5b^{2} \geq 5b^{2} > b^{2} \geq |b|$, que es una contradicción. Así $|b| = 0$ y $b = 0$, y como nuevamente $|a| \geq a^{2} + 5b^{2} = a^{2}$ entonces $|a| \leq 1$. Pero $a$ no puede ser $0$ porque sino también lo sería $a + b\sqrt{-5}$, luego $a = \pm 1$. Esto deja como posibles soluciones $(a,b) = (\pm 1, 0).$ Así, $\mathcal{U} (\mathbb{Z}[\sqrt{-5}]) = \lbrace 1, -1 \rbrace$.\vspace{0.3cm}\\
+Estudiaremos primero las unidades. Sea un elemento $a +b\sqrt{-5} \in \mathbb{Z}[\sqrt{-5}]$, entonces $a +b\sqrt{-5} \in \mathcal{U}(\mathbb{Z}[\sqrt{-5}])$ si y sólo si existen $c,d \in \mathbb{Z}$ tales que $$1 = (c + d\sqrt{-5})(a +b\sqrt{-5}) = (ca-5db) + (cb + da)\sqrt{-5}.$$ Y esto quiere decir que $ca-5db = 1$ y $cb + da = 0$. De lo que se obtiene las siguientes soluciones $$c = \dfrac{a}{a^{2}+5b^{2}}, \hspace{0.2cm} d = \dfrac{-b}{a^{2}+5b^{2}}.$$ Esto quiere decir que $(a^{2}+5b^{2}) \mid a$ y que $(a^{2} + 5b^{2}) \mid b$; por lo que $|b| \geq a^{2}+5b^{2}$ y de esto $|b| = 0$ ya que de lo contrario tendríamos que $a^{2} + 5b^{2} \geq 5b^{2} > b^{2} \geq |b|$, que es una contradicción. Así $|b| = 0$ y $b = 0$, y como nuevamente $|a| \geq a^{2} + 5b^{2} = a^{2}$ entonces $|a| \leq 1$. Pero $a$ no puede ser $0$ porque sino también lo sería $a + b\sqrt{-5}$, luego $a = \pm 1$. Esto deja como posibles soluciones $(a,b) = (\pm 1, 0).$ Así, $\mathcal{U} (\mathbb{Z}[\sqrt{-5}]) = \lbrace 1, -1 \rbrace$.\vspace{0.3cm}\\
  
 Por lo tanto, las unidades de $\mathbb{Z}[\sqrt{-5}]$ son los elementos $a + b\sqrt{-5}$ tales que $a^{2} + 5b^{2} = 1$. Ahora, definamos una aplicación $$\begin{array}{rccl}
 \phi \colon &A&\longrightarrow &\mathbb{N} \\
@@ -2561,7 +2579,7 @@ Por lo tanto, las unidades de $\mathbb{Z}[\sqrt{-5}]$ son los elementos $a + b\s
 \end{array}
 $$ El haber definido una aplicación así nos puede sugerir que, entonces, $A$ sea un $DE$, sin embargo no va a ser el caso puesto que no va a cumplir la última de las condiciones vistas cuando definimos los $DE$ en~\ref{eq:de}. Esto tiene todo el sentido del mundo ya que, de ser un $DE$, entonces todo elemento irreducible sería primo y veremos más adelante que esto no es así.
 
-Aunque esta última condición no se cumpla sí lo hace la otra de los $DFU$, es decir, todo elemento no nulo que no sea unidad es producto de elementos irreducibles. Para ver esto es suficiente con ver que $A$ no contiene sucesiones infinitas de la forma $$(x_{0}) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots.$$ Y efectivamente así es, de no serlo tendríamos $x_{i} = a_{i+1}x_{i+1}$, con $a_{i+1} \notin  \mathcal{U}(A)$ y por tanto $\phi (a_{i+}) > 1$, luego $\phi (x_{i}) > \phi (x_{i+1}).$ Y como está claro que no puede existir la sucesión de números naturales $$\phi(x_{0}) > \phi (x_{1}) > \ldots > \phi(x_{n}) > \ldots, $$ entonces tampoco lo hará $$(x_{0}) \subset (x_{1}) \subset (x_{2}) \subset \ldots \subset (x_{n}) \subset \ldots.$$ 
+Aunque esta última condición no se cumpla sí lo hace la otra de los $DFU$, es decir, todo elemento no nulo que no sea unidad es producto de elementos irreducibles. Para ver esto es suficiente con ver que $A$ no contiene sucesiones infinitas de la forma $$(x_{0}) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subseteq \ldots.$$ Y efectivamente así es, de no serlo tendríamos $x_{i} = a_{i+1}x_{i+1}$, con $a_{i+1} \notin  \mathcal{U}(A)$ y por tanto $\phi (a_{i+}) > 1$, luego $\phi (x_{i}) > \phi (x_{i+1}).$ Y como está claro que no puede existir la sucesión de números naturales $$\phi(x_{0}) > \phi (x_{1}) > \ldots > \phi(x_{n}) > \ldots, $$ entonces tampoco lo hará $$(x_{0}) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subseteq \ldots.$$ 
 
 Además, en $\mathbb{Z}[\sqrt{-5}]$ no hay unicidad de factorización: $$3 \cdot 2 = (1 + \sqrt{-5}) (1- \sqrt{-5}),$$ y los elementos $2,3, 1+ \sqrt{-5}, 1 - \sqrt{-5}$ son irreducibles. De lo contrario, si alguno de estos elementos, que denotaremos por $x$, fuera reducible tendríamos $x = x_{1}x_{2},  x_{i} \notin \mathcal{U}(A)$, luego $\phi(x) = \phi(x_{1}) \phi(x_{2})$ con $\phi(x_{i}) >1$, donde $\phi(x) = 4,9,6,6$ respectivamente. Sea $\phi(x_{i}) = a_{i}^{2} + 5b_{i}^{2}$. En $\mathbb{Z}$ sí hay unicidad de factorización, luego en cualquiera de los casos $a_{i}^{2}+5b_{i}^{2} = 2$ ó $3$ para $i = 1,2$, lo cual es imposible.
 
@@ -2579,6 +2597,19 @@ $\hfill \blacksquare$
 \subsubsection{Anillos de restos}
 
 A lo largo de la presente sección se llevará a cabo el estudio de los cocientes del anillo de los números enteros $\mathbb{Z}$. Pero antes de eso veamos algunas propiedades del anillo en el que nos encontramos y que ya conocemos gracias a todo lo visto en las secciones anteriores: 
+
+Primero, el resultado central del capítulo, y a partir del cual desarrollaremos el resto.
+
+\begin{proposition}Sea $n$ un entero positivo. El anillo $\mathbb{Z}/n\mathbb{Z}$ es un cuerpo si y sólo si $n$ es primo.
+\end{proposition}
+\emph{Demostración: }Está claro que podemos suponer que $n \geq 2$. Supongamos que $n=ab$, con $1 <a,b<n$ y que $\mathbb{Z}/n\mathbb{Z}$ es cuerpo. Entonces $(a+n\mathbb{Z})(b+n\mathbb{Z}) = 0$ pero esto sería absurdo si $a+n\mathbb{Z},b+n\mathbb{Z}\neq 0$ puesto que un $\mathbb{Z}/n\mathbb{Z}$ es cuerpo y no tiene divisores de cero, así que necesariamente $n$ es primo.
+
+Recíprocamente, supongamos que $n$ es primo, y sea $1 \geq m < n$, entonces se tiene que $mcd(n,m)=1$.  En este caso, sabemos que van a existir $a,b \in \mathbb{Z}$ tales que $an+bm = 1$ por la identidad de Bézout. POr lo tanto, $$(m+n\mathbb{Z})(b+n\mathbb{Z}) = 1+n\mathbb{Z},$$ y tenemos que $m+n\mathbb{Z}$ es invertible.
+
+$\hfill \square$
+
+A este anillo lo podremos denotar indistintamente tanto $\mathbb{Z}/n\mathbb{Z}$ como $\mathbb{Z}/(n)$ tal y como iremos viendo.
+
 \begin{enumerate}
 \item Un número entero $p$ es \textit{irreducible} si y solo si es primo, si y sólo si genera un ideal maximal y si y sólo si $\mathbb{Z}/(p)$ es un cuerpo.
 \item El anillo $\mathbb{Z}$ es un \textit{dominio de factorización única} (en particular es un $DE$). Todo entero $n >1$ se escribe de manera única como sigue: $$n = p_{1}^{\alpha_{1}} \ldots p_{s}^{\alpha_{s}},$$ con $p_{i}$ números primos conocidos como factores primos de $n$.
@@ -2587,7 +2618,7 @@ A lo largo de la presente sección se llevará a cabo el estudio de los cociente
 
 Con esto ya podemos pasar a describir los cocientes de $\mathbb{Z}$:
 
-\begin{definition} Sea $n$ un número entero. Llamaremos \textbf{anillo de restos módulo $n$} al cociente $\mathbb{Z}/(n)$. Como $(n) = (-n)$ al ser $-1$ unidad, podremos suponer que $n \geq 0$. Si $n = 0$ el cociente es el propio $\mathbb{Z}$ y si $n=1$ entonces $(n) = \mathbb{Z}$  y no tendría sentido considerar el cociente. Luego $n >1$.
+\begin{definition} Sea $n$ un número entero. Llamaremos \textbf{anillo de restos módulo n} al cociente $\mathbb{Z}/(n)$. Como $(n) = (-n)$ al ser $-1$ unidad, podremos suponer que $n \geq 0$. Si $n = 0$ el cociente es el propio $\mathbb{Z}$ y si $n=1$ entonces $(n) = \mathbb{Z}$  y no tendría sentido considerar el cociente. Luego $n >1$.
 
 Sea $k \in \mathbb{Z}$. Denotaremos $[k]_{n}$, ó simplemente $[k]$ si no es necesario especificar, la clase de $k$ $$k + (n) = \lbrace k + qn: q \in \mathbb{Z}\rbrace.$$ 
 Para obtener otro representante de la clase de $k$, $[k]$, dividiremos por $n$ y tendremos $k = qn + r$. El resto ha de ser positivo o nulo y esto plantea un problema si $k <0$ (porque recordemos que $k$ es un entero), bastará dividir por exceso en vez de por defecto y ya está. Con esto $k -r = qn \in (n)$, por lo tanto $[k] = [r]$. 
@@ -2602,12 +2633,12 @@ Si nos situamos, por ejemplo, en $\mathbb{Z}/(5)$, tenemos que $[3] + [1] = [4]$
 
 Pasemos a ver ahora cómo son los ideales de un anillo de restos:
 
-\begin{definition} Sea $n > 1$. Ya vimos en~\ref{eq:ancoci} que los ideales de $\mathbb{Z}/(n)$ están en biyección con los ideales $I \subset \mathbb{Z}$ que contienen $(n)$. Sea entonces un ideal $I = (m) \subset \mathbb{Z}$ tal que $(m) \supset (n)$. Entonces $m \mid n$, y así los ideales de $\mathbb{Z}/(n)$ están en biyección con aquellos ideales generados por los divisores positivos de $n$ (positivos porque $I = (-m) = (m)$).
+\begin{definition} Sea $n > 1$. Ya vimos en~\ref{eq:ancoci} que los ideales de $\mathbb{Z}/(n)$ están en biyección con los ideales $I \subseteq \mathbb{Z}$ que contienen $(n)$. Sea entonces un ideal $I = (m) \subseteq \mathbb{Z}$ tal que $(m) \supseteq (n)$. Entonces $m \mid n$, y así los ideales de $\mathbb{Z}/(n)$ están en biyección con aquellos ideales generados por los divisores positivos de $n$ (positivos porque $I = (-m) = (m)$).
 \end{definition}
 
 Y veamos también los homomorfismos entre anillos de restos:
 \begin{definition} Vamos a centrarnos en 5 puntos:\begin{enumerate}
-\item No existe ningún homomorfismo de anillos unitarios de la forma $f \colon \mathbb{Z}/(n) \longrightarrow \mathbb{Z}$ con $n > 0$. De no ser así tendríamos que $$0 = f([0]) = f([1] \overbrace{+ \ldots +}^{n} [1]) = f([1]) \overbrace{+ \ldots +}^{n} f([1])= 1 \overbrace{+ \ldots +}^{n} 1 = n,$$ que es absurdo.
+\item No existe ningún homomorfismo de anillos unitarios de la siguiente forma $f \colon \mathbb{Z}/(n) \longrightarrow \mathbb{Z}$ con $n > 0$. De no ser así tendríamos que $$0 = f([0]) = f([1] \overbrace{+ \ldots +}^{n} [1]) = f([1]) \overbrace{+ \ldots +}^{n} f([1])= 1 \overbrace{+ \ldots +}^{n} 1 = n,$$ que es absurdo.
 \item La identidad es el único homomorfismo de anillos unitarios $f \colon \mathbb{Z} \longrightarrow \mathbb{Z}.$ En efecto, sea $f \colon \mathbb{Z} \longrightarrow \mathbb{Z}$ uno de ellos, como $f(1) = 1$ entonces, dado un entero $k$, $$f(k) = f(1 \overbrace{+ \ldots +}^{k} 1) = f(1) \overbrace{+ \ldots +}^{k}  f(1) = 1 \overbrace{+ \ldots +}^{k}  1 = k,$$ $$f(-k) = -f(k) = -k.$$ Y este homomorfismo es la identidad: $f = id_{\mathbb{Z}}$.
 \item Nos situamos ahora en los homomorfismos de $\mathbb{Z}$ en $\mathbb{Z}/(n)$ con $n>1$. Sea $k$ un entero positivo. Entonces $$f(k) = f(k) = f(1 \overbrace{+ \ldots +}^{k} 1) = f(1) \overbrace{+ \ldots +}^{k}  f(1) = [1]  \overbrace{+ \ldots +}^{k}  [1] = [k],$$ $$f(-k) = -f(k) = -[k] = [-k].$$ Este es el único homomorfismo de anillos unitarios $f \colon \mathbb{Z} \longrightarrow \mathbb{Z}/(n).$
 \item Veamos ahora qué ocurre en los homomorfismos del tipo $f \colon \mathbb{Z}/(m) \longrightarrow \mathbb{Z}/(n)$. Sea $f$ uno de ellos, entonces: \begin{center}$[0]_{n} = f([0]_{m}) = f([1]_{m} \overbrace{+ \ldots +}^{m}  [1]_{m}) =   f([1]_{m})  \overbrace{+ \ldots +}^{m}  f([1]_{m}) =  [1]_{n}  \overbrace{+ \ldots +}^{m}  [1]_{n} = [m]_{n}.$\end{center} Y esto quiere decir que $m \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$, luego $n \mid m$. Por lo tanto, $n$ ha de dividir a $m$.
@@ -2623,7 +2654,7 @@ El cuál ya sabemos que existe por el punto anterior, y está bien definido porq
 Podemos dar una versión alternativa del teorema chino de los restos:
 
 \begin{theorem}[\textbf{\textit{Teorema Chino del resto}}]
-Si $a,b$ son enteros primos entre sí, entonces se tendrá un isomorfismo de anillos unitarios $$\mathbb{Z}(ab) \simeq \mathbb{Z}/(a) \times \mathbb{Z}/(b).$$
+Si $a,b$ son enteros primos entre sí, entonces se tendrá un isomorfismo de anillos unitarios $$\mathbb{Z}(ab) \cong \mathbb{Z}/(a) \times \mathbb{Z}/(b).$$
 \end{theorem}
 \emph{Demostración: } Definimos $$\begin{array}{rccl}
 f \colon &\mathbb{Z}/(ab)&\longrightarrow &\mathbb{Z}/(a) \times \mathbb{Z}/(b)\\
