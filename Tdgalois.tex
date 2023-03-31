@@ -1282,6 +1282,7 @@ Tal y como hemos mencionado, dada una extension $E/K$, $E$ tendrá una estructur
 $\hfill \blacksquare$
 
 Veamos que ocurre si intentamos encadenar extensiones:
+
 \begin{proposition} \label{eq:trgr} Sea $E$ una extensión de $L$, y a su vez $L$ una extensión de $K$. Diremos entonces que $L$ es un cuerpo intermedio, ya que se tiene que $K \subseteq L \subseteq E$. Entonces $E/K$ es finita si y sólo si $E/L$ y $L/K$ lo son. En este caso, se tiene $$|E: K| = |E:L| |L:K|.$$
 \end{proposition}
 \emph{Demostración: } Partimos primero de que $E/K$ es finita, entonces $|E:K|$ es finita y que $L$ como $K$-espacio vectorial esté contenido en $E$ $K$-espacio vectorial implica que $dim_{K} L \leq dim_{K} E < \infty$, es decir, $|L:K|$ es finito. Por otro lado, si $B = \lbrace u_{1}, \ldots, u_{n}\rbrace$ es una base de $E$ como $K$-espacio vectorial y $v \in E$, entonces $v = \sum_{i} k_{i}u_{i}$, con los $k_{i} \in K \subseteq L$. Así, $B$ genera $E$ como $L$-espacio vectorial, es decir, $dim_{L}E$ es finita y así $|E:L|$ también.
@@ -1312,6 +1313,7 @@ Ahora, una observación que ya conocemos del capítulo anterior:
 Además, por inducción podemos definir $K(\alpha_{1}, \ldots, \alpha_{n} ) = K(\alpha_{1}, \ldots, \alpha_{n-1})(\alpha_{n}).$
 
 Un resultado que se desprenden de forma inmediata de la transitividad del grado de las extensiones y de la noción que acabamos de ver es el siguiente:
+
 \begin{proposition} Sea $E/K$ una extensión de cuerpos, finita, y $|E:K|$ un número primo. Entonces cada elemento $\alpha \in E \setminus K$ cumple que $E = K(\alpha)$.
 \end{proposition}
 \emph{Demostración: } Aplicando~\ref{eq:trgr} a los cuerpos $K \subseteq K(\alpha) \subset E$ tenemos que $$|E:K| = |E: K(\alpha)| |K(\alpha) : K|$$ y como $|E:K|$ es un número primo y $|K(\alpha) :K| \neq 1$ ya que $\alpha \neq K$, entonces se tiene que $|E:K(\alpha)| = 1$, es decir, que $E = K(\alpha)$ $\forall \alpha \in E \setminus K$.
@@ -1329,6 +1331,7 @@ $\hfill \square$
 \end{example}
 
 $\hfill \blacksquare$
+
 \begin{proposition} Toda extensión finita es algebraica.
 \end{proposition}
 \emph{Demostración: } Sea $E/K$ finita y $n = |E:K|$. Si $\alpha \in E$, la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ tienen $n+1$ elementos (iguales o repetidos). Como $dim_{K} E = n$, dicha familia tiene que ser linealmente dependiente. Así, existen $t_{0}, t_{1}, \ldots, t_{n} \in K$ no todos nulos tales que $t_{0}1 + t_{1}\alpha + \ldots + t_{n}\alpha^{n} = 0$. Sea $p(x) = t_{0} + t_{1}x + \ldots + t_{n}x^{n}$. Entonces $p(x) \in K[x]$, $p(x) \neq 0$ y $p(\alpha) = 0.$
@@ -1399,7 +1402,7 @@ Primero, $p(\alpha) = 0$ y si $p(x) = x^{n} + k_{n-1}x^{n-1} + \ldots + k_{0}$, 
 
 Segundo, de lo que acabamos de ver se deduce que $T$ es cerrado para la suma y el producto, y es fácil ver que es anillo unitario. Ahora, si $0 \neq t \in T$, $t = \lambda_{0} + \lambda_{1} \alpha + \ldots + \lambda_{n-1} \alpha^{n-1}$, con $\lambda_{i} \in K$, veamos que $t$ es invertible en $T$. Si $v(x) = \lambda_{0} + \lambda_{1} x + \ldots + \lambda_{n-1} x^{n-1}$, entonces $v(\alpha) = t \neq 0$ y $v(x) \notin A$, es decir, $p$ no divide a $v(x)$. Como $p$ es irreducible, resulta que $p$ y $v(x)$ son coprimos, y por Bézout existirán $q,r \in K[x]$ tales que $1 = rv + qp$. Ahora, $1 = r(\alpha)v(\alpha) + q(\alpha) p(\alpha) = r(\alpha) t$, con $r(\alpha) \in T$, y así $t$ es invertible en $T$.
 \item De la segunda parte del apartado anterior se tiene que $\lbrace 1, \alpha, \alpha^{2}, \ldots, \alpha^{n-1} \rbrace$ es base de $K(\alpha)$ sobre $K$, con $n = \delta (Irr(\alpha K))$, por lo que $|K(\alpha) : K| = n = \delta (Irr(\alpha, K))$. 
-\item Como $q \in A$, $q = rp$ con $r \in K[x]$. Al ser $q$ irreducible en $K[x]$ se tiene que cumplir que $\delta (q) = \delta (p)$ ó bien $\delta (q) = \delta (r)$. En el primer caso, $r$ es constante y como $q y p$ son ambos mónicos entonces son iguales. En el segundo caso, $p$ sería constante y así reducible, lo cual es absurdo.
+\item Como $q \in A$, $q = rp$ con $r \in K[x]$. Al ser $q$ irreducible en $K[x]$ se tiene que cumplir que $\delta (q) = \delta (p)$ ó bien $\delta (q) = \delta (r)$. En el primer caso, $r$ es constante y como $q$ y $p$ son ambos mónicos entonces son iguales. En el segundo caso, $p$ sería constante y así reducible, lo cual es absurdo.
 \end{enumerate}
 
 $\hfill \square$

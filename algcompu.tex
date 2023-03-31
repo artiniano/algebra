@@ -1,0 +1,628 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{cancel}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage[all]{xy}
+\usepackage{cancel}
+\usepackage{pictexwd}
+\usepackage{parskip}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{vmargin}
+\usepackage{graphicx}
+
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{definicion}[theorem]{Definición}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}{Lema}[theorem]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}{Ejemplo}[theorem]
+\newtheorem{corolario}{Corolario}[theorem]
+\newtheorem{observation}{Observación}[theorem]
+\newtheorem{properties}{Propiedades}[theorem]
+\newtheorem{exercise}{Ejercicio}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\graphicspath{{images/}}
+
+\author{Pablo Pallàs}
+\title{Álgebra Computacional}
+\setlength{\parindent}{10pt}
+
+\begin{document}
+\rmfamily
+\maketitle
+\tableofcontents
+\parindent= 0cm
+
+\section{Bases de Groebner}
+\subsection{\text{Orden en los monomios de $K[x_1, \ldots, x_n]$ y división}}
+Para cada $(\alpha_1, \ldots, \alpha_n) = \alpha \in \mathbb{N}^n$ tenemos un monomio $x_1^{\alpha_1}\cdots x_n^{\alpha_n} \in K[x_1, \ldots, x_n]$ y viceversa.
+
+\begin{definition} Diremos que tenemos un \textbf{orden monomial} en $\mathbb{N}^n$ si se verifican las siguientes condiciones para unos $\alpha, \beta \in \mathbb{N}^n:$
+\begin{enumerate}
+\item $>$ es orden total en $\mathbb{N}^n$, es decir, ó bien $\alpha > \beta$ ó $\beta > \alpha$ para todo $\alpha, \beta \in \mathbb{N}^n$.
+\item Si tenemos que $\alpha > \beta$, entonces $\alpha + \gamma > \beta + \gamma$, es decir, al multiplicar por un monomio se mantiene el orden.
+\item Todo subconjunto no vacío $A$ de $\mathbb{N}^n$ tiene un elemento que es menor que todos los demás, un elemento mínimo. Esto es equivalente a decir que el conjunto está bien ordenado para $>$, es decir, que $ \exists \alpha \in A$ tal que $\alpha < \beta$ $\forall \beta \in A$. Esto \textbf{es equivalente a que toda sucesión decreciente de $\alpha_i \in A$ se estaciona}.
+\end{enumerate}
+\end{definition}
+
+\begin{observation}Notar que en cualquier orden monomial se tiene que $\alpha >0=(0, \ldots, 0)$ para todo $\alpha$. Esto es así ya que si $\alpha <0$ se tendría que, sumando $\alpha$ en cada paso, la serie $$0 >\alpha >2\alpha>3\alpha> \ldots $$ se estacionaría por la tercera condición antes expuesta, es decir, tendríamos que $n\alpha=(n-1)\alpha$, luego $\alpha = 0$. Más adelante veremos que el recíproco tabién es cierto.
+\end{observation}
+
+Notar también que si $n=1$ el único orden monomial es el orden natural en $\mathbb{N}$.
+
+Aunque aquí hayamos escogido $\mathbb{N}^n$ los órdenes monomiales son ordenaciones de monomios de un anillo, normalmente para establecer un algoritmo de división en polinomios de varias variables. El anillo en cuestión es $K[x_1, \ldots, x_n]$, con $K$ un cuerpo.
+
+Veamos dos órdenes monomiales concretos:
+
+\begin{definition}\textbf{Orden lexicográfico}, denotado por $>_{lex}$. Si $\alpha, \beta \in \mathbb{N}^n$ diremos que $\alpha >_{lex}$ si en $\alpha - \beta$ la primera componente no nula empezando por la izquierda es positiva. Notar que es importante el orden de las variables. \textbf{Orden graduado lexicográfico}, denotado $>_{grlex}$. Si $\alpha, \beta \in \mathbb{N}^n$ diremos que $\alpha >_{grlex}\beta$ si $$|\alpha| = \sum_{i=1}^n a_i > |\beta| = \sum_{i=1}^n \quad \text{ó} \quad |\alpha| = |\beta|, a>_{lex} \beta.$$
+\end{definition}
+
+\begin{definition}Sea $0 \neq f = \sum_\alpha a_\alpha x^\alpha \in K[x_1, \ldots, x_n]$ con un orden monomial $>$. Entonces: 
+\begin{itemize}
+\item El \textbf{multigrado} de $f$ es $multideg(f) = max\lbrace\alpha \in \mathbb{N}^n: a_\alpha \neq 0\rbrace.$
+\item El \textbf{coeficiente director} de $f$ es $LC(f) = a_{multideg(f)}\in K.$
+\item El \textbf{monomio director} de $f$ es $LM(f) = x^{multideg(f)}\in K$.
+\item El \textbf{término director} de $f$ es $LT(f) = LC(f)LM(f)$.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[\textbf{\textit{Algoritmo de la división en $K[x_1, \ldots, x_n]$}}]
+Sea $>$ un orden monomial y sea $F=(f_1, \ldots, f_s)$ una $s$-tupla de polinomios en $K[x_1, \ldots, x_n]$. Para todo $f \in K[x_1, \ldots, x_n]$ existen $a_1, \ldots, a_s, r \in K[x_1, \ldots, x_n]$ tales que $$f = a_1f_1 + \ldots a_sf_s + r, $$ con $r=0$ ó una combinación lineal en $K$ de monomios que no son divisibles por ninguno de los $LT(f_1), \ldots, LT(f_s)$. Diremos que $r$ es un resto de la división de $f$ por $F$.
+\end{theorem}
+\emph{Demostración: }Partimos de un $p=f$, $r=0$ y $a_i =0$, de manera trivial tenemos que $$f = a_1f_1+ \ldots a_sf_s + p + r.$$ Si $LT(p)$ es divisible por algún $LT(f_i)$ cambiamos $a_i$ por $a_i + LT(p)/LT(f_i)$ y $p$ oir $p-f_i(LT(p)/LT(f_i))$ siguiendo el orden $i=1, \ldots, s$. Notar que en cada paso se mantiene la igualdad $$f = a_1f_1+ \ldots a_sf_s + p + r$$ y además se tiene que el término director de $f_i(LT(p)/LT(f_i))$ es $LT(p)$, luego el monomio director del nuevo $p$ es menor estricto que el que tenía el $p$ anterior. Además, los monomios que añadimos a cada $a_i$ al multiplicarlos por $f_i$ tienen como monomio director $LM(p)$, luego menor que el monomio director de $f$ y en cada paso de $multideg(f) \geq multideg(a_if_i)$. Hacemos essto hasta llegar a un $p$ tal que su monomio director no es divisible por ninguno de los monomios directores de $f_i$. Si $p=0$ ya está, en otro caso camviamos $p$ por $p-LT(p)$ y $r$ por $r+LT(p)$. Se sigue teniendo la igualdad y los términos de $r$ no son divisibles por ninguno de los $LT(f_i)$. En este paso también conseguimos un $p$ con monomio director más pequeño. Continuamos así hasta llegar a $p=0$.
+
+$\hfill \square$
+
+\begin{example}Vamos a calcular el resto y los coeficientes de la división de $f=x^2y+xy^2+y^2$ por el conjunto de los polinomios $F=(y^2-1, xy-1)$ siguiendo el orden lexicográfico. 
+
+Notar que en $f$ tenemos un monomio elevado a $\alpha=(2,1)$, un monomio $\beta=(1,2)$ y un monomio $\gamma=(0,2)$. Así que tenemos que $\alpha >_{lex} \beta >_{lex} \gamma$, luego $LT(f)=x^2y$. Del conjunto $F$ llamaremos $f_1=y^2-1$ y $f_2=xy-1$, y tenemos claramente que $LT(f_1)=y^2$ y $LT(f_2)=xy$.
+
+Comenzamos poniendo $f=a_1f_1+a_2f_2+p+r$, con $r=a_1=a_2=0$ y $p=f=x^2y+xy^2+y^2$. Ahora, $LT(p)=x^2y$ es divisible por $LT(f_2)=xy$ y $LT(p)/LT(f_2)=x^2y/xy=x$ luego podemos sustituir $a_2$ por $a_2 +x$, $p$ por $p-xf_2 = x^2y+xy^2+y^2-x^2y +x = xy^2 +y^2+x$.
+
+Ahora tenemos $f=a_1f_1 +xf_2 + p +r$, con $a_1 = r = 0$ y $p = xy^2 + y^2+x$. $LT(p) = xy^2$ es divisible por $LT(f_1) = y^2$ y $LT(p)/LT(f_1) = xy^2/y^2 = x$ luego podemos sustituir $a_1$ por $a_1 +x$ y $p$ por $p-xf_1 = xy^2+y^2+x -xy^2+x =y^2+2x$.
+
+Tenemos $f=xf_1 + xf_2 + p + r$, con $r=0$ y $p=y^2+2x$. $LT(p) = 2x$ no es divisible ni por $LT(f_1)$ ni por $LT(f_2)$, pero si hacemos $p=y^2$ y $r=2x$ entonces $LT(p)=y^2$ sí es divisible por $LT(f_1)=y^2$ y $LT(p)/LT(f_1)=1$ luego podemos sustituir $a_1 = x$ por $a_1+1 = x+1$ y $p$ por $p-f_1 = y^2-y^2+1 = 1$. Así que queda $f = xf_1 + f_1 + xf_2 + p + r$, con $p=1$ y $r=2x$. Si hacemos que $p=0$ y $r=2x+1$ ya está: 
+$$f = xf_1 + f_1 + xf_2 + 2x+1.$$
+\end{example}
+$\hfill \blacksquare$
+
+\subsection{Ideales monomiales. Lema de Dickson}
+
+\begin{definition}Un ideal $I$ de $K[x_1, \ldots, x_n]$ diremos que es \textbf{ideal monomial} si se puede generar por monomios, es decir, si existe un subconjunto $A \subseteq \mathbb{N}^n$ tal que $I = \langle x^\alpha: \alpha \in A\rangle.$
+\end{definition}
+
+Notar que $I$ estará formado por lo polinomios que son una suma finita de la forma $$\sum_\alpha h_\alpha x^\alpha, \quad h_\alpha \in K[x_1, \ldots, x_n].$$
+
+\begin{proposition}\label{eq:preld} Dado un ideal monomial $I = \langle x^\alpha: \alpha \in A \rangle$, con $A \subseteq \mathbb{N}^n$, se tiene que: 
+\begin{itemize}
+\item Dado un $\beta \in \mathbb{N}^n$, $x^\beta \in I$ si y sólo si $x^\beta$ es múltiplo de $x^\alpha$ para algún $\alpha \in A$.
+\item Para un $f \in K[x_1, \ldots, x_n]$ se tiene que $f \in I$ si y sólo si todos los términos de $f$ están en $I$.
+\item Para un $f \in K[x_1, \ldots, x_n]$ se tiene que $f \in I$ si y sólo si $f$ es combinación lineal con coeficientes en $K$ de monomios de $I$.
+\end{itemize}
+\end{proposition}
+\emph{Demostración: }Es un sencillo ejercicio. 
+
+$\hfill \square$
+
+\begin{corolario}Dos ideales monomiales son el mismo si y sólo si contienen los mismos monomios.
+\end{corolario}
+
+Si $n=2$ podemos representar los monomios en el plano $\mathbb{Z} \times \mathbb{Z}$ y los ideales generados por un conjunto de monomios serán una región de ese plano.
+
+\begin{example}Podemos representar el ideal $I = \langle x^4y^2, x^3y^4, x^2y^5\rangle$ usando lo que se conoce como \textbf{diagrama de Young} ya que $n=2$ y podemos usar un plano $\mathbb{Z} \times \mathbb{Z}$. Del primer monomio sacamos $\alpha = (4,2)$, del segundo $\beta = (3,4)$ y del tercero $\gamma = (2,5)$. El conjunto de puntos $S = \lbrace (4,2), (3,4), (2,5) \rbrace$ también lo conoceremos como el \textit{grafo del ideal monomial $I$}.
+\end{example}
+
+\begin{theorem}[\textbf{\textit{Lema de Dickson}}]
+Sea $A \subseteq \mathbb{N}^n$, $I = \langle x^\alpha: \alpha \in A \rangle$ un ideal monomial. Entonces existen $\alpha_1, \ldots, \alpha_s \in A$ tales que $I = \langle x^{\alpha_1}, \ldots, x^{\alpha_n} \rangle$. En particular, $I$ tiene una base finita.
+\end{theorem}
+\emph{Demostración: }Lo haremos por inducción sobre $n$. Para $n=1$, $A\subseteq \mathbb{N}$ y existe un $\beta \in A$ tal que $\beta \leq \alpha$ para todo $\alpha \in A$. Se tiene que $I = \langle x^\alpha: \alpha \in A \rangle = \langle x^\beta \rangle$.
+
+Supongamos ahora que $n>1$ y que el teorema es cierto para $n-1$. Llamaremos $y = xn$ y todos los monomios de $K[x_1, \ldots, x_{n-1},y]$ son de la forma $x^\alpha y^r$, siendo $\alpha \in \mathbb{N}^{n-1}$ y $r \in \mathbb{N}$.
+
+Sea $I$ un ideal monomial de $K[x_1, \ldots, x_{n-1},y]$. Sea $J$ el ideal de $K[x_1, \ldots, x_{n-1}]$ generado por los monomios $x^\alpha$, con $\alpha \in \mathbb{N}^{n-1}$, para los que existe $r \in \mathbb{N}$ de modo que $x^\alpha y^r \in I$. 
+
+(Considerando el homomorfismo de anillos $K[x_1, \ldots, x_{n-1},y] \longrightarrow K[x_1, \ldots, x_{n-1}]$ sustitución de $y$ por $1$, entonces $J$ está generado por las imágenes de los monomios de $I$ y se le llama proyección de $I$ en $K[x_1, \ldots, x_{n-1}]$.)
+
+Por hipótesis de inducción existen $\alpha_1, \ldots, \alpha_s \in \mathbb{N}^{n-1}$ y $m_1, \ldots, m_s \in \mathbb{N}$ tales que $$J = \langle x^{\alpha_1}, \ldots, x^{\alpha_s} \rangle, \quad x^{\alpha_i}y^{m_i} \in I, i=1, \ldots, s.$$ Sea $m$ el mayor de los $m_i$. Un monomio cualquiera de $I$ será de la forma $x^\beta y^r$, con $\beta \in \mathbb{N}^{n-1}$, $r\in \mathbb{N}$. Y como $x^\beta \in J$ se tiene que $x^\beta$ es múltiplo de algún $x^{\alpha_i}$. Si $r> m$, nuestro monomio es múltiplo de alguno de los siguientes monomios: $x^{\alpha_1}y^m, \ldots, x^{\alpha_s}y^m$. 
+
+Ahora pensemos en los monomios $x^\beta y^r$ con $r<m$. Para cada $k$ entre $0$ y $m-1$ consideramos los monomios de $I$ de la forma $x^\beta y^k$, con $\beta \in \mathbb{N}^{n-1}$, y hacemos su proyección sobre $K[x_1, \ldots, x_{n-1}]$ y llamamos $J_k$ al ideal de $K[x_1, \ldots, x_{n-1}]$ que generan las imágenes, es decir, $$J_k = \langle x^\beta \rangle \subseteq K[x_1, \ldots, x_{n-1}], x^\beta y^k \in I.$$ Otra vez por hipótesis de inducción existen $\alpha_{k1}, \ldots, \alpha_{ks} \in \mathbb{N}^{n-1}$ tales que $$J_k = \langle x ^{\alpha_{k1}}, \ldots, x^{\alpha_{ks}} \rangle, \quad x^{\alpha_{ki}}y^k \in I, i=1, \ldots, s.$$ Vamos a buscar en $I$ los monomios cuyas proyecciones me dan estos conjuntos finitos de generadores. De $J_0$, $x^{\alpha_{01}}, \ldots, x^{\alpha{0s}}$. De $J_1$, $x^{\alpha_{11}}y, \ldots, x^{\alpha_{1s}}y$. De $J_k$, $x^{\alpha_{k1}}y^k, \ldots, x^{\alpha_{ks}}y^k$. De $J_{n-1}$, $x^{\alpha_{n-11}}y^{n-1}, \ldots, x^{\alpha_{n-1s}}y^{n-1}$ y añadimos los múltiplos de los generadores de $J$, $x^{\alpha_1}y^m, \ldots, x^{\alpha_s}y^m$. 
+
+Tenemos así un conjunto finito de monomios de $I$. Sea $x^\alpha y^p$ un monomio en $I$, con $\alpha \in \mathbb{N}^{n-1}, p \in \mathbb{N}$. Se tiene que $x^\alpha \in J$ y por tanto es múltiplo de algún $x^{\alpha_i}$ y si $p>m$ se tiene que $x^\alpha y^p$ es múltiplo de alguno de los monomios $x^{\alpha_1}y^m, \ldots, x^{\alpha_s}y^m$.
+
+Si $p<m$, $x^\alpha \in J_p$ luego es múltiplo de algún $x^{\alpha_{pi}}$ y $x^\alpha y^p$ es múltiplo de alguno de los $x^{\alpha_{p1}}y^p, \ldots, x^{\alpha_{ps}}y^p$.
+
+Así, hemos visto que el ideal generado por este conjunto finito e $I$ tienen los mismos monomios y por la proposición anterior son el mismo ideal.
+
+Para terminar, supongamos que $A \subseteq \mathbb{N}^n$ y $I= \langle x^\alpha : \alpha \in A \rangle$. Ya hemos probado que existen $ \beta_1, \ldots, \beta_s \in \mathbb{N}^n$ tales que $I = \langle x^{\beta_1}, \ldots, x^{\beta_s} \rangle$. Por~\ref{eq:preld} existen $\alpha_1, \ldots, \alpha_s \in A$ tales que $x^{\beta_i}$ es múltiplo de $x^{\alpha_i}$ y se tiene que $I = \langle x^{\beta_1}, \ldots, x^{\beta_s} \rangle \subseteq \langle x^{\alpha_1}, \ldots, x^{\alpha_s} \rangle \subseteq I$. Luego $I = \langle x^{\alpha_1}, \ldots, x^{\alpha_s} \rangle$.
+
+$\hfill \square$
+
+\begin{corolario} Sea $>$ una relación de orden total en $\mathbb{N}^n$ que verifica que si $\alpha > \beta$ se tiene que $\alpha + \gamma > \beta + \gamma$ para todo $\alpha, \beta, \gamma \in \mathbb{N}^n$.
+
+Tenemos además que es un orden monomial si y sólo si $\alpha > 0$ para todo $\alpha \in \mathbb{N}^n$.
+\end{corolario}
+
+\emph{Demostración: }Ya sabemos que en los órdenes monomiales $\alpha >0$ para todo $\alpha \in \mathbb{N}^n$
+
+Para el recíproco, sea $A \subseteq \mathbb{N}^n$. Consideremos $I = \langle x^\alpha : \alpha \in A \rangle$ y por el \textit{Lema de Dickson} existen $\alpha_1, \ldots, \alpha_s \in A$ tales que $I = \langle x^{\alpha_1}, \ldots, x^{\alpha_s} \rangle$. Por ser un orden total podemos suponer que $\alpha_1 < \alpha_i$ para $i = 2, \ldots, s$.
+
+Sea $\alpha \in A$, por ser $x^\alpha \in I$, $x^\alpha$ es múltiplo de algún $x^{\alpha_i}$, con $i = 1, \ldots, s$, luego existe $\gamma \in \mathbb{N}^n$ tales que $\alpha = \alpha_i + \gamma$. 
+
+Por hipótesis $\gamma >0$, luego $\alpha = \alpha_i + \gamma > \alpha_i >\alpha_1$ y tenemos que $\alpha_1$ es mínimo en $A$.
+
+$\hfill \square$
+
+Notar que de las primeras líneas de la demostración del \textit{Lema de Dickson} sacamos que, dado un $\alpha 	in \mathbb{N}^n$, $$\langle \alpha \rangle = \lbrace \beta=(\beta_1, \ldots, \beta_n) \in \mathbb{N}^n: \beta_i \geq \alpha_i, i=1, \ldots, n \rbrace$$ y así $\langle x^\alpha \rangle = \lbrace x^\beta : \beta \in \mathbb{N}^n \rbrace$ tal que $ \alpha \leq \beta$.
+
+\subsection{El Teorema de la base de Hilbert}
+
+\begin{definition}Sea $I$ un ideal no nulo de $K[x_1, \ldots, x_n]$. Consideremos el siguiente conjunto: $$LT(I) = \lbrace cx^\alpha : \exists f \in I: LT(f) = cx^\alpha \rbrace.$$ Entonces el conjunto $LT(I)$ genera un ideal monomial. Hay que tener en cuenta que si $I = \langle f_1, \ldots, f_s \rangle$ se tiene obviamente que $$\langle LT(f_1), \ldots, LT(f_s) \rangle \subseteq \langle LT(I) \rangle.$$
+\end{definition}
+
+Veamos que este contenido puede ser estricto:
+
+\begin{example}En $K[x,y]$ con el orden grlex consideramos $I = \langle x^3-2xy,x^2y-2y^2+x \rangle$. Se tiene que $\langle LT(x^3-2xy), LT(x^2y-2y^2+x) \rangle = \langle x^3, x^2y \rangle.$ Ahora: $$-y(x^3-2xy) +x(x^2y-2y^2+x) = x^2 \in I \Longrightarrow x^2 \in \langle LT(I) \rangle$$ pero $ x^2 \notin \langle LT(x^3-2xy), LT(x^2y-2y^2+x) \rangle = \langle x^3, x^2y \rangle.$
+\end{example}
+$\hfill \blacksquare$
+
+\begin{proposition}Sea $I$ un ideal no nulo de $K[x_1, \ldots, x_n]$, se tiene que $\langle LT(I) \rangle$ es un ideal monomial, y por el \textit{Lema de Dickson} $\exists g_1, \ldots, g_s \in I$ tales que $\langle LT(I) \rangle = \langle LT(g_1), \ldots, LT(g_s) \rangle$.
+\end{proposition}
+
+\begin{theorem}[\textbf{\textit{Teorema de la base de Hilbert}}]
+Todo ideal $I$ de $K[x_1, \ldots, x_n]$ es finitamente generado, es decir, que existen $g_1, \ldots, g_t \in I$ tales que $I = \langle g_1, \ldots, g_t \rangle.$
+\end{theorem}
+\emph{Demostración: }Si $I = 0$ la afirmación es trivial. En otro caso, por la proposición anterior sabemos que existen $g_1, \ldots, g_t \in I$ tales que $\langle LT(I) \rangle = \langle LT(g_1), \ldots, LT(g_t) \rangle.$ Veamos que $I = \langle g_1, \ldots, g_t \rangle$. Un contenido es evidente: $\langle g_1, \ldots, g_t \rangle \subseteq I$.
+
+Sea $f \in I$. Por el algoritmo de la división existen $a_1, \ldots, a_s, r \in K[x_1, \ldots, x_n]$ tales que $f = a_1g_1+\ldots a_tg_t+r,$ con $r=0$ ó una combinación lineal con coeficientes en K de monomios que no son divisibles por ninguno de los $LM(g_1),\ldots,  LM(g_t)$. Tenemos ahora que $r = f-(a_1g1+\ldots+a_tg_t)$, luego $LT(r) \in \langle LT(I) \rangle = \langle LT(g_1, \ldots, LT(g_t) \rangle$ y si fuera no nulo sería múltiplo de algún $LT(g_i)$, absurdo por la definición de $r$. Así, $r=0$ y $f\in \langle g_1, \ldots, g_t \rangle$ luego $I \subseteq \langle g_1, \ldots, g_t \rangle$ y tenemos que $I = \langle g_1, \ldots, g_t \rangle$.
+
+$\hfill \square$
+
+Definamos ya lo que son las bases de Groebner:
+
+\begin{definition}Fijado un orden monomial en $K[x_1, \ldots, x_n]$, un conjunto finito $G = \lbrace g_1,, \ldots, g_t \rbrace$ de polinomios de un ideal $I$ se dice \textbf{base de Groebner} ó base estándar si $$\langle LT(I) \rangle = \langle LT(g_1), \ldots, LT(g_t) \rangle.$$
+\end{definition}
+
+Notar que por la demostración del \textit{Teorema de la base de Hilbert} si $G = \lbrace g_1, \ldots, g_t \rbrace$ es una base de Groebner de $I$ se tiene que $$ I = \langle g_1, \ldots, g_t \rangle.$$ Además, tales bases siempre existen.
+
+\begin{example}Sea $\mathbb{R}[x,y,z]$ con el orden lex y un ideal $I = \langle x+z, y-z \rangle$. Veamos que $\lbrace x+z, y-z \rbrace$ sí es una base de Groebner de $I$.
+
+Tenemos que probar que $\langle LT(I) \rangle = \langle LT(x+z), LT(y-z) \rangle = \langle x,y \rangle$, es decir, que el término director de cualquier polinomio de $I$ es múltiplo de $x$ ó de $y$. Supongamos que existe $f = A(x+z) + B(y-z)$ no nulo cuyo término director no es divisible por $x$ ni por $y$. Por definición del orden lex, $f$ será un polinomio en $z$. Pero ahora, $$Cz = A(x+z) + B(y-z) = Ax + Az + By -Bz = Ax+By + (A-B)z,$$ lo cual es absurdo porque el único polinomio que lo cumple es el nulo.
+\end{example}
+$\hfill \blacksquare$
+
+Notar que en el ejemplo de $I = \langle x^3-2xy, x^2y-2y^2+x \rangle$ el conjunto $\lbrace x^3-2xy, x^2y-2y^2+x \rbrace$ no es base de Groebner ya que $x^2 \in \langle LT(I) \rangle$ pero $x^2 \notin \langle LT(x^3-2xy), LT(x^2y-2y^2+x) \rangle.$
+
+\begin{corolario}[\textbf{\textit{La condición de cadena ascendente}}]
+Toda cadena ascendente de ideales de $K[x_1, \ldots, x_n]$ se estaciona. Si tenemos $I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots$ ideales de $K[x_1, \ldots, x_n]$, entonces existe un $n \in \mathbb{N}$ tal que $I_n = I_k$ para todo $k \geq n$.
+\end{corolario}
+\emph{Demostración: }Es fácil ver que $\cup_n I_n = I$ es un ideal. Por el \textit{Teorema de la base de Hilbert} existen $f_1, \ldots, f_s \in K[x_1, \ldots, x_n]$ tales que $I = \langle f_1, \ldots, f_s \rangle$ y por definición de $I$ se tiene que existe algún $n \in \mathbb{N}$ tal que $\lbrace f_1, \ldots, f_s \rbrace \subseteq I_n$. Para cada $k >n$ se tiene que $I = \langle f_1, \ldots, f_s \rangle \subseteq I_k \subseteq I$, luego $I = I_k$. 
+
+$\hfill \square$
+
+Notar que, en un anillo, decir que una cadena de ideales ascendente estacione es equivalente a decir que todo ideal es finitamente generado.
+
+\begin{corolario}Para un ideal $I$ de $K[x_1, \ldots, x_n]$, denotamos la variedad que lo define así: $$V(I) = \lbrace (a_1, \ldots, a_n) \in \mathbb{K}^n: f(a_1, \ldots, a_n)=0 \hspace{0.1cm} \forall f \in I \rbrace.$$ Notar que si $K$ no es finito, $I$ tiene una cantidad infinita de elementos. 
+
+Existe un conjunto finito $\lbrace g_1, \ldots, g_t \rbrace \subseteq I$ tal que $V(I) = V(g_1, \ldots, g_s)$.
+\end{corolario}
+\emph{Demostración: }Por el \textit{Teorema de la base de Hilbert} se tiene que existe un conjunto finito $\lbrace g_1, \ldots, g_t \rbrace \subseteq I$ tal que $I = \langle g_1, \ldots, g_t \rangle$ y claramente tenemos que $V(I) = V(g_1, \ldots, g_t)$.
+
+$\hfill \square$
+
+
+\subsection{Propiedades de las bases de Groebner}
+
+\begin{proposition}Sea $G = \lbrace g_1, \ldots, g_t \rbrace$ una base de Groebner para el ideal $I$ de $K[x_1, \ldots, x_n]$. Para $f \in K[x_1, \ldots, x_n]$ existe unos únicos $g,r \in K[x_1, \ldots, x_n]$ verificando:
+\begin{enumerate}
+\item $g\in I$ y $f=g+r$.
+\item Ningún término de $r$ es múltiplo de ninguno de los $LT(g_1), \ldots, LT(g_t)$. En particular si aplicamos el algoritmo de la división de $f$ por los polinomios de $G$, el resto que se obtiene no depende del orden en el que pongamos a los elementos de $G$. Además, $f \in I$ si y sólo si el resto de la división por $g_1, \ldots, g_t$ es cero.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }La existencia se deduce del algoritmo de la división. Supongamos que $r$ y $r'$ satisfacen las condiciones $1$ y $2$, $g = f-r \in I$ y también $g' = f -r' \in I$, luego $r-r' \in I$. Por la segunda condición que cumplen $r$ y $r'$ se tiene que si $r-r'$ no es nulo, $LT(r-r')$ no es múltiplo de ningún $LT(g_1), \ldots, LT(g_t)$. 
+
+Por ser $G = \lbrace g_1, \ldots, g_t \rbrace$ una base de Groebner para el ideal $I$ se tiene que $LT(I) = \langle LT(g_1), \ldots, LT(g_t) \rangle$. Como $r-r' \in I$, $LT(r-r')$ debería ser múltiplo de alguno de los $LT(g_1), \ldots, LT(g_t)$, de donde se deduce que $r-r'=0$ y $r=r'$.
+
+$\hfill \square$
+
+A este resto de $f$ se llama a veces forma normal de $f$. La propiedad de que $f \in I$ si y sólo si el resto de la división por $g_1, \ldots, g_t$ es cero caracteriza el hecho de que una base $g_1, \ldots, g_t$ de $I$ sea base de Groebner. También caracteriza la condición de ser base de Groebner el hecho de que el resto sea siempre único.
+
+Veamos ahora cómo saber si una familia generadora es una base de Groebner. Buscaremos polinomios de $I$ que puedan tener un término director que no esté en el ideal generado por los directores de la base.
+
+\begin{definition}Sean $f$ y $g$ polinomios no nulos en $K[x_1, \ldots, x_n]$, $LM(f) = x^\alpha$, $LM(g) = x^\beta$. El mínimo común múltiplo de $x^\alpha$ y $x^\beta$ es $x^\gamma$, con $\gamma_i = max(\alpha_i, \beta_i)$ (mínimo común múltiplo de $x^\alpha$ y $x^\beta$). El \textbf{$S$-polinomio} de $f$ y $g$ será $$S(f,g) = \dfrac{x^\gamma}{LT(f)}f-\dfrac{x^\gamma}{LT(g)}g.$$
+\end{definition}
+
+\begin{proposition}Sea un polinomio $f$ que es suma de polinomios con el mismo multigrado $\delta$, $f = \sum_i f_i$ y verificando que $ultideg(f) < \delta$. Entonces $f$ es una combinación lineal con coeficientes en $K$ de los polinomios $S(f_i, f_j)$. Además, estos polinomios verifican que $multideg(S(f_i,f_j))< \delta$.
+\end{proposition}
+\emph{Demostración: }Por ser los monomios directores de $f_i$ y $f_j$ iguales a $x^\delta$, se tiene que $$S(f_i, f_j) = \dfrac{1}{LC(f_i)}f_i-\dfrac{1}{LC(f_i)}f_j$$ es un polinomio con multigrado menor que $\delta$. Llamaremos $p_i = \dfrac{1}{LC(f_i)}f_i$, que son polinomios con término director $x^\delta$. Se tiene que $$S(f_i,f_j) = S(p_i,p_j) = p_i-p_j.$$ Por ser $multideg(f)<\delta$, se tiene que $\sum_i LC(f_i) = 0$.
+
+Sean $c_i = LC(f_i) \in K$. Se tiene $f = \sum_i f_i = \sum_i c_ip_i = c_1(p_1-p_2)+(c_1+c_2)(p_2-p_3)+(c_1+c_2+c_3)(p_3-p_4)+ \ldots+ (c_1+\ldots +c_{s-1})(p_{s-1}-p_s)+(c_1 + \ldots + c_{s-1}+c_s)p_s$ y así $f$ es combinación lineal con coeficientes en $K$ de los polinomios $S(f_i, f_j)$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{El criterio de Buchberger}}]
+Sea $I$ un ideal de polinomios y $G = \lbrace g_1, \ldots, g_t \rbrace$ una familia generadora (base) de $I$. Se tiene que $G = \lbrace g_1, \ldots, g_t \rbrace$ es una base de Groebner de $I$ si y sólo si para todo par $i \neq j$ se tiene que el resto de la división de $S(g_i,g_j)$ por $G$ es cero (Considerando los elementos de $G$ en algún orden).
+\end{theorem}
+\emph{Demostración: }Si $G$ es una base de Groebner, como $S(g_i,g_j) \in I$, se tiene, por la caracterización dada en la proposición anterior que el resto de la división por $G$ es cero.
+
+Recíprocamente para probar que $G$ es base de Groebner, tenemos que ver que para todo $f \in I$ se tiene que $$LT(f) \in \langle LT(g_1), \ldots, LT(g_t) \rangle.$$ Sean $h_i \in K[x_1, \ldots, x_n]$ tales que $f = \sum h_ig_i$. Los $h_i$ no son únicos pero en todos los casos considerando los monomios de cada lado de la igualdad según el orden establecido, se tiene $$LM(f) \leq max\lbrace LM(h_ig_i) \rbrace = x^\gamma.$$ Notemos que si se tiene la igualdad $LT(f)$ es múltiplo de $LT(g_i)$ para algún $i$. El monomio $x^\gamma$ depende de los $h_i$ elegidos y si consideramos todos los posibles, tenemos un conjunto de monomios que por las propiedades del orden monomial tiene un mínimo. Elegimos ese mínimo $x^\gamma$. 
+
+Ahora consideramos $f = \sum h_ig_i$ de modo que $x^\gamma = max \lbrace LM(h_ig_i) \rbrace$ y vamos a ver que $LM(f) = max \lbrace LM(h_ig_i) \rbrace = x^\gamma$.
+
+Supongamos que $LM(f) < max \lbrace LM(h_ig_i) \rbrace = x^\gamma$ y llegaremos a contradicción construyendo otra suma $f= \sum h_ig_i$ con $x^\gamma > max \lbrace LM(h_ig_i) \rbrace$.
+
+Cnsideramos $$f = \sum_{LM(h_ig_i)=x^\gamma}h_ig_i + \sum_{LM(h_ig_i)<x^\gamma}h_ig_i.$$ Ahora separamos en los $h_i$ el término director de los siguientes $$f = \sum_{LM(h_ig_i)=x^\gamma}LT(h_i)g_i + \sum_{LM(h_ig_i)=x^\gamma}(h_i -LT(h_i))g_i + \sum_{LM(h_ig_i)<x^\gamma}h_ig_i.$$
+Los dos sumandos últimos tienen monomio director menor que $x^\gamma$ y como el monomio director de $f$ es menor que $x^\gamma$, forzosamente también el primer sumando tiene monomio director menor que $x^\gamma$.
+
+Ahora llamamos $f_i$ a los polinomios $LT(h_i) g_i$ tales que $LM(h_ig_i) = x^\gamma$, que tenemos que tiene todos monomio director $x^\gamma$ y además ese primer sumando es $\sum_i f_i$. Por el resultado anterior, este polinomio es una combinación lineal con coeficientes en $K$ de los polinomios $$S(f_i, f_j) = S(LT(h_i)g_i, LT(h_j)g_j)$$ Y por el resultado anterior nuevamente se tiene que el monomio director de $S(f_i,f_j)$ es menor que $x^\gamma$. Pero como $LT(h_i)g_i, LT(h_j)g_j$ tienen el mismo monomio director $x^\gamma$, se tiene que \begin{center}$S(f_i, f_j) = \dfrac{1}{LC(f_i)}f_i - \dfrac{1}{LC(f_j)}f_j = \dfrac{1}{LC(h_i)LC(g_i)}LT(h_i)g_i- \dfrac{1}{LC(h_j)LC(g_j)} LT(h_j)g_j.$\end{center} Introducimos $LM(g_i)$ y por ser $LT(h) = LC(h) LM(h)$, se tiene $$S(f_i,f_j) = \dfrac{LM(g_i)}{LT(g_i)}LM(h_i)g_i - \dfrac{LM(g_j)}{LT(g_j)}LM(h_j)g_j = \dfrac{x^\gamma}{LT(g_i)}g_i - \dfrac{x^\gamma}{LT(g_j)}g_j.$$
+
+Llamamos $x^\alpha$ al mínimo común múltiplo de $LM(g_i)$ y $LM(g_j)$. Como se tiene que $LM(h_i)LM(g_i) = x^\gamma$ y $LM(h_j)LM(g_j) = x^\gamma$, $x^\gamma$ es múltiplo de los dos, luego es múltiplo de $x^\alpha$. Llamamos $x^{\alpha_{ij}} = x^\gamma/x^\alpha$ y se tiene que $$S(f_i,f_j) = x^{\alpha_{ij}}S(g_i,g_j).$$ Ahora aplicamos la hipótesis de que para cada $j,k$ existen $a_{ijk} \in K[x_1, \ldots, x_n]$ tales que $$S(g_j,g_k) = \sum_i a_{ijk}g_i,$$ además con el multrigrado de $S(g_j,g_k)$ mayor o igual que el multigrado de $a_{ijk}g_i$ para todo $i$.
+
+Multiplicando por $x^{\alpha_{jk}}$ se tiene $$S(f_i, f_k) = x^{\alpha_{jk}} \sum_i a_{ijk}g_i = \sum_i x^{\alpha_{jk}}a_{ijk}g_i,$$ verificándose que el multigrado de $x^{\alpha_{jk}}a_{ijk}g_i$ es menor o igual que el multigrado de $x^{\alpha_{jk}}S(g_j,g_k) = S(f_i,f_j)$ que es menor que $\gamma$.
+
+Volvemos a considerar la igualdad $$f = \sum_{LM(h_ig_i)=x^\gamma}LT(h_i)g_i + \sum_{LM(h_ig_i)=x^\gamma}(h_i -LT(h_i))g_i + \sum_{LM(h_ig_i)<x^\gamma}h_ig_i$$ y hemos visto que para el primer sumando existe $c_{jk} \in K$ tales que $$\sum_i f_i = \sum_{j,k} c_{jk} S(f_j, f_k)$$ y luego $$\sum_i f_i = \sum_{j,k}c_{jk}S(f_j,f_k) = \sum_{j,k}c_{jk}(\sum_ix^{\alpha_{jk}}a_{ijk}g_i) = \sum_i \bar{h}_ig_i.$$ Recordemos que el multigrado de $a_{ijk}g_i$ es menor o igual que el multigrado de $S(g_j,g_k)$ y por tanto $$LM(x^{\alpha_{jk}}a_{ijk}g_i) \leq LM(x^{\alpha_{jk}}S(g_j, g_k)) < x^\gamma.$$ Como $\bar{h}_ig_i$ es una suma de polinomios con monomios directores menores que $x^\gamma$, tenemos que $LM(\bar{h}_ig_i) < x^\gamma$ y tenemos la contradicción que buscábamos. 
+
+$\hfill \square$
+
+\subsection{El algoritmo de Buchberger}
+
+\begin{theorem}Consideramos el ideal de polinomios $I = \langle f_1, \ldots, f_s \rangle$. El siguiente procedimiento nos proporciona una base de Groebner de $I$ en un número finito de pasos: para cada pareja $i,j$ se considera el resto que se obtiene al dividir $S(f_i,f_j)$ por la familia $f_1, \ldots, f_s$ (en el orden dado). Añadimos a la familia todos los restos no nulos y procedemos del mismo modo con la nueva familia. Llega un momento que los restos son todos cero y la familia obtenida es una base de Groebner de $I$ que contiene a la base inicial.
+\end{theorem}
+\emph{Demostración: }Todos los polinomios que se añaden están en $I$ puesto que si partimos de dos polinomios $f,g \in I$, se tiene que $S(f,g)$ está en $I$ y por tanto el resto de dividir por polinomios de $I$ sigue estando en $I$. Como todas las familias obtenidas contienen a la base inicial, todas son base.
+
+En cada paso, si llamamos $G$ a la base que tenemos, analicemos el ideal $<LT(f) : f \in G \rangle.$ El resto de dividir un polinomio por $G$ cumple la condición de que sus términos no son múltiplos de ninguno de los $LT(f)$, con $f \in G$, luego al añadir esos restos obtenemos una nueva familia $G'$ tal que $$\langle LT(f) : f \in G \rangle < \langle LT(f): f \in G' \rangle$$ y por la condición de cadena ascendente esta cadena se estaciona, lo que implica que los restos son todos cero y lo que se obtiene es así una base de Groebner.
+
+$\hfill \square$
+
+Tener en cuenta que este algoritmo que acabamos de describir se puede refinar muchísimo y la base de Groebner que se obtiene es demasiado grande.
+
+\begin{definition}Una \textbf{base minimal de Groebner} para un ideal $I$ es una base de Groebner $G$ del ideal $I$ que verifica: 
+\begin{enumerate}
+\item $LC(p) = 1$ para todo $p \in G$.
+\item Para todo $p \in G$ $LT(p) \notin \langle LT(G-p) \rangle$.
+\end{enumerate}
+\end{definition}
+
+Es evidente que a partir de una base de Groebner podemos construir una minimal, ya que $G$ es base de Groebner cuando $\langle LT(G) \rangle = \langle LT(I) \rangle$, y si $LT(p) \in \langle LT(G-p) \rangle $ se tiene que $\langle LT(G-p) \rangle = \langle LT(G) \rangle$, luego $G-p$ también es base de Groebner.
+
+También está claro que dos bases de Groebner minimales tienen los mismos términos directores.
+
+\begin{definition}Una \textbf{base de Groebner reducida} para un ideal $I$ es una base de Groebner $G$ del ideal $I$ que verifica:
+\begin{enumerate}
+\item $LC(p) = 1$ para todo $p \in G$.
+\item Para todo $p \in G$ ningún monomio de $p$ está en $ \langle LT(G-p) \rangle$.
+\end{enumerate}
+\end{definition}
+
+De la definición es claro que toda base de Groebner reducida es minimal. 
+
+\begin{proposition}Todo ideal de polinomios no nulo tiene una única base de Groebner reducida.
+\end{proposition}
+\emph{Demostración: }Partimos de una base de Groebner $G$ minimal. Para $g \in G$ consideramos $g'$ el resto de dividir $g$ por $G\setminus \lbrace g \rbrace$. Por ser $G$ minimal el monomio director de $g$ es el mismo que el de $g'$. Además, la famiilia que resulta de sustituir en $G$ el polinomio $g$ por $g'$ genera el mismo ideal y como los monomios directores de sus elementos son los mismos, se tiene que es la base de Groebner minimal. Si cambiamos cada $g$ por su correspondiente resto de dividir por los demás obtenemos una base de Groebner reducida. 
+
+Veamos ahora que es única. Sean $G$ y $G'$ dos bases de Groebner reducidas, por ser bases de Groebner minimalles tienen  los mismos monomios directores. Para cada $g \in G$ elegimos unn $g' \in G'$ tal que $LT(g) = LT(g')$. Tenemos que los términos de $g-g'$ son de $g$ ó de $g'$ distintos de $LT(g) = LT(g')$, que se ha anulado. Así, $g-g'$ no tiene monomios divisibles por ninguno de los $LT(G) = LT(G')$. Así, el resto de dividir $g-g'$ por los elementos de $G$ es el propio $g-g'$, y por ser $G$ una base de Groebner del ideal y estar $g-g'$ en el ideal, este resto es $0$, luego $g=g'$.
+
+$\hfill \square$
+
+\begin{example}En $K[x,y]$ con el orden grlex, consideramos $I = \langle x^3-2xy, x^2y-2y^2+x \rangle.$ Encontremos una base de Groebner reducida.
+
+Llamamos $f_1 = x^3-2xy$ y $f_2 = x^2y-2y^2+x$. Está claro que $LM(f_1) = x^3$ y $LM(f_2)=x^2y$, con $m.c.m(x^3, x^2y) = x^3y$. Entonces $$S(f_1, f_2) = y(x^3-2xy) -x(x^2y-2y^2+x) = -x^2,$$ y como no es divisible por ninguno de los términos líderes de $f_i$ se tiene que es el resto de dividir por los $f_i$. 
+
+Cogemos $f_3=-x^2$, y: $$S(f_1, f_3) = -x^3+2xy +x(x^2) = 2xy,$$ y como no es divisible por ninguno de los términos líderes de $f_i$, se tiene que es el resto de dividir por los $f_i$. Llamamos ahora a $f_4 = 2xy$. Ahora:$$S(f_2, f_3)=-(x^2y-2y^2+x)-y(-x^2)=2y^2-x,$$ y como no es divisible por ninguno de los términos líderes de $f_i$, se tiene que es el resto de dividir por los $f_i$. Llamamos así $f_5 = 2y^2-x$. Así, $f_1 = x^3-2xy, f_2 = x^2y-2y^2+x, f_3 = -x^2,f_4=2xy, f_5=2y^2-x$. Y es fácil ver que los restos de dividir por estos $f_i$ todos los $S(f_i,f_j)$ dan cero y así es base de Groebner.
+
+El ideal de los monomios líderes es $LT(I) = \langle x^3,x^2y, x^2, xy, y^2 \rangle = \langle x^2, xy, y^2 \rangle$. Luego $\lbrace x^2, xy, y^2 \rbrace$ es una base minimal y reducida. 
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{example}Sea $K[x,y,z]$ con el orden grlex y consideramos el ideal $I = \langle x+2y+z-3, x+3y -2z+1 \rangle$. Encontremos una base de Groebner: 
+Sea $f_1 = x+2y+z-3$, $f_2 =x+3y -2z+1 $. $LM(f_1) =x$, $LM(f_2) = x$. $\langle LT(I) \rangle = \langle LT(x+2y+z-3), LT(x+3y -2z+1) \rangle = \langle x \rangle$. Supongamos ahora que existe un $f = A(x+2y+z-3) + B(x+3y -2z+1) \in I$ no nulo cuyo término director no es múltiplo de $x$, es decir, un polinomio en $z,y$: 
+
+$Cy+Dz+E = A(x+2y+z-3) + B(x+3y -2z+1) = Ax + 2Ay + Az-3A+Bx+3By -2Bz+B = (A+B)x + (2A+3B)y+(A-2B)z -3A+B.$ Luego: \begin{center} $\left.
+\begin{array}{rcl}
+     A+B & = & 0
+  \\ 2A+3B & = & C
+  \\ A-2B & = & D
+  \\ -3A+B & = & E
+\end{array}
+\right\}$
+\end{center}
+De donde sacamos que $A= -B$, $C=B$, $D=-3B$, $E = 4B$. 
+
+Como esta condición se puede cumplir tenemos que $\lbrace f_1, f_2 \rbrace$ no es una base de Groebner. Calculemos el $S$-polinomio: $$S(f_1, f_2) = f_1-f_2 = -y +3z -4,$$ y llamamos a $f_3 = -y +3z -4$. Añadimos $f_3$ y consideramos $\langle LT(f_1), LT(f_2), LT(f_3) \rangle = \langle x,y \rangle.$ Veamos si $\langle x,y \rangle = \langle LT(I) \rangle.$ Supongamos un  $f = A(x+2y+z-3) + B(x+3y -2z+1) \in I$ no nulo cuyo término director no sea múltiplo de $x$ ni de $y$, es decir, que es un polinomio en $z$: $$Cz+E = A(x+2y+z-3) + B(x+3y-2z+1),$$ y ahora \begin{center}
+$\left.
+\begin{array}{rcl}
+     A+B & = & 0
+  \\ 2A+3B & = & 0
+  \\ A-2B & = & C
+  \\ -3A+B & = & E
+\end{array}
+\right\}$ de donde sacamos que $A=B=0$ y así $f$ sería nulo, lo que es absurdo.
+\end{center}
+Luego $\langle x,y \rangle = \langle LT(I) \rangle$ y así $\lbrace f_1, f_2, f_3 \rbrace$ sería una base de Groebner.
+
+\end{example}
+$\hfill \blacksquare$
+
+\subsection{Intersección de ideales}
+
+\begin{definition}Sean $I,J$ dos ideales de $K[x_1, \ldots, x_n]$. Tenemos entonces los siguientes ideales de $K[x_1, \ldots, x_n]$:
+\begin{align*}
+&I+J= \lbrace f+g: f \in I, g \in J \rbrace, \\
+&IJ= \lbrace f_1g_1 + \ldots + f_rg_r: f_i \in I, g_i \in J, r \in \mathbb{N} \rbrace, \\
+&I\cap J= \lbrace f: f \in I, f \in J \rbrace.
+\end{align*} 
+
+Es bastante sencillo probar que son ideales y que, si $I = \langle f_1, \ldots, f_r \rangle $ y $J = \langle g_1, \ldots, g_t \rangle$ se tiene que $$ I+J = \langle f_1, \ldots, f_r, g_1, \ldots, g_t \rangle$$ $$ IJ= \langle f_ig_i: i=1, \ldots, r,j = 1, \ldots, t \rangle.$$
+\end{definition}
+
+Ahora, para buscar una base de $I \cap J$ tendremos que: 
+
+\begin{proposition}Para un ideal $I$ de $K[x_1, \ldots, x_n]$ y un polinomio en una variable distinta $t$, $f(t) \in K[t]$ denotamos $fI$ el ideal que, siendo $K[x_1, \ldots, x_n,t]$ generado por $\lbrace f(t)h(x) : h \in I \rbrace$ (no es un producto de ideales), si $I = \langle f_1(x), \ldots, f_r(x) \rangle$ se tiene: 
+\begin{enumerate}
+\item $f(t) I= \langle f(t)f_1(x), \ldots, f(t)f_r(x) \rangle$.
+\item Si $g(x,t) \in f(t)I$, $a \in K$ entonces $g(x,a) \in I$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: } Sencillo ejercicio.
+$\hfill \square$
+
+\begin{proposition}Sea $I$ un ideal de $K[x_1, \ldots, x_{l-1}, x_l, \ldots, x_n]$. Tenemos que $I \cap K[x_1, \ldots, x_n]$ es un ideal de $K[x_1, \ldots, x_n]$. Si consideramos el orden lex con $x_1 >\ldots >x_{l-1} >x_l > \ldots >x_n$ y $G$ es una base de Groebner de $I$, entonces $G \cap K[x_l, \ldots, x_n]$ es una base de Groebner de $I \cap K[x_l, \ldots, x_n]$. 
+\end{proposition}
+
+\begin{theorem}
+Sean $I,J$ dos ideales de $K[x_1, \ldots, x_n]$. Consideramos $K[t, x_1, \ldots, x_n]$. Entonces $$I\cap J = (tI+(1-t)J) \cap K[x_1, \ldots, x_n].$$
+\end{theorem}
+\emph{Demostración: } Fácil usando $t=0$ y $t=1$.
+$\hfill \square$
+
+Así, tenemos un procedimiento para buscar una base de Groebner de la intersección de dos ideales a partir de las bases de los dos.
+
+Sean $I = \langle f_1, \ldots, f_r \rangle, J = \langle g_1, \ldots, g_s \rangle$ ideales de $K[x_1, \ldots, x_n]$. Consideramos el ideal $$\langle tf_1, \ldots, tf_r, (1-t)g_1, \ldots, (1-t)g_s \rangle.$$ Buscamos una base de Groebner de este ideal y los polinomios de esa base que no contengan la variable $t$ forman una base de Groebner de $I \cap J$.
+
+\section{Cuerpos finitos}
+
+\begin{theorem}[\textbf{\textit{Teorema de Wedderburn}}]
+Todo cuerpo finito es conmutativo.
+\end{theorem}
+
+\begin{definition}[\textbf{\textit{Característica de un cuerpo}}] La \textbf{característica} de un cuerpo $K$ se define como el mínimo $p$ de los enteros positivos $n$ tales que $n\cdot 1 = 1 + \ldots + 1 = 0$, donde $0$ es el elemento neutro de la suma y $1$ es el elemento neutro del producto en el cuerpo $K$. Si tal $p$ no existe, como ocurre con el cuerpo de los números reales, decimos que $K$ tiene característica $0$.
+\end{definition}
+
+Notar que la característica $p$ de un cuerpo ha de ser un número primo (siempre que no sea característica $0$). Esto es así porque si $p =rs$, con $1 < r,s < p$ entonces $0=p\cdot 1 = (r\cdot 1 )(s \cdot 1)$ y uno de los dos factores debería ser $0$ (ya que un cuerpo es siempre un dominio de integridad y no tiene divisores de cero), pero esto contradice la minimalidad de $p$. En este caso diremos que el cuerpo tiene característica prima $p$.
+
+Para criptografía y teoría de códigos nos serán de especial interés los cuerpos de característica $2$.
+
+\subsection{Polinomios irreducibles y cuerpos}
+Recordemos que si $K$ es un cuerpo entonces el anillo de polinommios $K[x]$ es un dominio euclídeo con el grado de un polinomio $p \in K[x]$, denotado por $\delta (p)$. Por ser dominio euclídeo es también dominio de ideales principales , luego para todo ideal $I$ existe $p \in K[x]$ tal que $$I = (p) = \lbrace pq: q \in K[x] \rbrace.$$ También es un dominio de factorización única. El teorema del resto y la factorización única impiden que un polinomio en un cuerpo tenga más raíces que su grado.
+
+\begin{proposition}Un polinomio $p \in K[x]$ es irreducible si y sólo si $K[x]/(p)$ es un cuerpo.
+\end{proposition}
+\emph{Demostración: }Supongamos que $K[x]/(p)$ es un cuerpo. Si $p = fg$ con $f,g \in K[x]$ y $\delta(f), \delta(g) <\delta(p)$ tendríamos $(f+(p))(g+(p)) = (p)$, es decir, que $f+(p), g+(p)$ serían divisores de cero en $K[x]/(p)$, luego no tendrían inverso y por tanto $K[x]/(p)$ no sería cuerpo. Luego si $p=fg$, con $f,g \in K[x]$, uno de los dos polinomios es constante y por lo tanto $p$ es irreducible.
+
+Supongamos ahora que $p$ es irreducible y sea $f+(p) \neq (p)$. Se tiene que el máximo común divisor de $f$ y $p$ es $1$, luego por la identidad de Bézout existirán $a,b \in K[x]$ tales que $af + bp = 1$. Así, $(a+(p))(f+(p)) = 1+(p)$ y por lo tanto todo $f+(p)$ no nulo es unidad y así $K[x]/(p)$ es cuerpo.
+
+$\hfill \square$
+
+En un dominio euclídeo el máximo común divisor de dos elementos es el mayor de los divisores comunes (mayor absoluto en los enteros o mayor grado en los anillos de polinomios en un cuerpo) y es único salvo asociados (es decir, productos por unidades). Si $d = mcd(a,b)$ tenemos que $(d) = (a) +(b)$.
+
+La forma más práctica de caclular el máximo común divisor es mediante el \textit{algoritmo de Euclides}, que se basa en lo siguiente: 
+
+Dados $D$ y $d$, por el algoritmo de la división existen $c,r$ tales que $D = cd+r$, es claro que $$\lbrace \text{divisores de $D$ y $d$} \rbrace = \lbrace \text{divisores de $d$ y $r$} \rbrace.$$
+
+Veamos el algoritmo con un ejemplo en $\mathbb{Z}$, calculando el máximo común divisor de $192$ y $162$.
+
+En la fila $Q$ ponemos los cocientes enteros de dos de los números de la fila $R$. Esta fila se forma con los correspondientes restos. El máximo común divisor es el último resto no nulo, en este caso $6$:
+\begin{center}
+\begin{tabular}{| c | c c c c c c c}
+\hline
+$Q$ &&1&5&2&2&2&\\ \hline
+$R$ &192&162&30&12&6&0 \\																	\end{tabular}
+\end{center}
+
+Ahora, recordemos que la identidad de Bézout nos dice que, si el $mcd(a,b) = d$ ($a$ y $b$ dados), entonces existen $u$ y $v$ tales que $au+bv = d$.
+
+Entonces, demostraremos por inducción sobre $i$ que para todos los restos $r_i$ que van saliendo al aplicar el algoritmo de Euclides existen $u_i, v_i$ tales que $au_i+bv_i = r_i$.
+
+Construyamos el cuadro del algoritmo de la división ampliado con dos filas nuevas. En el cuadro pondremos $R_1 = a$, $R_2 = b$, $u_1 = 1$, $v_1 = 0$, $u_2 = 0$, $v_2 = 1$ y se tiene $$R_1 = au_1 + bv_1, \quad R_2 = au_2 + bv_2.$$
+
+Recordar cómo se construyen las dos filas del algoritmo de Euclides y describimos ahora la construcción de las otras dos filas: $q_i$ es el cociente entero de dividir $r_{i-1}$ por $r_i$. El resto de esta división es $r_{i+1}$. Así: $r_i = r_{i-2}-r_{i-1}q_{i-1}$, $u_i = u_{i-2}-u_{i-1}q_{i-1}$, $v_i = v_{i-2}-v_{i-1}q_{i-1}$.
+
+Así pues: 
+\begin{center}
+\begin{tabular}{| c | c c c}
+\hline
+$Q$ &&$q_2$&$q_3 \ldots$\\ \hline
+$R$ &$r_1=a$&$r_2=b$&$r_3 \ldots$ \\
+$U$ &$u_1=1$&$u_2=0$&$u_3 \ldots$ \\
+$V$ &$v_1=0$&$v_2=1$&$v_3 \ldots$ \\															\end{tabular}
+\end{center}
+
+Demostraremos por inducción sobre $i$ que $au_i +bv_i = r_i$. Claramente es cierto para $i = 1,2$. Aplicando la hipótesis de inducción se tiene que \begin{center}$r_i = r_{i-2}-r_{i-1}q_{i-1}=au_{i-2}+bv_{i-2}-(au_{i-1}+bv_{i-1})q_{i-1}=a(u_{i-2}-u_{i-1}q_{i-1})+b(v_{i-2}-v_{i-1}q_{i-1}) = au_i + bv_i$. \end{center}
+
+\begin{proposition}[\textbf{\textit{Existencia raíz}}]Supongamos que $p \in K[x]$ es irreducible, entonces existe un cuerpo $E$ que contiene a $K$ como subcuerpo tal que $p$ tiene una raíz en $E$.
+\end{proposition}
+\emph{Demostración: }Supongamos que $p(x) = a_nx^n+ \ldots + a_1x ++ a_0$. Por la proposición anterior sabemos que $E=K[x]/(p)$ es un cuerpo. Consideramos el homomorfismo de anillos 
+$$\begin{array}{rccl}
+&K[x]&\longrightarrow &E\\
+&f& \longmapsto &f+(p) = \bar{f}
+\end{array}
+$$
+Notemos que si $a \in K$ no nulo, entonces $\bar{a} \neq \bar{0}$, por lo que $K$ es isomorfo a $\bar{K} = \lbrace \bar{a}: a \in K \rbrace \subseteq E$. Identificamos $K$ con $\bar{K}$. Con esta identificación tenemos que el polinomio $p$ se transforma en $p_0(x)=\bar{a}_nx^n+ \ldots \bar{a}_1x+\bar{a}_0 \in \bar{K}[x].$ Consideramos el elemento $e = x+(p) = \bar{x}\in E$. Se tiene $p_0(e)=(\bar{a}_nx^n + \ldots + \bar{a}_1x+ \bar{a}_0)+(p) = \bar{p} = \bar{0}$ y así la proposición queda demostrada.
+ 
+$\hfill \square$
+
+Notar que este cuerpo $E$ es $K[x]/(p)$, es decir, si $p \in K[x]$ es irreducible entonces $p$ tiene una raíz en $K[x]/(p)$.
+
+\begin{definition}El \textbf{cuerpo primo} de un cuerpo $K$ es la intersección de todos los subcuerpos de $K$.
+\end{definition}
+
+\begin{proposition}Sea $F$ el cuerpo primo de $K$. Si la característica de $K$ es cero, entonces $F$ es isomorfo a $\mathbb{Q}$ y si la característica de $K$ es $p$, entonces $F$ es isomorfo a $\mathbb{Z}_p$.
+\end{proposition}
+\emph{Demostración: }Si $n \in \mathbb{N}$, definimos $n = 1+ \ldots + 1$. Sea $F$ el cuerpo primo de $K$. Si $char\hspace{0.1cm} K = 0$ $$F = \lbrace nm^{-1}: n,m \in \mathbb{N} \setminus \lbrace 0 \rbrace \rbrace \cup \lbrace 0 \rbrace.$$ $F$ tiene que contener todos estos elementos por ser subcuerpo. El conjunto es cerrado para el producto y el inverso de $nm^{-1}$ es $n^{-1}m$. Es cerrado para la suma: $nm^{-1}+n'm'^{-1} = (nm'+n'm)(mm')^{-1}.$ Luego $F$ es el cuerpo primo de $K$. Definimos $$\begin{array}{rccl}
+f \colon &F&\longrightarrow &\mathbb{Q}\\
+&nm^{-1}& \longmapsto &n/m,
+\end{array}
+$$ está bien definida y es un isomorfismo de cuerpos. Si $char\hspace{0.1cm} K = p$, veamos que $F = \lbrace i: 1 \leq i \leq p-1 \rbrace \cup \lbrace 0 \rbrace$ $(\ast)$.
+
+Es claramente cerrado para la suma y para el producto (porque $i = i+kp$, $k \in \mathbb{N}$). Si $1 \leq i \leq p-1$, entonces $(i,p)=1$. Por Bézout $1 = ai + bp$. Entonces $a$ es el inverso de $i$. Así, se prueba $(\ast)$. Definimos $$\begin{array}{rccl}
+f \colon &F&\longrightarrow &\mathbb{Z}_p\\
+&i& \longmapsto &i+p\mathbb{Z} = \bar{i},
+\end{array}
+$$ y $f$ es isomorfismo de cuerpos.
+
+$\hfill \square$
+
+\begin{exercise}Sean $a,b$ elementos de un anillo $R$ tales que $ab = ba$. Si $n$ es un entero positivo, entonces $$(a+b)^n = \sum_{j=0}^n{n \choose j}a^jb^{n-j}.$$
+
+Recordemos que ${n \choose j} = \dfrac{n!}{(n-j)!j!}$. Lo haremos por inducción sobre $n$, veamos que para $n = 1$ se cumple que $$(a+b) = \sum_{j=0}^1 {1 \choose j}a^jb^{n-j} = {1 \choose 0}b + {1 \choose 1}a = a+b.$$
+
+Ahora supongamos que es cierto para todo $n$ y veamos que tambiñen lo es para $n+1$: por un lado tenemos que $$(a+b)^{n+1} = \sum_{j=0}^{n+1} {n+1 \choose j}a^jb^{n+1-j} = \sum_{j=0}^{n+1}\left[ {n \choose j-1} + {n \choose j} \right]a^jb^{n+1-j}.$$
+
+Y por otro lado: \begin{center}$(a+b)^{n+1} = (a+b)^n(a+b) = \left(\sum_{j=0}^n {n \choose j}a^jb^{n-j}\right)(a+b)= \sum_{j=0}^n{n \choose j}a^{j+1}b^{n-j}+\sum_{j=0}^n{n\choose j}a^jb^{n+1-j}=\sum_{j=1}^{n+1}{n\choose j-1}a^jb^{n+1-j}+{n\choose 0}b^{n+1}+\sum_{j=1}^n{n\choose j}a^jb^{n+1-j}=\sum_{j=1}^n = \sum_{j=1}^n{n\choose j-1}a^jb^{n+1-j}+{n\choose n}a^{n+1}+{n\choose 0}b^{n+1} + \sum_{j=1}^n{n\choose j}a^jb^{n+1-j} = \sum_{j=1}^n \left[{n\choose j-1} + {n\choose j}\right]a^jb^{n+1-j}+{n+1 \choose n+1}a^{n+1} + {n+1 \choose 0}b^{n+1} = \sum_{j=1}^n{n+1 \choose j}a^jb^{n+1-j}+{n+1 \choose n+1}a^{n+1}+{n+1 \choose 0}b^{n+1} = \sum_{j=0}^{n+1}{n+1 \choose j}a^jb^{n+1-j} = (a+b)^{n+1}$.\end{center}
+\end{exercise}
+$\hfill \blacksquare$
+
+\begin{exercise}En un cuerpo de característica $p$ tenemos que $$(a+b)^p = a^p+b^p.$$
+
+Por el ejercicio anterior sabemos que $$(a+b)^p = \sum_{j=0}^p{p\choose j}a^jb^{p-j} = {p\choose 0}b^p + {p\choose 1}ab^{p-1} + \ldots + {p\choose p}a^p.$$
+Ahora, tenemos que como ${p \choose i} = \dfrac{p!}{(p-i)!i!} = \dfrac{p\cdot(p-1) \cdots (p-(i+1))}{i!}$ para todo $i = 1, \ldots, p-1$ (en $i = 1, p-1$ tendremos que${p \choose i}=p$) y ésto es divisible por $p$ entonces, al estar en un cuerpo de característica $p$ y ser múltiplo de $p$, serán todos nulos. Quedan así sólo ${p\choose 0}b^p = b^p, {p\choose p}a^p=a^p$, luego $(a+b)^p=a^p+b^p$.
+\end{exercise}
+$\hfill \blacksquare$
+
+
+\begin{proposition}Sea $K = \mathbb{Z}_p$, con $p$ primo y $p(x) \in K[x]$ un polinomio irreducible en $K[x]$ de grado $n \geq 1$. Entonces el cuerpo $K[x]/(p)$ tiene exactamente $p^n$ elementos.
+\end{proposition}
+\emph{Demostración: }Como $p(x)$ es irreducible tenemos que $K[x]/(p)$ es un cuerpo y todo elemento de $K[x]/(p)$ será de la forma $g(x) + (p)$. Ahora, por el algoritmo de la división existen $q(x), r(x) \in K[x]$ tales que $g(x) = p(x)q(x)+r(x)$, con $r = 0$ ó $\delta(r) <\delta(p) = n$ y asi $g(x) + (p) = p(x)q(x) + r(x) + (p) = r(x) +(p) = a_{n-1}x^{n-1} + \ldots + a_1x + a_0$. Como $a_{n-1}, \ldots, a_1, a_0 \in \mathbb{Z}_p= \mathbb{Z}/p\mathbb{Z}$ habrá $p^n$ combinaciones y por lo tanto $p^n$ elementos distintos.
+
+$\hfill \square$
+
+\subsection{Raíces y polinomios irreducibles}
+
+\begin{proposition}Sea $K$ un subcuerpo de $E$ y $f \in K[x]$ con $f' \neq 0$, donde $f'$ es la derivada del polinomio $f$. Se tiene que \begin{enumerate}
+\item Si $a \in E$, $a$ es raíz múltiple de $f$ si y sólo si $f(a) = f'(a) = 0$. 
+\item Si $(f,f')=1$, entonces $f$ no tiene raíces múltiples en $E$. 
+\item Si $f$ es irreducible en $K[x]$, entonces todas las raíces de $f$ son distintas.
+\item Si la característica de $K$ es cero, los irreducibles de $K[x]$ no tienen raíces múltiples en ningún cuerpo extensión de $K$.
+\item Si la característica de $K$ es $p$, los irreducibles de $K[x]$ de grado no múltiplo de $p$ no tienen raíces múltiples en ningún cuerpo extensión de $K$.
+\end{enumerate}
+\end{proposition} 
+\emph{Demostración: }Iremos punto por punto:\begin{enumerate}
+\item Se dice que $a \in E$ es raíz múltiple de $f$ si en $E[x]$ tenemos que $f=(x-a)^nq$ para algúnn $n \geq 1$ y $q \in E[x]$. En ese caso $f' =n(x-a)^{n-1}q+(x-a)^nq'$ y $f'(a) = 0$.
+
+Recíprocamente, si $a$ no es raíz múltiple $f=(x-a)q$ de modo que $q(a) \neq 0$. En este caso, $f'=q + (x-a)q'$ y $f'(a) =q(a) \neq 0$.
+\item Si $(f,f') = 1$ existen $A,B \in K[x]$ tales que $Af+Bf'=1$ y si existiera una raíz múltiple $a$ tendríamos que $f(a) = f'(a) = 0$ y así $1=1(a) = 0$, absurdo.
+\item Por ser $f'\neq 0$ lo deducimos de $2.$
+\item La derivada de un polinomio no constante no es nula y se puede aplicar lo anterior.
+\item La derivada de un polinomio de grado no múltiplo de $p$ no es nula y se puede aplicar también lo anterior.
+\end{enumerate}
+
+$\hfill \square$
+
+\begin{proposition}Sea $E$ un cuerpo de característica cero o $p$ tal que $p$ no divide a $n$ en el que $f = x^n-1$ factoriza como producto de polinomios de grado $1$. Las raíces de $f$ se llaman raíces $n$-ésimas de la unidad. El polinomio $f$ tiene exactamente $n$ raíces distintas y forman un grupo cíclico con la multiplicación de $E$.
+\end{proposition}
+\emph{Demostración: }Como la característica de $K$ es cero ó $p$, $f' =nx^{n-1} \neq 0$, además $f$ y $f'$ son primos entre sí, luego por el resultado anterior se tiene que las raíces de $f$ en $E$ son todas distintas. 
+
+Sea $H$ el conjunto de las $n$ raíces de $f$. Es claro que $H$ es un grupo abeliano con la multiplicación de $E$. Los elementos de $H$ que están en un subgrupo de orden $p$, con $p$ divisor de $n$ son raíces de $x^p-1$, luego sólo pueden existir $p$ elementos de este tipo, es decir, sólo existe un subgrupo de $H$ de orden $p$, que sólo lo cumplen los grupos cíclicos. 
+
+Así, para $H = \lbrace \text{raíces de $x^n-1$} \rbrace \hspace{0.1cm} \exists \xi \in H$ tal que $H = \langle \xi \rangle = \lbrace 1, \xi, \xi^2, \ldots, \xi^{n-1} \rbrace$. A esta $\xi$ se le llama raíz $n$-ésima primitiva de la unidad.
+
+$\hfill \square$
+
+\subsection{Extensiones algebraicas de cuerpos}
+
+\begin{definition}Decimos que $E/K$ es una extensión de cuerpos si $K$ es un subcuerpo de $E$.
+\end{definition}
+
+Es claro que $E$ es un $K$-espacio vectorial. La extensión se dice finita si la dimensión de $E$ como $K$-espacio vectorial es fintia. Escribiremos $|E:K| = dim_K E$ y a este número lo llamaremos grado de la extensión.
+
+\begin{proposition} \label{eq:trgr} Sea $E$ una extensión de $L$, y a su vez $L$ una extensión de $K$. Diremos entonces que $L$ es un cuerpo intermedio, ya que se tiene que $K \subseteq L \subseteq E$. Entonces $E/K$ es finita si y sólo si $E/L$ y $L/K$ lo son. En este caso, se tiene $$|E: K| = |E:L| |L:K|.$$
+\end{proposition}
+\emph{Demostración: } Partimos primero de que $E/K$ es finita, entonces $|E:K|$ es finita y que $L$ como $K$-espacio vectorial esté contenido en $E$ $K$-espacio vectorial implica que $dim_{K} L \leq dim_{K} E < \infty$, es decir, $|L:K|$ es finito. Por otro lado, si $B = \lbrace u_{1}, \ldots, u_{n}\rbrace$ es una base de $E$ como $K$-espacio vectorial y $v \in E$, entonces $v = \sum_{i} k_{i}u_{i}$, con los $k_{i} \in K \subseteq L$. Así, $B$ genera $E$ como $L$-espacio vectorial, es decir, $dim_{L}E$ es finita y así $|E:L|$ también.
+
+Recíprocamente, si $|L:K| = s$ y $|E:L| = r$, sean $\lbrace l_{1}, \ldots, l_{s} \rbrace$ y $\lbrace e_{1}, \ldots, e_{r} \rbrace$ bases de $L$ como $K$-espacio vectorial y $E$ como $L$-espacio vectorial respectivamente. Veamos ahora que $U= \lbrace v_{ij} : v_{ij} = l_{i}e_{j}, \hspace{0.1cm} \forall i,j \rbrace$ es una base de $E$ como $K$-espacio vectorial. En efecto, si $m \in E$, $m = \sum_{j}^{r}d_{j}e_{j}$, con $d_{j} \in L$, y a su vez $d_{j} = \sum_{i}^{s}c_{ji}l_{i}$, con los $c_{ji} \in K$. Por lo tanto, $$m = \sum_{j=1}^{r} \left(\sum_{i=1}^{s} c_{ji}l_{i}\right) e_{j} = \sum_{j=1}^{r} \sum_{i=1}^{s}c_{ji}v_{ij}, \hspace{0.2cm} c_{ji} \in K.$$ Con esto, $U$ genera el $E$ $K$-espacio vectorial. Ahora veamos que $U$ es también linealmente independiente, para ello supongamos que $$0 = \sum_{j=1}^{r} \sum_{i=1}^{s} c_{ji}v_{ji} = \sum_{j=1}^{r}\left(\sum_{i=1}^{s} c_{ji}l_{i}\right) e_{j}, \hspace{0.2cm} c_{ji} \in K.$$ Como $\lbrace e_{1}, \ldots, e_{r} \rbrace$ es una base de $E$ como $L$-espacio vectorial tenemos que $\sum_{i}^{s} c_{ji}l_{i} = 0$ para todo $j=1, \ldots, r$. Y como $\lbrace l_{1}, \ldots, l_{s} \rbrace$ es una base de $L$ como $K$-espacio vectorial entonces $c_{ji} = 0$ también para todo $i = 1, \ldots, s$. Así, es linealmente independiente, y además $$|E:K| = rs = |E:L| |L:K|.$$
+
+$\hfill \square$
+
+\begin{definition}Sea $E$ una extensión de $K$ y sean $f(x) = \sum_ik_ix^i \in K[x]$ y $a \in E$. Diremos que $a$ es una \textbf{raíz} de $f$ si $f(a) = \sum_i k_i a^i = 0$.
+\end{definition}
+
+\begin{definition} Sea $E/K$ una extensión y $X\subseteq E$. Entonces $K(X)$ es la intersecciń de los subcuerpos de $E$ que contienen a $K$ y a $X$, es decir, el menor subcuerpo de $E$ que contiene a $K$ y a $X$.
+\end{definition}
+
+\begin{proposition} \label{eq:kalfa} Sea $E/K$ una extensión y $\alpha \in E$. Entonces $$K (\alpha) = \left\lbrace \dfrac{f(\alpha)}{g(\alpha)} : f,g \in K[x], g(\alpha) \neq 0 \right\rbrace.$$
+\end{proposition}
+
+Además, por inducción podemos definir $K(\alpha_{1}, \ldots, \alpha_{n} ) = K(\alpha_{1}, \ldots, \alpha_{n-1})(\alpha_{n}).$
+
+\begin{definition} Sea  $E/K$ una extensión y $\alpha \in E$. Diremos que $\alpha$ es \textbf{algebraico} sobre $K$ si existe un $p \in K[x]$ no nulo tal que $p(\alpha) = 0$, es decir, que $\alpha$ sea una raíz de $p$. Si $\alpha$ no es algebraico sobre $K$ se dice entonces que es \textbf{trascendente}. La extensión $E/K$ se dirá \textbf{algebraica} si todo elemento de $E$ es algebraico sobre $K$.
+\end{definition}
+\begin{example} Algunos ejemplos: \begin{enumerate}
+\item Si $\alpha \in E$, entonces $\alpha$ es algebraico sobre $E$.
+\item $\sqrt{2}$ es algebraico sobre $\mathbb{Q}$, ya que es raíz de $x^{2}-2$.
+\item Los números $e$ y $\pi$ son trascendentes  sobre $\mathbb{Q}$.
+\item El número $\alpha = \sqrt{2 + \sqrt{5}}$ es algebraico sobre $Q$, pues $\alpha^{2} = 2 + \sqrt{5}$ ó sea $\alpha^{2}-2 = \sqrt{5}$, y entonces $\alpha^{4}-4\alpha^{2}-1 = 0$. Por tanto, $\alpha$ es raíz del polinomio $p(x) = x^{4}-4x^{2}-1 \in \mathbb{Q}[x]$.
+\end{enumerate}
+\end{example}
+
+$\hfill \blacksquare$
+
+\begin{proposition} Toda extensión finita es algebraica.
+\end{proposition}
+\emph{Demostración: } Sea $E/K$ finita y $n = |E:K|$. Si $\alpha \in E$, la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ tienen $n+1$ elementos (iguales o repetidos). Como $dim_{K} E = n$, dicha familia tiene que ser linealmente dependiente. Así, existen $t_{0}, t_{1}, \ldots, t_{n} \in K$ no todos nulos tales que $t_{0}1 + t_{1}\alpha + \ldots + t_{n}\alpha^{n} = 0$. Sea $p(x) = t_{0} + t_{1}x + \ldots + t_{n}x^{n}$. Entonces $p(x) \in K[x]$, $p(x) \neq 0$ y $p(\alpha) = 0.$
+
+$\hfill \square$
+
+\begin{proposition}[\textbf{\textit{Elemento algebraico}}] Sean $E/K$ una extensión y $a \in E$ algebraico sobre $K$, se tiene: 
+\begin{enumerate}
+\item Existe un único polinomio mónico $p \in K[x]$ irreducible en $K[x]$ tal que $p(a) = 0$.
+\item Si $q\in K[x]$, entonces $q(a) = 0$ si y sólo si $p$ divide a $q$.
+\item $K(a) = \lbrace f(a): f \in K[x] \rbrace$.
+\item Si $\delta (p) = n$, entonces $\lbrace 1, a, \ldots, a^{n-1} \rbrace$ es una $K$-base del espacio vectorial $K(a)$. Por tanto, $|K(a):K | = \delta(p)$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }Veamos cada parte: 
+\begin{enumerate}
+\item Para probar este apartado reutilizaremos conceptos del apartado siguiente. Supongamos que $p = gh$, se tiene que $0 = g(a)h(a)$ luego $g$ ó $h$ están en $I$, en contra de la minimalidad del grado de $p$, luego absurdo y así $p$ es irreducible. Cualquier otro polinommio de $I$ es divisible por $p$, luego es el único polinomio de $I$ irreducible y mónico, además de tener el menor grado posible.
+\item Definimos $$\begin{array}{rccl}
+\varphi \colon &K[x]&\longrightarrow &E \\
+&f& \longmapsto &f(\alpha),
+\end{array}
+$$ que es la restricción a $K[x]$ del homomorfismo evaluación, luego es homomorfismo de anillos. Como $a$ es algebraico, el ideal $I = Ker \varphi$ es distinto de $\lbrace 0 \rbrace$. Por ser $K[x]$ un dominio de ideales principales, existe un único $p \in K[x]$ mónico tal que $I = (p)$ (de grado mínimo en $I$). Tenemos que si $q \in K[x]$ entonces $q(a) = 0$ si y sólo si $p$ divide a $q$.
+\item $\varphi(K[x]) = \lbrace f(a) : f \in K[x] \rbrace \subseteq K(a)$. Como $p$ es irreducible $K[x]/(p) = K[x]/Ker\varphi$ es cuerpo, luego $\varphi(K[x]) \cong K[x]/Ker\varphi$ es cuerpo, claramente contiene a $K$ y al elemento $a \in E$, luego $\varphi(K[x]) = K(a)$ y así $K(a) = \lbrace f(a) : f \in K[x] \rbrace.$
+\item Sea $\delta(p)=n$, si $\lbrace 1, a, \ldots, a^{n-1} \rbrace$ fuese $K$-ligada existiría un polinomio no nulo $g \in K[x]$ de grado $n-1$ tal que $g(a) = 0$, en contra de $1.$ Todo elemento $K(a)$ es de la forma $f(a)$ para algún $f \in K[x]$ por el apartado anterior. Por ser $K[x]$ un dominio euclídeo, existen $q, r \in K[x]$ tales que $f = qp + r$ y $\delta (r) < \delta(p)=n$. Se tiene así que $f(a) = q(a)p(a) +r(a) = r(a)$ y como $\delta(r) <n$, $r(a)$ es una $K$-combinación lineal de $\lbrace 1, a, \ldots, a^{n-1} \rbrace$. Así $\lbrace 1,a \ldots, a^{n-1}\rbrace$ genera $K(a)$ y ya está.
+\end{enumerate}
+
+$\hfill \square$
+
+\begin{definition}Al polinomio que acabamos de ver se le conoce como \textbf{polinomio mínimo } ó también \textbf{polinomio irreducible} de $a$ sobre $K$ y se denota por $Irr(a,K)$. Es el polinomio mónico, irreducible y de menor grado posible de $K[x]$ que tiene a $a$ por raíz. Cualquier otro polinomio de $K[x]$ que tenga por raíz a $a$ será múltiplo de $Irr(a,K)$.
+\end{definition}
+
+\begin{exercise}Sea $p(x) = x^3+x+1 \in \mathbb{Z}_2[x]$, recordemos que existe un cuerpo en el que este polinomio tiene una raíz que llamamos $a$. Sea $\mathbb{Z}_2 (a)$. Veamos cuántos elementos tiene $\mathbb{Z}_2(a)$ y cuántos tiene el grupo de unidades de $\mathbb{Z}_2(a)$.
+
+Lo primero que vamos a ver es que $x^3+x+1 \in \mathbb{Z}_2(a)$ es irreducible en $\mathbb{Z}_2[x]$. Para ello hay que ver que no se puede poner como producto de $2$ polinomios de grado inferior a $3$ (uno de grado $1$ y otro de grado $2$), y como consecuencia, se reduce a comprobar que dicho polinomio no tiene raíces en $\mathbb{Z}/2\mathbb{Z} = \mathbb{Z}_2 = \lbrace 0, 1 \rbrace$. 
+
+Para lo primero: $x^3+x+1 = (x^2+ax+b)(x+c) = x^3 + cx^2 +ax^2 + acx + bx +bc$, luego $c+a=0$, $ac+b = 1$ y $bc=1$ y vemos que no se puede porque llegaríamos a la conclusión de que $1 =0$. También podríamos evaluar el polinomio y obtendríamos que $p(0) = 1 \neq 0$ y $p(1) = 1 \neq 0$, luego $p$ no tiene raíces en $\mathbb{Z}_2$ y así es irreducible en $\mathbb{Z}_2[x]$.
+
+Al ser mónico tenemos que $Irr(a,\mathbb{Z}_2) = p$, con $a$ una raíz de $p$. El cuerpo en el que $p$ tiene una raíz sabemos que es $\mathbb{Z}_2[x]/(p)$, que por un resultado anterior sabemos que tiene $2^{\delta(p)} = 2^3 = 8$ elementos. Así que $\mathbb{Z}_2(a)$ tiene $8$ elementos. Y como es cuerpo sabemos que $7$ de ellos son unidades. También sabemos que una base de $\mathbb{Z}_2(a)$ es $\lbrace 1, a, a^2 \rbrace$, con $a$ raíz de $p$. Luego $\mathbb{Z}_2(a) = \lbrace t_0 + t_1a + t_2a^2 : t_0,t_1,t_2\in \mathbb{Z}_2 \rbrace$. Y además esto tiene sentido ya que los únicos valores posibles para $t_0,t_1,t_2$ son $0$ ó $1$.
+\end{exercise}
+$\hfill \blacksquare$
+
+
+\end{document}

@@ -94,7 +94,7 @@ Este tipo de grupos los estudiaremos en detalle más adelante.
 $\hfill \blacksquare$
 
 
-En general, dado un grupo $G$, no será cierto que $xy = yx$ para cualesquiera $x,y \in G$. Por ejemplo, en $S_{3}$, si $\alpha, \beta \in S_{3}$ con $\alpha(1) = 2, \alpha (2)=3, \alpha (3) = 1$, $\beta (1)=2, \beta(2)=1, \beta (3) = 3$, entonces $\alpha \beta \neq \beta \alpha$. En aquellos grupos $G$ en los que sí se cumpla la igualdad, es decir $xy = yx$ $\forall x,y \in G$, los denominaremos \textbf{ grupos abelianos}.
+En general, dado un grupo $G$, no será cierto que $xy = yx$ para cualesquiera $x,y \in G$. Por ejemplo, en $S_{3}$, si $\alpha, \beta \in S_{3}$ con $\alpha(1) = 2, \alpha (2)=3, \alpha (3) = 1$, $\beta (1)=2, \beta(2)=1, \beta (3) = 3$, entonces $\alpha \beta \neq \beta \alpha$. Aquellos grupos $G$ en los que sí se cumpla la igualdad, es decir $xy = yx$ $\forall x,y \in G$, los denominaremos \textbf{grupos abelianos}.
 
 Cuando trabajemos con grupos abelianos, en ocasión emplearemos la notación aditiva y escribiremos $x+y$ en lugar de $xy$, $-x$ en lugar de $x^{-1}$ y el elemento neutro será $0$.
 
@@ -132,13 +132,16 @@ $\hfill \square$
 
 Una vez definida una estructura algebtaica cualquiera siempre nos interesaremos por su subestructura. Esto es particularmente relevante en \textit{Teoría de grupos}.
 
-\begin{definition}Un \textbf{subgrupo} $H$ de $G$, denotado $H \leq G$, es un subconjunto n ovacío $H \subseteq G$ tal que $xy \in H$ para todos $x,y \in H$ y $x^{-1} \in H$ para todo $x \in H$. Es decir, que también es un grupo con la operación de $G$: la asociatividad se sigue de la de $G$, que $xy \in H$ para cualesquiera $x,y \in H$ quiere decir que la operación es binaria y como $x^{-1} \in H$ entonces $xx^{-1} = 1 \in H$.
+\begin{definition}Un \textbf{subgrupo} $H$ de $G$, denotado $H \leq G$, es un subconjunto no vacío $H \subseteq G$ tal que $xy \in H$ para todos $x,y \in H$ y $x^{-1} \in H$ para todo $x \in H$. Es decir, que también es un grupo con la operación de $G$: la asociatividad se sigue de la de $G$, que $xy \in H$ para cualesquiera $x,y \in H$ quiere decir que la operación es binaria y como $x^{-1} \in H$ entonces $xx^{-1} = 1 \in H$.
 \end{definition}
 
 \begin{example}Por ejemplo el subconjunto $SL_{n}(K)$ de matrices de determinante $1$ con coeficientes en $K$ es un subgrupo de $GL_n(K)$ conocido como \textbf{subgrupo especial lineal}.
 \end{example}
+$\hfill \blacksquare$
 
 Observar que un grupo $G$ siempre tiene al menos los subgrupos $ \lbrace 1 \rbrace$ y el propio $G$. Son los conocidos como \textbf{subgrupos triviales}. El resto de subgrupos, aquellos $H \leq G $ tales que $H \neq G$, son los llamados subgrupos \textbf{propios}.
+
+Veamos ahora la caracterización de los subgrupos: 
 
 \begin{proposition}Sea $G$ un grupo y sea $H$ un subconjunto no vacío de $G$. Entonces $H \leq G$ si y sólo si $xy^{-1} \in H$ para cualesquiera $x,y \in H$.
 \end{proposition}
@@ -147,11 +150,17 @@ Supongamos que $H \leq G$ y sean $x,y \in H$. Entonces $y^{-1} \in H$ y $xy^{-1}
 
 $\hfill \square$
 
-\begin{definition} Dados dos subgrupos $H$ y $K$ de un grupo $G$, se define $$HK = \lbrace hk : h \in H, k \in K \rbrace.$$ A este grupo lo llamaremos \textbf{grupo producto}.
+\begin{example}Otro ejemplo podría ser el caso de los números enteros $\mathbb{Z}$. Sabemos que $\mathbb{Z}$ es un grupo con la suma usual, nos preguntamos ahora cómo son sus subgrupos. Es fácil comprobar que, dado un $n\in \mathbb{Z}$ cualquiera, los subconjuntos de $\mathbb{Z}$ de la forma $$n\mathbb{Z} = \lbrace nx: x \in \mathbb{Z} \rbrace,$$ conforman todos los subgrupos posibles de $\mathbb{Z}$. Basta ver que si $a,b \in n\mathbb{Z}$ entonces $a-b \in n\mathbb{Z}$, pero si $a,b\in n\mathbb{Z}$ entonces $a=nx $ y $b = nx'$, con $x,x' \in \mathbb{Z}$, y $a-b = nx -nx' = n(x-x') \in n\mathbb{Z}$.
+
+Notar que si tenemos un $p \in n\mathbb{Z}$, éste será de la forma $p = nx$, para un $x \in \mathbb{Z}$ cualquiera, es decir, que $n$ dividirá a $p$ (en capítulos posteriores veremos con más detalle el concepto de divisibilidad).
+\end{example}
+$\hfill \blacksquare$
+
+\begin{definition} Dados dos subgrupos $H$ y $K$ de un grupo $G$, se define $$HK = \lbrace hk : h \in H, k \in K \rbrace.$$ A este grupo lo llamaremos \textbf{grupo producto}. Igualmente también podremos definir su \textbf{intersección} como
+$$H \cap K = \lbrace x: x\in H \wedge x \in K \rbrace.$$
 \end{definition}
 
-
-Si tenemos dos subgrupos cualesquiera $H$ y $K$ de $G$ está claro que $H \cap K$ es subgrupo también. Sin embargo, en general $HK$ no lo será.
+Si tenemos dos subgrupos cualesquiera $H$ y $K$ de $G$ está claro que $H \cap K$ es subgrupo también. Sin embargo, en general $HK$ no lo será. Para que lo sea ha de cumplirse la siguiente condición:
 
 \begin{proposition}\label{eq:progruesgru} Sean $H,K \leq G$. Entonces $HK \leq G$ si y sólo si $HK = KH$.
 \end{proposition}
@@ -161,45 +170,63 @@ Recíprocamente, supongamos que $HK = KH$. Evidentemente $HK$ es no vacío, pues
 
 $\hfill \square$
 
-\begin{example} Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación es la suma).
+\begin{example}\label{eq:gib}Sean $m$ y $n$ enteros no negativos, $H = m\mathbb{Z}$, $K = n\mathbb{Z}$ dos subgrupos de $\mathbb{Z}$. Como $\mathbb{Z}$ es abeliano es obvio que $H+K = K+H$, luego por el resultado anterior $H+K$ es subgrupo de $\mathbb{Z}$ (notar que aquí la operación que utilizamos es la suma).
 
 
-$H+K$ no es el subgrupo $\lbrace 0 \rbrace$ pues, $m = m + 0 \in H + K$. Y, como ya sabemos, existirá un $d \in \mathbb{Z}$ tal que $m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, veamos que $d = mcd(m,n)$:
+$H+K$ no es el subgrupo $\lbrace 0 \rbrace$ pues, $m = m + 0 \in H + K$. Y, como ya sabemos, existirá un $d \in \mathbb{Z}$ tal que $m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, veamos que $d = mcd(m,n)$ (más adelante veremos que este resultado se conoce como la identidad de Bézout):
 
+Como $m = m + 0 \in m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, $d$ divide a $m$, y como $n = 0 + n \in m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, $d$ divide a $n$. Además $d \in d\mathbb{Z} = m\mathbb{Z} + n\mathbb{Z}$ luego existen $a,b \in \mathbb{Z}$, tal que $d = ma + nb$. Entonces, dado un $c$ que divida a $m$ y $n$:
+$$m = cu,\hspace{0.1cm} n = cv, u, v \in \mathbb{Z}$$ luego $d = (cu)a + (cv)b = c(ua + vb)$ y $c$ divide a $d$. Esto prueba que $d = mcd(m,n)$. 
 
-Como $m = m + 0 \in m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, $d$ divide a $m$, y como $n = 0 + n \in m\mathbb{Z}+n\mathbb{Z} = d\mathbb{Z}$, $d$ divide a $n$. Además $d \in d\mathbb{Z} = m\mathbb{Z} + n\mathbb{Z}$ luego existen $a,b \in \mathbb{Z}$, tal que $d = ma + nb$. Entonces dado un $c$ que divida a $m$ y $n$:
-$$m = cu,\hspace{0.1cm} n = cv, u, u \in \mathbb{Z}$$ luego $d = (cu)a + (cv)b = c(ua + vb)$ y $c$ divide a $d$. Esto prueba que $d = mcd(m,n)$. 
-
-En particular, dos números enteros $m,n$ son primos entre sí si y sólo si $$1 = am + bn \hspace{0.2cm} a,b \in \mathbb{Z}.$$ En efecto, si $mcd(m,n) = 1$, es $m\mathbb{Z} + n\mathbb{Z} = 1\mathbb{Z}$ por lo visto ahora. Así, $1 \in m\mathbb{Z}+n\mathbb{Z}$. Recíprocamente, si $1 = am + bn$ y $d$ es un divisor de $m$ y $n$, tendremos $m = du$, $n = dv$, luego $1 = d(au + bv)$ y así $d = +1$ ó $-1$. Y como podemos asumir que $mcd(m,n)$ es positivo entonces $mcd(m,n) = 1$.
+En particular, dos números enteros $m,n$ son primos entre sí si y sólo si $$1 = am + bn \hspace{0.2cm} a,b \in \mathbb{Z}.$$ En efecto, si $mcd(m,n) = 1$, tenemos $m\mathbb{Z} + n\mathbb{Z} = 1\mathbb{Z}$ por lo visto ahora. Así, $1 \in m\mathbb{Z}+n\mathbb{Z}$. Recíprocamente, si $1 = am + bn$ y $d$ es un divisor de $m$ y $n$, tendremos $m = du$, $n = dv$, luego $1 = d(au + bv)$ y así $d = +1$ ó $-1$. Y como podemos asumir que $mcd(m,n)$ es positivo entonces $mcd(m,n) = 1$.
 \end{example}
 
 $\hfill \blacksquare$
 
+Ya sabemos cómo son y cómo se caracterizan los subgrupos, ahora veremos cómo podemos obtenerlos a partir de ciertos conjuntos de elementos, que llamaremos generadores.
+
+\begin{definition}Si $S$ es un subconjunto no vacío de un grupo $G$, el conjunto $$\langle S \rangle = \lbrace s_{1}^{h_{1}} \ldots s_{n}^{h_{n}} : n \in \mathbb{N},\hspace{0.1cm} s_{i} \in S,\hspace{0.1cm} h_{i} \in \mathbb{Z}, \hspace{0.2cm} 1 \leq i \leq n \rbrace$$ es un subgrupo de $G$ que contiene a $S$, llamado \textbf{subgrupo generado por $S$}.
+
+
+Si $\mathcal{F}$ es la familia de todos los subgrupos de $G$ que contienen a $S$, $$ \langle S \rangle = \bigcap_{H \in \mathcal{F}} H$$ y, en particular, $\langle S\rangle \subseteq H$ para cada $H \in \mathcal{F}$.
+\end{definition}
+
+\begin{observation} Un caso particular pero muy importante es aquel en que $S = \lbrace a \rbrace$ con $a \in G$. En tal caso escribimos $\langle a \rangle$. Y tenemos que, $$\langle a \rangle = \lbrace a^{k} : k \in \mathbb{Z}\rbrace$$ y se le llama \textbf{subgrupo generado por a}.\end{observation}
+
+De hecho, a partir de este caso surgirán una tipo de grupos de sobra conocidos, los \textit{grupos cíclicos}. Es decir, profundizaremos en esto más adelante.
+
 Ya hemos definido lo que son los grupos abelianos, y hemos visto que ha de cumplirse la propiedad conmutativa. Esto en general no se tendrá en grupos no abelianos, pero sin embargo sí podremos encontrar subconjuntos de elementos que sí cumplan la propiedad conmutativa, es decir, que sus elementos conmutan. Además vamos a comprobar que a estos subconjuntos les vamos a poder dotar de estructura de grupo (en este caso subgrupo).
 
-\begin{definition}\label{eq:centro} Si $H$ es un subgrupo de un grupo $G$, se llama \textbf{centralizador} de $H$ en $G$ a $$C_{G}(H) = \lbrace x \in G : ax = xa \hspace{0.15cm} \forall a \in H\rbrace.$$
-Al centralizador de $G$ en $G$ lo notaremos por $Z(G)$ y le llamaremos \textbf{centro} de $G$. Así, $$Z(G) = \lbrace x \in G : ax = xa \hspace{0.15cm} \forall a \in G\rbrace.$$
-y como consecuencia se tiene que $G$ es abeliano si y sólo si $G = Z(G)$. Además, el centro es un subgrupo de $G$. De hecho más en general todavía: se tiene que $C_{G}(H)$ es un subgrupo de $G$
+\begin{definition}\label{eq:centro} Dado $H$ un subgrupo de un grupo $G$, llamaremos \textbf{centralizador} de $H$ en $G$ a $$C_{G}(H) = \lbrace x \in G : ax = xa \hspace{0.15cm} \forall a \in H\rbrace.$$
+Al caso particular de $H = G$, es decir al centralizador de $G$ en $G$ lo denotaremos por $Z(G)$ y lo llamaremos \textbf{centro} de $G$. Así, $$Z(G) = \lbrace x \in G : ax = xa \hspace{0.15cm} \forall a \in G\rbrace.$$
+Como consecuencia se tiene que $G$ es abeliano si y sólo si $G = Z(G)$. Además, el centro es un subgrupo de $G$. De hecho, más en general todavía: se tiene que $C_{G}(H)$ es un subgrupo de $G$
 \end{definition}
-\emph{Demostración: } Demostraremos esto último. Como $1_{G} \in C_{G}(H),$ éste no es vacío. Sean $x,y \in C_{G}(H),\hspace{0.1cm} a \in H$. Como $x\in C_{G}(H),\hspace{0.1cm} ax = xa$. Como $y \in C_{G}(H), \hspace{0.1cm} a^{-1} \in H,\hspace{0.1cm} a^{-1}y = ya^{-1}$. Por lo tanto, \begin{center}$a(xy^{-1}) = (ax)y^{-1} = (xa)y^{-1} = x(ay^{-1}) = x(ya^{-1})^{-1} = x(a^{-1}y)^{-1} = x(y^{-1}a) = (xy^{-1})a$\end{center} luego $xy^{-1} \in C_{G}(H)$. Así, $C_{G}(H)$ es un subgrupo de $G$.
+\emph{Demostración: } Demostraremos esto último. Como $1_{G} \in C_{G}(H),$ éste no es vacío. Sean $x,y \in C_{G}(H),\hspace{0.1cm} a \in H$. Como $x\in C_{G}(H),\hspace{0.1cm} ax = xa$. Como $y \in C_{G}(H), \hspace{0.1cm} a^{-1} \in H,\hspace{0.1cm} a^{-1}y = ya^{-1}$. Por lo tanto, \begin{center}$a(xy^{-1}) = (ax)y^{-1} = (xa)y^{-1} = x(ay^{-1}) = x(ya^{-1})^{-1} = x(a^{-1}y)^{-1} = x(y^{-1}a) = (xy^{-1})a,$\end{center} luego $xy^{-1} \in C_{G}(H)$. Así, $C_{G}(H)$ es un subgrupo de $G$.
 
 $\hfill \square$
 
-\begin{definition}\label{eq:normalizador} Si $X$ es un subconjunto no vacío de un grupo $G$, se llama \textbf{normalizador} de $X$ en $G$ a $$N_{G}(X) = \lbrace a \in G : X^{a} = X\rbrace,$$ que además es un subgrupo de $G$.
+Tanto el centralizador como el centro de un grupo necesitan de un subgrupo para poder definirse, y forman sendos subgrupos para un grupo $G$ cualquiera, sin embargo lo que vamos a ver a continuación no necesita definirse sobre un subgrupo, con un simple conjunto basta.
+
+Antes de eso necesitaremos definir el concepto de \textit{conjugado}, que también se aplica sobre conjuntos en general:
+
+\begin{definition} \label{eq:conjugado} Si $S$ es un subconjunto no vacío de un grupo $G$ y $a \in G$, se llama \textbf{conjugado de $S$ por $a$} al conjunto $$S^{a} = \lbrace axa^{-1}: x \in S\rbrace$$ Diremos que $y \in S^{a} \Leftrightarrow a^{-1}ya \in S$. Ya que si $y \in S^{a} \Rightarrow y = axa^{-1}\Rightarrow a^{-1}ya = x, \hspace{0.1cm} x \in S$.
 \end{definition}
 
-\emph{Demostración: } Ya sabemos que $X^{1} = X$, por lo que $1 \in N_{G}(X)$ y así $N_{G}(X)$ es no vacío. Por otro lado, si $a,b \in N_{G}(X)$, $X^{ab^{-1}} = (X^{a})^{b^{-1}} = X^{b^{-1}}$ pues $a \in N_{G}(X)$. Además $X = X^{1} = X^{bb^{-1}} = (X^{b})^{b^{-1}} = X^{b^{-1}}$, ya que $b \in N_{G}(X)$. Tenemos entonces que $X^{ab^{-1}} = X$ luego $ab^{-1} \in N_{G}(X)$.
+\begin{definition}\label{eq:normalizador} Dado $X$ un subconjunto no vacío de un grupo $G$, llamaremos \textbf{normalizador} de $X$ en $G$ a $$N_{G}(X) = \lbrace a \in G : X^{a} = X\rbrace,$$ que además es un subgrupo de $G$.
+\end{definition}
+
+\emph{Demostración: } Ya sabemos que $X^{1} = X$, por lo que $1 \in N_{G}(X)$ y así $N_{G}(X)$ es no vacío. Por otro lado, si $a,b \in N_{G}(X)$, $X^{ab^{-1}} = (X^{a})^{b^{-1}} = X^{b^{-1}}$ pues $a \in N_{G}(X)$. Además $X = X^{1} = X^{bb^{-1}} = (X^{b})^{b^{-1}} = X^{b^{-1}}$, ya que $b \in N_{G}(X)$. Tenemos entonces que $X^{ab^{-1}} = X$, luego $ab^{-1} \in N_{G}(X)$.
 
 $\hfill \square$
 
-Más adelante daremos otras definiciones y llegaremos a estos subgrupos de otra forma a través de unos conceptos que veremos en los siguientes capítulos.
+Más adelante daremos otras definiciones y llegaremos a estos subconjuntos y subgrupos de otra forma a través de unos conceptos que veremos en los siguientes capítulos.
 
 Notar que en el caso particular de que $H = \langle a \rangle$ con $a \in G$, entonces $x \in C_{G}(H)\Leftrightarrow xa = ax$. De hecho, cuando hablemos del centralizador del subgrupo generado por $a$ en $G$ escribiremos $C_{G}(a)$ en vez de $C_{G}(\langle a \rangle)$ y $$C_{G}(a) = \lbrace x \in G : ax = xa\rbrace$$ y, es obvio que $$Z(G) = \bigcap_{a \in G} C_{G}(a).$$ Además, $a \in Z(G) \Leftrightarrow C_{G}(a) = G$, ya que si $a \in Z(G)$ cada $x \in G$ cumple $ax = xa$, luego $G \subseteq C_{G}(a) \subseteq G$. Recíprocamente, si $C_{G}(a) = G$, cada $x \in G$ pertenece a $C_{G}(a)$, luego $ax = xa$ para cada $x \in G$ y así $a \in Z(G)$.
 
 \begin{definition}Si $H \leq G$ y $x \in G$, llamamos a $$Hx = \lbrace hx : h \in H \rbrace$$ \textbf{clase a derecha} de $x$ módulo $H$. Análogamente, a $$xH = \lbrace xh : h \in H \rbrace$$ lo llamamos \textbf{clase a izquierda} de $x$ módulo $H$. 
 \end{definition}
 
-En general, aunque ambos conjuntos contienen al elemento $x$, se tiene que $xH \neq Hx$.
+En general, aunque ambos conjuntos contienen al elemento $x$, se tiene que $xH \neq Hx$. Más adelante veremos qué ocurre cuando estos conjuntos coinciden.
 
 \begin{proposition}\label{eq:partiGrupo} Sea $H \leq G$ y $x,y \in G$. Entonces: \begin{enumerate}
 \item $xH = H$ si y sólo si $x \in H$.
@@ -215,11 +242,11 @@ En general, aunque ambos conjuntos contienen al elemento $x$, se tiene que $xH \
 
 $\hfill \square$
 
-Con esto, es fácilmente comprobable que la relación en $G$ definida por: dados $x,y \in G$, entonces $x\sim_{H} y \Longleftrightarrow xH = yH$ es una relación de equivalencia, de hecho la clase de equivalencia de $x \in G$ es $xH$, es decir, una coclase a derecha. Luego las coclases, tanto a izquierda como a derecha, forman una partición de $G$. Así, $G$ es unión disjunta de estas clases: $$G = \bigcup_{x \in R} xH,$$ con $R$ un conjunto de representantes de las clases de equivalencia.
+Con esto, vamos a comprobar que la relación en $G$ definida por: dados $x,y \in G$, entonces $x\sim_{H} y \Longleftrightarrow xH = yH$ es una relación de equivalencia, de hecho la clase de equivalencia de $x \in G$ es $xH$, es decir, una coclase a izquierda. Luego las coclases, tanto a izquierda como a derecha, forman una partición de $G$. Así, $G$ es unión disjunta de estas clases: $$G = \bigcup_{x \in R} xH,$$ con $R$ un conjunto de representantes de las clases de equivalencia.
 
 Con esto, podemos definir las siguientes relaciones de equivalencia:
 
-\begin{definition}Sea $G$ un grupo y $H$ un subgrupo de $G$. Llamaremos $R_{H}$ y $R^{H}$ a las siguientes \textit{relaciones} en $G$:
+\begin{definition}Sea $G$ un grupo y $H$ un subgrupo de $G$. Llamaremos $\sim_{H}$ y $\sim^{H}$ a las siguientes \textit{relaciones} en $G$:
 \begin{center}
 $x\sim^{H}y$ si y sólo si $xy^{-1} \in H$\\
 $x\sim_{H}y$ si y sólo si $x^{-1}y \in H$
@@ -229,17 +256,17 @@ $x\sim_{H}y$ si y sólo si $x^{-1}y \in H$
 Tanto $\sim_{H}$ como  $\sim^{H}$ son relaciones de equivalencia.
 
 \emph{Demostración: } Lo haremos para $\sim_{H}$ (para $\sim^{H}$ es análoga). Tenemos que ver que cumplen con las propiedades \textit{reflexiva} (1), \textit{simétrica} (2) y \textit{transitiva} (3)\begin{enumerate}
-\item Si $x \in G$, $x^{-1}x = 1 \in H$ luego $x\sim_{H}x$.\vspace{0.2cm}\\
-\item Si $x\sim_{H}y$ entonces $x^{-1}y \in H$, luego $(x^{-1}y)^{-1} \in H,$ y esto es $y^{-1}x \in H$ así que $y\sim_{H}x$.\vspace{0.2cm}\\
+\item Si $x \in G$, $x^{-1}x = 1 \in H$ luego $x\sim_{H}x$.
+\item Si $x\sim_{H}y$ entonces $x^{-1}y \in H$, luego $(x^{-1}y)^{-1} \in H,$ y esto es $y^{-1}x \in H$ así que $y\sim_{H}x$.
 \item Si $x\sim_{H}y$, y $y\sim_{H}z$, entonces se tiene $x^{-1}y \in H, \hspace{0.2cm} y^{-1}z \in H$
 y así $x^{-1}z = (x^{-1}y)(y^{-1}z) \in H$ por lo que $x\sim_{H}z$.
 \end{enumerate}
 
 $\hfill \square$
 
-Sea ahora $\left[ x \right]_{\sim^{H}}$ la clase de equivalencia del elemento $x \in G$ definida por la relación $\sim_{H}$. Entonces \begin{center}$\left[ x \right]_{\sim_{H}} = \lbrace a \in G : x\sim_{H}a \rbrace = \lbrace a \in G : x^{-1}a = h \in H \rbrace = \lbrace a \in G: a = xh, \hspace{0.1cm} h \in H \rbrace = xH.$\end{center}
+Sea ahora $\left[ x \right]_{\sim_{H}}$ la clase de equivalencia del elemento $x \in G$ definida por la relación $\sim_{H}$. Entonces \begin{center}$\left[ x \right]_{\sim_{H}} = \lbrace a \in G : x\sim_{H}a \rbrace = \lbrace a \in G : x^{-1}a = h \in H \rbrace = \lbrace a \in G: a = xh, \hspace{0.1cm} h \in H \rbrace = xH.$\end{center}
 
-Análogamente podemos hacer con $\sim^{H}$, \begin{center}$\left[ x \right]_{\sim^{H}} = \lbrace a \in G : x\sim^{H}a \rbrace = \lbrace a \in G: ax^{-1} = h \in H \rbrace = \lbrace a \in G : a = hx, \hspace{0.1cm} h \in H \rbrace = Hx.$\end{center} Notar que en este último caso tomamos los $h$ de la forma $ax^{-1}$ cuando la relación $\sim^{H}$ en realidad vendría a decir que $h$ sería de la forma $xa^{-1}$, simplemente tomamos el inverso (que también está en $H$) ya que la relación es de equivalencia es igual da hacer $x \sim^{H}a$ que $a\sim^{H}x$.
+Análogo con $\sim^{H}$, \begin{center}$\left[ x \right]_{\sim^{H}} = \lbrace a \in G : x\sim^{H}a \rbrace = \lbrace a \in G: ax^{-1} = h \in H \rbrace = \lbrace a \in G : a = hx, \hspace{0.1cm} h \in H \rbrace = Hx.$\end{center} Notar que en este último caso tomamos los $h$ de la forma $ax^{-1}$ cuando la relación $\sim^{H}$ en realidad vendría a decir que $h$ sería de la forma $xa^{-1}$, simplemente tomamos el inverso (que también está en $H$) ya que la relación es de equivalencia e igual da hacer $x \sim^{H}a$ que $a\sim^{H}x$.
 
 \begin{definition}A los conjuntos de estas clases los llamaremos \textbf{conjuntos cocientes} definidos por las respectivas relaciones de equivalencia (a izquierda o derecha). Los denotaremos: $$G/\sim_{H} = \lbrace xH : x \in G \rbrace,$$ $$G/\sim^{H} = \lbrace Hx : x \in G \rbrace.$$
 \end{definition}
@@ -256,8 +283,8 @@ $$
 \end{array}
 $$
 es biyectiva. \begin{enumerate} 
-\item Veamos primero que $\Psi$ está \textit{bien definida}, es decir, si $xH = yH$ entonces $Hx^{-1} = Hb^{-1}$. En efecto, si $xH = yH$, entonces tenemos que $x\sim_{H} y$, es decir que $x^{-1}y \in H$. Y como $H$ es subgrupo de $G$, $(x^{-1}y)^{-1} \in H$, y como $(x^{-1}y)^{-1} = y^{-1}(x^{-1})^{-1}$ se tiene que $y^{-1}\sim^{H} x^{-1}$ y por tanto $Hy^{-1} = Hx^{-1}$.
-\item Veamos ahora que es \textit{inyectiva}. Supongamos que $xH, \hspace{0.1cm} yH \in G/\sim_{H}$. Si $\Psi (xH) = \Psi (yH)$, entonces $Hx^{-1} = Hy^{-1}$, luego $y^{-1}R_{H}x^{-1}$ y así $y^{-1}(x^{-1})^{-1} = (x^{-1}y)^{-1} \in H$ por lo que también $x^{-1}y \in H$, pero esto quiere decir que $x R^{H}y$ o lo que es lo mismo: que $xH = yH$. Así $\Psi$ es inyectiva.
+\item Veamos primero que $\Psi$ está \textit{bien definida}, es decir, si $xH = yH$ entonces $Hx^{-1} = Hy^{-1}$. En efecto, si $xH = yH$, entonces tenemos que $x\sim_{H} y$, es decir, $x^{-1}y \in H$. Como $H$ es subgrupo de $G$, $(x^{-1}y)^{-1} \in H$, y como $(x^{-1}y)^{-1} = y^{-1}(x^{-1})^{-1}$ se tiene que $y^{-1}\sim^{H} x^{-1}$ y por tanto $Hy^{-1} = Hx^{-1}$.
+\item Veamos ahora que es \textit{inyectiva}. Sean $xH, \hspace{0.1cm} yH \in G/\sim_{H}$. Si $\Psi (xH) = \Psi (yH)$, entonces $Hx^{-1} = Hy^{-1}$, luego $y^{-1}\sim^{H} x^{-1}$ y así $y^{-1}(x^{-1})^{-1} = (x^{-1}y)^{-1} \in H$ por lo que también $x^{-1}y \in H$, pero esto quiere decir que $x \sim_{H}y$ o lo que es lo mismo: que $xH = yH$. Así $\Psi$ es inyectiva.
 \item Veamos que es \textit{suprayectiva}. Si $Hx \in G/\sim^{H}$, como $x^{-1}H \in G/\sim_{H}$ y $\Psi (x^{-1}H) = H(x^{-1})^{-1} = Hx$ tenemos que $\Psi$ es suprayectiva.
 \end{enumerate}
 Por lo tanto, $\Psi$ es una aplicación biyectiva y así $$card(G/\sim_{H}) = card(G/\sim^{H}).$$
@@ -270,7 +297,7 @@ Si tenemos que estos conjuntos de coclases son finitos (y por tanto de igual car
 
 \begin{example} Veamos cómo se relacionan los subgrupos de $\mathbb{Z}$ con el mismo $\mathbb{Z}$ a través de sus respectivos índices:
 
-Sea $G = \mathbb{Z}$ y $H \neq \lbrace 0 \rbrace$ un subgrupo de $\mathbb{Z}$. Ya sabemos que $H$ es de la forma $H = m\mathbb{Z}$, con $m$ un entero positivo cualquiera. Como la operación en $\mathbb{Z}$ es la \textit{suma}, las clases respecto de $\sim_{H}$, que son las mismas que respecto $\sim_{m\mathbb{Z}}$, serán de la forma $$m\mathbb{Z} + x, \hspace{0.1cm} x \in \mathbb{Z}.$$ Veamos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace m\mathbb{Z} + 0, m\mathbb{Z} + 1, \ldots, m\mathbb{Z} + (m-1)\rbrace.$$ Dado $x \in \mathbb{Z}$ obtenemos, por el algoritmo de la división, $$x = qm + r, \hspace{0.1cm} 0\leq r\leq m-1,$$y así $x-r = qm \in m\mathbb{Z}$, luego $x\sim_{m\mathbb{Z}}r$, es decir, $m\mathbb{Z} + x = m\mathbb{Z} + r$, lo que prueba la igualdad. Además las clases son todas distintas, es decir, los elementos del segundo miembro son distintos, pues si $m\mathbb{Z} + k = m\mathbb{Z} + l, \hspace{0.1cm} 0\leq k < l \leq m-1$, entonces $lR_{m\mathbb{Z}}k$, y por tanto $l-k \in m\mathbb{Z}, \hspace{0.1cm} 1\leq l-k <m,$ y tenemos que $l-k = qm, \hspace{0.1cm} q \in \mathbb{Z}$ lo cual implicaría que $l = qm +k > m$ si $q>0$ ó $k = l - qm >m$ si $q < 0$ ( y así $-q >0$), lo cual es imposible.
+Sea $G = \mathbb{Z}$ y $H \neq \lbrace 0 \rbrace$ un subgrupo de $\mathbb{Z}$. Ya sabemos que $H$ es de la forma $H = m\mathbb{Z}$, con $m$ un entero positivo cualquiera. Como la operación en $\mathbb{Z}$ es la \textit{suma}, las clases respecto de $\sim_{H}$, que son las mismas que respecto $\sim_{m\mathbb{Z}}$, serán de la forma $$x+ m\mathbb{Z}, \hspace{0.1cm} x \in \mathbb{Z}.$$ Veamos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace 0+m\mathbb{Z},1+ m\mathbb{Z}, \ldots,(m-1)+ m\mathbb{Z}`\rbrace.$$ Dado $x \in \mathbb{Z}$ obtenemos, por el algoritmo de la división, $$x = qm + r, \hspace{0.1cm} 0\leq r\leq m-1,$$y así $x-r = qm \in m\mathbb{Z}$, luego $x\sim_{m\mathbb{Z}}r$, es decir, $x+m\mathbb{Z}=r+ m\mathbb{Z}$, lo que prueba la igualdad. Además las clases son todas distintas, es decir, los elementos del segundo miembro son distintos, pues si $k+m\mathbb{Z} =l+ m\mathbb{Z}, \hspace{0.1cm} 0\leq k,l \leq m-1$, entonces $l\sim_{m\mathbb{Z}}k$, y por tanto $l-k \in m\mathbb{Z}, \hspace{0.1cm} 1\leq l-k <m,$ y tenemos que $l-k = qm, \hspace{0.1cm} q \in \mathbb{Z}$ lo cual implicaría que $l = qm +k > m$ si $q>0$ ó $k = l - qm >m$ si $q < 0$ ( y así $-q >0$), lo cual es imposible.
 
 Así, $\left[ \mathbb{Z}:m\mathbb{Z} \right] = m$. Notar que $\mathbb{Z}$ es un grupo infinito cuyos subgrupos no nulos tienen índice finito.
 \end{example}
@@ -289,7 +316,7 @@ Notar también que, si tenemos $H \leq K \leq G$ entonces, aplicando dos veces e
 En diagramas como el siguiente se nos presenta información útil para representar una serie de relaciones en un grupo, esquemas así serán utilizados con frecuencia. En éste podemos apreciar una serie de nodos, que son grupos y subgrupos, en este caso $G$ y dos subgrupos suyos: $H$ y $K$ cualesquiera. Las líneas representan \textit{contenido}, el subgrupo de abajo está contenido en el de arriba. En este caso $G=HK$ y lo expresaremos como un diamante. 
 $$\xymatrix @=2cm {&G \ar@{-}[ld]_n \ar@{-}[rd]^m  \\ H \ar@{-}[rd]_m & & K \ar@{-}[ld]^n \\ &H \cap K }$$
 
-Además si $G$ es un grupo finito, entonces se va a cumplir que $n= [G:H] = [K: K \cap H]$ y $m= [G:K] = [H : H \cap K]$. Este diagrama nos va a proporcionar información también sobre los órdenes de los subgrupos, cuando veamos el orden del producto más adelante será interesante volver a revisarlo.
+Además, si $G$ es un grupo finito, se tiene que $n= [G:H] = [K: K \cap H]$ y $m= [G:K] = [H : H \cap K]$. Este diagrama nos va a proporcionar información también sobre los órdenes de los subgrupos, cuando veamos el orden del producto más adelante será interesante volver a revisarlo.
 
 \begin{proposition} Sea $G$ un grupo y $H$, $K$ subgrupos de $G$ de orden finito. Entonces, $$|HK| = \dfrac{|H||K|}{|H \cap K|}.$$
 \end{proposition}
@@ -300,11 +327,53 @@ $\hfill \square$
 
 De aquí se desprende que, evidentemente, si tenemos dos grupos disjuntos (es decir, que sólo comparten el elemento neutro) entonces $|HK| = |H||K|$. Esto es muy útil cuando son dos subgrupos de un grupo cualquiera $G$ tales que $G = HK$, es decir, cuando se da que el producto de dos subgrupos es un grupo.
 
-Este es el resultado interesante que se avisó antes para revisar nuevamente el diagrama en diamante antes dibujado. Si lo observamos, teniendo en cuenta lo que acabamos de ver y que habíamos definido $G= HK$ un grupo finito, entonces necesariamente $|G| =|HK| = \dfrac{|H| |K|}{|H \cap K |} = |H| [K : K \cap H]$ y de aquí $[G:H] = \dfrac{|G|}{|H|} = [K : K \cap H]$, tal y cómo habíamos visto. Análogamente con $[G:K]$.
+Este es el resultado interesante que se dijo para revisar nuevamente el diagrama en diamante antes dibujado. Si lo observamos, teniendo en cuenta lo que acabamos de ver y que habíamos definido $G= HK$, entonces necesariamente $|G| =|HK| = \dfrac{|H| |K|}{|H \cap K |} = |H| [K : K \cap H]$ y de aquí $[G:H] = \dfrac{|G|}{|H|} = [K : K \cap H]$, tal y cómo habíamos visto. Análogamente con $[G:K]$.
 
-Dentro de la \textbf{Teoría de grupos}, un concepto fundamental es el de subgrupo \textit{normal}.
+\begin{example}[\textbf{\textit{El grupo cuaternión.}}]
+Consideremos los ocho símbolos siguientes: $$ Q = \lbrace 1,-1, i, j, k, -i,-j,-k \rbrace$$ y una operación $Q \times Q \longrightarrow Q$ que tiene a $1$ por elemento neutro, cumple la propiedad asociativa, la regla de los signos que todos conocemos (por ejemplo $i(-k) = -(ik)$) y \begin{equation*}
+\begin{aligned}
+&ij = k, \hspace{0.2cm} ji = -k\\
+&jk = i, \hspace{0.2cm} kj = -i\\
+&ki = j, \hspace{0.2cm} ik = -j\\
+&i^{2} = j^{2} = k^{2} = -1
+\end{aligned}
+\end{equation*}
+Con esto, está claro que $Q$ es un grupo de orden $8$. Sólo queda demostrar que tiene elemento inverso. 
 
-\begin{definition} Un subgrupo $N$ de $G$ se dice \textbf{normal} si $$xN = Nx,$$ para todo $x \in G$. En ese caso, escribimos $N \unlhd G$. También denotaremos por $$G/N = \lbrace gN : g\in G\rbrace$$ al conjunto de las clases a izquierda de $G$ módulo $N$. Si el conjunto $G/N$ es finito, tenemos que $$|G/N| = [G:N].$$
+
+Como se cumple la regla de los signos tenemos que $(-1)^{2} = 1$, luego $o(-1) =2$ y $-1$ es su propio inverso. Como $i^{2} = -1$, resulta que $(-i)^{4} = (-1)^{4}i^{4} = i^{4} = (-1)^{2} = 1,$ luego el orden de $i$ $o(i) = o(-i) = 4$, y así $i^{-1} = i^{3}$ ya que $ii^{3} = i^{4} = 1$, además $(-i)^{-1} = -i^{3}$ ya que $-i(-i)^{3} = (-i)^{4} = 1$. \vspace{0.2cm}\\
+Análogamente, $o(j) = o(-j) = 4$ y $o(k) = o(-k) = 4$ y $j^{-1} = j^{3}$, $k^{-1} = k^{3}$, $(-j)^{-1} = -j^{3}$, $(-k)^{-1} = -k^{3}$. Luego todos los elementos tienen inverso y así $Q$ es un grupo.
+
+
+Veamos ahora cuáles son los subgrupos de $Q$. Evidentemente, $\lbrace 1 \rbrace$ y $Q$ lo son y por el \textit{Teorema de Lagrange} los demás han de tener orden $2$ ó $4$. Como $-1$ es el único elemento de orden $2$ de $Q$ $\lbrace 1, -1 \rbrace$ es el único subgrupo de orden $2$. Si $H$ es un subgrupo de orden $4$, deberá contener algún elemento $x$ que no sea el $1$ ó el $-1$. Entonces necesariamente $o(x) = 4$ y como $H$ es de orden $4$ tendremos que $H = \langle x \rangle$. Además, como $-x = (-1)x = x^{2}x = x^{3} \in \langle x \rangle$ y $x  = (-1)(-x) = (-x)^{2}(-x) = (-x)^{3} \in \langle -x \rangle$, los subgrupos de orden $4$ de $Q$ serán $\langle i \rangle$, $\langle j \rangle$ y, $\langle k \rangle$.
+
+
+A este grupo $Q$ lo llamaremos \textbf{\textit{grupo cuaternión}}. Además estará generado por $i$ y $j$, es decir, $Q = \langle i,j \rangle$ ya que \begin{equation*}
+\begin{aligned}
+&i = i, \hspace{0.2cm} ij = k\\
+&j = j, \hspace{0.2cm} i^{3}j = i^{2}ij =(-1)k = -k\\
+&i^{0} = 1, \hspace{0.2cm} i^{3} = i^{2}i = (-1)i = -i\\
+&i^{2} = -1, \hspace{0.2cm} i^{2}j = (-1)j = -j.
+\end{aligned}
+\end{equation*}
+Y así, se tiene que $$Q = \lbrace 1, i, i^{2}, i^{3}, j, ij, i^{2}j, i^{3}j \rbrace.$$
+Este grupo además se suele presentar como el generado por las siguientes matrices: $$a = \left(
+\begin{matrix}
+i & 0 \\
+0 & -i
+\end{matrix}
+\right) \hspace{0.3cm} b = \left(
+\begin{matrix}
+0 & 1 \\
+-1 & 0
+\end{matrix}
+\right)$$
+\end{example}
+$\hfill \blacksquare$
+
+Dentro de la \textbf{Teoría de grupos}, un concepto fundamental es el de subgrupo \textit{normal}. Antes habíamos mencionado que, dado un subgrupo $H$ de un grupo $G$ cualquiera y un elemento $x\in G$, en general no se cumplía $xH = Hx$. Veamos ahora qué ocurre en caso de que sí.
+
+\begin{definition} Un subgrupo $N$ de $G$ se dice \textbf{normal} si $$xN = Nx,$$ para todo $x \in G$. En ese caso, escribiremos $N \unlhd G$. También denotaremos por $$G/N = \lbrace gN : g\in G\rbrace$$ al conjunto de las clases a izquierda de $G$ módulo $N$. Si el conjunto $G/N$ es finito, tenemos que $$|G/N| = [G:N].$$
 \end{definition}
 
 Notar que todo grupo posee al menos dos subgrupos normales, $1 \unlhd G$, $G \unlhd G$.
@@ -320,14 +389,15 @@ Sea $N$ un subgrupo de $G$. Entonces son equivalentes:
 \item $xNx^{-1} \subseteq N$ $\forall x \in G$.
 \end{enumerate}
 \end{theorem}
-\emph{Demostración: }Veamos primero que $1.\Rightarrow 2.$, para ello notemos que si $y\in xNx^{-1}$ entonces $x^{-1}yx = n \in N$. Como $yx = xn \in xN = Nx$ existirá algún $n' \in N$ tal que $yx = n'x$, y simplificando tendremos que $y = n' \in N$, luego $xNx^{-1} subseteq N$. Como esto es válido para todo $x \in G$, en particular si aplicamos este contenido para $x^{-1}$ tenemos que $x^{-1}N(x^{-1})^{-1}= x^{-1}Nx \subseteq N$. Así, $N = xx^{-1}Nxx^{-1} = x(x^{-1}Nx)x^{-1} \subseteq xNx^{-1}$ y tenemos la igualdad. 
+\emph{Demostración: }Veamos primero que $1.\Rightarrow 2.$, para ello notemos que si $y\in xNx^{-1}$ entonces $x^{-1}yx = n \in N$. Como $yx = xn \in xN = Nx$ existirá algún $n' \in N$ tal que $yx = n'x$, y simplificando tendremos que $y = n' \in N$, luego $xNx^{-1} \subseteq N$. Como esto es válido para todo $x \in G$, en particular si aplicamos este contenido para $x^{-1}$ tenemos que $x^{-1}N(x^{-1})^{-1}= x^{-1}Nx \subseteq N$. Así, $N = xx^{-1}Nxx^{-1} = x(x^{-1}Nx)x^{-1} \subseteq xNx^{-1}$ y tenemos la igualdad. 
 
 Es evidente que $2.\Rightarrow 3.$, así que veamos que $3.\Rightarrow 1.$ Sabiendo que $xNx^{-1} \subseteq N$ $\forall x\in G$, lo aplicamos a $x^{-1}$ y tenemos nuevamente que $N \subseteq xNx^{-1}$ $\forall x \in G$, así, tenemos la igualdad ($2.$) y de aquí sacamos que $xN = Nx$ y $N$ es normal.
 
 $\hfill \square$
 
-\begin{example} Sea $n>0$ un entero y $O_{n}(\mathbb{R})$ un subgrupo de $GL_{n}(\mathbb{R})$ llamado subgrupo de las \textbf{matrices ortogonales} o simplemente \textbf{subgrupo ortogonal} de orden $n$ con coeficientes en $\mathbb{R}$. $$O_{n}(\mathbb{R}) = \lbrace A \in GL_{n}(\mathbb{R}):A^{t}A = I_{n}\rbrace$$ donde $A^{t}$ es la matriz traspuesta de $A$ y $I_{n}$ es la matriz identidad.\vspace{0.2cm}\\
-Veamos que $O_{2}(\mathbb{R})$, subgrupo formado por las matrices ortogonales de orden 2, no es subgrupo normal de $GL_{2}(\mathbb{R})$
+\begin{example} Sea $n>0$ un entero y $O_{n}(\mathbb{R})$ un subgrupo de $GL_{n}(\mathbb{R})$ llamado subgrupo de las \textbf{matrices ortogonales} o simplemente \textbf{subgrupo ortogonal} de orden $n$ con coeficientes en $\mathbb{R}$. $$O_{n}(\mathbb{R}) = \lbrace A \in GL_{n}(\mathbb{R}):A^{t}A = I_{n}\rbrace$$ donde $A^{t}$ es la matriz traspuesta de $A$ y $I_{n}$ es la matriz identidad.
+
+Veamos que $O_{2}(\mathbb{R})$, subgrupo formado por las matrices ortogonales de orden 2, no es subgrupo normal de $GL_{2}(\mathbb{R})$:
 \begin{center}
 Sea $P = \left(
 \begin{matrix}
@@ -393,8 +463,8 @@ $\hfill \blacksquare$
 
 \begin{proposition}Si $G$ es un grupo y $H$ un subgrupo de $G$ con $\left[ G:H \right] = 2$, entonces $H$ es subgrupo normal de $G$.
 \end{proposition}
-\emph{Demostración: }Como $\left[ G:H \right] = 2$, tanto $G/\sim_{H}$ como $G/\sim^{H}$ tienen 2 elementos. Entonces, dado un $a \in G$ puede ocurrir que:\begin{enumerate}
-\item Si $a \in H$. En tal caso, $a^{-1}1 = a \in H$ y así $a\sim_{H}1$, luego $aH = 1H = H.$ Y como $a1^{-1} = a \in H$, entonces $a\sim^{H}1$ y así, $Ha = H1 = H.$ Por lo tanto, $$aH = Ha.$$
+\emph{Demostración: }Como $\left[ G:H \right] = 2$, tanto $G/\sim_{H}$ como $G/\sim^{H}$ tienen 2 elementos. Entonces, dado un $a \in G$, puede ocurrir que:\begin{enumerate}
+\item Si $a \in H$. En tal caso, $a^{-1}1 = a^{-1} \in H$ (por ser $H$ subgrupo) y así $a\sim_{H}1$, luego $aH = 1H = H.$ Y como $a1^{-1} = a \in H$, entonces $a\sim^{H}1$ y así, $Ha = H1 = H.$ Por lo tanto, $$aH = Ha.$$
 \item Si $a \notin H$, $aH \neq H$. Como $G/\sim_{H}$ tiene dos elementos, tendremos que $G = H\sqcup aH$ (unión disjunta).
 Pero si $a \notin H$, también se cumplirá $H \neq Ha$. Y como $G/\sim^{H}$ también tiene dos elementos, tenemos $ G = H \sqcup Ha$ (unión disjunta).
 
@@ -406,7 +476,7 @@ $\hfill \square$
 \end{proposition}
 \emph{Demostración: } Recordar que el centro de $G$ es $$Z(G) = \lbrace x \in G : ax = xa \hspace{0.2cm} \forall a \in G\rbrace$$ y es subgrupo de $G$ tal y como vimos en~\ref{eq:centro}.
 
-Basta probar que $H^{a}\subseteq H$ para cada $a \in G$. Sea $x \in H^{a}$. Así $axa^{-1} = h \in H$, luego $x = a^{-1}ha$. Como $h \in H \subseteq Z(G)$, $ha = ah$ y así $x = a^{-1}ha = h \in H.$
+Basta probar que $H^{a}\subseteq H$ para cada $a \in G$. Sea $x \in H^{a}$. Así $a^{-1}xa = h \in H$, luego $x = aha^{-1}$. Como $h \in H \subseteq Z(G)$, $ha = ah$ y así $x = aha^{-1} = h \in H.$
 
 $\hfill \square$
 
@@ -421,7 +491,7 @@ El siguiente resultado vendrá bien tenerlo en cuenta cuando demos los \textit{T
 \item Si $\Sigma$ es la familia de subgrupos conjugados de $H$ (distintos) y $N = N_{G}(H)$ es el normalizador de $H$ en $G$, la aplicación $$
 \begin{array}{rccl}
 \varphi \colon &G/\sim_{N} & \longrightarrow & \Sigma\\
-&Na & \longmapsto &H^{a}
+&aN & \longmapsto &H^{a}
 \end{array}
 $$ es biyectiva.
 \item En particular, si $N_{G}(H)$ tiene índice finito en $G$, el número de conjugados de $H$ en $G$ es $\left[ G:N_{G}(H) \right]$.
@@ -443,20 +513,20 @@ $\hfill \square$
 \emph{Demostración: }Basta probar que $K(H)^{b} \subseteq K(H)$ para cada $b \in G$:
 
 Sea $x \in K(H)^{b}$, tenemos que ver que $x \in H^{a}$ para cada $a \in G$. Pero $
-bxb^{-1} \in K(H) \subseteq H^{ab^{-1}}$, luego $ab^{-1}(bxb^{-1})(ab^{-1})^{-1} \in H,$ y por lo tanto $axa^{-1} \in H$ y $x\in H^{a}$.
+b^{-1}xb \in K(H) \subseteq H^{a^{-1}b}$ (ya que $a^{-1}b$ es un elemento de $G$), luego $a^{-1}b(b^{-1}xb)(a^{-1}b)^{-1} \in H,$ y por lo tanto $a^{-1}xa \in H$ y $x\in H^{a}$.
 
 $\hfill \square$
 
 Los subgrupos normales son importantes porque nos permiten construir un nuevo tipo de grupo.
 
-\begin{proposition}Supongamos que $N \unlhd G$. El conjunto $G/N$ de las clases a izquierda módulo $N$ es un grupo con la operación de $G$ 
-$$(xN)(yN)=xyN,$$ con $x,y \in G$. El elemento neutro del grupo $G/N$ es $N$ y $(xN)^{-1} = x^{-1}N$ para tod $x \in G$.
+\begin{proposition}\label{eq:cociente} Supongamos que $N \unlhd G$. El conjunto $G/N$ de las clases a izquierda módulo $N$ es un grupo con la operación de $G$ 
+$$(xN)(yN)=xyN,$$ con $x,y \in G$. El elemento neutro del grupo $G/N$ es $N$ y $(xN)^{-1} = x^{-1}N$ para todo $x \in G$.
 \end{proposition}
 \emph{Demostración: }Tenemos que $$(xN)(yN)=x(Ny)N = x(yN)N = xyN.$$ Luego es una operación binaria. 
 
 Veamos que la operación está bien definida: sean $xN = x'N$, $yN = y'N$, veamos que $xyN = x'y'N$. Por~\ref{eq:partiGrupo}, $x^{-1}x' \in N$, $y^{-1}y' \in N$. Ahora $(xy)^{-1}(x'y') = y^{-1}x^{-1}x'y' = y^{-1}x^{-1}x'yy^{-1}y'=y^{-1}(x^{-1}x')y(y^{-1}y') \in N$. Nuevamente por~\ref{eq:partiGrupo} se tiene.
 
-Como $N = 1N$ por lo primero tenemos que $$(xN)N=xN = N(xN)$$ y así es el elemento neutro de $G/N$. También tenemmos que $$(xN)(x^{-1}N) = N = (x^{-1}N)(xN),$$ para todo $x	\in G$.
+Como $N = 1N$ por lo primero tenemos que $$(xN)N=xN = N(xN)$$ y así es el elemento neutro de $G/N$. También tenemos que $$(xN)(x^{-1}N) = N = (x^{-1}N)(xN),\quad \forall x\in G.$$
 
 $\hfill \square$
 
@@ -475,7 +545,7 @@ $\hfill \square$
 \end{proposition}
 \emph{Demostración: }Primeramente veamos que $NH=HN$ y así $NH$ es subgrupo de $G$:
 
-En particular $NH$ es subgrupo de $NK$, pues $NH \subseteq NK$. Pero si $x \in NH$ se escribirá $x = nh, \hspace{0.1cm} n \in N, \hspace{0.1cm} h \in H$. Así $x \in Nh = hN \subseteq HN$, la igualdad $Nh = hN$ se tiene por ser $N$ subgrupo normal de $G$. Esto prueba el contenido $NH \subseteq HN$. El otro es análogo. De igual forma se prueba que $NK = KN$, luego $NK$ es subgrupo de $G$, y así es grupo. Ahora veamos la normalidad:
+En particular $NH$ es subgrupo de $NK$, pues $NH \subseteq NK$. Si $x \in NH$ escribiremos $x = nh, \hspace{0.1cm} n \in N, \hspace{0.1cm} h \in H$. Así $x \in Nh = hN \subseteq HN$, la igualdad $Nh = hN$ se tiene por ser $N$ subgrupo normal de $G$. Esto prueba el contenido $NH \subseteq HN$. El otro es análogo. De igual forma se prueba que $NK = KN$, luego $NK$ es subgrupo de $G$, y así es grupo. Ahora veamos la normalidad:
 
 Veamos ahora que si $a \in NK$, entonces $a(NH) = (NH)a$. Como $a \in NK$ se escribirá $a = nk, \hspace{0.1cm} n \in N, \hspace{0.1cm} k \in K$. Si $x \in a(NH) = a(HN)$ se tendrá $x = ahn_{1}, \hspace{0.1cm} h \in H, \hspace{0.1cm} n_{1} \in N.$ Como $x \in (ah)N = N(ah)$ por ser $N$ subgrupo normal de $G$, tendremos entonces $x = n_{2}ah = n_{2}nkh, \hspace{0.1cm} n_{2} \in N.$ Como $kh \in kH = Hk$ por ser $H$ subgrupo normal de $K$, $x = n_{2}nh_{1}k, \hspace{0.1cm} h_{1} \in H,$ o también, $x = n_{2}nh_{1}n^{-1}nk = n_{2}nh_{1}n^{-1}a$. Ahora $h_{1}n^{-1} \in HN = NH$, con lo que se tiene $h_{1}n^{-1} = n_{3}h_{2}$, $n_{3} \in N$, $h_{2} \in H$. Finalmente, $x = n_{2}nn_{3}h_{2}a \in (NH)a$. Y así $a(NH) \subseteq (NH)a$. Para el otro contenido se procede de igual forma.
 
@@ -487,7 +557,7 @@ Dado un entero positivo $m$, el subgrupo $H = m\mathbb{Z}$ del grupo $\mathbb{Z}
 &(a+m\mathbb{Z}, b+m\mathbb{Z}) & \longmapsto &a+b+m\mathbb{Z}.
 \end{array}
 $$
-Además el grupo cociente $\mathbb{Z}/m\mathbb{Z}$ es de orden $m$. y sabemos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace 0+m\mathbb{Z}, 1+m\mathbb{Z}, \ldots, (m-1)+m\mathbb{Z}\rbrace$$ siendo todos sus elementos distintos. Finalmente es claro que $\mathbb{Z}/m\mathbb{Z} = \langle 1+m\mathbb{Z}\rangle.$ Además definiremos un grupo abeliano concreto que estudiaremos más adelante, y que veremos que es muy interesante:
+Además el grupo cociente $\mathbb{Z}/m\mathbb{Z}$ es de orden $m$ y sabemos que $$\mathbb{Z}/m\mathbb{Z} = \lbrace 0+m\mathbb{Z}, 1+m\mathbb{Z}, \ldots, (m-1)+m\mathbb{Z}\rbrace,$$ siendo todos sus elementos distintos. Finalmente es claro que $\mathbb{Z}/m\mathbb{Z} = \langle 1+m\mathbb{Z}\rangle.$ Además definiremos un grupo abeliano concreto que estudiaremos más adelante, y que veremos que es muy interesante:
 $$\mathbb{Z}_{m}^{\ast} = \lbrace a+m\mathbb{Z} \in \mathbb{Z}/m\mathbb{Z} : mcd(a,m) = 1\rbrace,$$
 con la operación 
 $$\begin{array}{rccl}
@@ -499,17 +569,17 @@ $$
 
 $\hfill \blacksquare$
 
-Veamos ahora una clase especial de grupos, los conocidos como grupos cíclicos. 
+Veamos ahora una clase especial de grupos, los conocidos como \textit{grupos cíclicos}. Ya hemos hablado antes de los generadores de un grupo, bien pues los grupos cíclicos son aquellos que están generados por un sólo momento, repasemos las potencias y el concepto de grupo generado por un elemento:
 
 Dado un $n$ entero positivo y $x\in G$, tenemos que $$x^n = x\underbrace{\ldots}_{n} x, \quad x^{-n} = x^{-1} \underbrace{\ldots}_n x^{-1}.$$ También convenimos que $x^0 = 1$. Si $G$ es un grupo abeliano escribiremos $$nx = x\underbrace{+\ldots +}_n x, \quad (-n)x=(-x)\underbrace{+\ldots +}_n(-x), \quad 0x = 0.$$ También es claro que $$x^{n+m} = x^nx^m, \quad (x^n)^m=x^{nm}.$$
 
 \begin{definition}Si consideramos un grupo $G$ y un $x\in G$, entonces $$\langle x \rangle = \lbrace x^n:n \in \mathbb{Z} \rbrace,$$ es un subgrupo de $G$ que lo denominaremos \textbf{subgrupo generado por $x$}. Es claro que si $H$ es un subgrupo de $G$ que contiene a $x$, entonces $\langle x \rangle \subseteq H$.
 \end{definition}
 
-\begin{definition}Decimos que un grupo $G$ es \textbf{cíclico} si existe un $x \in G$ tal que $$\langle x \rangle = G.$$ A este elemento $x$ lo llamamos \textbf{generador} de $G$. En general, un grupo cíclico puede tener varios elementos generadores.
+\begin{definition}Decimos que un grupo $G$ es \textbf{cíclico} si existe un $x \in G$ tal que $$\langle x \rangle = G.$$ A este elemento $x$ lo llamamos \textbf{generador} de $G$. En general, un grupo cíclico puede tener varios elementos generadores. En general, a un grupo cíclico de orden $n$ se le suele denotar $C_n$.
 \end{definition}
 
-Notar que por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \rbrace= \langle 1 \rangle,$$ es un grupo cíclico infinito. O también el grupo visto antes $$C_n = \langle \xi \rangle, \quad \xi = \cos\left(\dfrac{2\pi}{n}\right)+i\sin\left(\dfrac{2\pi}{n}\right),$$ es un grupo cíclico finito de orden $n$. Notar también que los grupos cíclicos son abelianos, ya que dados dos elementos $y,z \in G$ entonces $yz = x^nx^m=x^{n+m}=x^{m+n} = x^mx^n=zy.$
+Notar que por ejemplo $$\mathbb{Z} = \lbrace 1n \wedge 1(-n) :n \in \mathbb{N} \rbrace= \langle 1 \rangle,$$ es un grupo cíclico infinito. O también el grupo visto al principio $$C_n = \langle \xi \rangle, \quad \xi = \cos\left(\dfrac{2\pi}{n}\right)+i\sin\left(\dfrac{2\pi}{n}\right),$$ es un grupo cíclico finito de orden $n$. Notar también que \textit{los grupos cíclicos son abelianos}, ya que dados dos elementos $y,z \in G$ entonces $yz = x^nx^m=x^{n+m}=x^{m+n} = x^mx^n=zy.$
 
 \begin{proposition}\label{eq:subciclico} Dado un grupo $G$ cíclico y $H \leq G$. Entonces $H$ es cíclico.
 \end{proposition}
@@ -525,7 +595,9 @@ pero por la elección de $k$ (el menor entero positivo tal que $x^{k} \in H$) ne
 
 $\hfill \square$
 
-Por ejemplo, los subgrupos de $\mathbb{Z}$ son de la forma $$m\mathbb{Z} = \lbrace mz : z \in \mathbb{Z} \rbrace = \langle m \rangle.$$
+Por ejemplo, los subgrupos de $\mathbb{Z}$ son cíclicos y son de la forma $$m\mathbb{Z} = \lbrace mz : z \in \mathbb{Z} \rbrace = \langle m \rangle.$$
+
+El siguiente resultado ya lo habíamos tenido en cuenta cuando hablamos de los subgrupos, pero ahora lo formalizamos:
 
 \begin{corolario}Sea $H$ un subconjunto no vacío de $\mathbb{Z}$. Entonces $H \leq Z$ si y sólo si existe un único entero no negativo $d$ tal que $H = d\mathbb{Z}$. Además, si $e \in \mathbb{Z}$, entonces $d\mathbb{Z} \subseteq e\mathbb{Z}$ si y sólo si $e$ divide a $d$.
 \end{corolario}
@@ -539,11 +611,13 @@ $\hfill \square$
 \item Si $d = mcd(a,b)$, entonces $mcd \left(\dfrac{a}{d}, \dfrac{b}{d} \right) = 1.$
 \end{enumerate}
 \end{corolario}
-\emph{Demostración: }Ya sabemos que $a\mathbb{Z}+b\mathbb{Z}$ es subgrupo de $\mathbb{Z}$. Por el corolario anterior sabemos que existe un único entero no negativo $d$ tal que $a\mathbb{Z}+b\mathbb{Z} = d\mathbb{Z}$. Como $0\neq a,b \in a\mathbb{Z}+b\mathbb{Z}$ deducimos que $d\neq 0$. Como $a\mathbb{Z}, b\mathbb{Z} \subseteq d\mathbb{Z}$, tenemos que $d$ divide a $a$ y a $b$. Como $a\mathbb{Z}+b\mathbb{Z}$ existen enteros $u,v$ tales que $au+bv = d$. Supongamos ahora que tenemos un $e\in \mathbb{Z}$ que divide a $a$ y a $b$. Entonces $e$ divide a $au+bv = d$, y esto prueba $1.$
+\emph{Demostración: }Lo primero ya está probado en el ejemplo~\ref{eq:gib}.
 
 Si un entero positivo $n$ divide a $a/d$ y a $b/d$, entonces $nd$ divide a $a$ y a $b$. Entonces es claro que $nd$ divide a $d$ (por ser éste el mcd) y de aquí $n=1$. Esto prueba $2.$
 
 $\hfill \square$
+
+Al principio definimos el orden de un grupo como el número de elementos que contiene, análogo al cardinal en los conjuntos. Ahora veremos que los elementos también tienen orden:
 
 \begin{definition}Sea $G$ un grupo y $x \in G$. Si no existe ningún entero positivo $m$ tal que $x^m=1$ decimos entonces que el \textbf{orden} de $x$ es \textbf{infinito}. En caso contrario, diremos que el \textbf{orden} de $x$ es \textbf{finito} y llamaremos \textbf{orden} de $x$ al menor entero positivo $m$ tal que $x^m =1$. Lo escribiremos como $o(x) = m$ ó también $|x| = m$.
 \end{definition}
@@ -580,9 +654,13 @@ $\hfill \square$
 
 $\hfill \square$
 
-Ya hemos analizado $\mathbb{Z}$ pero no sus cocientes. Si $n$ es un entero, el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ es un objeto matemático de interés. Ya sabemos que si $x,y \in \mathbb{Z}$ entonces $x+n\mathbb{Z} = y + n\mathbb{Z}$ si y sólo si $x-y \in n\mathbb{Z}$ si y sólo si $n$ divide a $x-y$. Esto lo escribiremos como $x \equiv y$ mod $n$.
+Este resultado que acabamos de ver tiene sentido porque el orden de un grupo siempre es un entero positivo, y éstos se pueden descomponer en un producto de factores primos tal y como veremos en la parte de anillos, por lo que siempre habrá un primo que lo divida.
 
-\begin{proposition}Si $n \geq 1$, entonces $$\mathbb{Z}/n\mathbb{Z} = \lbrace n\mathbb{Z}, 1+n\mathbb{Z}, \ldots, (n-1)+n\mathbb{Z} \rbrace$$ es un grupo cíclico de orden $n$.
+
+
+Ya hemos analizado $\mathbb{Z}$ pero no sus cocientes. Si $n$ es un entero, el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ es un objeto matemático de interés. Ya sabemos que si $x,y \in \mathbb{Z}$ entonces $x+n\mathbb{Z} = y + n\mathbb{Z}$ si y sólo si $x-y \in n\mathbb{Z}$ si y sólo si $n$ divide a $x-y$. Esto lo escribiremos como $x \equiv y$ mod $n$ y es la base de la conocida como \textit{aritmética modular}.
+
+\begin{proposition}Si $n \geq 1$, entonces $$\mathbb{Z}_n=\mathbb{Z}/n\mathbb{Z} = \lbrace 0+n\mathbb{Z}, 1+n\mathbb{Z}, \ldots, (n-1)+n\mathbb{Z} \rbrace$$ es un grupo cíclico de orden $n$.
 \end{proposition}
 \emph{Demostración: }Como $\mathbb{Z}$ es abeliano, $n\mathbb{Z} \unlhd \mathbb{Z}$ y el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ está bien definido. Si $x,y \in \mathbb{Z}$, entonces $x +n\mathbb{Z} = y + n\mathbb{Z}$ si y sólo si $n$ divide a $x-y$. Así, tenemos que las clases $n\mathbb{Z}, 1+n\mathbb{Z}, \ldots, (n-1) +n\mathbb{Z}$ son necesariamente distintas. Como $k(1+n\mathbb{Z}) = k + n\mathbb{Z}$, con $k \in \mathbb{Z}$ deducimos que $o(1+n\mathbb{Z})=n$. Por lo que $|\mathbb{Z}/n\mathbb{Z}| = n$.
 
@@ -591,16 +669,47 @@ $\hfill \square$
 \begin{definition}Si $n$ es un entero positivo, llamamos \textbf{función de Euler}, y la denotamos por $\varphi$, a $$\varphi(n)=| \lbrace m \in \mathbb{Z}:1\leq m \leq n, \hspace{0.1cm} mcd(n,m)=1 \rbrace|.$$
 \end{definition}
 
-Notar que por~\ref{eq:prelgrupcic}, $\varphi(n)$ es el número de generadores en un grupo cíclico de orden $n$.
+Notar que, por~\ref{eq:prelgrupcic}, $\varphi(n)$ es el número de generadores en un grupo cíclico de orden $n$.
+
+Acabemos este capítulo con un ejemplo:
+
+\begin{example}Como hemos visto al principio, si tenemos $n \in \mathbb{Z}$, con $n>1$ y consideramos el grupo aditivo $\mathbb{Z}_{n}$, tenemos que $\mathbb{Z}_{n} = \langle \left[ 1 \right] \rangle$ (aquí hemos escrito $\left[ 1 \right]$ en lugar de $\left[ 1 \right]_{n}$ por cuestiones estéticas). Esto se comprueba fácilmente ya que 
+\begin{center}
+$0\left[ 1 \right] = \left[ 0 \right]$, $1\left[ 1 \right] = \left[ 1 \right]$, $2\left[ 1 \right] = \left[ 2 \right]$, $\ldots$ , $(n-1)\left[ 1 \right] = \left[ n-1 \right].$
+\end{center}
+Y como acabamos de ver, en función del $n$ escogido, $\mathbb{Z}_{n}$ puede estar generado por otros elementos además de $\left[ 1 \right]$. Veamos para $\mathbb{Z}_{8}$.
+
+Ya sabemos que $\mathbb{Z}_{8} = \lbrace \left[ 0 \right], \left[ 1 \right], \left[ 2 \right], \left[ 3 \right], \left[ 4 \right], \left[ 5 \right], \left[ 6 \right], \left[ 7 \right] \rbrace$, y además
+
+$0\left[ 3 \right] = 0(3 + 8\mathbb{Z}) = 0 +8\mathbb{Z} = \left[ 0 \right],1\left[ 3 \right] = 1(3 + 8\mathbb{Z}) = 3 +8\mathbb{Z} = \left[ 3 \right],2\left[ 3 \right] = 2(3 + 8\mathbb{Z}) = 6 +8\mathbb{Z} = \left[ 6 \right],$
+
+$3\left[ 3 \right] = 3(3 + 8\mathbb{Z}) = 1 +8\mathbb{Z} = \left[ 1 \right],4\left[ 3 \right] = 4(3 + 8\mathbb{Z}) = 4 +8\mathbb{Z} = \left[ 4 \right], 5\left[ 3 \right] = 5(3 + 8\mathbb{Z}) = 7 +8\mathbb{Z} = \left[ 7 \right],$
+
+$6\left[ 3 \right] = 6(3 + 8\mathbb{Z}) = 2 +8\mathbb{Z} = \left[ 2 \right], 7\left[ 3 \right] = 7(3 + 8\mathbb{Z}) = 5 +8\mathbb{Z} = \left[ 5 \right],$
+
+con lo que $\mathbb{Z}_{8} = \langle \left[ 3 \right] \rangle$. 
+
+Por el resultado anterior sabemos que esto ocurre porque $mcd(3,8)=1$, igualmente con $\left[ 5 \right]$ y con $\left[ 7 \right]$ pero sin embargo con $\left[ 2 \right]$:
+
+$0\left[ 2 \right] = 0(2 + 8\mathbb{Z}) = 0 +8\mathbb{Z} = \left[ 0 \right],1\left[ 2 \right] = 1(2 + 8\mathbb{Z}) = 2 +8\mathbb{Z} = \left[ 2 \right],2\left[ 2 \right] = 2(2 + 8\mathbb{Z}) = 4 +8\mathbb{Z} = \left[ 4 \right],$
+
+$3\left[ 2 \right] = 3(2 + 8\mathbb{Z}) = 6 +8\mathbb{Z} = \left[ 2 \right],4\left[ 2 \right] = 4(2 + 8\mathbb{Z}) = 0 +8\mathbb{Z} = \left[ 0 \right], 5\left[ 2 \right] = 5(2 + 8\mathbb{Z}) = 2 +8\mathbb{Z} = \left[ 2 \right],$
+
+$6\left[ 2 \right] = 6(2 + 8\mathbb{Z}) = 4 +8\mathbb{Z} = \left[ 4 \right], 7\left[ 2 \right] = 7(2 + 8\mathbb{Z}) = 6 +8\mathbb{Z} = \left[ 6 \right],$
+
+con lo que $\langle \left[ 2 \right] \rangle = \lbrace \left[ 0 \right], \left[ 2 \right], \left[ 4 \right], \left[ 6 \right] \rbrace \neq \mathbb{Z}_{8}$.
+\end{example}
+
+$\hfill \blacksquare$
 
 \subsection{Homomorfismos}
 
-Estudiaremos ahora aquellas aplicaciones \textit{buenas} entre grupos, es decir, aquellas que preservan la estructura de grupo.
+Estudiaremos ahora aquellas aplicaciones \textit{buenas} entre grupos, es decir, aquellas que preservan la estructura de grupo. Esto ocurre en todas las estructuras algebraicas, aplicaciones que envían elementos de una estructura a otro conjunto dotado de esa misma estructura, es decir, conserva todas las propiedades de la propia estructura.
 
 \begin{definition}Dados $G$ y $H$ grupos, una aplicación $f \colon G \longrightarrow H$ es un \textbf{homomorfismo de grupos} si cumple $$f(xy) = f(x)f(y) \quad \forall x,y \in G.$$
 \end{definition}
 
-Los homomorfismos son una potente herramienta para analizar los grupos que relaciona. Si estudiamos los de los grupos más importantes: $S_{\Omega}$ y $GL_n(K)$ llegaremos a dos subramas de la teoría de grupos: la teoría de permutaciones para el primero y la de representaciones de grupos para el segundo.
+Los homomorfismos son una potente herramienta para analizar los grupos que relaciona. Si estudiamos los homomorfismos de dos de los grupos más importantes: $S_{\Omega}$ y $GL_n(K)$ llegaremos a dos subramas de la teoría de grupos: la teoría de permutaciones para el primero y la de representaciones de grupos para el segundo.
 
 \begin{example}\label{eq:ejsHoms} Algunos ejemplos importantes de homomorfismos:
 \begin{enumerate}
@@ -613,7 +722,7 @@ $$
 &G&\longrightarrow &G/N \\
 &g& \longmapsto &gN
 \end{array}
-$$
+$$ que se conoce como \textbf{proyección canónica}.
 \item Dado $G = \langle x \rangle$ un grupo cíclico, la aplicación $$\begin{array}{rccl}
 &\mathbb{Z}&\longrightarrow &G \\
 &m& \longmapsto &x^m
@@ -633,7 +742,7 @@ Más adelante veremos más desarrollados estos homomorfismos.
 \item $o(f(x))$ divide al orden de $x$. En efecto, si $o(x) = m$ como $x^{m} = 1_{G}$ se tiene que $1_{H} = f(1_{G}) = f(x^{m}) = f(x)^{m}$ y así $o(f(x))$ divide a $m$. 
 \item Si $Y$ es un subgrupo de $H$, $$f^{-1}(Y) = \lbrace x \in G : f(x) \in Y\rbrace$$ es un subgrupo de $G$. Además si $Y$ es subgrupo normal de $H$, $f^{-1}(Y)$ lo es de $G$.
 
-En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$. Para probar la normalidad de $f^{-1}(Y)$ usamos la última de las condiciones: Si $ab \in f^{-1}(Y)$ se sigue que $f(a)f(b) = f(ab) \in Y$ y como $Y$ es normal, $f(ab) = f(b)f(a) \in Y.$ Por lo tanto $ba \in f^{-1}(Y).$
+En efecto, si $x,y \in f^{-1}(Y)$, entonces $f(x),f(y) \in Y$, de donde $f(xy^{-1}) = f(x)f(y)^{-1} \in Y$, luego $xy^{-1} \in f^{-1}(Y)$ y $f^{-1}(Y)$ es subgrupo. Para probar la normalidad de $f^{-1}(Y)$ tenemos que ver que $[f^{-1}(Y)]^a \subseteq f^{-1}(Y)$, con $a \in G$. Sea $x \in [f^{-1}(Y)]^a$, luego $a^{-1}xa \in f^{-1}(Y)$ y así $f(a^{-1}xa)=f(a)^{-1}f(x)f(a) \in Y$, por lo que $f(x) \in Y^{f(a)}$ y como $f(a)$ es un elemento de $H$ e $Y$ es normal entonces $f(x) \in Y$ y así $x \in f^{-1}(Y)$.
  
 \item Si además consideramos otro homomorfismo $
 \begin{array}{rccl}
@@ -676,7 +785,7 @@ $$ es un homomorfismo inyectivo puesto que $i(xy) = xy = i(x)i(y)$ y $x \in Ker 
 \pi \colon &G & \longrightarrow & G/H\\
 &x & \longmapsto &xH
 \end{array}
-$$ es un homomorfismo sobreyectivo. La sobreyectividad es obvia y para ver que es homomorfismo: $$\pi (xy) = xyH = (xH)(yH) = \pi (x) \pi (y).$$ Lo llamaremos \textbf{\textit{proyección canónica}}.
+$$ es un homomorfismo sobreyectivo. La sobreyectividad es obvia y para ver que es homomorfismo: $$\pi (xy) = xyH = (xH)(yH) = \pi (x) \pi (y).$$ Lo llamaremos \textbf{\textit{proyección canónica}} y ya lo habíamos visto antes en los ejemplos.
 \end{itemize}
 
 \begin{definition}Sea $
@@ -715,11 +824,11 @@ $es isomorfismo, también lo es $
 \begin{array}{rccl}
 f^{-1}\colon G_{2} \longrightarrow  G_{1}
 \end{array}
-$, o, dicho de otra forma, si $G_{1}\simeq G_{2}$ entonces $G_{2}\simeq G_{1}$.
+$, o, dicho de otra forma, si $G_{1}\cong G_{2}$ entonces $G_{2}\cong G_{1}$.
 
 \emph{Demostración: }Como la inversa de toda aplicación biyectiva es biyectiva, basta comprobar que $f^{-1}$ es homomorfismo de grupos.\vspace{0.2cm}\\
 Si $a,b \in G_{2}$, y $f^{-1}(a)= x$, $f^{-1}(b) = y$, entonces $$f(x) = a, \hspace{0.1cm} f(y) = b\Longrightarrow f(xy) = f(x)f(y) = ab,$$ y así, $xy = f^{-1}(ab)$, por lo que $f^{-1}(ab) = f^{-1}(a)f^{-1}(b).$
-\item Si $G_{1}\simeq G_{2}$ y $G_{1}$ es abeliano, también lo será $G_{2}$
+\item Si $G_{1}\cong G_{2}$ y $G_{1}$ es abeliano, también lo será $G_{2}$
 
 \emph{Demostración: }Sean $x,y \in G_{2}$ y$
 \begin{array}{rccl}
@@ -729,13 +838,15 @@ $ isomorfismo. Como $f$ es sobreyectiva, existirán $a,b \in G$ tales que $x = f
 \end{enumerate}
 \end{observation}
 
-Notemos que si $G_{1}$ es un grupo cualquiera, entonces $G_{1} \simeq G_{1}$ puesto que que la aplicación identidad$
+Notemos que si $G_{1}$ es un grupo cualquiera, entonces $G_{1} \cong G_{1}$ puesto que que la aplicación identidad$
 \begin{array}{rccl}
 f\colon G_{1} \longrightarrow  G_{1}
 \end{array}
-$ es claramente un isomorfismo. Ya sabemos que si $G_{1}\cong G_{2}$ entonces $G_{2} \cong G_{1}$, y además si tenemos un tercer grupo $G_{3}$ y $G_{1} \cong G_{2}$, $G_{2} \cong G_{3}$, entonces $G_{1} \cong G_{3}$ ya que la composición de isomorfismos también es isomorfismo. Por lo tanto, si consideramos el conjunto de todos los grupos, la relación binaria $\cong$ es de equivalencia.
+$ es claramente un isomorfismo. Ya sabemos que si $G_{1}\cong G_{2}$, entonces $G_{2} \cong G_{1}$, y además si tenemos un tercer grupo $G_{3}$ y $G_{1} \cong G_{2}$, $G_{2} \cong G_{3}$, entonces $G_{1} \cong G_{3}$ ya que la composición de isomorfismos también es isomorfismo. Por lo tanto, si consideramos el conjunto de todos los grupos, \textit{la relación binaria $\cong$ es de equivalencia}.
 
-Como hemos podido ver, la propiedad de ser abeliano se conserva en isomorfismos. Será común ir viendo más propiedades que se conservan, y las llamaremos \textit{invariantes bajo isomorfismo}. Es decir, dos grupos isomorfos tienen, por así decirlo, «las mismas propiedades» y lo único en lo que se diferencian será en los símbolos utilizados para representar los elementos y operaciones. Es decir, son en esencia el mismo grupo.
+Como hemos podido ver, la propiedad de ser abeliano se conserva en isomorfismos. Será común ir viendo más propiedades que se conservan, y las llamaremos \textit{invariantes bajo isomorfismo}. Es decir, dos grupos isomorfos tienen, por así decirlo, «las mismas propiedades» y lo único en lo que se diferencian será en los símbolos utilizados para representar los elementos y operaciones. Es decir, en esencia son el mismo grupo.
+
+Hablaremos así de una serie de resultados conocidos como \textit{Teoremas de Isomorfía}, que fueron enunciados por primera vez por la matemática alemana Emmy Noether, de la que también veremos más resultados más adelante.
 
 \begin{theorem}[\textbf{\textit{Primer Teorema de Isomorfía}}]
 Sea $f \colon G \longrightarrow H$ un homomorfismo de grupos. Entonces, la aplicación $$\begin{array}{rccl}
@@ -750,7 +861,9 @@ es un isomorfismo de grupos.
 $\hfill \square$
 
 Es decir, el \textit{Primer Teorema de Isomorfía} hace conmutativo el siguiente diagrama, $$\xymatrix @=2cm {G\ar[r]^{f} \ar[d]_\pi & H \\ G/Ker f \ar[r]^{\bar{f}} & Im f \ar[u]_{i}  }$$
-donde $\pi$ e $i$ son los homomorfismos proyección e inclusión presentados anteriormente. 
+donde $\pi$ e $i$ son los homomorfismos proyección e inclusión presentados anteriormente. Es decir, $$f = i \circ \bar{f} \circ \pi.$$
+
+Y a esta expresión la llamaremos \textbf{\textit{descomposición canónica de un homomorfismo}} $f$.
 
 \begin{proposition}\label{eq:lemIsom} Sea $N \unlhd G$ y sea $f \colon G \longrightarrow G/N$ el homomorfismo $f(g) = gN$. Si $H \leq G$, entonces $f(H) = f(NH)=NH/N \leq G/N$.
 \end{proposition}
@@ -779,14 +892,14 @@ $$
 f\colon &(GL_{n}(\mathbb{R}), \cdot) & \longrightarrow & (\mathbb{R}^{\ast}, \cdot)\\
 &A& \longmapsto &det A
 \end{array}
-$$ es un epimorfismo (un homomorfismo sobreyectivo) de grupos con núcleo $SL_{n}(\mathbb{R})$ y así, por el \textit{Primer Teorema de Isomorfía}, $$GL_{n}(\mathbb{R})/SL_{n}(\mathbb{R}) \simeq \mathbb{R}^{\ast}.$$
-En efecto, $f(AB) = det(AB) = det A \cdot det B = f(A)f(B)$, luego $f$ es homomorfismo. Es evidente que $Ker f = SL_{n}(\mathbb{R})$ por definición. Finalmente, si $a \in \mathbb{R}^{\ast}$, la matriz $$A = (a_{ij} : 1 \leq i \leq n,\hspace{0.1cm} 1\leq j \leq n)$$ definida por  $$a_{ij} = \left\lbrace \begin{array}{c} 0\hspace{0.1cm} si \hspace{0.1cm} i\neq j\\ a\hspace{0.1cm} si \hspace{0.1cm}  i=j=1\\1\hspace{0.1cm} si \hspace{0.1cm}  i=j>1  \end{array}\right.$$
+$$ es un epimorfismo (un homomorfismo sobreyectivo) de grupos con núcleo $SL_{n}(\mathbb{R})$ y así, por el \textit{Primer Teorema de Isomorfía}, $$GL_{n}(\mathbb{R})/SL_{n}(\mathbb{R}) \cong \mathbb{R}^{\ast}.$$
+En efecto, $f(AB) = det(AB) = det A \cdot det B = f(A)f(B)$, luego $f$ es homomorfismo. Es evidente que $Ker f = SL_{n}(\mathbb{R})$ por definición. Finalmente, si $a \in \mathbb{R}^{\ast}$, la matriz $$A = (a_{ij} : 1 \leq i \leq n,\hspace{0.1cm} 1\leq j \leq n)$$ definida por  $$a_{ij} = \left\lbrace \begin{array}{cll} 0\hspace{0.1cm} &\text{si} \hspace{0.1cm} &i\neq j\\ a\hspace{0.1cm} &\text{si} \hspace{0.1cm}  &i=j=1\\1\hspace{0.1cm} &\text{si} \hspace{0.1cm}  &i=j>1  \end{array}\right.$$
 cumple $det A = a1^{n-1} = a$, probando la sobreyectividad de $f$.
 \item Sea $x \in \mathbb{R}$ y  $$\begin{array}{rccl}
 f\colon &(\mathbb{R}, +) & \longrightarrow & (\mathbb{C}^{\ast}, \cdot)\\
 &x& \longmapsto &e^{2\pi xi},
 \end{array}
-$$ como $e^{2\pi xi} = \cos 2\pi x + i\sin 2\pi x = 1$ si $x \in \mathbb{Z}$, deducimos que $Ker f = \mathbb{Z}$. Y como, para cualquier $x \in \mathbb{R}$, el valor absoluto o \textit{módulo} del número complejo $e^{2\pi x i} = \cos 2\pi x + i\sin 2\pi x$ es $\sqrt{\cos^{2} 2 \pi x +\sin^{2} 2\pi x} = 1$, tenemos que $Im f = S^{1} = \lbrace z \in \mathbb{C}: |z| = 1\rbrace$ (indicaremos el módulo con $|\cdot |$). Así, por el \textit{Primer Teorema de Isomorfía}: $$(\mathbb{R}/\mathbb{Z},+) \simeq (S^{1}, \cdot).$$
+$$ como $e^{2\pi xi} = \cos 2\pi x + i\sin 2\pi x = 1$ si $x \in \mathbb{Z}$, deducimos que $Ker f = \mathbb{Z}$. Y como, para cualquier $x \in \mathbb{R}$, el valor absoluto o \textit{módulo} del número complejo $e^{2\pi x i} = \cos 2\pi x + i\sin 2\pi x$ es $\sqrt{\cos^{2} 2 \pi x +\sin^{2} 2\pi x} = 1$, tenemos que $Im f = S^{1} = \lbrace z \in \mathbb{C}: |z| = 1\rbrace$ (indicaremos el módulo con $|\cdot |$). Así, por el \textit{Primer Teorema de Isomorfía}: $$(\mathbb{R}/\mathbb{Z},+) \cong (S^{1}, \cdot).$$
 \item Sea $G$ un grupo abeliano y $$\begin{array}{rccl}
 f\colon &G & \longrightarrow & G\\
 &x& \longmapsto &x^{2}
@@ -796,9 +909,14 @@ Observar que $$Ker f = \lbrace x \in G : x^{2} = 1\rbrace$$ que estará formado 
 
 Notar que en general $f$ no es inyectiva, sólo lo será si el orden de $G$ es impar.
 
-\emph{Demostración: } Suponer que $|G| = 2k+1$ impar, sea $x \in ker f$. Así $x^{2} = 1$ y también $x^{2k+1} = 1$, por ser el orden de $G$. Entonces $$x = x1 = x1^{k} = x(x^{2})^{k} = x^{2k+1} = 1$$ y así $f$ es inyectiva.\vspace{0.2cm}\\
-Recíprocamente, veamos que si $|G| = 2k$ es par, sea o no $G$ abeliano, $f$ no es inyectiva. Para cada $x \in G$ llamaremos $A_{x} = \lbrace x, x^{-1}\rbrace.$ Además los $A_{x}$ constituyen una partición de $G$ pues como cada $x \in A_{x}$, la igualdad $$G = \bigcup_{x \in G} A_{x}$$ es obvia, además si $A_{x}\cap A_{y} \neq \emptyset$ entonces $x \in \lbrace y, y^{-1}\rbrace$ ó $x^{-1} \in \lbrace y,y^{-1}\rbrace$.\vspace{0.2cm}\\
-Para el primer caso, si $x = y$ entonces $x^{-1} = y^{-1}$ y $A_{x} = A_{y}$, y si $x = y^{-1}$ entonces $x^{-1} = y$ y nuevamente $A_{x} = A_{y}$. Análogamente para el segundo caso.\vspace{0.2cm}\\ Es claro que $A_{1} = \lbrace 1 \rbrace$, pues $1^{-1} = 1$. Si el resto de los $A_{x}$ (supongamos que hay $p$ de ellos) tuviese dos elementos, entonces $$2k = |G| = card A_{1} + 2p = 2p +1.$$ Y como éste último es impar sería absurdo. Luego ha de existir $1 \neq a \in G$ tal que $card A_{a} = 1$. Esto significaría que $a^{-1} = a$, y así $f(a) = a^{2} = aa^{-1} = 1 = f(1)$. Luego $f$ no es inyectiva.\vspace{0.2cm}\\
+\emph{Demostración: } Supongamos que $|G| = 2k+1$ impar, sea $x \in ker f$. Así $x^{2} = 1$ y también $x^{2k+1} = 1$, por ser el orden de $G$ y $2$ coprimo con $2k+1$. Entonces $$x = x1 = x1^{k} = x(x^{2})^{k} = x^{2k+1} = 1$$ y así $f$ es inyectiva.
+
+Recíprocamente, veamos que si $|G| = 2k$ es par, sea o no $G$ abeliano, $f$ no es inyectiva. Para cada $x \in G$ llamaremos $A_{x} = \lbrace x, x^{-1}\rbrace.$ Los $A_{x}$ constituyen una partición de $G$ pues como cada $x \in A_{x}$, la igualdad $$G = \bigcup_{x \in G} A_{x}$$ es obvia, además si $A_{x}\cap A_{y} \neq \emptyset$ entonces $x \in \lbrace y, y^{-1}\rbrace$ ó $x^{-1} \in \lbrace y,y^{-1}\rbrace$.
+
+Para el primer caso, si $x = y$ entonces $x^{-1} = y^{-1}$ y $A_{x} = A_{y}$, y si $x = y^{-1}$ entonces $x^{-1} = y$ y nuevamente $A_{x} = A_{y}$. Análogamente para el segundo caso.
+
+Es claro que $A_{1} = \lbrace 1 \rbrace$, pues $1^{-1} = 1$. Si el resto de los $A_{x}$ (supongamos que hay $p$ de ellos) tuviese dos elementos, entonces $$2k = |G| = card A_{1} + 2p = 2p +1.$$ Y como éste último es impar sería absurdo. Luego ha de existir $1 \neq a \in G$ tal que $card A_{a} = 1$. Esto significaría que $a^{-1} = a$, y así $f(a) = a^{2} = aa^{-1} = 1 = f(1)$. Luego $f$ no es inyectiva.
+
 Esto se puede reformular diciendo que: \textit{«Todo grupo finito de orden par posee algún elemento de orden 2»}. 
 \end{enumerate}
 \end{example}
@@ -842,16 +960,18 @@ $\hfill \square$
 
 \begin{proposition}\label{eq:ej32} K es subgrupo normal de $G$ si y sólo si $K/H$ es subgrupo normal de $G/H$.\end{proposition}
 
-\emph{Demostración: }Sea $K \unlhd G$. Dados $aH, bH$ con $(aH)(bH) \in K/H$, entonces $(ab)H \in K/H$, es decir, $ab \in K$. Como $K$ es normal, y $ab \in K$, deducimos que $ba \in K$, luego $(bH)(aH) = (ba)H \in K/H,$ y así $K/H$ es normal. Para el recíproco es análogo.
+\emph{Demostración: }Sea $K \unlhd G$. Veamos que $(K/H)^x \subseteq K/H$ para todo $x \in G/H$ ($x$ será de la forma $x=gH$). Sea $aH \in (K/H)^x$, entonces $aH = x(kH)x^{-1} = (gH)kH(g^{-1})H = gkg^{-1}H$, y como $K$ es normal $gkg^{-1} \in K$ y así $aH \in K/H$.
+
+Recíprocamente, sea $K/H \unlhd G/H$, es decir, $xK/H = K/Hx$ para todo $x \in G/H$ (que será de la forma $x =gH$). Así, $(gH)(kH) = (k'H)(gH)$, para algunos $k,k' \in K$ y $g\in G$, luego $gk = k'g$ y así $gkg^{-1} = k' \in K$, es decir, $K^g \subseteq K$ y $K$ es normal. 
 
 $\hfill \square$
 
-\begin{definition}Un \textbf{automorfismo} $\alpha$ de $G$ es un isomorfismo $\alpha \colon G \longrightarrow G$. Denotaremos por $Aut(G)$ el conjunto de los automorfismos de $G$. Es claro que $Aut(G)$ forma unn grupo con la operación composición de aplicaciones: $$\alpha \circ \beta = \alpha \beta.$$
+\begin{definition}Un \textbf{automorfismo} $\alpha$ de $G$ es un isomorfismo $\alpha \colon G \longrightarrow G$. Denotaremos por $Aut(G)$ el conjunto de los automorfismos de $G$. Es claro que $Aut(G)$ forma un grupo con la operación composición de aplicaciones: $$\alpha \circ \beta = \alpha \beta.$$
 \end{definition}
 
 Aunque en general no es sencillo calcular el grupo de automorfismos de un grupo $G$, nosotros estudiaremos un caso más simple, para ello tenemos que:
 
-\begin{definition} Dado $G$ un grupo y $x,g \in G$ tenemos que $$x^g=gxg^{-1}.$$ A este $x^g$ lo denominaremos \textbf{conjugado} de $x$ por $g$. Igualmente, si $X \subseteq G$, $g \in G$ escribiremos $$X^g = \lbrace x^g:x \in X \rbrace.$$ También definimos la \textbf{aplicación conjugación por $g$} como $$\begin{array}{rccl}
+\begin{definition} Dado $G$ un grupo y $x,g \in G$ tenemos que $$x^g=gxg^{-1}.$$ A este $x^g$ lo denominaremos \textbf{conjugado} de $x$ por $g$. Igualmente para conjuntos, aunque ya lo habíamos definido al principio para presentar el normalizador, si $X \subseteq G$ y $g \in G$ escribiremos $$X^g = \lbrace x^g:x \in X \rbrace.$$ También definimos la \textbf{aplicación conjugación por $g$} como $$\begin{array}{rccl}
 \alpha_g \colon &G&\longrightarrow &G \\
 &x& \longmapsto &x^g = gxg^{-1}
 \end{array}
@@ -869,7 +989,7 @@ Notar que la conjugación la hemos definido para subconjuntos en general.
 \emph{Demostración: }Veamos:
 \begin{enumerate}
 \item Tenemos que $\alpha_g \alpha_{g^{-1}} = \alpha_{g^{-1}} \alpha_g = 1$, luego $(\alpha_g)^{-1}=\alpha_{g^{-1}}$ y así $\alpha_g$ es biyectiva. Sean ahora $x,y \in G$, entonces: $$(xy)^g = g(xy)g^{-1} = gxg^{-1}gyg^{-1} = x^gy^g.$$ Luego $\alpha_g$ es un homomorfismo, y notar que $\alpha_1$ es la identidad.
-\item Sea $h \in G$, entonces: $$(x^g)^h=h(gxg^{-1})h^{-1} = (hg)x(g^{-1}h^{-1}) = (hg)x(hg)^{-1} = x^{hg}.$$ Luego, $\alpha_h\alpha_g(x) =\alpha_h(\alpha_g(x)) = (x^g)^h = x^hg = \alpha_{hg}(x).$ Así, $\alpha_h\alpha_g = \alpha_{hg}$. 
+\item Sea $h \in G$, entonces: $$(x^g)^h=h(gxg^{-1})h^{-1} = (hg)x(g^{-1}h^{-1}) = (hg)x(hg)^{-1} = x^{hg}.$$ Luego, $\alpha_h\alpha_g(x) =\alpha_h(\alpha_g(x)) = (x^g)^h = x^{hg} = \alpha_{hg}(x).$ Así, $\alpha_h\alpha_g = \alpha_{hg}$. 
 \end{enumerate}
 
 $\hfill \square$
@@ -883,18 +1003,18 @@ Para el siguiente resultado conviene repasar el concepto de centro de un grupo, 
 
 \begin{proposition}Si $G$ es un grupo, entonces $Int(G) \unlhd Aut(G)$. Además, $$Int(G) \cong G/Z(G).$$
 \end{proposition}
-\emph{Demostración: }Sabemos que $\alpha_g\alpha_h = \alpha_{gh}$ y que $(\alpha_g)^{-1}$ por el resultado anterior. Así, tenemos que $Int(G) \leq Aut(G)$. Si $f \in Aut(G)$, veamos que $(\alpha_g)^f=\alpha_{f(g)}$: \begin{center}$((\alpha_g)^f)(x) = (f\alpha_g f^{-1})(x) = f(\alpha_g(f^{-1}(x))) = f(g(f^{-1}(x))g^{-1}) = f(g)xf(g^{-1}) =f(g)x(f(g))^{-1} =\alpha_{f(g)}(x) = x^{f(g)}.$\end{center}
+\emph{Demostración: }Sabemos que $\alpha_g\alpha_h = \alpha_{gh}$ y que $(\alpha_g)^{-1} = \alpha_{g^{-1}}$ por el resultado anterior. Así, tenemos que $Int(G) \leq Aut(G)$. Si $f \in Aut(G)$, veamos que $(\alpha_g)^f=\alpha_{f(g)}$: \begin{center}$((\alpha_g)^f)(x) = (f\alpha_g f^{-1})(x) = f(\alpha_g(f^{-1}(x))) = f(g(f^{-1}(x))g^{-1}) = f(g)xf(g^{-1}) =f(g)x(f(g))^{-1} =\alpha_{f(g)}(x) = x^{f(g)}.$\end{center}
 Esto demuestra que $Int(G) \unlhd Aut(G)$. Ahora, si consideramos la aplicación $G \longrightarrow Int(G)$ dada por $g \longmapsto \alpha_g$, es evidentemente suprayectiva y homomorfismo. El núcleo de esta aplicación será el conjunto $\lbrace g \in G : \alpha_g = id \rbrace = \lbrace g \in G: gxg^{-1}=x\hspace{0.1cm} \forall x \in G \rbrace = \lbrace g \in G : gx = xg\hspace{0.1cm} \forall x \in G \rbrace$, y este conjunto es el centro $Z(G)$. El resultado se sigue de aplicar el \textit{Primer Teorema de Isomorfía}. 
 
 $\hfill \square$
 
-Finalmente, calculemos el grupo de automorfismos de un grupo cíclico. Será muy útil saber más adelante que este grupo es abeliano, veámoslo: si $G = \langle x \rangle $ y $\alpha, \beta \in Aut(G)$, entonces $\alpha (x) = x^d$ y $\beta(x) = x^e$ para algunos enteros $d,e$. Ahora, $\alpha\beta(x)=x^{de} = x^{ed}=\beta \alpha (x)$ y así $\alpha \beta = \because \alpha$ (esto es así porque todos los elementos de $G$ son potencias de $x$). Ahora examinaremos exactamente cómo es este grupo de automorfismos: 
+Finalmente, calculemos el grupo de automorfismos de un grupo cíclico. Será muy útil saber más adelante que este grupo es abeliano, veámoslo: si $G = \langle x \rangle $ y $\alpha, \beta \in Aut(G)$, entonces $\alpha (x) = x^d$ y $\beta(x) = x^e$ para algunos enteros $d,e$. Ahora, $\alpha\beta(x)=x^{de} = x^{ed}=\beta \alpha (x)$ y así $\alpha \beta = \beta \alpha$ (esto es así porque todos los elementos de $G$ son potencias de $x$). Ahora examinaremos exactamente cómo es este grupo de automorfismos: 
 
 Si $n \in \mathbb{Z}$, consideramos el grupo abeliano $\mathbb{Z}/n\mathbb{Z}$. En $\mathbb{Z}/n\mathbb{Z}$ también se pueden multiplicar elementos: si $x+n\mathbb{Z}=x'+n\mathbb{Z}$, $y +n\mathbb{Z}=y'+n\mathbb{Z}$ tenemos que $$xy-x'y' = xy-xy'+xy'-x'y'= x(y-y')+y'(x-x') \in n\mathbb{Z},$$ luego es divisible por $n$. Luego $xy + n\mathbb{Z} = x'y' +n\mathbb{Z}$ y la multiplicación $$(x+n\mathbb{Z})(y+n\mathbb{Z})=xy+n\mathbb{Z},$$ está bien definida. Esta multiplicación es asociativa, por serlo la de $\mathbb{Z}$, y tiene elemento neutro $1 + n\mathbb{Z}$. Llamaremos \textbf{$\mathcal{U}_n$} al conjunto de los elementos de $\mathbb{Z}/n\mathbb{Z}$ para los que existe un inverso respecto a la multiplicación.
 
 \begin{proposition}Sea $n \geq 1$ y sea $0 \neq u \in \mathbb{Z}$, entonces $u + n\mathbb{Z}$ es invertible en $\mathbb{Z}/n\mathbb{Z}$ para la multiplicación si y sólo si $mcd(u,n)=1.$ En particular $|\mathcal{U}_n| = \varphi(n)$.
 \end{proposition}
-\emph{Demostración: }Se tiene que $u + n\mathbb{Z}$ es invertible en $\mathbb{Z}/n\mathbb{Z}$ si y sólo si existe $v \in \mathbb{Z}$ tal que $(u +n\mathbb{Z})(v+n\mathbb{Z})=1+n\mathbb{Z}$. Por lo que $u +n\mathbb{Z}$ si y sólo si existe $v \in \mathbb{Z}$ tal que $uv-1$ es divisible por $n$. Si esto ocurre, entonces $uv-1 = kn$ para cierto $k$. Ahora, si $d$ divide a $u$ y a $n$, entonces $d$ divide a $uv-kn = 1$, por lo que $mcd(u,n)=1$. Recíprocamente, supongamos que $mcd(u,n)=1$. Por la identidad de Bézout sabemos que existen $a,b \in \mathbb{Z}$ tales que $au+bn = 1$. Luego, $au-1$ es divisible por $n$ y así $u+n\mathbb{Z}$ tiene inverso.
+\emph{Demostración: }Se tiene que $u + n\mathbb{Z}$ es invertible en $\mathbb{Z}/n\mathbb{Z}$ si y sólo si existe $v \in \mathbb{Z}$ tal que $(u +n\mathbb{Z})(v+n\mathbb{Z})=1+n\mathbb{Z}$. Por lo que $u +n\mathbb{Z}$ es invertible si y sólo si existe $v \in \mathbb{Z}$ tal que $uv-1$ es divisible por $n$. Si esto ocurre, entonces $uv-1 = kn$ para cierto $k$. Ahora, si $d$ divide a $u$ y a $n$, entonces $d$ divide a $uv-kn = 1$, por lo que $mcd(u,n)=1$. Recíprocamente, supongamos que $mcd(u,n)=1$. Por la identidad de Bézout sabemos que existen $a,b \in \mathbb{Z}$ tales que $au+bn = 1$. Luego, $au-1$ es divisible por $n$ y así $u+n\mathbb{Z}$ tiene inverso.
 
 $\hfill \square$
 
@@ -907,7 +1027,7 @@ f_d \colon &C_n&\longrightarrow &C_n \\
 &x^s& \longmapsto &x^{ds}
 \end{array}
 $$
-con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que $f(x^s) = x^{ds}$ por~\ref{eq:propHoms} y deducimos que $f=f_d$.
+con $s \in \mathbb{Z}$. Esta aplicación está bien definida, ya que si $x^s = x^t$, entonces $x^{ds}= (x^s)^d=(x^t)^d= x^{dt}$. Observamos que $$f_d(x^sx^r)=f_d(x^{s+r})=x^{d(s+r)} = x^{ds}x^{dr} = f_d(x^s)f_d(x^r),$$ con lo que $f_d$ es homomomorfismo de grupos. Recíprocamente, si $f \colon C_n \longrightarrow C_n$ es un homomorfismo y escribimos $f(x)=x^d$, entonces para cada entero $s$ tenemos que $f(x^s) = x^{ds}$ por~\ref{eq:propHoms} y deducimos que $f=f_d$. Notar también que claramente la aplicación es inyectiva y sobreyectiva, luego un isomorfismo y, en concreto, automorfismo.
 
 Notamos también que $f_d \circ f_e = f_{ed} = f_e \circ f_d$ y que $f_e = f_d$ si y sólo si $x^d = x^e$ si y sólo si $x^{d-e}=1$ si y sólo si $n$ divide a $d-e$ si y sólo si $e+n\mathbb{Z} = d+n\mathbb{Z}.$
 
@@ -917,11 +1037,51 @@ Queda probado así que la aplicación $\mathcal{U}_n \longrightarrow Aut(C_n)$ d
 
 $\hfill \square$
 
-Gracias a estos dos últimos resultados concluimos que $|Aut(C_p)| = p-1$. De hecho, este grupo es cíclico.
+Gracias a estos dos últimos resultados concluimos que $|Aut(C_p)| = p-1$. De hecho, este grupo es cíclico. Ahora volveremos brevemente a los grupos cíclicos para presentar un resultado que es ciertamente interesante e importante, y que necesitaba de los teoremas de isomorfía para verlo:
+
+Ya hemos visto a lo largo de las páginas anteriores que el conjunto de los enteros y los enteros módulo $n$, $\mathbb{Z}$ y $\mathbb{Z}_{n}$, son grupos, y en concreto grupos cíclicos. Que se haya hecho un inciso especial en estos dos grupos no es casualidad, vamos a ver a continuación que son, por así decirlo, los «únicos» grupos cíclicos que existen. Es decir, que dado un grupo cíclico, o es equivalente a $\mathbb{Z}$ o a $\mathbb{Z}_{n}$, y ya vimos en el anterior capítulo que cuando hablamos de «igualdad» o «equivalencia» en \textit{Teoría de Grupos} en realidad estamos hablando de isomorfismos. Básicamente todo grupo cíclico es isomorfo a $\mathbb{Z}$ o a $\mathbb{Z}_{n}$.
+
+\begin{theorem}
+Sea $G$ un grupo cíclico. Se verifica:
+\begin{enumerate}
+\item Si $G$ es infinito, entonces es isomorfo a $(\mathbb{Z},+)$.
+\item Si $G$ es finito de orden $n$, entonces es isomorfo a $(\mathbb{Z}_{n},+)$.
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }(Notar que hemos especificado que la operación en ambos grupos $\mathbb{Z}$ y $\mathbb{Z}_{n}$ sea la adición, puesto que su elemento neutro será el $0$ y no el $1$)
+Sea $G = \langle x \rangle$ y consideremos el homomorfismo $$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &G\\
+&k& \longmapsto &x^{k},
+\end{array}
+$$ que es claramente sobreyectivo ($Im f = G$).
+
+1. Basta comprobar que $f$ es inyectiva. Para ello supongamos por reducción al absurdo que $Ker f \neq \lbrace 0\rbrace$. Entonces, por ser $Ker f$ un subgrupo de $\mathbb{Z}$ no trivial, será de la forma $n\mathbb{Z}$ para algún $n \in \mathbb{N}$ no nulo. Ahora, el \textit{Primer Teorema de Isomorfía} nos asegura que $\mathbb{Z}_{n} = \mathbb{Z}/n\mathbb{Z} \cong G$, así $G$ tendría $n$ elementos, lo cual contradice la hipótesis de que sea infinito.
+
+2. Si $G$ es finito de orden $n$, no puede ser $Ker f = \lbrace 0 \rbrace$, puesto que en este caso $f$ sería  inyectiva y entonces $G$ infinito. Así pues $Ker f = m\mathbb{Z}$ para algún $m \in \mathbb{N}$ no nulo, usando de nuevo el \textit{Primer Teorema de Isomorfía} $\mathbb{Z}_{m} = \mathbb{Z}/m\mathbb{Z} \cong G$. Como $\mathbb{Z}_{m}$ y $G$ han de tener el mismo orden, $m=n$.
+
+$\hfill \square$
+
+Como consecuencia interesante tenemos:
+
+\begin{corolario}
+Supongamos que $G = \langle a \rangle$ es un grupo cíclico. Entonces:
+\begin{enumerate}
+\item Si $o(a) = \infty$, entonces $$\begin{array}{rccl}
+f\colon &\mathbb{Z}& \longrightarrow &G\\
+&k& \longmapsto &a^{k},
+\end{array}
+$$ es un isomorfismo.
+\item Si $o(a)= n$, entonces $$\begin{array}{rccl}
+f\colon &\mathbb{Z}_{n}& \longrightarrow &G\\
+&\left[ k \right]& \longmapsto &a^{k},
+\end{array}
+$$ es un isomorfismo.
+\end{enumerate} 
+\end{corolario}
 
 Finalmente, veamos el producto directo y semidirecto:
 
-\begin{proposition}Sean $G_{1}$ y $G_{2}$ grupos. Dado el producto cartesiano $G_{1} \times G_{2}$ podemos convertirlo en un grupo con la siguiente operación: $$\cdot \colon (g_{1},g_{2})(g'_{1},g'_{2})=(g_{1}g'_{1},g_{2},g'_{2}).$$
+\begin{proposition}Sean $G_{1}$ y $G_{2}$ grupos. Dado el producto cartesiano $G_{1} \times G_{2}$, entonces podemos convertirlo en un grupo con la siguiente operación: $$\cdot \colon (g_{1},g_{2})(g'_{1},g'_{2})=(g_{1}g'_{1},g_{2},g'_{2}).$$
 Además, dado un grupo $G$ y $N_{1},N_{2} \unlhd G$ subgrupos normales tales que $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}=\lbrace 1_{G} \rbrace$. Entonces $$N_{1} \times N_{2} \cong G.$$
 \end{proposition}
 \emph{Demostración: }Para ver que es grupo con $\cdot$ basta con una simple comprobación. Para la segunda parte definimos la siguiente aplicación: 
@@ -935,14 +1095,31 @@ Para ver que $f$ es homomorfismo: $$f((n_{1},n_{2})(n'_{1},n'_{2}))=f((n_{1}n'_{
 $$f((n_{1},n_{2}))f((n'_{1},n'_{2}))=n_{1}n_{2}n'_{1}n'_{2}.$$
 Para comprobar que son iguales bastará probar que $xy=yx$ para todo $x\in N_{1}$, $y\in N_{2}$. Sea $x^{-1}y^{-1}xy=x^{-1}(y^{-1}xy)\in N_{1}$, como también $x^{-1}y^{-1}xy=(x^{-1}y^{-1}x)y \in N_{2}$ y por hipótesis tenemos que $N_{1}\cap N_{2} = \lbrace 1_{G}\rbrace$, entonces será que $x^{-1}y^{-1}xy=1$, luego $xy=yx$. 
 
-Ahora, como $G=N_{1}N_{2}$, $f$ es suprayectiva. $Ker f = \lbrace (n_{1},n_{2}) \in N_{1}\times N_{2}:n_{1}n_{2}=1 \rbrace$. Si $n_{1}n_{2}=1$, entonces $n_{2}=n_{1}^{-1}\in N_{1}\cap N_{2}=\lbrace 1_{G}\rbrace$. Así, $n_{1}=n_{2}=1_{G}$ y $Ker f=\lbrace 1_{G} \rbrace$ y $f$ es inyectiva.
+Ahora, como $G=N_{1}N_{2}$, $f$ es suprayectiva. $Ker f = \lbrace (n_{1},n_{2}) \in N_{1}\times N_{2}:n_{1}n_{2}=1 \rbrace$. Si $n_{1}n_{2}=1$, entonces $n_{2}=n_{1}^{-1}\in N_{1}\cap N_{2}=\lbrace 1_{G}\rbrace$. Así, $n_{1}=n_{2}=1_{G}$ y $Ker f=\lbrace 1_{G} \rbrace$ y $f$ es inyectiva. El resultado se sigue del \textit{Primer Teorema de Isomorfía}.
 
 $\hfill \square$
 
-\begin{definition}Decimos que el producto cartesiano en el que hemos descompuesto $G$ antes, $N_{1}\times N_{2}$ con $N_{1}, N_{2}\unlhd G$ tales que con $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}= \lbrace 1_{G} \rbrace$, es un \textbf{producto directo}. 
+\begin{definition}El producto cartesiano en el que hemos descompuesto $G$ antes, $N_{1}\times N_{2}$ con $N_{1}, N_{2}\unlhd G$ tales que con $G=N_{1}N_{2}$ y $N_{1}\cap N_{2}= \lbrace 1_{G} \rbrace$, es un \textbf{producto directo}. 
 \end{definition}
 
-\begin{proposition}Sean $N$ y $H$ grupos. Sea $\varphi \colon H \longrightarrow Aut(N)$ un homomorfismo entre $H$ y el grupo de los automorfismos de $N$. En el producto cartesiano $N \times H$ podemos definir una estructura de grupo conocida como \textbf{producto semidirecto de $H$ por $N$ vía $\varphi$} y denotada por $N\times_{\varphi} H$ de la siguiente manera:$$(n_{1},h_{1})(n_{2},h_{2}) = (n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2}),$$ donde $\varphi(h_{1})(n_{2}) = n_{2}^{h_{1}}$ normalmente, es decir, que el automorfismo en cuestión será la composición por un $h \in H$.
+\begin{example}Un ejemplo de producto directo bastante conocido es el \textbf{grupo de Klein}, $V_4$. Formalmente, es el producto directo $\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}$, es decir, el producto directo de dos grupos cíclicos de orden $2$. Se llama así en honor al matemático alemán Felix Klein y se denota por la letra $V$, del alemán Vierergruppe, que significa algo así como "grupo de cuatro". 
+
+Evidentemente este grupo tiene $4$ elementos, y veremos que cada uno de ellos es inverso de sí mismo, es decir, cada elemento tiene orden $2$. Como ya sabemos $$\mathbb{Z}/2\mathbb{Z} = \lbrace 0 + 2\mathbb{Z}, 1 + \mathbb{Z} \rbrace.$$ Y esto se podría interpretar como, por un lado $0+2\mathbb{Z}$ la clase de todos aquellos enteros que divididos entre $2$ dan $0$, es decir, los enteros pares, y $1+2\mathbb{Z}$ como la clase formada por todos aquellos cuyo resto de dividirlos entre $2$ sea $1$, es decir, los enteros impares. Como también sabemos, éste es un grupo cíclico de orden $2$, por lo que el orden de sus dos elementos es $2$ y así otra forma de interpretar a este grupo es verlo como aquel formado por $1$ y $-1$, y así $$\mathbb{Z}/2\mathbb{Z} = \lbrace 1, -1 \rbrace.$$
+
+Así, $$V_4 = \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z},$$ es un grupo de $4$ elementos que podríamos representarlos como $(1,1), (1,-1), (-1,1)$ y $(-1,-1)$. Su tabla:
+\begin{center}
+\begin{tabular}{c|c c c c c}
+&$(1,1)$&$(1,-1)$&$(-1,1)$&$(-1,-1)$&\\ \hline
+$(1,1)$&$(1,1) $&$(1,-1)$&$(-1,1)$&$(-1,-1)$& \\ 
+$(1,-1)$&$(1,-1)$&$(1,1)$&$(-1,-1)$&$(-1,1)$& \\ 
+$(-1,1)$&$(-1,1)$&$(-1,-1)$&$(1,1)$&$(1,-1)$& \\ 
+$(-1,-1)$&$(-1,-1)$&$(-1,1)$&$(1,-1)$&$(1,1)$& \\												\end{tabular}
+\end{center}
+Donde vemos que todos sus elementos tienen orden $2$.
+\end{example}
+$\hfill \blacksquare$
+
+\begin{proposition}Sean $N$ y $H$ grupos. Sea $\varphi \colon H \longrightarrow Aut(N)$ un homomorfismo entre $H$ y el grupo de los automorfismos de $N$. En el producto cartesiano $N \times H$ podemos definir una estructura de grupo, conocida como \textbf{producto semidirecto de $H$ por $N$ vía $\varphi$} y denotada por $N\times_{\varphi} H$, de la siguiente manera:$$(n_{1},h_{1})(n_{2},h_{2}) = (n_{1}\varphi(h_{1})(n_{2}),h_{1}h_{2}),$$ donde $\varphi(h_{1})(n_{2}) = n_{2}^{h_{1}}$ normalmente, es decir, que el automorfismo en cuestión será la conjugación por un $h \in H$.
 
 Ahora, sea $G$ un grupo, $N \unlhd G$ y $H \leq G$. Supongamos que $G = NH$ y $N \cap H = \lbrace 1_{G}\rbrace$. Dado un $$\begin{array}{rccl}
 \varphi\colon &H & \longrightarrow & Aut(N)\\
@@ -998,7 +1175,7 @@ En este caso, diremos que $\cdot$ define una \textbf{acción} de $G$ sobre $\Ome
 \begin{example}Los siguientes ejemplos son acciones de grupos sobre conjuntos:
 \begin{enumerate}
 \item Sea $G$ un grupo y $H \leq G$. Sea $\Omega = \lbrace xH : x \in G \rbrace$. Si $g \in G$ y $\alpha \in \Omega$, definimos $g \cdot \alpha = g\alpha$, es decir: $$g \cdot(xH) = gxH, \quad \forall x,g \in G.$$ Esta es la acción de $G$ sobre el conjunto de las coclases a izquierda de $H$ en $G$.
-\item Sea $G$ un grupo y $\Omega = G$. Dado un $\alpha \in \Omega, g \in G$ definimos $$g \cdot \alpha= \alpha^g.$$ Esta es la \textbf{acción de $G$ sobre $G$ por conjugación}.
+\item Sea $G$ un grupo y $\Omega = G$. Dado un $\alpha \in \Omega, g \in G$ definimos $$g \cdot \alpha= \alpha^g=g\alpha g^{-1}.$$ Esta es la \textbf{acción de $G$ sobre $G$ por conjugación}.
 \item Sea $\Omega = \lbrace H : H \leq G \rbrace$ el conjunto de subgrupos de $G$. Si $H \in \Omega$, $g \in G$ definimos $$ g \cdot H = H ^g.$$ Esta es la acción de $G$ sobre los subgrupos de $G$ por conjugación.
 \item Sea $\Omega$ un conjunto no vacío y sea $G \leq S_{\Omega}$. Si $g \in G$, $\alpha \in \Omega$ definimos $$g \cdot \alpha = g(\alpha).$$ Esta es la \textbf{acción natural de $G$ sobre $\Omega$}.
 \end{enumerate}
@@ -1044,6 +1221,14 @@ Veamos ahora cuál es el núcleo de la acción del primer ejemplo:
 
 $\hfill \square$
 
+\begin{example}\label{eq:ejcorazon} Sean $G$ un grupo y $H$ un subgrupo de $G$. Llamamos $X = G/\sim_{H}$ y consideramos la acción de $G$ sobre $X$ definida por $$\begin{array}{rccl}
+&G\times G/\sim_{H}& \longrightarrow &G/\sim_{H}\\
+&(g,xH)& \longmapsto &gxH.
+\end{array}
+$$ Es claro que se trata de una acción, puesto que dados $f,g \in G$ : $$(fg)(xH)= fgxH = f(gxH) = f(g(xH)).$$ y también $$1_{G}(xH) = 1_{G}xH = xH.$$ Ahora calculemos los estabilizadores: dado un $xH \in G/\sim_{H} = X$, $g \in G_{xH}$ si y sólo si $g(xH) = xH$, esto es $gxH = xH$, es decir que $x^{-1}gx \in H$, luego $g \in H^{x^{-1}}$. Por lo que $G_{xH} = H^{x^{-1}}$. Por lo tanto, sabiendo esto, el núcleo de la acción será $$Ker\rho = \bigcap_{xH \in G/\sim_{H}} H^{x^{-1}} = \bigcap_{x\in G}H^{x} = K(H),$$ con $K(H)$ el \textit{corazón de $H$} que se introdujo en la definición~\ref{eq:corazon}. Notar que $K(H) \subseteq H$ es un subgrupo normal de $G$.
+\end{example}
+$\hfill \blacksquare$
+
 Todo grupo finito es subgrupo de un grupo simétrico.
 
 \begin{theorem}[\textbf{\textit{Teorema de Cayley}}]
@@ -1061,21 +1246,21 @@ De este resultado podemos sacar algo de información para los grupos finitos sim
 
 $\hfill \square$
 
-Ahora veremos que una acción de $G$ puede definir una relación de equivalencia en $\Omega$. En efecto, si $\alpha, \beta \in \Omega$ escribiremos $\alpha \sim \beta $ si existe $g \in G$ tal que $g \cdot \alpha = \beta$. Es decir, $\alpha$ y $\beta$ van a estar relacionados si existe un elemento de $G$ que actuando sobre $\alpha$ dé $\beta$. Esta relación va a dar mucho de que hablar, veamos que es de equivalencia:
+Ahora veremos que una acción de $G$ puede definir una relación de equivalencia en $\Omega$. En efecto, si $\alpha, \beta \in \Omega$ escribiremos $\alpha \sim \beta $ si existe $g \in G$ tal que $g \cdot \alpha = \beta$. Es decir, $\alpha$ y $\beta$ van a estar relacionados si existe un elemento de $G$ que actuando sobre $\alpha$ dé como resultado $\beta$. Esta relación va a dar mucho de que hablar, veamos que es de equivalencia:
 
 $$g^{-1} \cdot \beta = g^{-1} \cdot (g \cdot \alpha ) = (g^{-1}g) \cdot \alpha = \alpha, $$ luego si $\alpha \sim \beta$ entonces $\beta \sim \alpha$ y tenemos que esta relación es simétrica. Además es claro que $1 \cdot \alpha = \alpha$, luego $\alpha \sim \alpha$ y esta relación es reflexiva. Finalmente, si $g \cdot \alpha = \beta$ ($\alpha \sim \beta$) y $h \cdot \beta = \gamma$ ($\beta \sim \gamma$), con $g, h \in G$, entonces $$\gamma = h \cdot (g \cdot \alpha) = (gh) \cdot \alpha,$$ y como $gh \in G$ por ser $G$ grupo entonces $\alpha \sim \gamma$ y esta relación es transitiva.
 
-\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, $\alpha \in \Omega$ y considerando la relación de equivalencia $\sim$ que acabamos de ver, entonces la clase de equivalencia de $\alpha$ es $$O_a = \lbrace g\cdot \alpha : g \in G \rbrace.$$ A este conjunto lo llamamos \textbf{órbita} de $\alpha$ por $G$ ó \textbf{$G$-órbita} de $\alpha$. Notar que su \textbf{longitud} es $|O_a|$.
+\begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, $\alpha \in \Omega$ y considerando la relación de equivalencia $\sim$ que acabamos de ver, entonces la clase de equivalencia de $\alpha$ es $$O_{\alpha} = \lbrace g\cdot \alpha : g \in G \rbrace.$$ A este conjunto lo llamamos \textbf{órbita} de $\alpha$ por $G$ ó \textbf{$G$-órbita} de $\alpha$. Notar que su \textbf{longitud} es $|O_{\alpha}|$.
 \end{definition}
 
-Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia (órbitas de la acción), tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $||$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
+Notar que al tratarse las órbitas de clases de equivalencia para la relación de equivalencia $\sim$ entre elementos de $\Omega$ antes vista, entonces van a formar una partición de $\Omega.$ Es decir, que su unión disjunta forman la totalidad de $\Omega$. Así, si $R$ es un conjunto de representantes de estas clases de equivalencia (órbitas de la acción), tenemos que $$\Omega = \bigsqcup_{x\in R} O_x.$$ Como la unión es disjunta y $\Omega$ finito tenemos que $$|\Omega | = \sum_{x\in R} |O_x|.$$ A estas dos fórmulas equivalentes se las conoce como \textbf{\textit{fórmula de las órbitas}}. (Se ha empleado $|\cdot|$ para hablar de cardinal de un conjunto, lo cuál podría considerarse abuso de notación).
 
 \begin{definition}Dado un grupo $G$ actuando sobre un conjunto $\Omega$, si $\alpha \in \Omega$ entonces definimos el \textbf{estabilizador} de $\alpha$ en $G$ como $$G_\alpha = \lbrace g \in G : g\cdot \alpha = \alpha \rbrace.$$
 \end{definition}
 
 Qué es el \textit{estabilizador} con respecto a $G$ y una propiedad fundamental del mismo nos lo dice el siguiente resultado:
 
-\begin{proposition}
+\begin{proposition}\label{eq:coest}
 Sea $G \longrightarrow S_\Omega$ una acción de un grupo $G$ sobre un conjunto $\Omega$, y $\alpha \in \Omega$. Entonces:
 
 \begin{enumerate}
@@ -1096,9 +1281,9 @@ $\hfill \square$
 \begin{theorem}[\textbf{\textit{Teorema de la órbita-estabilizadora}}] \label{eq:torest}
 Sea $G$ un grupo que actúa sobre un conjunto $\Omega$ y sea $\alpha \in \Omega$. Entonces $G_\alpha \leq G$ y $$|O_\alpha| = [G:G_\alpha].$$
 \end{theorem}
-\emph{Demostración: }Sea $g,h \in G_\alpha$. Entonces $(gh) \cdot \alpha = g \cdot (h\cdot \alpha) = g \cdot \alpha = \alpha.$ Por lo que $gh \in G_\alpha$, además si $g\cdot \alpha = \alpha$ entonces $g^{-1} \cdot \alpha = g^{-1} \cdot (g\cdot \alpha)= (g^{-1}g) \cdot \alpha = \alpha,$ luego $g^{-1} \in G_\alpha$ y así $G_\alpha \leq G$.
+\emph{Demostración: }Lo primero ya lo sabemos del resultado anterior.
 
-Ahora, busquemos una aplicación biyectiva $f \colon \lbrace xG_\alpha : x \in G \rbrace \longrightarrow O_\alpha$. Definimos $f(xG_\alpha) = x\cdot \alpha$. Ahora, $xG_\alpha = y G_\alpha$ si y sólo si $x^{-1}y \in G_\alpha$ si y sólo si $(x^{-1}y) \cdot \alpha = \alpha$ si y sólo si $x \cdot ((x^{-1}y) \cdot \alpha) = x \cdot \alpha$ si y sólo si $y \cdot \alpha = x \cdot \alpha$, luego $f$ está bien definida y es inyectiva. Al ser $f$ claramente suprayectiva, ya está.
+En cuanto a lo segundo, busquemos una aplicación biyectiva $f \colon \lbrace xG_\alpha : x \in G \rbrace \longrightarrow O_\alpha$. Definimos $f(xG_\alpha) = x\cdot \alpha$. Ahora, $xG_\alpha = y G_\alpha$ si y sólo si $x^{-1}y \in G_\alpha$ si y sólo si $(x^{-1}y) \cdot \alpha = \alpha$ si y sólo si $x \cdot ((x^{-1}y) \cdot \alpha) = x \cdot \alpha$ si y sólo si $y \cdot \alpha = x \cdot \alpha$, luego $f$ está bien definida y si lo leemos al revés podremos comprobar que también es inyectiva. Al ser $f$ claramente suprayectiva, ya está.
 
 $\hfill \square$
 
@@ -1137,10 +1322,12 @@ Por último, si $x \in G$, su órbita $O_{x}$ será entonces $O_{x} = \lbrace gx
 
 Notar que $|Cl_G(x) | = 1$ si y sólo si $gx = xg$ $\forall g \in G$, es decir, si y sólo si $x \in Z(G)$. Luego, en este caso $\Omega_0 = Z(G).$
 
+Todos estos conceptos ya los habíamos visto en el primer capítulo.
+
 \begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}] \label{eq:ecClases}
 Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
 \end{theorem} 
-\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
+\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente (en este caso $\Omega_0 = Z(G)$) y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
 
 $\hfill \square$
 
@@ -1166,9 +1353,9 @@ Notar que $N_G(H)$ es el estabilizador de $H$ en la acción de $G$ sobre sus sub
 $$
 donde $\Omega$ es el conjunto de subgrupos de $G$.
 
-Es claro que $H \unlhd N_G(H)$ y que $H \unlhd G$ si y sólo si $N_G(H) =G$. Por el \textit{Teorema de la órbita estabilizadora} tenemos que el número de subgrupos distintos de la forma $H^g$, con $g \in G$, es $[G:N_G(H)]$. Es decir, que el número de conjugados distintos de un subgrupo $H$ de $G$ viene dado por $[G:N_G(H)]$.
+Es claro que $H \unlhd N_G(H)$ y que $H \unlhd G$ si y sólo si $N_G(H) =G$. Por el \textit{Teorema de la órbita estabilizadora} tenemos que el número de subgrupos distintos de la forma $H^g$, con $g \in G$, es $[G:N_G(H)]$. Es decir, que el número de conjugados distintos de un subgrupo $H$ de $G$ viene dado por $[G:N_G(H)]$. Esto ya lo vimos en~\ref{eq:conjug}
 
-\begin{proposition}Sea $G$ un grupo finito y $H \leq G$ con $|H| = p^a$ para cierto primo $p$. Entonces $$[G:H] \equiv [N_G(H):H] \hspace{0.1cm}\text{mod} \hspace{0.1cm} p.$$
+\begin{proposition}Sea $G$ un grupo finito y $H \leq G$ con $|H| = p^a$ para cierto primo $p$ y $a \in \mathbb{N}$. Entonces $$[G:H] \equiv [N_G(H):H] \hspace{0.1cm}\text{mod} \hspace{0.1cm} p.$$
 \end{proposition}
 \emph{Demostración: }Consideremos el conjunto $\Omega = \lbrace xH : x \in G \rbrace$. Tenemos que $H$ actúa sobre $\Omega$ por multiplicación a izquierda. Calculamos el número de puntos fijos, es decir $\Omega_0$. Se tiene que $hxH = xH$ $\forall h \in H$ si y sólo si $x^{-1}hx \in H$ $\forall h \in H$ si y sólo si $H^{x^{-1}} \subseteq H$ si y sólo si $H \subseteq H ^x$ si y sólo si $H = H^x$ (ya que $|H| = |H^x|$) si y sólo si $x\in N_G(H)$. El resultado se sigue de la segunda parte de~\ref{eq:ecClasesp}.
 
@@ -1180,7 +1367,7 @@ $\hfill \square$
 
 $\hfill \square$
 
-Es decir, en los $p$-grupos los normalizadores crecen.
+Es decir, en los $p$-grupos los normalizadores crecen. El siguiente resultado es un caso particular del conocido \textit{Teorema de Cauchy}.
 
 \begin{corolario}\label{eq:cor412} Sea $G$ un $p$-grupo finito. Si $p^a$ divide a $|G|$, entonces $G$ tiene un subgrupo de orden $p^a$.
 \end{corolario}
@@ -1190,12 +1377,12 @@ $\hfill \square$
 
 Finalmente, hablaremos de las acciones transitivas.
 
-\begin{definition}Diremos que una acción de un grupo $G$ sobre un conjunto $\Omega$ es \textbf{transitiva} si sólo hay una órbita, es decir, si $\Omega$ es una $G$-órbita. Dicho de otra manera: la acción de $G$ sobre $\Omega$ es transitiva si dados $\alpha, \beta \in \Omega$ existe un $g \in G$ tal que $g \cdot \alpha = \beta$.
+\begin{definition}Diremos que una acción de un grupo $G$ sobre un conjunto $\Omega$ es \textbf{transitiva} si sólo hay una órbita, es decir, si $\Omega$ es una $G$-órbita. Dicho de otra manera: la acción de $G$ sobre $\Omega$ es transitiva si para cualesquiera $\alpha, \beta \in \Omega$ existe un $g \in G$ tal que $g \cdot \alpha = \beta$.
 \end{definition}
 
 \begin{proposition}Sea $G$ un grupo actuando sobre un conjunto $\Omega$. Dados $\alpha \in \Omega$ y $g \in G$, entonces $$(G_\alpha)^g = G_{g\cdot \alpha}.$$ En particular, si la acción de $G$ sobre $\Omega$ es transitiva, entonces todos los estabilizadores son conjugados.
 \end{proposition}
-\emph{Demostración: }Se tiene que $x \in G_{g\cdot \alpha}$ si y sólo si $x \cdot(g\cdot \alpha) = g \cdot \alpha$ si y sólo si $g^{-1} \cdot(xg \cdot \alpha) = \alpha$ si y sólo si $(g^{-1}xg) \cdot \alpha = \alpha$ si y sólo si $g^{-1}xg \in G_\alpha$ si y sólo si $x \in (G_\alpha)^g$, luego se tiene la igualdad.
+\emph{Demostración: }Lo primero ya se ha visto en el segundo apartado de~\ref{eq:coest}.
 
 Supongamos ahora que la acción de $G$ sobre $\Omega$ es transitiva y sean $\alpha, \beta \in \Omega$. Entonces existe $g \in G$ tal que $g \cdot \alpha = \beta$ y $$(G_\alpha)^g = G_\beta.$$
 
@@ -1207,7 +1394,7 @@ Partimos de un conjunto finito $\Omega$. Una \textbf{\textit{permutación}} de $
 
 \begin{definition}Dados $\alpha_1, \ldots, \alpha_n$ $n$ elementos distintos de $\Omega$, entonces designaremos por $(\alpha_1, \ldots, \alpha_n)$ a la única permutación $\sigma \in S_\Omega$ tal que $\sigma (\alpha) = \alpha$ si $\alpha \in \Omega \setminus \lbrace \alpha_1, \ldots, \alpha_n \rbrace$, $\sigma (\alpha_1)=\alpha_2$, $\sigma (\alpha_2) = \alpha_3$, $\ldots$, $\sigma(\alpha_{n-1}) = \alpha_n$ y $\sigma(\alpha_n) = \alpha_1$. A la permutación $\sigma = (\alpha_1, \ldots, \alpha_n ) \in S_\Omega$ la denominamos \textbf{$n$-ciclo} o \textbf{ciclo de longitud $n$}.
 
-Notar que los $1$-ciclos son la aplicación identidad. A los $2$-ciclos, dada la importancia especial que tienen y que iremos viendo, los llamaremos \textbf{trasposiciones}.
+Notar que los $1$-ciclos son la aplicación identidad. A los $2$-ciclos, dada la importancia especial que tienen y que iremos viendo, los llamaremos \textbf{trasposiciones}. Notar que si $t$ es una transposición entonces $o(t)=2$ y $t=t^{-1}$.
 \end{definition}
 
 \begin{definition}Dada una permutación $\sigma \in S_n$, diremos que $\sigma$ \textbf{mueve} un $\alpha_i \in \Omega$ si $\sigma( \alpha_i) = \alpha_j$, con $i\neq j$. Por el contrario, diremos que $\sigma$ \textbf{fija} un $\alpha_i \in \Omega$ si $\sigma (\alpha_i ) = \alpha_i$.
@@ -1222,13 +1409,15 @@ Del conjunto $\Omega$ realmente lo que nos interesa desde el punto de vista de l
 &\sigma& \longmapsto &\sigma'
 \end{array}
 $$ es un homomorfismo inyectivo de grupos y, por el \textit{Primer Teorema de Isomorfía}, $S_{n}$ es isomorfo a su imagen, que es un subgrupo de $S_{m}$.
-\item De todo lo visto hasta ahora, lo realmente importante no es la naturaleza del conjunto $\Omega$ como tal, sino el hecho de que tenga $n$ elementos. Así, si $I_{n}$ es otro conjunto con $n$ elementos, el grupo $Biy(I_{n})$ de biyecciones de $I_{n}$ en sí mismo es isomorfo a $S_{n}$, y no distinguiremos entre ambos. Para verlo, fijada una biyección cualquiera $\alpha \colon \Omega \longrightarrow I_{n}$ se comprueba inmediatamente que la aplicación  $$\begin{array}{rccl}
+\item Como hemos dicho antes, lo realmente importante del conjunto $\Omega$ es que tenga $n$ elementos. Así, si $I_{n}$ es otro conjunto con $n$ elementos, el grupo $Biy(I_{n})$ de biyecciones de $I_{n}$ en sí mismo es isomorfo a $S_{n}$, y no distinguiremos entre ambos. Para verlo, fijada una biyección cualquiera $\alpha \colon \Omega \longrightarrow I_{n}$ se comprueba inmediatamente que la aplicación  $$\begin{array}{rccl}
 &Biy(I_{n})& \longrightarrow &S_{n}\\
 &\beta& \longmapsto &\alpha\circ \beta \circ \alpha^{-1}
 \end{array}
 $$ es un isomorfismo de grupos. Es por esta razón por la que hemos introducido la notación de $\Omega$ simplemente para hablar de un conjunto finito de $n$ elementos cualquiera.
 \end{enumerate}
 \end{observation}
+
+Se denotará indistintamente tanto $S_n$ como $S_\Omega$.
 
 Cada elemento de $S_n$ lo escribiremos en ocasiones de una forma un tanto especial, como sigue: 
 $$\sigma = \left(
@@ -1243,7 +1432,7 @@ Esta notación nos ahorrará confusiones, ya que muestra el número $n$ de eleme
 
 Observar también que $$(\alpha_1, \ldots, \alpha_n) = (\alpha_n, \alpha_1, \ldots, \alpha_{n-1}) = \ldots = (\alpha_2, \alpha_3, \ldots, \alpha_n, \alpha_1),$$ luego cada $n$-ciclo se puede escribir de $n$ maneras distintas.
 
-Para estudiar los grupos de permutaciones podemos usar las acciones de grupos sobre conjuntos, en concreto vemos que $S_\Omega$ actúa sobre $\Omega$ mediante $\sigma \cdot \alpha = \sigma(\alpha)$, con $\sigma \in S_\Omega$, $\alpha \in \Omega$.
+Para estudiar los grupos de permutaciones podemos usar las acciones de grupos sobre conjuntos, en concreto vemos que $S_\Omega$ actúa sobre $\Omega$ mediante $\sigma \cdot \alpha = \sigma(\alpha)$ (la acción natural), con $\sigma \in S_\Omega$, $\alpha \in \Omega$.
 
 \begin{definition}Decimos que dos ciclos $(\alpha_1, \ldots, \alpha_m)$, $(\beta_1, \ldots, \beta_n)$ son \textbf{disjuntos} si los conjuntos $\lbrace \alpha_1, \ldots, \alpha_m \rbrace$ y $\lbrace \beta_1, \ldots, \beta_n \rbrace$ son disjuntos.
 \end{definition}
@@ -1264,8 +1453,6 @@ Y se razonaría de forma análoga si $w \in \lbrace \beta_1, \ldots, \beta_n \rb
 Ahora veamos $3.$. La primera parte es consecuencia directa de lo visto en los apartados anteriores. Tenemos que $\lbrace a_{1}, \ldots, a_{m} \rbrace = \lbrace \sigma^{r}(a_{1}) : r \geq 0 \rbrace, \ldots, \lbrace b_{1}, \ldots, b_{n} \rbrace = \lbrace \sigma^{r}(b_{1}) : r \geq 0 \rbrace.$
 
 $\hfill \square$
-
-Notar que todas las transposiciones tienen orden $2$, y que por tanto si $t$ es una transposición entonces $t=t^{-1}$.
 
 \begin{proposition}\label{eq:ciclosdis} Sea $n$ un entero positivo. Entonces cada elemento de $S_{n}$ se puede escribir como composición de ciclos disjuntos dos a dos. Dicha descomposición es además única salvo en el orden de los factores. En particular, los ciclos de $S_{n}$ constituyen un sistema generador de $S_{n}$.
 \end{proposition}
@@ -1304,7 +1491,7 @@ Sean $\sigma \in S_{n}$ y $\tau_{1}, \ldots, \tau_{k} \in S_{n}$ ciclos disjunto
 
 Como $\tau_i\tau_j = \tau_j \tau_i$ $\forall i,j$, por~~ tenemos que $(\tau_1 \ldots \tau_k)^n= (\tau_1)^n \ldots (\tau_k)^n$ para todo entero $n$. Así, observamos que $\sigma^h = 1$ y se deduce que $o(\sigma)$ divide a $h$.
 
-Si $o(\sigma) = r$, entonces $(\tau_1)^r\ldots (\tau_k)^r = 1$. Probamos que $(\tau_i)^r=1$ para todo $1 \leq i \leq k$. Para ello, basta probar que $(\tau_i)^r$ fija todos los elementos de $\Omega$. Dado un $\alpha \in \Omega$, si $\alpha$ es fijado por $\tau_i$, entonces $\alpha$ es fijado por $(\tau_i)^r$. Si $\tau_i$ mueve $\alpha$, entonces $\alpha$ es fijado por $\tau_j$ para $j \neq i$ (en particular por $(\tau_j)^r$). Por tanto $\alpha = (\tau_k)^r \ldots (\tau_1)^r \cdot \alpha = (\tau_i)^r \cdot \alpha$ y deducimos que $(\tau_i)^r$ fija $\alpha$. Concluimos que $(\tau_i)^r = 1$. Por lo tanto, $o(\tau_i)$ divide a $r$ para todo $i$ y tenemos que $h$ divide a $r = o(\sigma).$
+Si $o(\sigma) = r$, entonces $(\tau_1)^r\ldots (\tau_k)^r = 1$. Probaremos que $(\tau_i)^r=1$ para todo $1 \leq i \leq k$. Para ello, basta probar que $(\tau_i)^r$ fija todos los elementos de $\Omega$. Dado un $\alpha \in \Omega$, si $\alpha$ es fijado por $\tau_i$, entonces $\alpha$ es fijado por $(\tau_i)^r$. Si $\tau_i$ mueve $\alpha$, entonces $\alpha$ es fijado por $\tau_j$ para $j \neq i$ (en particular por $(\tau_j)^r$). Por tanto $\alpha = (\tau_k)^r \ldots (\tau_1)^r \cdot \alpha = (\tau_i)^r \cdot \alpha$ y deducimos que $(\tau_i)^r$ fija $\alpha$. Concluimos que $(\tau_i)^r = 1$. Por lo tanto, $o(\tau_i)$ divide a $r$ para todo $i$ y tenemos que $h$ divide a $r = o(\sigma).$
 
 
 $\hfill \square$
@@ -1329,7 +1516,7 @@ $\hfill \square$
 
 De este resultado tenemos una importante consecuencia, y es que dado un $\sigma \in S_{n}$, entonces \textbf{\textit{la clase de conjugación de $\sigma$}} (ver~\ref{eq:accConj}) \textbf{\textit{está formada por todas las permutaciones del mismo tipo que $\sigma$}}.
 
-\begin{observation} Sea $k>1$, entonces el número de $k$-ciclos que muevenn $k$ elementos distintos $a_{1}, \ldots, a_{k} \in \Omega$ es $(k-1)!$. Si $|\Omega| = n$, el número de $k$-ciclos de $S_{n}$ es ${n \choose k} (k-1)!$.
+\begin{observation} Sea $k>1$, entonces el número de $k$-ciclos que mueven $k$ elementos distintos $a_{1}, \ldots, a_{k} \in \Omega$ es $(k-1)!$. Si $|\Omega| = n$, el número de $k$-ciclos de $S_{n}$ es ${n \choose k} (k-1)!$.
 
 Esto se puede generalizar a permutaciones de determinados tipos: es decir, si queremos saber el número de permutaciones de $S_{n}$ con $b_{j}$ ciclos de longitud $j$ tendremos $$ \dfrac{n!}{1^{b_{1}}2^{b_{2}} \cdots n^{b_{n}}b_{1}!b_{2}!\cdots b_{n}!}.$$(odio la combinatoria)
 \end{observation}
@@ -1419,7 +1606,7 @@ sig \colon &S_{n}& \longrightarrow &\lbrace -1, 1\rbrace\\
 &\sigma& \longmapsto &sig(\sigma)
 \end{array}
 $$
-es un homomorfismo de grupos. Su núcleo, que está formado por las permutaciones pares, es un subgrupo de índice $2$, el \textbf{grupo alternado $\mathcal{A}_{n}$}. Además, $$S_{n}/\mathcal{A}_{n} \simeq C_{2}.$$
+es un homomorfismo de grupos. Su núcleo, que está formado por las permutaciones pares, es un subgrupo de índice $2$, el \textbf{grupo alternado $\mathcal{A}_{n}$}. Además, $$S_{n}/\mathcal{A}_{n} \cong C_{2}.$$
 \end{proposition}
 
 
@@ -1435,7 +1622,7 @@ Una vez visto las primeras definiciones y propiedades de los grupos de permutaci
 
 \begin{proposition}\label{eq:preabel} Si $n \geq 3$, entonces $\mathcal{A}_{n}$ es transitivo sobre $\Omega =\lbrace 1, \ldots, n \rbrace$
 \end{proposition}
-\emph{Demostración: } Si $1 \leq i <j \leq n$, elegimos $k$ distinto de $i$ y de $j$ y tenemos que $(i,j,k)(i) = j$. Claramente $(i,j,k) \in \mathcal{A}_{n}$.
+\emph{Demostración: } Si $1 \leq i <j \leq n$, elegimos un $k \neq i,j$ y tenemos que $(i,j,k)(i) = j$ (la permutación $(i,j,k)$ sobre $i$). Claramente $(i,j,k) \in \mathcal{A}_{n}$.
 
 $\hfill \square$
 
@@ -1449,7 +1636,7 @@ Finalmente, notamos que hay dos clases de conjugación en $\mathcal{A}_{5}$ de $
 
 Sea ahora $N$ un subgrupo normal propio de $\mathcal{A}_{5}$. Tenemos que $N$ es una unión disjunta de clases de conjugación de $\mathcal{A}_{5}$ (siendo una de ellas el $1$) y que $1 < |N| < 60$ es un divisor de $60$. Por lo tanto, $$|N| = 1 + 12a + 12b + 15c + 20d,$$ con $a,b,c,d \in \lbrace 0, 1 \rbrace$. Pero no hay ningún divisor de $60$ de esta forma quitando el $1$ y el propio $60$. Luego no existe $N$ subgrupo normal propio y así $\mathcal{A}_{5}$ es simple.
 
-\textbf{\textit{Probaremos ahora que $\mathcal{A}_{n}$ es simple}} para $n \geq 6$ por inducción sobre $n$. Supongamos que $n \geq 6$ y que $\mathcal{A}_{n-1}$ es simple. Sabemos que $\mathcal{A}_{n}$ actúa sobre $\lbrace 1,2, \ldots, n \rbrace$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Como hicimos en~\ref{eq:obsabel} para cada $\sigma \in K$, tenemos definido un $\bar{\sigma} \in S_{n-1}$. Como la descomposición de $\sigma$ y $\bar{\sigma}$ como producto de ciclos disjuntos es la misma entonces $\sigma$ es par si y sólo si $\bar{\sigma}$ lo es. Por lo tanto $K \simeq \mathcal{A}_{n-1}$ es simple.
+\textbf{\textit{Probaremos ahora que $\mathcal{A}_{n}$ es simple}} para $n \geq 6$ por inducción sobre $n$. Supongamos que $n \geq 6$ y que $\mathcal{A}_{n-1}$ es simple. Sabemos que $\mathcal{A}_{n}$ actúa sobre $\lbrace 1,2, \ldots, n \rbrace$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Sea $K$ el estabilizador de $n$ en $\mathcal{A}_{n}$. Como hicimos en~\ref{eq:obsabel} para cada $\sigma \in K$, tenemos definido un $\bar{\sigma} \in S_{n-1}$. Como la descomposición de $\sigma$ y $\bar{\sigma}$ como producto de ciclos disjuntos es la misma entonces $\sigma$ es par si y sólo si $\bar{\sigma}$ lo es. Por lo tanto $K \cong \mathcal{A}_{n-1}$ es simple.
 
 Por el resultado anterior $\mathcal{A}_{n}$ actúa transitivamente sobre $\lbrace 1, 2, \ldots, n \rbrace$ y por~~sabemos que todos los estabilizadores son conjugados en $\mathcal{A}_{n}$. Por lo tanto, si $\sigma \in \mathcal{A}_{n}$ fija algún elemento, entonces $\sigma \in K^{\tau}$ para cierto $\tau \in \mathcal{A}_{n}$.
 
@@ -1467,11 +1654,11 @@ $\hfill \square$
 Empezaremos con un resultado que es consecuencia de lo visto ahora y que básicamente nos dice que si tenemos un grupo de orden primo o múltiplo entonces contendrá un elemento de orden ese primo. Es el conocido como \textit{Teorema de Cauchy}, que lo probaremos primero para grupos abelianos y más tarde generalizaremos a todos.
 
 \begin{theorem}[\textit{\textbf{Teorema de Cauchy para grupos abelianos.}}]
-Sea $G$ un grupo abeliano finito, y $p$ un número primo que divide al orden de $G$. Entonces existirá $x \in G$ tal que $o(x) = p$.
+Sea $G$ un grupo abeliano finito, y $p$ un número primo que divide al orden de $G$. Entonces existirá un $x \in G$ tal que $o(x) = p$.
 \end{theorem}
 \emph{Demostración: } Lo haremos por inducción sobre $|G|$. Sea $H$ un subgrupo propio de $G$ de orden lo mayor posible. Si $p \mid |H|$, por hipótesis de inducción existirá un $x \in H \subset G$ tal que $o(x) = p$. Por lo tanto podemos suponer que $ p \nmid |H|$. Como $p \mid |G| = |G/H| |H|$ por el \textit{Teorema de Lagrange} (además podemos hacer el cociente porque al ser $G$ abeliano todo subgrupo es normal), y esto quiere decir que $p \mid |G/H|$. Además, como $H$ es de orden lo mayor posible entre los subgrupos de $G$, por el \textit{Teorema de la correspondencia} $G/H$ no tiene subgrupos propios no triviales y por tanto es simple.
 
-Así, ahora partimos de que $G/H$ es simple y abeliano y que  $p \mid |G/H|$. Como los grupos simples abelianos son cíclicos de orden primo tenemos que $$G/H \simeq C_{p}.$$ Sea $H \neq xH \in G/H$. Entonces es claro que $o(xH) = p$. Tenemos un elemento de orden $p$ dentro del cociente y queremos encontrar un elemento de orden $p$ dentro del grupo. Para ello construiremos el homomorfismo sobreyectivo que ya conocemos $$\begin{array}{rccl}
+Así, ahora partimos de que $G/H$ es simple y abeliano y que  $p \mid |G/H|$. Como los grupos simples abelianos son cíclicos de orden primo tenemos que $$G/H \cong C_{p}.$$ Sea $H \neq xH \in G/H$. Entonces es claro que $o(xH) = p$. Tenemos un elemento de orden $p$ dentro del cociente y queremos encontrar un elemento de orden $p$ dentro del grupo. Para ello construiremos el homomorfismo sobreyectivo que ya conocemos $$\begin{array}{rccl}
 \pi \colon &G & \longrightarrow & G/H\\
 &x & \longmapsto &xH
 \end{array}
@@ -1502,7 +1689,7 @@ Pasemos ya con las definiciones que emplearemos y con las que trabajaremos a par
 El objetivo fundamental de esta sección es demostrar que los subgrupos de Sylow siempre existen ($Syl_{p}(G) \neq \lbrace \emptyset \rbrace$, $\forall p$) y que son conjugados entre sí. 
 
 \begin{theorem}[\textit{\textbf{Primer Teorema de Sylow}}]
-Sea $G$ es un grupo finito y $p$ un número primo, entonces $G$ tiene un $p$-subgrupo de Sylow.
+Sea $G$ un grupo finito y $p$ un número primo, entonces $G$ tiene un $p$-subgrupo de Sylow.
 \end{theorem}
 \emph{Demostración: }Lo haremos por inducción sobre el orden de $G$. Si $|G| = 1$, entonces es evidente. Supongamos ahora que todos los grupos de orden menor que $|G|$ tienen $p$-subgrupos de Sylow y veamos que $G$ también los tiene.
 Si $p \nmid |G|$ entonces el subgrupo trivial es un $p$-subgrupo de Sylow de $G$. Por lo que supongamos que $p \mid |G|$, así $|G| = p^{n}m$ con $p$ no dividiendo a $m$ ($mcd(p,m)=1$). Entonces, podemos distinguir dos casos: 
@@ -1516,7 +1703,7 @@ $\hfill \square$
 \begin{theorem}[\textbf{\textit{Segundo Teorema de Sylow}}]Si $G$ es un grupo finito, entonces todo $p$-subgrupo de $G$ está contenido en un $p$-subgrupo de Sylow y dos $p$-subgrupos de Sylow cualesquiera son conjugados.
 
 \end{theorem}
-\emph{Demostración: }Sea $P$ un $p$-subgrupo de Sylow de $G$ y sea $H$ un $p$-subgrupo arbitrario. Entonces $H$ actúa sobre $X= G/R^{P}$ por multiplicación a izquierda como vimos en~\ref{eq:ejcorazon}. Por el teorema de la órbita estabilizadora tenemos que las órbitas de $\Omega$ tienen cardinal potencia de $p$ (incluyendo $p^{0}=1$). De hecho, alguna órbita ha de tener cardinal $1$, pues de lo contrario el cardinal de $\Omega$, que es $[G:P]$, sería suma de potencias (no triviales) de $p$, así sería múltiplo de $p$.
+\emph{Demostración: }Sea $P$ un $p$-subgrupo de Sylow de $G$ y sea $H$ un $p$-subgrupo arbitrario. Entonces $H$ actúa sobre $X= G/\sim_{P}$ por multiplicación a izquierda como vimos en~\ref{eq:ejcorazon}. Por el teorema de la órbita estabilizadora tenemos que las órbitas de $\Omega$ tienen cardinal potencia de $p$ (incluyendo $p^{0}=1$). De hecho, alguna órbita ha de tener cardinal $1$, pues de lo contrario el cardinal de $\Omega$, que es $[G:P]$, sería suma de potencias (no triviales) de $p$, así sería múltiplo de $p$.
 
 Por lo tanto, existirá un $g \in G$ tal que la clase de conjugación $x = gP$ formará una órbita trivial, con $x$ como único elemento. Concretamente $hgP = gP$ para todo $h \in H$. En particular $hg \in gP$ y así $h \in P^{g}$ para todo $h \in H$. De aquí $H \leq P^{g}$ y así $P^{g}$ es también $p$-subgrupo de Sylow.
 
@@ -1550,8 +1737,10 @@ La última de las consecuencias es equivalente a decir que $\left[ G:N_{G}(P) \r
 
 \subsection{Resolubilidad}
 
-\begin{definition}Un grupo $G$ se dice \textbf{resoluble} si existen subgrupos $$1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_{k-1} \unlhd G_{k} = G$$ tales que $G_{i+1}/G_i$ es abeliano para todo $i= 0, \ldots, k-1$. Como $G_{i+1}/G_i$ es abeliano si y sólo si $$xG_iyG_i = yG_ixG_i$$ para todos $x,y \in G_{i+1}$, concluimos que $G_{i+1}/G_i$ es abeliano si y sólo $xyx^{-1}y^{-1} \in G_i$ para todo $x,y \in G_{i+1}$.
+\begin{definition}Un grupo $G$ se dice \textbf{resoluble} si existen subgrupos $$1 = G_0 \unlhd G_1 \unlhd \ldots \unlhd G_{k-1} \unlhd G_{k} = G$$ tales que $G_{i+1}/G_i$ es abeliano para todo $i= 0, \ldots, k-1$. Como $G_{i+1}/G_i$ es abeliano si y sólo si $$xG_iyG_i = yG_ixG_i$$ para todo $x,y \in G_{i+1}$, concluimos que $G_{i+1}/G_i$ es abeliano si y sólo $xyx^{-1}y^{-1} \in G_i$ para todo $x,y \in G_{i+1}$.
 \end{definition}
+
+La importancia de este concepto es fundamental en álgebra abstracta, ya que a cada \textit{ecuación polinómica} de la forma $$a_{n}x^{n} + \ldots + a_{1}x + a_{0} = 0, \hspace{0.2cm} a_{0}, \ldots , a_{n} \in \mathbb{Q}$$ se le puede asociar un grupo, y que dicho grupo sea resoluble es condición necesaria y suficiente para que las soluciones de la ecuación polinómica anterior se puedan expresar mediante sumas, restas, multiplicaciones, divisiones y extracción de raíces de números racionales. A esto se le conoce como \textit{ser resoluble por radicales}, y es ésta la razón de llamar así a estos grupos, porque podríamos resumirlo en: \textit{ecuación resoluble por radicales} $\Longleftrightarrow$ \textit{grupo asociado resoluble}. Esto es lo que se desarolla y estudia en el seno de la \textit{Teoría de Galois}. Podríamos considerar los grupos y su teoría como un ¿ingrediente? más, bastante potente y uno de los pilares, pero no el único. Como acabamos de ver los polinomios también juegan un papel central, y para poder relacionarlo con todo lo visto necesitaremos entender qué son y sobre qué estructuras se definen, eso lo veremos en la siguiente sección.
 
 \begin{proposition} \label{eq:reso1} Sea $G$ un grupo.
 \begin{enumerate}
@@ -1653,7 +1842,7 @@ Una vez vistas las primeras definiciones, veamos algunos ejemplos clásicos de a
 
 \begin{example}\label{eq:ejemploAnillos} Algunos de estos ejemplos ya los conocemos, de hecho algunos son bastante familiares: \begin{enumerate}
 \item El conjunto $\mathbb{Z}$ de los números enteros, dotado con la suma y producto habituales, es un anillo conmutativo y unitario. Sus únicas unidades son $1$ y $-1$, por lo que no es un cuerpo.
-\item Los números pares, $2\mathbb{Z}$, constituyen un anillo conmutativo pero no unitario, puesto que no existe ningún elemento $u \in 2\mathbb{Z}$, es decir, de la forma $2z$ con $z$ algún entero, tal que $2z \cdot 2a = 2a$ con $a \in \mathbb{Z}$.
+\item Los números pares, $2\mathbb{Z}$, constituyen un anillo conmutativo pero no unitario, puesto que no existe ningún elemento $u \in 2\mathbb{Z}$ de la forma $2z$ con $z$ algún entero, tal que $2z \cdot 2a = 2a$ con $a \in \mathbb{Z}$.
 \item Los conjuntos $\mathbb{Q}, \mathbb{R}$ y $\mathbb{C}$ de los números racionales, reales y complejos respectivamente, son cuerpos conmutativos.
 \item Sea $A$ el conjunto de los números complejos $a +bi$, con $a,b \in \mathbb{Z}$. Como $i^{2} = -1$, este conjunto $A$ es un anillo con las operaciones heredadas de $\mathbb{C}$. Tenemos que $$(a+bi)(c+di) = ac + adi + bci + bdi^{2} = (ac-bd) + (ad+bc)i \in A.$$ A este anillo se le denota $\mathbb{Z}[i]$ y a estos números se les conocen como \textbf{enteros de Gauss}.
 \item Sean $A$ un anillo y $M_{2} = M_{2}(A)$ el conjunto de las matrices cuadradas de orden $2$ de elementos de $A$. Este conjunto es un anillo con la suma y producto como siguen:  $$\left(
@@ -1813,7 +2002,7 @@ $\hfill \blacksquare$
 
 Ahora introduciremos uno de los conceptos más importantes que veremos a lo largo de este capítulo y que será de todavía mayor importancia en lo sucesivo. Es algo así como la extensión del concepto de subgrupo normal para los anillos: 
 
-\begin{definition}Sea $A$ un anillo conmutativo y unitario. Llamaremos \textbf{ideal} a un subconjunto $I \subset A$ que cumplirá las siguientes condiciones: \renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{definition}Sea $A$ un anillo conmutativo y unitario. Llamaremos \textbf{ideal} a un subconjunto $I \subseteq A$ que cumplirá las siguientes condiciones: \renewcommand{\labelenumi}{\arabic{enumi}.}
 \begin{enumerate}
 \item $I$ es un subgrupo de $A$ para la suma, así habrá de incluir el elemento neutro, es decir, $0 \in I$.
 \item $\forall x \in I, a \in A$ tenemos que $ax \in I$.
@@ -1828,7 +2017,7 @@ Es inmediato comprobar que, por ejemplo, los múltiplos de un número entero, es
 
 \begin{definition} Algunas definiciones de especial interés: \renewcommand{\labelenumi}{\arabic{enumi}.} \begin{enumerate}
 \item El conjunto $\lbrace 0 \rbrace$ es un ideal de $A$, denominado \textbf{ideal nulo}. También $A$ cumple con las condiciones, así que también es ideal de $A$, y tanto este como el ideal nulo son los llamados \textbf{ideales impropios} de $A$. Esto sirve para distinguirlos de aquellos ideales $I \neq A$, a los que llamaremos \textbf{ideales propios} de $A$. Notar que si $1 \in I$, entonces por la segunda condición tenemos que $x = x \cdot 1 \in I$ para cualquier $x \in A$. Por lo tanto será importante para tener en cuenta que \textbf{$I$ es propio si y sólo si $1 \notin I$.}
-\item Si $x \in A$, entonces el conjunto $$xA = \lbrace xa : \hspace{0.1cm} a \in A \rbrace$$ es un ideal de $A$, denominado \textbf{ideal principal generado por $x$}. Un ejemplo de esto podrían ser los ideales de $\mathbb{Z}$ mencionados anteriormente, los conjuntos $n\mathbb{Z}$. Más adelante veremos esta expresión generalizada para hablar de ideales generados por conjuntos. 
+\item Si $x \in A$, entonces el conjunto $$xA = \lbrace xa : \hspace{0.1cm} a \in A \rbrace$$ es un ideal de $A$, denominado \textbf{ideal principal generado por $x$} y lo denotaremos por $(x)$. Un ejemplo de esto podrían ser los ideales de $\mathbb{Z}$ mencionados anteriormente, los conjuntos $n\mathbb{Z}$. Más adelante veremos esta expresión generalizada para hablar de ideales generados por conjuntos.
 \end{enumerate}
 \end{definition}
 
@@ -1839,6 +2028,14 @@ Con esto, podemos enunciar el primer resultado, que define los cuerpos a partir 
 \emph{Demostración: } Si $A$ es un cuerpo e $I$ un ideal no nulo de $A$ entonces contendrá algún elemento $a \neq 0$ y así $aa^{-1} = 1 \in A$, por lo que $I = A$. Recíprocamente, supongamos que los únicos ideales de $A$ son los impropios. Entonces, para cada $a \in A$ no nulo el ideal $aA$ también es no nulo, y así $aA = A$; pero esto quiere decir que existirá un $b \in A$ tal que $ab = 1$. Por lo tanto, $a \in \mathcal{U}(A)$ y como esto es así para cualquier $a \in A$ no nulo, $A$ es un cuerpo.
 
 $\hfill \square$
+
+\begin{proposition}\label{eq:idK}En un cuerpo $K$ no hay más ideales que $\lbrace 0 \rbrace$ y el propio $K$. 
+\end{proposition}
+\emph{Demostración: }Si $I$ es un ideal no trivial de $K$, consideramos cualquier elemento $x \in I \setminus \lbrace 0 \rbrace$. Entonces existe $x^{-1}\in K$, por ser $I$ ideal, $1 = x^{-1}x \in I$, de modo que $I$ es el ideal impropio K.
+
+Recíprocamente, si un anillo unitario conmutativo $K$ no tiene otros ideales que $\lbrace 0 \rbrace$ y $K$, entonces es un cuerpo, pues si $x \in K^\ast$, el ideal $(x)$ no es trivial, luego es todo $K$ y así $1 \in (x)$. Esto significa que $1 = yx$ para algún $y$, es decir, que $x$ es unidad. Queda así visto que $\mathcal{U}(K) = K^\ast$ y $K$ es un cuerpo.
+$\hfill \square$
+
 
 Con todo esto, sería normal preguntarse para qué hemos definido este concepto, el de ideal. Y es que la noción de ideal, como ya se ha dicho, es de gran importancia principalmente porque nos va a permitir definir relaciones de equivalencia en un anillo de tal forma que el conjunto cociente podrá heredar la estructura de anillo. Es algo similar a lo que pasa con los \textit{subgrupos normales} en \textit{Teoría de Grupos}.
  
@@ -1902,9 +2099,9 @@ Es claro que todo cuerpo $K$ es un anillo noetheriano.
 De estas definiciones deducimos el siguiente resultado:
 
 \begin{proposition} Dado un anillo conmutativo y unitario $A$, y dos ideales $I$, $J$ de $A$, entonces tendremos: \begin{enumerate}
-\item $IJ \subset I \cap J.$
+\item $IJ \subseteq I \cap J.$
 \item En general $IJ$ y $I \cap J$ no coincidirán.
-\item Dada una colección finita de ideales $I_{1}, \ldots, I_{r}$ de $A$, con $r \geq 1$, entonces $$I_{1} \cdots I_{r} \subset I_{1} \cap \cdots \cap I_{r}.$$
+\item Dada una colección finita de ideales $I_{1}, \ldots, I_{r}$ de $A$, con $r \geq 1$, entonces $$I_{1} \cdots I_{r} \subseteq I_{1} \cap \cdots \cap I_{r}.$$
 \end{enumerate} 
 \end{proposition}
 \emph{Demostración: }
@@ -1912,7 +2109,7 @@ Para probar $1.$ simplemente hay que tener en cuenta que, como $IJ =  \lbrace x_
 
 Para ver $2.$ daremos un contraejemlo. Consideremos $A = \mathbb{Z}$, $I = 4\mathbb{Z}$ y $J = 6\mathbb{Z}$, respectivamente los múltiplos de $4$ y de $6$. Entonces la $I \cap J$ estará formado por aquellos elementos que sean múltiplos de $4$ y de $6$, es decir múltiplos de $12$, luego $I \cap J = 12\mathbb{Z}$. Sin embargo, $IJ = 24\mathbb{Z}$, luego el contenido de $IJ$ en la intersección es estricto.
 
-$3.$ es evidente por recurrencia ya que $$I_{1} \cdots I_{r} \subset (I_{1} \cdots I_{r-1} ) I_{r} \subset (I_{1} \cdots I_{r-1} ) \cap I_{r} \subset (I_{1} \cap \cdots \cap I_{r-1} ) \cap I_{r} \subset I_{1} \cap \cdots \cap I_{r}.$$
+$3.$ es evidente por recurrencia ya que $$I_{1} \cdots I_{r} \subset (I_{1} \cdots I_{r-1} ) I_{r} \subseteq (I_{1} \cdots I_{r-1} ) \cap I_{r} \subseteq (I_{1} \cap \cdots \cap I_{r-1} ) \cap I_{r} \subseteq I_{1} \cap \cdots \cap I_{r}.$$
 
 $\hfill \square$
 
@@ -1941,7 +2138,7 @@ A continuación daremos una caracterización de estos ideales:
 \item $I$ es un ideal propio y ningún otro ideal propio lo contiene estrictamente.
 \end{enumerate}
 \end{proposition}
-\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -ab \in I \subset J$. Ahora como $ab \in J$, por ser $J$ un ideal, tendremos que $1 = (1- ab) + ab \in J$ y así $J = A$, lo cual es falso.
+\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -ab \in I \subseteq J$. Ahora como $ab \in J$, por ser $J$ un ideal, tendremos que $1 = (1- ab) + ab \in J$ y así $J = A$, lo cual es falso.
 
 Recíprocamente, sea $x + I$ un elemento no nulo de $A/I$. Entonces $x \in A \setminus I$, es decir, será un elemento de $A$ que no estará en $I$, por lo que el ideal $I + xA$ contiene estrictamente a $I$. Como este último es maximal tendremos que $I + xA = A$, es decir que existirá $b \in I$ e $y \in A$ tal que $b + xy = 1$. Así que $1 - xy \in I$, es decir, $$xy + I = (x + I)(y + I ) = 1 + I,$$ por lo que $A/I$ es un cuerpo.
 
@@ -2074,6 +2271,12 @@ Así, en estas condiciones, todas las aplicaciones son homomorfismos y el diagra
 Lo último es claro ya que, dado un $x \in A$, tenemos que $$f(x) = (i \circ \bar{f} \circ \pi) (x) = i(\bar{f}(\pi(x))) = i(\bar{f}(x + Kerf)) = i(f(x)) = f(x).$$
 $\hfill \square$
 
+\begin{corolario}$\mathbb{R}[x]/(x^2+1) \cong \mathbb{C}$.
+\end{corolario}
+\emph{Demostración: }Consideremos el homomorfismo $f \colon \mathbb{R}[x] \longrightarrow \mathbb{C}$ definido por la inclusión $\mathbb{R} \subseteq \mathbb{C}$ y tal que $f(x) = i$. Este homomorfismo es sobreyectivo ya que dado $a+bi \in \mathbb{C}$ $f(bx+a)=a+ib$, por tanto $Imf = \mathbb{C}$. Basta ahora ver que $Kerf =(x^2+1)$. Como $\mathbb{R}$ es un cuerpo, todo ideal no trivial de $\mathbb{R}[x]$ está generado por cualquiera de sus elementos no nulos de grado mínimo. Por tanto, es suficiente comprobar que $x^2+1 \in Kerf$ y que $Ker f$ no posee ningún polinomio no trivial de grado menor que $2$. Claramente $f(x^2+1)=i^2+1 = 0$. Si $bx+a \in \mathbb{R}[x]$ es un polinomio no trivial entonces $f(bx+a) = a+ib$ es un número complejo no trivial, con lo que queda demostrado.
+
+$\hfill \square$
+
 \begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
 Sean $A \subset B$ dos anillos conmutativos y unitarios, e $I$ un ideal de $B$. Entonces $A + I$ es un subanillo de $B$ que contiene a $I$. Además, los anillos $(A+ I)/I$ y $A/(A \cap I)$ son isomorfos.
 \end{theorem}
@@ -2158,7 +2361,17 @@ $\hfill \square$
 El recíproco en general no se cumple, aunque esto lo desarrollaremos más adelante.
 \end{enumerate} 
 
+Con estas condiciones llegamos a la definición de \textit{elementos asociados}
+
+\begin{definition}Dos elemento $x,y \in A$ se dirán \textbf{asociados} en $A$ si $x \mid y$ e $y \mid x$. Por ejemplo, en $\mathbb{Z}$ $n$ y $-n$ lo son. Ser asociados es una relación de equivalencia en $A$, en la que la clase de un $x$ cualquiera (sus asociados) estará formada por elementos de la forma $ux$, con $u \in \mathcal{U}(A)$. 
+\end{definition}
+
+Lo podemos resumir diciendo que dos elementos $x,y \in A$ son asociados si y sólo si $(x) = (y)$.
+
+Estos elementos son distintos, pero se comportan de forma análoga desde el punto de vista de la divisibilidad, es decir, tienen los mismos múltiplos y los mismos divisores.
+
 Una clase importante de dominios de integridad, en la que la relación de divisibilidad puede ser estudiada con ventaja, es:
+
 \subsubsection{Dominios euclídeos}
 \begin{definition} \label{eq:de} Diremos que $A$ es un \textbf{dominio euclídeo}, escrito $DE$, si existe una aplicación $$\begin{array}{rccl}
 \norm{\cdot}\colon A\longrightarrow \mathbb{N}
@@ -2453,13 +2666,13 @@ Ya sabemos que, dado un primo $p>1$, $\phi(p) = p-1$. Esto está relacionado con
 
 \subsection{Anillos de polinomios}
 
-\begin{definition}Sea $A$ un anillo conmutativo y unitario. Diremos que $X$ es una \textbf{indeterminada} ó \textbf{variable} si sus potencias son algebraicamente independientes, es decir, $$\sum_{i=0}^{n} a_{i}X^{i}=0, \hspace{0.2cm} a_{i}\in A \Longleftrightarrow a_0 = \ldots = a_n = 0 \forall n.$$
+\begin{definition}Sea $A$ un anillo conmutativo y unitario. Diremos que $X$ es una \textbf{indeterminada} ó \textbf{variable} si sus potencias son algebraicamente independientes, es decir, $$\sum_{i=0}^{n} a_{i}X^{i}=0, \hspace{0.2cm} a_{i}\in A \Longleftrightarrow a_0 = \ldots = a_n = 0  \quad\forall n.$$
 
 Un \textbf{polinomio en $X$} con coeficientes en $A$ es una suma finita $$f(X) = a_0+a_1X+\ldots + a_nXn, \hspace{0.1cm} a_0, a_1, \ldots, a_n \in A$$ a la que se puede agregar un número finito y arbitrario de ceros.  
 \end{definition}
 
 \begin{definition}Dados polinomios $f(X) = \sum_{i=0}^n a_iX^i$ y $g(X) = \sum_{j=0}^m b_jX^j$ y $s = max\lbrace n,m \rbrace$ definimos su \textbf{suma} por $$f(X) +g(X) = \sum_{k\geq 0}^s(a_k+b_k)X^k = (a_0+b_0)+\ldots + (a_k+b_k)X^k + \ldots + (a_s+b_s)X^s,$$
-y su \textbf{producto} como $$f(X)\cdot g(X) = \sum_{k=1}^{n+m}c_k X^k, \hspace{0.2cm} c_k = \sum_{i+j=k}a_ib_j,$$ teniendo en cuenta que sii algún coeficiente $a_i$ ó $b_j$ no aparece es $0$.
+y su \textbf{producto} como $$f(X)\cdot g(X) = \sum_{k=1}^{n+m}c_k X^k, \hspace{0.2cm} c_k = \sum_{i+j=k}a_ib_j,$$ teniendo en cuenta que si algún coeficiente $a_i$ ó $b_j$ no aparece es $0$.
 
 Así, construimos un nuevo anillo $A[X]$ cuyo \textbf{cero} es $0 = 0X + \ldots + 0X^n$, y cuyo \textbf{uno} es $1 = 1+ 0X + \ldots + 0X^n$. Diremos que $A[X]$ es el \textbf{anillo de polinomios en la variable $X$ con coeficientes en $A$}.
 \end{definition}
@@ -2470,7 +2683,7 @@ Así, construimos un nuevo anillo $A[X]$ cuyo \textbf{cero} es $0 = 0X + \ldots 
 \begin{definition}Dados dos anillos $A \leq B$, si $f(X) \in A[X]$ y $b \in B$, al elemento $f(b) \in B$ se le suele llamar \textbf{\textit{valor}} de $f(X)$ en $b$.  De igual forma, al conjunto $$A[b]= \lbrace f(b) : f(X) \in A[x] \rbrace,$$ de todos ellos lo llamaremos \textbf{\textit{anillo de valores de $b$}} en $A[X]$. Si el valor $f(b)=0$ se dice que $b$ es una \textbf{raíz} de $f(X)$. 
 \end{definition}
 
-Si $X_1, \ldots, X_n$ son variables independientes, el \textbf{anillo de polinomios} $A[X_1, \ldots, X_n]$ en las variables $X_1, \ldots, X_n$ con coeficientes en $A$ entonces podemos definir de manera inductiva $$A[X_1, \ldots, X_n] = (A[X_1, \ldots, X_{n-1}])[X_n].$$
+Si $X_1, \ldots, X_n$ son variables independientes, el \textbf{anillo de polinomios} $A[X_1, \ldots, X_n]$ en las variables $X_1, \ldots, X_n$ con coeficientes en $A$ se puede definir de manera inductiva $$A[X_1, \ldots, X_n] = (A[X_1, \ldots, X_{n-1}])[X_n].$$
 
 A partir de ahora supondremos que $A$ es un dominio de integridad.
 
@@ -2479,7 +2692,163 @@ A partir de ahora supondremos que $A$ es un dominio de integridad.
 Diremos que un $a_iX^i$ es el término de grado $i$. El de grado $0$ se denomina \textbf{término independiente}. El coeficiente del término de mayor grado lo llamaremos \textbf{coeficiente director de $f(X)$}. Diremos que un $f(X)$ es mónico si su coeficiente director es una unidad del anillo.
 \end{definition}
 
-Ahora, dado $0 \neq f(X_1, \ldots, X_n) \in A[X_1,\ldots, X_n]$ el grado 
+Ahora, dado $0 \neq f(X_1, \ldots, X_n) \in A[X_1,\ldots, X_n]$ el $grado_{X_i}(f)$ ó $\delta_{X_i}(f)$ es el grado de $f$ como polinomio en $X_i$. El \textbf{\textit{grado total}} de $f = \sum a_{i_1\ldots i_n}X^{i_1}_1\cdots X^{i_n}_n$ es el máximo $\lbrace i_1+\ldots+i_n : a_{i_1 \ldots i_n} \neq 0 \rbrace$.
+
+Por convenio asumiremos que el polinomio cero no tiene grado o que tiene grado $- \infty$.
+
+\begin{proposition} Un anillo de polinomios $A[X]$ es dominio de integridad ($DI$) si y sólo si lo es $A$.
+\end{proposition}
+\emph{Demostración: }  Como $A$ es subanillo de $A[X]$, el sólo si es claro. Supongamos ahora que $A$ es $DI$. Consideremos la indeterminada $X$ y dos polinomios de $A[X]$: $$f = a_{0} + a_{1}X + \ldots + a_{p}X^{p}, \hspace{0.2cm} g = b_{0} + b_{1}X + \ldots + b_{q}X^{q},$$ vemos que $\delta (f) = p$ y que $\delta (g) = q$, lo que significa que $a_{p} \neq 0$, $b_{q} \neq 0$. Hagamos su producto: $$fg = \sum_{r}^{p+q}c_{r}X^{r} = a_{0}b_{0} + \ldots + (a_{p-1}b_{q} + a_{p}b_{q-1})X^{p+q-1} + a_{p}b_{q}X^{p+q}.$$ Por tanto, $c_{p+q} = a_{p}b_{q} \neq 0$ ya que $A$ es $DI$. Pero esto quiere decir que $fg \neq 0$ pues al menos el coeficiente $c_{p+q}$ es no nulo. Quedaría así probado que $A[X]$ es $DI$.
+
+$\hfill \square$
+
+Notar que este resultado se puede extender de forma natural por inducción a varias variables, es decir: $A[X_{1}, \ldots, X_{n}]$ es dominio de integridad ($DI$) si y sólo si lo es $A$.
+
+De esto se deduce que, como hemos considerado que de ahora en adelante $A$ será un dominio de integridad, $A[X]$ va a ser un dominio de integridad.
+
+De hecho, en general general vamos a tener que $\delta(f \cdot g ) \leq \delta(f)+\delta(g)$, pero como $A[X]$ es dominio de integridad entonces: $$\delta(f\cdot g) =  \delta(f)+\delta(g).$$ Además, 
+
+\begin{corolario} Si $A$ es un dominio de integridad, entonces $$\mathcal{U}(A) = \mathcal{U}(A[X]).$$
+\end{corolario}
+\emph{Demostración: } Si $a \in \mathcal{U}(A)$ existirá $a^{-1} \in A$ y $a^{-1}$ será también el inverso de $a$ en $A[X]$, luego $a \in \mathcal{U}(A[X])$. Recíprocamente, sea $f \in \mathcal{U}(A[X])$. Entonces existe $g \in A[X]$ con $1 = fg$ $(\ast)$. Como $A$ es dominio de integridad, tenemos que $$0 = \delta (1) = \delta (fg) = \delta (f) + \delta (g).$$ Esto sólo puede significar que $\delta (f) = \delta (g) = 0$, es decir, $f \in A$ y $g \in A$. Así, por $(\ast)$ $f$ es unidad en $A$.
+
+$\hfill \square$
+
+Es además una propiedad que se puede extender por inducción a un anillo de polinomios en varias variables: $$\mathcal{U}(A) = \mathcal{U}(A[X_{1}, \ldots, X_{n}]).$$
+
+La división en $A[X]$ está regulada por la conocida como \textbf{\textit{pseudodivisión}}.
+
+\begin{proposition}\label{eq:divPol} Dados $0 \neq f(X), g(X) \in A[X]$, si $a$ es el coeficiente director de $f(X)$, existen un entero $t \geq 0 $ y polinomios $q(X), r(X) \in A[X]$ tales que $a^tg(X) = f(X)q(X)+r(X)$ y ó $r(X) = 0$ ó si $r(X) \neq 0$ se tiene que $\delta (r) < \delta (f)$.
+\end{proposition}
+\emph{Demostración: }Si $\delta (g) < \delta (f)$,  basta tomar $t = 0$, $q(X) = 0$ y $r(X) = g(X)$. Supongamos $m = \delta(g) \geq \delta(f) = n$ y procedamos por inducción sobre $m$. Sea $b$ el coeficiente director de $g(X)$. Si $m = 0$, se tiene que $g(X) = b$ y $n = 0$. Como $ag(X)=f(X)b$, basta tomar $t=1$, $q(X)=b$ y $r(X)=0$. Si $m >0$, sea $h(X)=ag(X)-bf(X)X^{m-n}$. Como $\delta(h) < \delta(g)=m$, por inducción existen $t'\geq 0$ y $q'(X), r'(X) \in A[X]$ verificando $a^{t'}h(X) = q'(X)f(X) + r'(X)$, donde ó $r'(X) = 0$ ó $\delta(r') < \delta(f)$. Así $a^{t'+1}g(X) = (q'(X)+a^{t'}bX^{m-n})f(X)+r'(X)$ y basta tomar $t = t'+1$, $q(X) = q'(X) + a^{t'}bX^{m-n}$ y $r(X) = r'(X)$.
+
+
+$\hfill \square$
+
+\begin{corolario}SI $K$ es un cuerpo, $K[x]$ es un dominio euclídeo.
+\end{corolario}
+\emph{Demostración: }En este caso, el grado es una función euclídea.
+
+$\hfill \square$
+
+\begin{corolario}[\textbf{\textit{Teorema del resto}}] Si $a \in A$ y $f(X) \in A[X]$, el resto al dividir $f(X)$ por $(X-a)$ es $f(a)$. En particular, $f(a) = 0$ si y sólo si $X-a \mid f(X)$.
+\end{corolario}
+\emph{Demostración: }Aplicamos~\ref{eq:divPol} con $f(X)$ como dividendo y $X-a$ como divisor y después sustituir $X = a$.
+
+$\hfill \square$
+
+La aplicación reiterada del \textit{Teorema del resto} permite deducir una cierta factorización de un polinomio quitándole sus raíces en $A$. Es decir, si $f(X) \in A[X]$ y $a_1, a_2, \ldots, a_r \in A$ son sus raíces en $A$, cada una de ellas apareciendo $m_1, \ldots, m_r$ veces respectivamente, entonces existe $g(X) \in A[X]$ tal que $$f(X) = (X-a_1)^{m_1}\ldots (X-a_r)^{m_r}g(X),$$ donde $g(a) \neq 0$, para todo $a \in A$. Cada factor $X-a_i$ es irreducible, puesto que es mónico de grado $1$, aunque $g(X)$ no tiene por qué serlo. Se tiene que $\delta(f) = m_1+m_2 + \ldots + m_r+\delta(g)$, luego $\sum_i^r m_i \leq \delta(f)$. 
+\begin{itemize}
+\item \textit{Raíces} en $A$: la condición necesaria para su existencia es la \textit{regla de Ruffini}: $f(X) = a_nX^n+\ldots+ a_1X+a_0 \in A[X]$, $a \in A$ y $f(a)=0 \Rightarrow a \mid a_0$.
+\item \textit{Multiplicidades de raíces}: que se caracterizará usando el criterio de la derivada, para ello recordamos que la derivación de polinomios es una aplicación lineal $$\begin{array}{rccl}
+&A[X]&\longrightarrow &A[X] \\
+&f(X)=\sum_{i=0}^na_iX^i& \longmapsto &f'(X) = \sum_{i=1}^{n-1} ia_iX
+\end{array}
+$$
+Notar que es una aplicación que se puede aplicar tantas veces como queramos, obteniendo las derivadas sucesivas del polinomio: $f''(X), \ldots, f^{(n}(X), \ldots$, esto lo hacemos de forma inductiva: $f^{(0}(X)=f(X)$ y $f^{(n}(X) = (f^{(n-1}(X))'$, con $n >0$. 
+
+Recordamos también las siguientes propiedades de la derivación de polinomios: 
+\renewcommand{\theenumi}{\arabic{enumi}}
+\begin{enumerate}
+\item Si $a\in A$, $a' = 0$.
+\item Si $n\geq 1$, $(X^n)' = nX^{n-1}.$
+\item $(f(X) + g(X))' = f'+g'$.
+\item $(f(X)g(X))' = f'(X)g(X) +f(X)g'(X)$. (\textit{Regla de Leibniz})
+\end{enumerate}
+Notar que podría ser $f(X)$ no constante y $f'(X)$ nulo. Esto pasaría si $f(X) \in A[X^n]$, con $n$ la característica de $A$. 
+\end{itemize}
+
+\begin{proposition}Si la característica de $A$ no divide al grado de $f(X) \in A[X]$, entonces $a \in A$ es una raíz múltiple de $f(X)$ si y sólo si $f(a) =f'(a)=0$.
+\end{proposition}
+\emph{Demostración: }En general, tenemos que $f(X) = (X-a)^ng(X)$ con $n \geq 0$ y $g(a)\neq 0$. Así, se tiene que $f'(X) = n(X-a)^{n-1}g(X)+(X-a)^ng'(X)$. El resultado se obtiene aplicando el \textit{Teorema del resto}, teniendo en cuenta que $a$ se repite si y sólo si $n >1$.
+
+$\hfill \square$
+
+\begin{definition}Una raíz $a \in A$ de un polinomio $f(X) \in A[X]$ se dice que es \textbf{simple} si $f'(a) \neq 0$ y \textbf{múltiple} en caso contrario. El menor $n \geq 1$ tal que $f^n(a) \neq 0$ se llama \textbf{multiplicidad de $a$} como raíz de $f(X)$. Así, $a$ será simple si y sólo si $n=1$ y múltiple si y sólo si $n > 1$.
+\end{definition}
+
+Diremos que las raíces de multiplicidad $2,3,4, \ldots$ se denominan dobles, triples, cuádruples, $\ldots$, respectivamente.
+
+A partir de ahora consideraremos $A$ como un dominio de factorización única y $K$ como su cuerpo de fracciones.
+
+\begin{definition}Dado $0 \neq f(X) = a_nX^n+ \ldots + a_1X^1+a_0 \in A[X]$, definimos el \textbf{contenido} de $f$, y lo denotamos $c(f)$, como el máximo común divisor de los coeficientes nu nulos de $f(X)$. Igualmente, diremos que $f(X)$ es \textbf{primitivo} si $c(f) \in \mathcal{U}(A)$.
+\end{definition}
+
+Dado un $f(X) \in A[X]$ arbitrario, se tiene que $f(X) = c(f)f_1(X)$, con $f_1(X) \in A[X]$ primmitivo. En particular, un polinomio \textit{irreducible} es \textit{primitivo}.
+
+\begin{lemma}[\textbf{\textit{Lema de Gauss}}]El producto de polinomios primitivos es primitivo.
+\end{lemma}
+\emph{Demostración: }Sean $f(X) = a_nX^n+\ldots+ a_1X+a_0$, $g(X)= b_mX^m+\ldots+b_1X+b_0 \in A[X]$ primitivos. Su producto es $f(X)g(X) = c_{n+m}X^{n+m} + \ldots + c_1X+c_0 \in A[X]$, con $c_k = a_0b_k+ \ldots+ a_ib_{k-i} + \ldots + a_kb_0.$ Si $f(X)g(X)$ no es primitivo, entonces existe un primo $p \in A$ tal que $p \mid c_k$, $\forall k$. Como $f(X)$ y $g(X)$ son primitivos, existen $s,t \geq 0$ tales que $p \mid a_i$ si $i< s$, pero $p \nmid a_s$ y $p \mid b_j$ si $j <t$, pero $p \nmid b_t$. Como $p \ mid c_{s+t}$, se deduce que $p \mid a_sb_t,$ absurdo.
+
+$\hfill \square$
+
+De hecho, tenemos que $c(f\cdot g) \sim c(f)\cdot c(g)$, con $f(X), g(X) \in A[X]$.
+
+\begin{proposition}Sean $f(X), g(X) \in A[X]$ dos polinomios primitivos. Entonces $f(X)$ y $g(X)$ son asociados en $A[X]$ si y sólo si lo son en $K[X]$.
+\end{proposition}
+\emph{Demostración: } El directo es inmediato, veamos el recíproco. Supongamos que $f(X) = \alpha g(X)$, con $\alpha \in \mathcal{U}(K[X]) = K^*$. Si $\alpha = a/b$, con $a,b \in A$, deducimos que $bf(X) = ag(X)$. Como $f(X)$ y $g(X)$ son primitivos, tomando contenidos, $a\sim b$, luego $\alpha \in \mathcal{U}(A) = \mathcal{U}(A[X])$.
+
+
+$\hfill \square$
+
+\begin{proposition}Un polinomio no constante primitivo $f(X) \in A[X]$ es irreducible en $A[X]$ si y sólo si lo es en $K[X]$.
+\end{proposition}
+\emph{Demostración: }Sea $f(X)$ irreducible en $A[X]$ y supongamos que $f(X) = g(X)h(X)$, con $g(X), h(X) \in K[X]$. Al quitar los denominadores de los coeficientes del segundo término, calcular el contenido del polinomio resultante y aplicar el \textit{Lema de Gauss}, queda $f(X) = (a/b)g_1(X)h_1(X)$, con $a,b \in A$ y $g_1(X), h_1(X) \in A[X]$ son primitivos con $\delta (g_1) = \delta (g)$ y $\delta(h_1) = \delta(h)$. Como en el resultado anterior, operando y tomando contenidos, se tiene que $a/b \in \mathcal{U}(A)$. Por lo tanto, $g_1(X)$ ó $h_1(X)$ es constante no nulo, luego unidad de $K$. Así, $f(X)$ es irreducible en $K[X]$.
+
+Recíprocamente, supongamos que $f(X)$ es irreducible en $K[X]$ y que $f(X) = g(X)h(X)$, con $g(X), h(X) \in A[X]$. Leyendo la expresión en $K[X]$ deducimos que uno de sus factores, por ejemplo $g(X)$, debe ser una unidad en $K[X]$, es decir, $g(X) \in K$. Como $g(X) \in A[X]$, esto indica que $g(X) = a \in A$ es constante. Como $f(X)$ es primitivo, el \textit{Lema de Gauss} implica que $a \in \mathcal{U}(A)$. Por lo tanto, $f(X)$ es irreducible en $A[X]$.
+
+$\hfill \square$
+
+\begin{theorem}[\textbf{\textit{Teorema de Gauss}}]
+Si $A$ es un $DFU$, entonces también lo es $A[X]$.
+\end{theorem}
+\emph{Demostración: }Sea $f(X) \in A[X]$ un polinomio no nulo y no unidad. Escribamos $f(X) = c(f)f_1(X)$, con $f_1(X) \in A[X]$ primitivo, y factorizemos $f_1(X)$ en $K[X]$. Si $p(X) \in K[X]$ es uno de sus factores irreducibles, procediendo de modo habitual, podemos escribir $p(X) = (a/b)p'(X)$, con $a,b \in A$ y $p'(X) \in A[X]$ es primitivo. Más aún, como $p(X)$ es irreducible en $K[X]$, $p'(X)$ es irreducible en $K[X]$, luego, por primitividad, $p'(X)$ es irreducible en $A[X]$. Igualmente, otra vez por primitividad, $a/b \in \mathcal{U}(A) = \mathcal{U}(A[X])$. Por lo tanto, factorizando $c(f)$ en $A$, podemos escribir $$f(X) = ua_1 \cdots a_rp_1'(X) \cdots p_n'(X),$$ con $u \in \mathcal{U}(A[X])$, $a_1, \ldots, a_r \in A$ irreducibles en $A$ y $p_1'(X), \ldots, p_n'(X) \in A[X]$ irreducibles en $A[X]$. Notemos que cada $a_i$ es irreducible en $A[X]$ puesto que lo es en $A$. Por lo tanto la factorización existe. 
+
+Veamos ahora que es única. Sea $a_1\cdots a_rp_1(X) \cdots p_n(X)= b_1\cdots b_sq_1(X) \cdots q_m(X)$, donde $a_1, \ldots, a_r, b_1, \ldots, b_s \in A$ son irreducibles en $A[X]$, luego también en $A$, y $p_1(X), \ldots, p_n(X), q_1(X), \ldots, q_m(X) \in A[X]$ son polinomios no constantes irreducibles en $A[X]$. Por primitividad, $a_1 \cdots a_r \sim b_1 \cdots b_s$, luego $r=s$ y, salvo el orden, $a_i \sim b_i$. Así, $p_1(X) \cdots p_n(X)$ y $q_1(X) \cdots q_m(X)$ son asociados en $K[X]$, pues lo son en $A[X]$ y son primitivos. Por lo tanto $n=m$ y, salvo el orden nuevamente, $p_j(X) \sim q_j(X)$ en $A[X]$, pues son polinomios primitivos asociados en $K[X]$. Así, la factorización es única
+
+$\hfill \square$
+
+Finalmente, veamos uno de los criterios de irreducibilidad de polinomios más conocidos y útiles: 
+
+\begin{proposition}[\textbf{\textit{Criterio de Eisenstein}}] Si $f(X) = a_nX^n+ \ldots + a_1X + a_0 \in \mathbb{Z}[X]$ es primitivo y existe un primo $p$ tal que: 
+\begin{enumerate}
+\item $p \mid a_i$, con $i = 0, \ldots, n-1$.
+\item $p \nmid a_n$.
+\item $p^2 \nmid a_0$
+\end{enumerate}
+Entonces $f(X)$ es irreducible en $\mathbb{Z}[X]$ y en $\mathbb{Q}[X]$.
+\end{proposition}
+\emph{Demostración: }Basta ver que $f(X)$ es irreducible en $\mathbb{Z}[X]$. Si $f(X)$ es reducible, existen $g(X), h(X) \in \mathbb{Z}[X]$ no constantes tales que $f(X) = g(X)h(X)$. Sean $g(X) = b_rX^r+ \ldots + b_1X + b_0 \in \mathbb{Z}[X]$ y $h(X)= c_sX^s+ \ldots + c_1 X + c_0 \in \mathbb{Z}[X]$. Como $a_0 = b_0c_0$, se tiene que $p$ divide sólo a uno de los dos, a $b_0$ ó a $c_0$. Supongamos que $p \mid b_0$ y que $p \nmid c_0$. Como $p$ no puede dividir a todos los coeficientes de $g(X)$, ya que no divide a $a_n$, existe $r \geq m >0$ tal que $p \mid b_i$, si $i = 0, \ldots, m-1$ y $p \nmid b_m$. Como $m \leq r < n$, se deduce que $p \mid a_m = \sum_{i=0}^m b_ic_{m-i}$, lo que fuerza a que $p \mid b_mc_0$, una contradicción.
+
+$\hfill \square$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
