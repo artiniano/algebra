@@ -473,7 +473,7 @@ Notar que este cuerpo $E$ es $K[x]/(p)$, es decir, si $p \in K[x]$ es irreducibl
 \begin{definition}El \textbf{cuerpo primo} de un cuerpo $K$ es la intersección de todos los subcuerpos de $K$.
 \end{definition}
 
-\begin{proposition}Sea $F$ el cuerpo primo de $K$. Si la característica de $K$ es cero, entonces $F$ es isomorfo a $\mathbb{Q}$ y si la característica de $K$ es $p$, entonces $F$ es isomorfo a $\mathbb{Z}_p$.
+\begin{proposition}\label{eq:cuerPri} Sea $F$ el cuerpo primo de $K$. Si la característica de $K$ es cero, entonces $F$ es isomorfo a $\mathbb{Q}$ y si la característica de $K$ es $p$, entonces $F$ es isomorfo a $\mathbb{Z}_p$.
 \end{proposition}
 \emph{Demostración: }Si $n \in \mathbb{N}$, definimos $n = 1+ \ldots + 1$. Sea $F$ el cuerpo primo de $K$. Si $char\hspace{0.1cm} K = 0$ $$F = \lbrace nm^{-1}: n,m \in \mathbb{N} \setminus \lbrace 0 \rbrace \rbrace \cup \lbrace 0 \rbrace.$$ $F$ tiene que contener todos estos elementos por ser subcuerpo. El conjunto es cerrado para el producto y el inverso de $nm^{-1}$ es $n^{-1}m$. Es cerrado para la suma: $nm^{-1}+n'm'^{-1} = (nm'+n'm)(mm')^{-1}.$ Luego $F$ es el cuerpo primo de $K$. Definimos $$\begin{array}{rccl}
 f \colon &F&\longrightarrow &\mathbb{Q}\\
@@ -499,7 +499,7 @@ Y por otro lado: \begin{center}$(a+b)^{n+1} = (a+b)^n(a+b) = \left(\sum_{j=0}^n 
 \end{exercise}
 $\hfill \blacksquare$
 
-\begin{exercise}En un cuerpo de característica $p$ tenemos que $$(a+b)^p = a^p+b^p.$$
+\begin{exercise}\label{eq:carp} En un cuerpo de característica $p$ tenemos que $$(a+b)^p = a^p+b^p.$$
 
 Por el ejercicio anterior sabemos que $$(a+b)^p = \sum_{j=0}^p{p\choose j}a^jb^{p-j} = {p\choose 0}b^p + {p\choose 1}ab^{p-1} + \ldots + {p\choose p}a^p.$$
 Ahora, tenemos que como ${p \choose i} = \dfrac{p!}{(p-i)!i!} = \dfrac{p\cdot(p-1) \cdots (p-(i+1))}{i!}$ para todo $i = 1, \ldots, p-1$ (en $i = 1, p-1$ tendremos que${p \choose i}=p$) y ésto es divisible por $p$ entonces, al estar en un cuerpo de característica $p$ y ser múltiplo de $p$, serán todos nulos. Quedan así sólo ${p\choose 0}b^p = b^p, {p\choose p}a^p=a^p$, luego $(a+b)^p=a^p+b^p$.
@@ -623,6 +623,148 @@ Para lo primero: $x^3+x+1 = (x^2+ax+b)(x+c) = x^3 + cx^2 +ax^2 + acx + bx +bc$, 
 Al ser mónico tenemos que $Irr(a,\mathbb{Z}_2) = p$, con $a$ una raíz de $p$. El cuerpo en el que $p$ tiene una raíz sabemos que es $\mathbb{Z}_2[x]/(p)$, que por un resultado anterior sabemos que tiene $2^{\delta(p)} = 2^3 = 8$ elementos. Así que $\mathbb{Z}_2(a)$ tiene $8$ elementos. Y como es cuerpo sabemos que $7$ de ellos son unidades. También sabemos que una base de $\mathbb{Z}_2(a)$ es $\lbrace 1, a, a^2 \rbrace$, con $a$ raíz de $p$. Luego $\mathbb{Z}_2(a) = \lbrace t_0 + t_1a + t_2a^2 : t_0,t_1,t_2\in \mathbb{Z}_2 \rbrace$. Y además esto tiene sentido ya que los únicos valores posibles para $t_0,t_1,t_2$ son $0$ ó $1$.
 \end{exercise}
 $\hfill \blacksquare$
+
+\begin{example}Algunos casos de polinomios irreducibles:
+\begin{enumerate}
+\item Si consideramos la extensión $\mathbb{Q}(i)/\mathbb{Q}$, entonces $x^2+1 \in \mathbb{Q}[x]$ es irreducible, mónico y tiene a $i$ por raíz, luego es el polinomio irreducible de $i$ sobre $\mathbb{Q}$. Así, $\lbrace 1,i \rbrace$ es una base de $\mathbb{Q}(i)$ sobre $\mathbb{Q}$: $$\mathbb{Q}(i)=\lbrace a+bi: a,b \in \mathbb{Q} \rbrace.$$
+\item De igual forma tenemos que $x^2-2 =Irr(\sqrt{2}, \mathbb{Q})$, $x^2-3 = Irr(\sqrt{3}, \mathbb{Q})$ y así $|\mathbb{Q}(\sqrt{2}):\mathbb{Q}| = 2$, $|\mathbb{Q}(\sqrt{3}):\mathbb{Q}| = 2$ y $\mathbb{Q}(\sqrt{2}) = \lbrace a+b\sqrt{2}:a,b \in \mathbb{Q} \rbrace$, $\mathbb{Q}(\sqrt{3}) = \lbrace a+b\sqrt{3}:a,b \in \mathbb{Q} \rbrace$.
+\end{enumerate}
+\end{example}
+$\hfill \blacksquare$
+
+
+\begin{definition} Sea una extensión $E/K$, llamaremos \textbf{clausura algebraica} de $K$ en $E$ al conjunto de los elementos algebraicos de una extensión, y la denotaremos por $Cl_{K}^{E} = \lbrace \alpha \in E: \alpha \hspace{0.2cm} \text{es} \hspace{0.1cm} \text{algebraico} \hspace{0.1cm} \text{sobre} \hspace{0.1cm} K \rbrace$.
+\end{definition} 
+
+\begin{proposition}\label{eq:finalg} Sea $E/K$ una extensión. Si $\alpha_{1}, \ldots, \alpha_{n} \in E$ son algebraicos sobre $K$, $K(\alpha_{1}, \ldots, \alpha_{n})/K$ es finita, luego algebraica.
+\end{proposition}
+\emph{Demostración: } La haremos por inducción sobre $n$. Si $n = 1$, ya sabemos que $|K(\alpha_{1}):K|$ es finito. Supongamos el resultado cierto para $n-1$ y probémoslo para $n$. Como $\alpha_{n}$ es algebraico sobre $K$, también es algebraico sobre $K(\alpha_{1}, \ldots, \alpha_{n-1})$. Así, $|K(\alpha_{1}, \ldots, \alpha_{n-1}) (\alpha_{n}) : K(\alpha_{1}, \ldots, \alpha_{n-1})|$ es finito. Por inducción, $|K(\alpha_{1}, \ldots, \alpha_{n-1}) : K|$ es finito. Pero $K(\alpha_{1}, \ldots, \alpha_{n-1}) (\alpha_{n}) = K(\alpha_{1}, \ldots, \alpha_{n})$. Por~\ref{eq:trgr} $$|K(\alpha_{1}, \ldots, \alpha_{n}) : K| = |K(\alpha_{1}, \ldots, \alpha_{n}) : K(\alpha_{1}, \ldots, \alpha_{n-1})| |K(\alpha_{1}, \ldots, \alpha_{n-1}) : K|$$ es finito.
+
+$\hfill \square$
+
+\begin{lemma}Sea $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo de cuerpos. Entonces $\sigma$ se extiende a un isomorfismo de $K_{1}[x]$ en $K_{2}[x]$ haciendo que, si $f \in K_{1}[x]$ con $f = a_{0} + a_{1}x + \ldots + a_{k}x^{k}$, entonces  $\sigma (f) =  \sigma(a_{0}) + \sigma( a_{1})x + \ldots + \sigma(a_{k})x^{k}$. En particular, $$f \hspace{0.1cm} \text{es} \hspace{0.1cm} \text{irreducible} \Longleftrightarrow \sigma (f) \hspace{0.1cm} \text{es} \hspace{0.1cm} \text{irreducible}.$$
+\end{lemma}
+
+\begin{proposition} \label{eq:extc} Sean $E_{1}/K_{1}$ y $E_{2}/K_{2}$ dos extensiones. Sean $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo. Sea $p_{1} \in K_{1}[x]$ irreducible. Sea $p_{2} = \sigma (p_{1})$. Sea $\alpha_{i}$ raíz de $p_{i}$, $i = 1,2$. Entonces $\sigma$ se extiende a un isomorfismo de cuerpos $\theta \colon K_{1}(\alpha_{1})\longrightarrow K_{2}(\alpha_{2})$ tal que $\theta(\alpha_{1}) = \alpha_{2}$.
+
+$$\xymatrix @=2cm {K_{1}(\alpha_{1})\ar[r]^{\theta} & K_{2}(\alpha_{2})  \\ K_{1} \ar[r]^{\sigma} \ar[u] & K_{2} \ar[u]  }$$
+\end{proposition}
+\emph{Demostración: } Supongamos que $p_{1}$ es mónico, con lo que $p_{2}$ también lo es. Entonces, como $p_{1}$ y $p_{2}$ son irreducibles, $$p_{1} = Irr(\alpha_{1}, K_{1}),$$ $$p_{2} = Irr (\alpha_{2}, K_{2}).$$ Ahora, $K_{1}(\alpha_{1}) = \lbrace f(\alpha_{1}): f \in K_{1}[x]\rbrace$, $K_{2}(\alpha_{2}) = \lbrace f(\alpha_{2}) : f \in K_{2}[x]\rbrace$. Definimos $$\begin{array}{rccl}
+\theta \colon &K_{1}(\alpha_{1})&\longrightarrow &K_{2}(\alpha_{2}) \\
+&f(\alpha_{1})& \longmapsto &\sigma(f)(\alpha_{2}).
+\end{array}
+$$ 
+
+Y ahora veamos que está bien definida: si $f,g \in K_{1}[x]$, $f(\alpha_{1}) = g(\alpha_{1}) \Leftrightarrow (f-g)(\alpha_{1}) = 0 \Leftrightarrow p_{1} \mid f-g \Leftrightarrow \sigma (p_{1}) \mid \sigma(f-g) \Leftrightarrow p_{2} \mid \sigma (f) - \sigma (g) \Leftrightarrow (\sigma(f) -  \sigma (g)) (\alpha_{2}) = 0 \Leftrightarrow \sigma (f)(\alpha_{2}) = \sigma (g) (\alpha_{2})$.
+
+Es inyectiva: $\theta (f(\alpha_{1})) =  \sigma (f) (\alpha_{2}) = 0 \Rightarrow f(\alpha_{1}) = 0.$  Es fácil ver que también es suprayectiva.
+
+Y es claro que $\theta$ es homomorfismo de cuerpos: \begin{center}$\theta (f(\alpha_{1}) + g(\alpha_{1})) = \theta ((f+g) (\alpha_{1})) = \sigma (f+g) (\alpha_{2}) = (\sigma (f) + \sigma (g))(\alpha_{2}) = \sigma (f) (\alpha_{2}) + \sigma (g) (\alpha_{2}) = \theta (f(\alpha_{1})) + \theta(g(\alpha_{1})).$\end{center}
+Igual con el producto.
+
+$\hfill \square$
+
+\begin{corolario}\label{eq:irrcor} Sea $p \in K[x]$ irreducible, $\alpha$ y $\beta$ raíces de $p$ en una extensión $E$ de $K$. Existe un isomorfismo $\theta \colon K(\alpha) \longrightarrow K(\beta)$ tal que $\left. \theta \right|_K = id, \theta(\alpha) = \beta$. Recíprocamente, si $\alpha, \beta \in E$, siendo $E/K$ una extensión, y existe un isomorfismo $\theta \colon K(\alpha) \longrightarrow K(\beta)$ tal que $\left. \theta \right|_K = id, \theta(\alpha) = \beta$, entonces $Irr(\alpha, K) = Irr(\beta, K).$
+\end{corolario}
+\emph{Demostración: } La primera parte se deduce del anterior resultado, tomando $K_{1} = K_{2}$ y $\sigma = id$. Sea ahora $Irr(\alpha, K) = x^{k} + a_{k-1}x^{k-1} + \ldots + a_{1}x + a_{0}.$ Entonces, $$\alpha^{k} + a_{k-1}\alpha^{k-1} + \ldots + a_{1}\alpha + a_{0} =0.$$ Aplicando $\theta$ tenemos: $\theta( \alpha)^{k} + a_{k-1}\theta( \alpha)^{k-1} + \ldots + a_{1}\theta( \alpha) + a_{0} = \beta^{k} + a_{k-1}\beta^{k-1} + \ldots + a_{1}\beta + a_{0} = 0$ (ya que $\left. \theta \right|_K = id$). Luego, $Irr(\alpha, K) = Irr(\beta, K)$.
+
+$\hfill \square$
+
+Recordemos la necesidad de que $p \in K[x]$ sea irreducible. Entonces, dadas $\alpha$ y $\beta$ raíces en una extensión $E$ de $K$, $$\begin{array}{rccl}
+\theta \colon &K(\alpha)&\longrightarrow &K(\beta) \\
+&\alpha& \longmapsto &\beta \\
+&k& \longmapsto &k
+\end{array}
+$$ 
+\begin{definition} Si $E$ es una extensión algebraica de $K$, $\alpha, \beta \in E$, diremos que $\alpha$ y $\beta$ son \textbf{conjugados sobre $K$} si $Irr(\alpha, K) = Irr(\beta, K)$, o equivalentemente si $\alpha$ es raíz de $Irr(\beta, K)$. Lo denotaremos por $\alpha$ $conj_{K}$ $\beta$.
+\end{definition}
+
+Así, el anterior corolario nos viene a decir que todo eso ocurre si y sólo si $\alpha$ y $\beta$ son conjugados.
+
+\begin{definition} Sea $E/K$ una extensión. Diremos que $\varphi \colon E \longrightarrow E$ es un \textbf{$K$-homomorfismo de cuerpos} si \begin{enumerate}
+\item $\varphi$ es un homomorfismo de cuerpos.
+\item $ \left.\varphi \right|_K  = id_{K}$, es decir, $\varphi (k) = k$ $\forall k \in K$. 
+\end{enumerate}
+\end{definition}
+
+\begin{definition} Diremos que un cuerpo $K$ es \textbf{algebraicamente cerrado} si contiene a todas las raíces de los polinomios no constantes de $K[x]$.
+\end{definition}
+
+\begin{proposition}Si $K$ es un cuerpo algebraicamente cerrado y $E$ es un extensión algebraica de $K$, entonces $E = K$.
+\end{proposition}
+\emph{Demostración: } Si $\alpha \in E$, $f(x) = Irr(\alpha, K)$ es un polinomio no constante de $K[x]$. En consecuencia $\alpha$ es raíz de $f$, con $f \in K[X]$. Como $K$ es algebraicamente cerrado, $\alpha \in K$.
+
+$\hfill \square$
+
+Recordemos el siguiente resultado: 
+
+\begin{proposition}\label{eq:ac2} Sea $p \in K[x]$ y $a \in K$. Entonces $p(a) = 0$ si, y sólo si $x-a \mid p$.
+\end{proposition}
+\emph{Demostración: } Aplicamos el algoritmo de la división a $p$ y $x-a$: $p=(x-a)q + r$, donde $r = 0$ ó $\delta(r) < \delta(x-a)$. Si $r= 0$ ya está, si no entonces es una constante y como $p(a) = 0 \Leftrightarrow r(a)= 0$ entonces $r = 0$ y así $x-a \mid p$.
+
+$\hfill \square$
+
+\begin{definition} Sea $f \in K[x]$ un polinomio y $E/K$ una extensión. Diremos que $f$ \textbf{se escinde} en $E$ si existen $a_{1}, \ldots, a_{n} \in E$ tales que $f = a(x-a_{1}) \ldots (x-a_{n})$, con $a \in K$. Si además $E = K(a_{1}, \ldots, a_{n})$ decimos que $E$ es un \textbf{cuerpo de escisión de $f$ sobre $K$}.
+\end{definition}
+
+Los cuerpos de escisión siempre existen y son únicos:
+
+\begin{theorem}[\textbf{\textit{Existencia de cuerpos de escisión}}]Si $f \in K[x]$, existe un cuerpo de escisión de $f$ sobre $K$.
+\end{theorem}
+\emph{Demostración: }Lo haremos por inducción sobre el grado de $f$:
+Si $f$ se escinde en $K$ (en particular, si $\delta(f) = 1$), entonces $K$ es un cuerpo de escisión de $f$ sobre $K$. Supongamos que no es así y sea $f_{1}$ un factor irreducible de $f$ de grado mayor que $1$. Por~\ref{eq:ac1}, existe una extensión $E$ de $K$ en la que $f_{1}$ tiene una raíz $a$. Entonces $f(a) = 0$ ya que $f_{1}(a) = 0$. Por~\ref{eq:ac2} $x-a \mid f$ y así $f = (x-a)g$, con $g \in K(a)[x]$. Como $\delta (g) < \delta(f)$, por la hipótesis de inducción tenemos que existe un cuerpo de escisión de $g$ sobre $K(a)$. Será $g = b(x-b_{1}) \ldots (x-b_{m})$ y el cuerpo de escisión de $g$ (sobe $K(a)$) será $K(a)(b_{1}, \ldots, b_{m}) = K(a,b_{1}, \ldots, b_{m})$. Ahora, $f = b(x-a)(x-b_{1}) \ldots (x-b_{m})$ y su cuerpo de escisión sobre $K$ es $K(a, b_{1}, \ldots, b_{m})$.
+
+$\hfill \square$
+
+\begin{proposition}\label{eq:cuesc} Sea $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo, $f_{1} \in K_{1}[x]$ y $f_{2} = \sigma (f_{1}) \in K_{2}[x]$. Sean $E_{i}$, con $i = 1,2$ cuerpos de escisión de $f_{i}$ sobre $K_{i}$, $i = 1,2$. Entonces existe un isomorfismo $\tau \colon E_{1} \longrightarrow E_{2}$ que extiende $\sigma$, es decir, $ \left.\tau \right|_{K_{1}} = \sigma$.
+\end{proposition}
+\emph{Demostración: } Inducción sobre $|E_{1}: K_{1}|$ :
+
+Si $|E_{1}:K_{1}| = 1$, entonces $E_{1} = K_{1}$ es cuerpo de escisión de $f_{1}$ sobre $K_{1}$. Como $\sigma \colon K_{1}[x] \longrightarrow K_{2}[x]$ es isomorfismo de anillos, también $\sigma (f_{1})$ ($=f_{2}$) se escindirá sobre $K_{2}$. Así $E_{2} = K_{2}$ y basta tomar $\tau = \sigma$.
+
+Supongamos que $|E_{1}: K_{1}| > 1$ y que el resultado es cierto para extensiones de menor grado. Como $|E_{1}:K_{1}| > 1$, $f_{1}$ no se escinde en $K_{1}$ y existe un factor irreducible (importante esto!) $p$ de $f_{1}$ tal que $\delta (p) > 1$. Como $f_{1}$ se escinde en $E_{1}$, también $p$ se escinde en $E_{1}$ y $\sigma (p)$ se escinde en $E_{2}$. Sea $a \in E_{1}$, raíz de $p$ y sea $b \in E_{2}$ raíz de $\sigma (p)$. Por~~ existe un isomorfismo $\theta	 \colon K_{1}(a) \longrightarrow K_{2}(b)$ que extiende $\sigma$, es decir $\left.\theta \right|_{K_{1}} = \sigma$.
+
+Ahora, $E_{1}$ es cuerpo de escisión de $f_{1}$ sobre $K_{1}(a)$. Y $E_{2}$ es cuerpo de escisión de $f_{2}$ ($= \sigma(f_{1})$) sobre $K_{2}(b)$. Además, \begin{center}$|E_{1} : K_{1}| = |E_{1} : K_{1}(a)| |K_{1}(a) : K_{1} | > |E_{1}:K_{1}(a)|,$ ya que $a \notin K_{1}$ .\end{center}
+
+Por inducción, existe $\tau \colon E_{1} \longrightarrow E_{2}$ isomorfismo que extiende $\theta$, luego también extiende $\sigma$. 
+
+$$\xymatrix @=2cm {E_{1}\ar[r]^{\tau} & E_{2} \\ K_{1}(\alpha)\ar[r]^{\theta} \ar@{_(->}[u] & K_{2}(b) \ar@{_(->}[u] \\ K_{1} \ar[r]^{\sigma} \ar@{_(->}[u] & K_{2} \ar@{_(->}[u]  }$$
+
+$\hfill \square$
+
+\begin{corolario}[\textbf{\textit{Unicidad de los cuerpos de escisión}}] \label{eq:unicuer} Si $E_{1}, E_{2}$ son cuerpos de escisión de un mismo polinomio $f$ de $K[x]$ sobre $K$, existe entonces $\tau \colon E_{1} \longrightarrow E_{2}$ isomorfismo tal que $\left.\tau \right|_{K} = id.$
+\end{corolario}
+\emph{Demostración: } Basta hacer $K_{1} = K_{2} = K$ y $\sigma = id$ en la proposición anterior.
+
+$\hfill \square$
+
+\subsection{Cuerpos finitos}
+
+\begin{theorem}
+Sea $K$ un cuerpo finito, entonces $|K| = p^n$ para algún primo $p$ y algún entero $n$. Recíprocamente, para todo primo $p$ y entero positivo $n$ existe un único cuerpo, salvo isomorfismo, de $p^n$ elementos.
+\end{theorem}
+\emph{Demostración: }Sabemos que por ser finito la caraceterística debe ser un primo $p$ y por~\ref{eq:cuerPri} el cuerpo primo de $K$ es $F$ isomorfo a $\mathbb{Z}_p$. Por ser $K$ finito $K$ es $F$-espacio vectorial de dimensión finita y existen $a_1, \ldots, a_n \in K$ que son una $F$-base. Como cada elemento de $K$ se escribe de manera única como $F$-combinación lineal de los elementos $a_i$, concluimos que $|K| = p^n$.
+
+Recíprocamente, supongamos que $p$ es un primo y $n$ un entero positivo. Sea $F = \mathbb{Z}_p$ y $E$ el cuerpo de escisión de $f = x^{p^n}-x \in F[x]$. Notemos que $f' = -1$, luego no tiene factores comunes con $f$ y en tal caso sabemos que todas las raíces son distintas y $|U| = p^n$, con $U$ el conjunto de todas las raíces de $f$. Si $a,b \in U$, por el ejercicio~\ref{eq:carp} tenemos que $a-b \in U$, y si $b \neq 0, a/b \in U$. Tenemos así que $U$ es un subcuerpo de $E$ y como $E = F(U)$ se tiene que $U = E$ y $|E| = p^n$.
+
+Sea $L$ otro cuerpo de $p^n$ elementos. Por ser finito su característica es finita, su cuerpo primo es $\mathbb{Z}_q$, con $q$ primo, y su orden una potencia de $q$, luego $p=q$ y el cuerpo primo $D$ es isomorfo a $F$. Los elementos no nulos de $L$ son un grupo multiplicativo de orden $p^n-1$, luego el orden de cualquiera de ellos es divisor de $p^n-1$ y se tiene que para todo $0 \neq l \in L,$ $l^{p^n-1} =1$, luego $l^{p^n} = l$. 
+
+Así, $L$ es cuerpo de escisión de $x^{p^n}-x$ sobre $D$. Por la unicidad de los cuerpos de escisión de un mismo polinomio tenemos que $L$ es isomorfo a $E$.
+
+$\hfill \square$
+
+Al cuerpo de $p^n$ elementos se le suele denotar $GF(p^n)$, por \textit{Galois Field}.
+
+\begin{proposition}Para todo primo $p$ y entero positivo $n$, existen polinomios en $\mathbb{Z}_p[x]$ irreducibles de grado $n$.
+\end{proposition}
+\emph{Demostración: }Sea $f =x^{p^n}-x \in \mathbb{Z}_p[x]$ y $E$ cuerpo de escisión de $f$ sobre $\mathbb{Z}_p$. Ya hemos dicho que las raíces de $f$ son $p^n$ y además son un cuerpo, luego $E = \lbrace \text{raíces de $f$} \rbrace$ y $|E:\mathbb{Z}_p| = n$. Pero por otra parte $$\lbrace \text{raíces de $f$} \rbrace = \lbrace 0 \rbrace \cup \lbrace \text{raíces de $x^{p^n-1}-1$} \rbrace$$ y $\lbrace \text{raíces de $x^{p^n-1}-1$} \rbrace$ es un grupo cíclico, por lo que va a existir un $a \in E$ tal que $\lbrace \text{raíces de $x^{p^n-1}-1$} \rbrace = \langle a \rangle$ y se tiene que $E = \mathbb{Z}_p(a)$ y por el grado de la extensión, el grado del polinomio mínimo de $a$ sobre $\mathbb{Z}_p$, que es irreducible, es $n$.
+
+$\hfill \square$
+
+
+
+
+
 
 
 \end{document}

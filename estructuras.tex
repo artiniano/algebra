@@ -20,7 +20,7 @@
 \usepackage{mathrsfs}
 \usepackage{vmargin}
 \usepackage{graphicx}
-
+\usepackage{hyperref}
 
 \DeclarePairedDelimiter\Floor\lfloor\rfloor
 \DeclarePairedDelimiter\Ceil\lceil\rceil
@@ -47,10 +47,30 @@
 \begin{document}
 \rmfamily
 \maketitle
+\vspace{1.5cm}
 \tableofcontents
 \parindent= 0cm
-
+\newpage
 \section{Introducción}
+
+Imaginemos un conjunto cualquiera, con sus respectivos elementos y luego usemos una operación, normalmente suma o producto. Si juntamos estos dos objetos tan simples (un conjunto y una operación) habremos creado sin darnos cuenta algo que ya conocemos como \textit{estructura algebraica}. Esto que se acaba de explicar en unas pocas líneas llevó mucho más tiempo a los matemáticos del que pueda parecer, y cuando hablamos de mucho tiempo estamos hablando de siglos. Se sabe que incluso pueblos y civilizaciones anteriores a la griega ya conocían y hacían uso de las matemáticas, y la aparición y posterior definición y axiomatización de las estructuras algebraicas no tuvo lugar hasta el siglo XIX, así que estamos hablando de casi 5000 años.
+
+Concretamente la primera piedra la pone un joven matemático noruego, hijo de un pastor luterano, llamado Niels Henrik Abel. Seguramente el nombre sea de sobra conocido por cualquier estudiante de matemáticas, y no es algo extraño teniendo en cuenta el enorme calibre de sus aportaciones. Como se ha dicho puso la primera piedra, con el permiso de Cauchy y Ruffini, para que puediera aparecer lo que hoy día se conoce como \textit{álgebra abstracta}, también conocida como \textit{álgebra moderna}. Como ya sabemos, cuando hablamos de \textit{álgebra} en líneas generales nos referimos al estudio de las ecuaciones y sus soluciones, pero ¿a qué nos referimos cuando hablamos de álgebra moderna?
+
+Ya desde los tiempos de los griegos se conocían los principales métodos de sustitución y resolución de ecuaciones de primer grado, incluso sabían resolver lo que hoy conocemos como ecuaciones de segundo grado, aunque las expresiones 
+
+$$ax^{2}+bx +c=0, \hspace{0.3cm} x=\dfrac{-b \pm \sqrt{b^{2}-4ac}}{2a}$$ 
+
+son modernas. Para la formalización del estudio de las ecuaciones cuadráticas y la aparición de estas expresiones hubo que esperar unos cuantos siglos, hasta el siglo IX d.C. cuando el matemático persa Abu Abdallah Muḥammad Ibn Mūsā Al-Jwarizmī publica el primer tratado considerado genuinamente algrebaico, el \textit{Compendio de cálculo por reintegración y comparación}. De hecho el álgebra como la conocemos hoy no aparece hasta su llegada, para hacernos una idea de la importancia de la irrupción del gran matemático nacido en lo que hoy conocemos como Irán. De su nombre se deriva la palabra \textit{algoritmo}, y de hecho la palabra \textit{álgebra} proviene de \textit{al-ŷabr}, que aparece en el título original del tratado mencionado anteriormente. Para la aparición y formalización del estudio de las ecuaciones de tercer y cuarto grado con sus respectivas fórmulas (bastante más complejas que en el caso de las cuadráticas) tuvimos que esperar al Renacimiento italiano con los \textit{Niccolò Tartaglia, Gerolamo Cardano y Lodovico Ferrari} (una historia muy interesante de retos, traiciones y desprestigio entre ellos), aunque ya hicieron aportes y hay antecedentes de otros matemáticos que contribuyeron a su estudio anteriormente, como los italianos \textit{Scipione del Ferro ó Fibonacci}, el indio \textit{Bhaskara II} o el chino \textit{Liu Hui}, quién en el siglo III ya publicó un tratado que contenía el estudio de algunos métodos para resolver ecuaciones cúbicas. El problema llegó al intentar dar una fórmula para las ecuaciones de quinto grado. 
+
+Durante muchos años se intentó llegar a una fórmula que diera las soluciones de una ecuación quíntica, sin éxito. Este arduo trabajo frustró a muchos matemáticos durante toda la época moderna y pre-decimonónica, entre ellos Lagrange. Éste empleó como herramienta las permutaciones de ráices de polinomios para intentar abordar el problema, lo cúal fue muy interesante y supuso el comienzo de la utilización directa del concepto de permutación, que veremos en las siguientes páginas lo importante que es y los avances que supuso en la formación del álgebra moderna. Álgebra que poco tardaría en aparecer, en estos momentos, ante la frustración de Lagrange y toda la comunidad matemática de la época llegaría un Paolo Ruffini que, en contra de lo que por entonces se intentaba demostrar, estaba convencido de la imposibilidad de llegar a una fórmula que diera las soluciones de la ecuación de quinto grado como sí se hizo con las de tercer y cuarto grado. Fue de hecho él quién acuñó el término \textit{permutazioni}, que hasta entonces simplemente se definían como ordenaciones, así como la forma en la que una permutación se transformaba en otra. Comenzó a partir de un conjunto de permutaciones, y estudió sus propiedades y cómo dos de éstas podían combinarse para dar una tercera. Observó algo intersante: que el orden en el que éstas se combinaban era importante, no producían la misma tercera permutación, es decir, si pensamos esa combinación de permutaciones como una operación entonces diríamos que esa operación no es conmutativa. Esto era bastante novedoso en ese momento, pues contrasta con lo que ocurre con las operaciones clásicas de la suma y la multiplicación ó producto. Ruffini utilizó estas \textit{estructuras} para demostrar que no existía ninguna fórmula para las ecuaciones quínticas, sin embargo no encontró respuesta ni visibilidad a sus estudios por parte de Lagrange ni tampoco parecía que nadie en esa época tuviese interés alguno en esa nueva álgebra de permutaciones que había construido Ruffini. Nadie hasta que apareció Cauchy. Fue él quien visibilizó, a su manera, el trabajo de Ruffini y estableció la notación moderna de ciclos, de producto de permutaciones y también enunció resultados acerca de la conjugación de las mismas, algo que también veremos en las siguientes páginas. ES aquí cuando retomamos lo primero que hemos dicho, puesto que el siguiente paso lo da Abel, el que puso la primera piedra como dijimos. Y el siguiente paso, aunque realmente fue el mismo, lo daría otro famoso matemático conocido por sus grandísimos aportes y su épica historia de romance, traición y muerte a una edad temprana, hablamos de \textit{Evariste Galois}. No se conocieron nunca, y sin embargo compartieron mucho más que descubrimientos, ambos mandaron sus aportes al también matemático y secretario por aquel entonces de la Academia de las Ciencias Joseph Fourier, y en ambos casos se reportaron dichos aportes a Cauchy, y también en ambos casos el resultado fue vano puesto que no les dió, al menos al principio, la importancia que merecían.
+
+Pero, ¿qué fue lo que estos dos jóvenes matemáticos aportaron? ¿qué hicieron para que acabaran siendo reconocidos como fundadores del álgebra moderna?, de hecho ¿qué es el álgebra moderna?. Pues bien, lo que supuso realmente un salto cualitativo con respecto a todo lo que se hizo antes fue considerar estas \textit{estructuras} formadas por las permutaciones y sus combinaciones, y centrar la atención en el estudio de las propiedades de éstas estructuras. Lo que hicieron Galois y Abel fue introducir todo un vocabulario matemático entero completamente nuevo que podía describir bastante bien estas estructuras de permutaciones. Fue así como nació el concepto de \textit{grupo}, y fueron las permutaciones sobre las que primero se definió esta estructura, que ya acuñarle un apellido y hablar así de \textit{estructuras algebraicas}, conectando así con lo que se ha dicho al principio. Así, la diferencia fundamental entre el álgebra que nosotros conocemos del instituto, y que se desarrollo durante siglos, y el álgebra moderna es que en ésta última el objeto de estudio ya no son las ecuaciones (lineales, cuadráticas, etc.) sino estructuras algebraicas. La estructura de grupo fue la primera en aparecer, y supuso el que es con toda seguridad el avance más importante en la historia de las matemáticas.
+
+Por lo tanto, el paso del álgebra convencional al álgebra absrtracta supuso pasar de estudiar ecuaciones a estudiar operaciones abstractas que definimos entre los elementos de un conjunto. Curiosamente la teoría de conjuntos no se formalizó hasta finales del s.XIX, casi cien años después. 
+
+A parte del grupo, existen otras estructuras algebraicas como anillos, dominios de integridad, cuerpos, módulos, o los espacios vectoriales. Todas ellas combinan distintas operaciones que definimos sobre unos conjuntos específicos y que cumplen una serie de propiedades.
+
 \section{Grupos}
 \subsection{Generalidades}
 
@@ -1298,7 +1318,7 @@ Cuando un grupo $G$ actúa sobre un conjunto $\Omega$, de entre todos los elemen
 \begin{theorem}\label{eq:ecClasesp}
 Sea $G$ un grupo actuando sobre un conjunto finito $\Omega$. Escogemos $\alpha_1, \ldots, \alpha_s$ representantes de las órbitas de longitud mayor que 1. Entonces $$|\Omega| = |\Omega_0| + \sum_{j=1}^s |O_{\alpha_j}|.$$ En particular, si $G$ es un $p$-grupo finito, entonces $$|\Omega| \equiv |\Omega_0|\hspace{0.1cm} \text{mod}\hspace{0.1cm} p.$$
 \end{theorem}
-\emph{Demostración: }La primera parte se deduce de la fórmula de las órbitas y del teorema de la órbita estabilizadora. Sea ahora $G$ un grupo tal que $|G| = p^n$. Por~\ref{eq:torest}, tendremos que $|O_{\alpha_j}| = [G:G_{\alpha_j}] > 1$, con $j = 1, \ldots , s$. Como $[G:G_{\alpha_j}]$ divide a $|G| = p^n$, ya está.
+\emph{Demostración: }La primera parte se deduce de la fórmula de las órbitas y del teorema de la órbita estabilizadora. Sea ahora $G$ un grupo tal que $|G| = p^n$. Por~\ref{eq:torest}, tendremos que $|O_{\alpha_j}| = [G:G_{\alpha_j}] > 1$, con $j = 1, \ldots , s$. Como cada $[G:G_{\alpha_j}]$ divide a $|G| = p^n$, ya está.
 
 $\hfill \square$
 
@@ -1325,9 +1345,9 @@ Notar que $|Cl_G(x) | = 1$ si y sólo si $gx = xg$ $\forall g \in G$, es decir, 
 Todos estos conceptos ya los habíamos visto en el primer capítulo.
 
 \begin{theorem}[\textit{\textbf{Ecuación de las clases de conjugación de un grupo}}] \label{eq:ecClases}
-Sean $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
+Sea $G$ un grupo finito. Sean $K_{1}, \ldots, K_{s}$ las clases de conjugación de $G$ de longitud mayor que $1$. Entonces $$|G| = |Z(G)| + \sum_{j=1}^{s} |K_{j}|.$$ Esta fórmula recibe el nombre de \textbf{ecuación de clases de conjugación de un grupo finito}.
 \end{theorem} 
-\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente (en este caso $\Omega_0 = Z(G)$) y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si $x \notin Z(G)$.)
+\emph{Demostración: } Se sigue inmediatamente a partir de lo discutido anteriormente (en este caso $\Omega_0 = Z(G)$) y del teorema~\ref{eq:ecClasesp}. Notar que, por el teorema de la órbita estabilizadora, $|K_{j}| = |O_{\alpha_{j}}| = [G:G_{\alpha_{j}}] = [G:C_{G}(\alpha_{j})]$ para $j=1, \ldots, s$, con los $\alpha_{j}$ representantes de las clases de conjugación (órbitas) de longitud mayor que $1$.   ($G = C_{G}(x) \Longleftrightarrow x \in Z(G)$, entonces $\left[ G:C_{G}(x) \right] > 1$ si y sólo si $x \notin Z(G)$.)
 
 $\hfill \square$
 
@@ -1843,8 +1863,10 @@ Una vez vistas las primeras definiciones, veamos algunos ejemplos clásicos de a
 \begin{example}\label{eq:ejemploAnillos} Algunos de estos ejemplos ya los conocemos, de hecho algunos son bastante familiares: \begin{enumerate}
 \item El conjunto $\mathbb{Z}$ de los números enteros, dotado con la suma y producto habituales, es un anillo conmutativo y unitario. Sus únicas unidades son $1$ y $-1$, por lo que no es un cuerpo.
 \item Los números pares, $2\mathbb{Z}$, constituyen un anillo conmutativo pero no unitario, puesto que no existe ningún elemento $u \in 2\mathbb{Z}$ de la forma $2z$ con $z$ algún entero, tal que $2z \cdot 2a = 2a$ con $a \in \mathbb{Z}$.
+\item Los cocientes de $\mathbb{Z}$, $\mathbb{Z}/n\mathbb{Z}$, con $n \in \mathbb{N}$, también forman un anillo cuyas unidades serán todos los elementos $a+n\mathbb{Z}$ tales que $mcd(a,n)=1$. Más adelante veremos detalladamente este anillo, que es bastante interesante. De hecho si $n$ es primo también será un cuerpo.
 \item Los conjuntos $\mathbb{Q}, \mathbb{R}$ y $\mathbb{C}$ de los números racionales, reales y complejos respectivamente, son cuerpos conmutativos.
 \item Sea $A$ el conjunto de los números complejos $a +bi$, con $a,b \in \mathbb{Z}$. Como $i^{2} = -1$, este conjunto $A$ es un anillo con las operaciones heredadas de $\mathbb{C}$. Tenemos que $$(a+bi)(c+di) = ac + adi + bci + bdi^{2} = (ac-bd) + (ad+bc)i \in A.$$ A este anillo se le denota $\mathbb{Z}[i]$ y a estos números se les conocen como \textbf{enteros de Gauss}.
+$$\mathbb{Z}[i]=\lbrace a+bi, a,b \in \mathbb{Z} \rbrace.$$
 \item Sean $A$ un anillo y $M_{2} = M_{2}(A)$ el conjunto de las matrices cuadradas de orden $2$ de elementos de $A$. Este conjunto es un anillo con la suma y producto como siguen:  $$\left(
 \begin{matrix}
 a_{11} & a_{12} \\
@@ -1920,7 +1942,12 @@ e_{21} & e_{22}
 e_{11}\delta & e_{12}\delta \\
 e_{21}\delta & e_{22}\delta
 \end{matrix}
-\right)$$ y, por tanto, $e_{11}\delta = e_{22}\delta = 1$, y así $\delta \in \mathcal{U}(A).$\vspace{0.2cm}\\ En resumen, $a \in \mathcal{U}(M_{2})$ si y sólo si $det(a) \in \mathcal{U}(A)$. Por ejemplo, si $A = \mathbb{Z}$, los enteros, $a$ será unidad si y sólo si $det(a) = \pm 1$. Pero si $A = \mathbb{Q}$ (ó cualquier cuerpo), $a$ será unidad si y sólo si $det(a) \neq 0$, ya que en un cuerpo todos los elementos menos el $0$ son unidades.\vspace{0.2cm}\\ De todo esto podemos decir que el \textbf{determinante} nos puede caracterizar las unidades y nos permite, como ya sabemos del álgebra lineal, el cálculo de inversos. Si lo vemos como un homomorfismo de grupos, es fácil demostrar que, dados $a,b \in M_{2}$ $$det(ab) = det(a)det(b).$$ Finalmente apuntar que todo lo visto en este ejemplo es aplicable para matrices de un orden $n \geq 2$ cualquiera.
+\right)$$ y, por tanto, $e_{11}\delta = e_{22}\delta = 1$, y así $\delta \in \mathcal{U}(A).$
+
+En resumen, $a \in \mathcal{U}(M_{2})$ si y sólo si $det(a) \in \mathcal{U}(A)$. Por ejemplo, si $A = \mathbb{Z}$, los enteros, $a$ será unidad si y sólo si $det(a) = \pm 1$. Pero si $A = \mathbb{Q}$ (ó cualquier cuerpo), $a$ será unidad si y sólo si $det(a) \neq 0$, ya que en un cuerpo todos los elementos a excepción del $0$ son unidades.
+
+De todo esto podemos decir que el \textbf{determinante} nos puede caracterizar las unidades y nos permite, como ya sabemos del álgebra lineal, el cálculo de inversos. Si lo vemos como un homomorfismo de grupos, es fácil demostrar que, dados $a,b \in M_{2}$ $$det(ab) = det(a)det(b).$$ Finalmente apuntar que todo lo visto en este ejemplo es aplicable para matrices de un orden $n \geq 2$ cualquiera.
+\item Denotaremos por $M_n(K)$ al conjunto de las matrices cuadradas de orden $n$ con coeficientes en un cuerpo $K = \mathbb{Q}, \mathbb{R}, \mathbb{C}$. Entonces el conjunto de sus unidades (que de hecho será un grupo) es $GL_n(K)$.  
 \item Sea $A = \mathcal{C}(\mathbb{R}, \mathbb{R})$ el conjunto de las funciones continuas reales de variable real. En este caso, dicho conjunto es un anillo; en efecto dados $t \in \mathbb{R}$ y $f,g \in A$, podemos definir las operaciones $$(f+g)(t) = f(t) + g(t)$$ $$(f \cdot g)(t) = f(t) \cdot g(t)$$
 Además, es conmutativo y unitario, con el elemento neutro la función constante $$c_{1}(t) = 1.$$
 \item Si $A$ es un anillo, podemos construir el \textbf{anillo de polinomios} $A[x]$ sobre $A$. Más adelante detallaremos en una sección propia este particular anillo, pero ahora podemos presentarlo en líneas generales para poder ver algunos resultados referentes a él en las siguientes páginas. 
@@ -1947,6 +1974,24 @@ g \colon t \longrightarrow t + \abs{t} \\
 \end{array}
 $$ Entonces $(fg)(t) = (t - \abs{t})(t + \abs{t}) = t^{2} -\abs{t}^{2} = 0.$
 \end{observation}
+
+\begin{example}Otros ejemplos de divisores de cero son:
+\begin{enumerate}
+\item En el anillo de las matrices cuadradas de orden $2$ con coeficientes en $\mathbb{Z}$, $M_2(\mathbb{Z})$ tenemos: $$\left( \begin{matrix}
+1 & 1 \\
+2 & 2
+\end{matrix} \right)\left(
+\begin{matrix}
+1 & 1 \\
+-1 & -1
+\end{matrix}\right) =\left( \begin{matrix}
+0 & 0\\
+0 & 0
+\end{matrix}\right)$$
+
+\item En el anillo $\mathbb{Z}/n\mathbb{Z}$, si dos enteros $a,b$ son tales que $ab=n$, entonces $a+n\mathbb{Z}$ y $b+n\mathbb{Z}$ son divisores de cero. 
+\end{enumerate}
+\end{example}
 
 Es claro además que los cuerpos no tienen divisores de cero, ya que si tenemos que $ab =0 $, con $a$ y $b$ no nulos, entonces $$a = a(bb^{-1}) = (ab)b^{-1} = 0b^{-1} = 0.$$ Pero el no tener divisores de cero tampoco hace a un anillo un cuerpo, por ejemplo $\mathbb{Z}$ no los tiene, pero sin embargo tampoco es un cuerpo. Por lo tanto, se ha de introducir una clase de anillos más amplia que se encuentre entre ambas estructuras, es de aquí de dónde surge la siguiente definición:
 
@@ -2015,32 +2060,26 @@ Ahora introduciremos uno de los conceptos más importantes que veremos a lo larg
 Aunque la primera condición es también equivalente a: \begin{enumerate}
 \item $\forall x,y \in I$, se tiene que $x+y \in I$. 
 \end{enumerate}
-Y esto es así ya que, al cumplirse $b.$ y esta nueva condición, tendremos que dados $x,y \in I$ $$x-y = x +(-1)y \in I$$ (ya que $(-1)y \in I$ por $b.$). Así, $I$ será subgrupo para la suma.
+Y esto es así ya que, al cumplirse $b.$ y esta nueva condición, tendremos que dados $x,y \in I$ $$x-y = x +(-1)y \in I$$ (ya que $(-1)y \in I$ por $b.$). Así, $I$ será subgrupo para la suma. Estas dos últimas condiciones son las que dió en su momento el matemático Richard Dedekind cuando definió el concepto de ideal (la primera es de Kummer).
 \end{definition}
 
 Es inmediato comprobar que, por ejemplo, los múltiplos de un número entero, es decir, conjuntos de la forma $n\mathbb{Z}$ con $n$ un entero cualquiera, forman un ideal del anillo de los números enteros $\mathbb{Z}$.
 
 \begin{definition} Algunas definiciones de especial interés: \renewcommand{\labelenumi}{\arabic{enumi}.} \begin{enumerate}
-\item El conjunto $\lbrace 0 \rbrace$ es un ideal de $A$, denominado \textbf{ideal nulo}. También $A$ cumple con las condiciones, así que también es ideal de $A$, y tanto este como el ideal nulo son los llamados \textbf{ideales impropios} de $A$. Esto sirve para distinguirlos de aquellos ideales $I \neq A$, a los que llamaremos \textbf{ideales propios} de $A$. Notar que si $1 \in I$, entonces por la segunda condición tenemos que $x = x \cdot 1 \in I$ para cualquier $x \in A$. Por lo tanto será importante para tener en cuenta que \textbf{$I$ es propio si y sólo si $1 \notin I$.}
+\item El conjunto $\lbrace 0 \rbrace$ es un ideal de $A$, denominado \textbf{ideal nulo}. También $A$ cumple con las condiciones, así que también es ideal de $A$, y tanto este como el ideal nulo son los llamados \textbf{ideales impropios} de $A$. Esto sirve para distinguirlos de aquellos ideales $I \neq A$, a los que llamaremos \textbf{ideales propios} de $A$. Notar que si $1 \in I$, entonces por la segunda condición tenemos que $x = x \cdot 1 \in I$ para cualquier $x \in A$ y así $I = A$. Por lo tanto será importante para tener en cuenta que \textbf{$I$ es propio si y sólo si $1 \notin I$.}
 \item Si $x \in A$, entonces el conjunto $$xA = \lbrace xa : \hspace{0.1cm} a \in A \rbrace$$ es un ideal de $A$, denominado \textbf{ideal principal generado por $x$} y lo denotaremos por $(x)$. Un ejemplo de esto podrían ser los ideales de $\mathbb{Z}$ mencionados anteriormente, los conjuntos $n\mathbb{Z}$. Más adelante veremos esta expresión generalizada para hablar de ideales generados por conjuntos.
 \end{enumerate}
 \end{definition}
 
 Con esto, podemos enunciar el primer resultado, que define los cuerpos a partir de los ideales:
 
-\begin{proposition} Un anillo $A$ es un cuerpo si y sólo si sus únicos ideales son los impropios, es decir, el mismo $A$ y $\lbrace 0 \rbrace$.
+\begin{proposition}\label{eq:idK}Un anillo $A$ es un cuerpo si y sólo si sus únicos ideales son los impropios, es decir, el mismo $A$ y $\lbrace 0 \rbrace$.
 \end{proposition}
-\emph{Demostración: } Si $A$ es un cuerpo e $I$ un ideal no nulo de $A$ entonces contendrá algún elemento $a \neq 0$ y así $aa^{-1} = 1 \in A$, por lo que $I = A$. Recíprocamente, supongamos que los únicos ideales de $A$ son los impropios. Entonces, para cada $a \in A$ no nulo el ideal $aA$ también es no nulo, y así $aA = A$; pero esto quiere decir que existirá un $b \in A$ tal que $ab = 1$. Por lo tanto, $a \in \mathcal{U}(A)$ y como esto es así para cualquier $a \in A$ no nulo, $A$ es un cuerpo.
+\emph{Demostración: } Si $A$ es un cuerpo e $I$ un ideal no nulo de $A$ entonces $I$ contendrá algún elemento $a \neq 0$ y así $aa^{-1} = 1 \in I$, por lo que $I = A$. Recíprocamente, supongamos que los únicos ideales de $A$ son los impropios. Sea un $0 \neq a \in A$ y consideremos el ideal que genera, $I=(a)$. Como $a$ es no nulo $I$ no es trivial, y así $I=A$, luego $1 \in I$ y esto quiere decir que existe un $b \in A$ tal que $ab = 1$. Por lo tanto, $a \in \mathcal{U}(A)$ y como esto es así para cualquier $a \in A$ no nulo, se tiene que $A$ es un cuerpo.
 
 $\hfill \square$
 
-\begin{proposition}\label{eq:idK}En un cuerpo $K$ no hay más ideales que $\lbrace 0 \rbrace$ y el propio $K$. 
-\end{proposition}
-\emph{Demostración: }Si $I$ es un ideal no trivial de $K$, consideramos cualquier elemento $x \in I \setminus \lbrace 0 \rbrace$. Entonces existe $x^{-1}\in K$, por ser $I$ ideal, $1 = x^{-1}x \in I$, de modo que $I$ es el ideal impropio K.
-
-Recíprocamente, si un anillo unitario conmutativo $K$ no tiene otros ideales que $\lbrace 0 \rbrace$ y $K$, entonces es un cuerpo, pues si $x \in K^\ast$, el ideal $(x)$ no es trivial, luego es todo $K$ y así $1 \in (x)$. Esto significa que $1 = yx$ para algún $y$, es decir, que $x$ es unidad. Queda así visto que $\mathcal{U}(K) = K^\ast$ y $K$ es un cuerpo.
-$\hfill \square$
-
+Es decir: en un cuerpo $K$ no hay más ideales que $\lbrace 0 \rbrace$ y el propio $K$. 
 
 Con todo esto, sería normal preguntarse para qué hemos definido este concepto, el de ideal. Y es que la noción de ideal, como ya se ha dicho, es de gran importancia principalmente porque nos va a permitir definir relaciones de equivalencia en un anillo de tal forma que el conjunto cociente podrá heredar la estructura de anillo. Es algo similar a lo que pasa con los \textit{subgrupos normales} en \textit{Teoría de Grupos}.
  
@@ -2080,7 +2119,8 @@ Sea $A$ un anillo conmutativo y unitario, y $L$ un subconjunto de $A$, que carec
 \item $I$ es el mínimo ideal que contiene a $L$, es decir, si $\mathcal{L}$ es la colección de todos los ideales $J \subset A$ tales que $ L \subset J$, se verifica que $$I = \bigcap_{J \in \mathcal{L}} J.$$
 \end{enumerate}
 \end{proposition}
-\emph{Demostración: } Veamos $1.$. Comprobemos , para ello sean $$a = \sum_{k =1}^{r}a_{k}x_{k}, \hspace{0.2cm} b= \sum_{l=1}^{s} b_{l}y_{l} \in I, \hspace{0.3cm} c \in A.$$ Entonces es evidente que $$a+b = a_{1}x_{1} + \ldots + a_{r}x_{r} + b_{1}y_{1} + \ldots + b_{s}y_{s} \in I$$ $$c \cdot a = c(a_{1}x_{1} + \ldots + a_{r}x_{r}) =(ca_{1})x_{1} + \ldots + (ca_{r})x_{r} \in I.$$ Para probar $2.$ observar que $I \in \mathcal{L}$, puesto que $I$ es un ideal que contiene a $L$, luego $$\bigcap_{J \in \mathcal{L}} J \subset I.$$ Pero, por otra parte, si $J \in \mathcal{L}$, $a_{1}, \ldots, a_{r} \in A$, $x_{1}, \ldots, x_{r} \in L$, tenemos $a_{1}x_{1}, \ldots, a_{r}x_{r} \in J$ y $a_{1}x_{1}+ \ldots + a_{r}x_{r} \in J$ por ser $J$ un ideal de $A$ que contiene a $L$. Esto demuestra que todos los elementos de $I$ están también en $J$, así $I \subset J$. Siendo esto igual para todo ideal $J$ de $\mathcal{L}$, tenemos que $$I \subset \bigcap_{J \in \mathcal{L}} J.$$ Por tanto, la igualdad.\vspace{0.2cm}\\
+\emph{Demostración: } Veamos $1.$. Comprobemos , para ello sean $$a = \sum_{k =1}^{r}a_{k}x_{k}, \hspace{0.2cm} b= \sum_{l=1}^{s} b_{l}y_{l} \in I, \hspace{0.3cm} c \in A.$$ Entonces es evidente que $$a+b = a_{1}x_{1} + \ldots + a_{r}x_{r} + b_{1}y_{1} + \ldots + b_{s}y_{s} \in I$$ $$c \cdot a = c(a_{1}x_{1} + \ldots + a_{r}x_{r}) =(ca_{1})x_{1} + \ldots + (ca_{r})x_{r} \in I.$$ Para probar $2.$ observar que $I \in \mathcal{L}$, puesto que $I$ es un ideal que contiene a $L$, luego $$\bigcap_{J \in \mathcal{L}} J \subseteq I.$$ Pero, por otra parte, si $J \in \mathcal{L}$, $a_{1}, \ldots, a_{r} \in A$, $x_{1}, \ldots, x_{r} \in L$, tenemos $a_{1}x_{1}, \ldots, a_{r}x_{r} \in J$ y $a_{1}x_{1}+ \ldots + a_{r}x_{r} \in J$ por ser $J$ un ideal de $A$ que contiene a $L$. Esto demuestra que todos los elementos de $I$ están también en $J$, así $I \subseteq J$. Siendo esto igual para todo ideal $J$ de $\mathcal{L}$, tenemos que $$I \subseteq \bigcap_{J \in \mathcal{L}} J.$$ Por tanto, la igualdad.
+
 Este ideal $I$ que acabamos de construir es lo que conoceremos como \textbf{\textit{ideal generado por $L$}}.
 
 $\hfill \square$
@@ -2091,6 +2131,24 @@ $\hfill \square$
 \begin{definition}
 Un anillo $A$ se dirá \textbf{noetheriano}, en honor a la gran matemática alemana Emmy Noether, si todos sus ideales son finitamente generados.
 \end{definition}
+
+Los anillos noetherianos cumplen la siguiente condición:
+
+\begin{theorem}[\textbf{\textit{Condición de cadena ascendente}}]
+Sea $A$ un dominio de integridad. Entonces son equivalentes:
+\begin{enumerate}
+\item $A$ es un anillo noetheriano.
+\item Para toda cadena ascendente de ideales de $A$ $$I_0 \subseteq I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots $$ existe un número natural $n$ tal que $I_n = I_m$ para todo $m \geq n$.
+\item Toda familia no vacía de ideales de $A$ tiene un maximal
+\end{enumerate}
+\end{theorem}
+\emph{Demostración: }Si $I_0 \subseteq I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots$ es una cadena ascendente de ideales de $A$, es fácil ver que la unión $\bigcup_{i=0} I_i$ es también un ideal de $A$. Si $A$ es noetheriano ha de tener un generador finito $X$. Cada elemento de $X$ está en uno de los ideales $I_i$, y como $X$ es finito y los ideales forman una cadena, existirá un natural $n$ tal que $X \subseteq I_n$, pero entonces $\bigcup _{i=0} I_i = (X) \subseteq I_n$, lo que implica que $I_i = I_n$ para todo $i \geq n$. Por tanto $1$ implica $2$.
+
+Si una familia no vacía de ideales de $A$ no tuviera maximal, se podría extraer una cadena ascendente de ideales que contradijera $2$, luego $2$ implica $3$.
+
+Si $A$ tuviera un ideal $I$ que no admitiera un generador finito, entonces, dado cualquier elemento $a_0$ de $I$, se cumple que $(a_0) \neq I$, luego existe un elemento $a_1 \in I \setminus (a_0)$, luego $(a_0) \subseteq (a_0,a_1) \neq I$ y de esta forma podemos conseguir una cadena de ideales $(a_0) \subseteq (a_0,a_1) \subseteq (a_0,a_1,a_2) \subseteq \ldots$ sin que ninguno de ellos sea maximal. Luego $3$ implica $1.$
+
+$\hfill \square$
 
 Es claro que todo cuerpo $K$ es un anillo noetheriano.
 
@@ -2143,7 +2201,7 @@ A continuación daremos una caracterización de estos ideales:
 \item $I$ es un ideal propio y ningún otro ideal propio lo contiene estrictamente.
 \end{enumerate}
 \end{proposition}
-\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -ab \in I \subseteq J$. Ahora como $ab \in J$, por ser $J$ un ideal, tendremos que $1 = (1- ab) + ab \in J$ y así $J = A$, lo cual es falso.
+\emph{Demostración: } Sea $A/I$ un cuerpo y supongamos que $I$ no es maximal. Entonces existirá un ideal $J$ de $A$ tal que $I \subsetneq J \subsetneq A$. Sea $x \in J \setminus I$ un elemento de $J$ que no pertenece a $I$. Entonces $x + I$ es un elemento no nulo del cuerpo $A/I$ ya que $x \notin I$, por lo que tendrá inverso, es decir, existirá $y \in A$ tal que $$1 + I = (x + I)(y + I)= xy + I,$$ y en consecuencia $1 -xy \in I \subseteq J$. Ahora como $xy \in J$, por ser $J$ un ideal, tendremos que $1 = (1- xy) + xy \in J$ y así $J = A$, lo cual es falso.
 
 Recíprocamente, sea $x + I$ un elemento no nulo de $A/I$. Entonces $x \in A \setminus I$, es decir, será un elemento de $A$ que no estará en $I$, por lo que el ideal $I + xA$ contiene estrictamente a $I$. Como este último es maximal tendremos que $I + xA = A$, es decir que existirá $b \in I$ e $y \in A$ tal que $b + xy = 1$. Así que $1 - xy \in I$, es decir, $$xy + I = (x + I)(y + I ) = 1 + I,$$ por lo que $A/I$ es un cuerpo.
 
@@ -2335,7 +2393,7 @@ $\hfill \blacksquare$
 
 Finalmente, terminaremos estas generalidades de anillos enunciando y demostrando un resultado más que interesante que se conoce ya de aritmética. Es el \textit{Teorema chino de los restos}. Necesitaremos recordar la noción de ideales comaximales, presentada en~\ref{eq:comax}.
 
-\begin{theorem}[\textbf{\textit{Teorema chino de los restos.}}]
+\begin{theorem}[\textbf{\textit{Teorema chino de los restos}}]
 Sea $A$ un anillo, $r \geq 2$ un número entero e $I_{1}, \cdots, I_{r}$ ideales de $A$ comaximales dos a dos, es decir, $I_{i} + I_{j} = A$ si $i \neq j$. Entonces, se tiene: \begin{enumerate}
 \item $I_{1} + (I_{2} \cdots I_{r}) = A.$
 \item $I = I_{1} \cap \cdots \cap I_{r} = I_{1} \ldots I_{r}.$
@@ -2349,9 +2407,9 @@ $$ es sobreyectivo.
 \end{theorem}
 \emph{Demostración: } Veámoslo punto por punto: \begin{enumerate}
 \item Lo demostraremos por inducción sobre $r$, siendo obvio para $r = 2$. Sea $r \geq 3$ y supondremos probado que $I_{1} + (I_{2} \cdots I_{r-1}) = A$, como $I_{1} + I_{r} = A$ existirán $x_{1},y_{1} \in I_{1}$, $x \in I_{2} \cdots I_{r-1}$, $y \in I_{r}$ tales que $1 = x_{1} + x$ y $1 = y_{1} + y$. Por lo que $$1 = (x_{1} +x)(y_{1} + y)=(x_{1}y_{1} + x_{1}y + xy_{1}) + xy \in I_{1} + (I_{2} \cdots I_{r-1}I_{r}),$$ y así $I_{1} + (I_{2} \cdots I_{r}) = A.$
-\item En el anterior apartado se ha visto que $I_{1}$ y $J= I_{2} \cdots I_{r}$ son comaximales, y de~\ref{eq:comax} deducimos que $$I_{1} \cap \ldots \cap I_{r} = I_{1} \cap J = I_{1}J = I_{1} \cdot (I_{2} \cdots I_{r}) = I_{1} \cdots I_{r}.$$
-\item Deducimos de $1.$ que para cada índice $1 \leq i \leq r$, $I_{i} +I_{1}\cdots I_{i-1}\cdot I_{i+1} \cdots I_{r} = A.$ Por lo tanto, existen $u_{i} \in I_{i}$ y $v_{i} \in I_{1}\cdots I_{i-1}\cdot I_{i+1} \cdots I_{r}$ tales que $u_{i} + v_{i} = 1$, para cada $i = 1, \ldots, r$. Así, dados $x_{1}, \ldots, x_{r} \in A$, elegimos $x = x_{1}v_{1} + \ldots + x_{r}v_{r} \in A$ y tenemos que $$x + I_{i} = x_{1}v_{1} + \ldots + x_{r}v_{r} + I_{i} = x_{i}v_{i} + I_{i} =  x_{i}v_{i} +x_{i}u_{i} + I_{i} = x_{i}(v_{i} + u_{i}) + I_{i} = x_{i} + I_{i},$$ donde al pasar a la tercera igualdad $x_{i}u_{i}$ aparece porque $u_{i} \in I_{i}$. Así, $f(x) = f(x_{1} + I_{1}, \ldots, x_{r} + I_{r})$ y $f$ es sobreyectiva. 
-\item Se deduce fácilmente que $Ker f = I_{1} \cap \cdots \cap I_{r} = I$, y aplicando el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti} ya está.
+\item En el anterior apartado se ha visto que $I_{1}$ y $J= I_{2} \cdots I_{r}$ son comaximales, y de~\ref{eq:comax} deducimos que $$I = I_{1} \cap \ldots \cap I_{r} = I_{1} \cap J = I_{1}J = I_{1} \cdot (I_{2} \cdots I_{r}) = I_{1} \cdots I_{r}.$$
+\item Deducimos de $1.$ que para cada índice $1 \leq i \leq r$, $I_{i} +I_{1}\cdots I_{i-1}\cdot I_{i+1} \cdots I_{r} = A.$ Por lo tanto, existen $u_{i} \in I_{i}$ y $v_{i} \in I_{1}\cdots I_{i-1}\cdot I_{i+1} \cdots I_{r}$ tales que $u_{i} + v_{i} = 1$, para cada $i = 1, \ldots, r$. Así, dados $x_{1}, \ldots, x_{r} \in A$, elegimos $x = x_{1}v_{1} + \ldots + x_{r}v_{r} \in A$ y tenemos que $$x + I_{i} = x_{1}v_{1} + \ldots + x_{r}v_{r} + I_{i} = x_{i}v_{i} + I_{i} =  x_{i}v_{i} +x_{i}u_{i} + I_{i} = x_{i}(v_{i} + u_{i}) + I_{i} = x_{i} + I_{i},$$ donde al pasar a la tercera igualdad $x_{i}u_{i}$ aparece porque $u_{i} \in I_{i}$. Así, $f(x) = x_{1} + I_{1}, \ldots, x_{r} + I_{r}$ y $f$ es sobreyectiva. 
+\item Se deduce fácilmente que $Ker f = I_{1} \cap \cdots \cap I_{r} = I$, con $f$ el homomorfismo del apartado anterior, y aplicando el \textit{Primer Teorema de Isomorfía}~\ref{eq:1ti} ya está.
 \end{enumerate}
 $\hfill \square$
 
@@ -2370,9 +2428,10 @@ $x$ está relacionado con $y$ si $x \mid y$ e $y \mid x$, o sea si $(x) = (y).$
 \end{center} 
 Estas condiciones son equivalentes a: \begin{enumerate}
 \item Existe una unidad $a \in \mathcal{U}(A)$ tal que $y = ax$. Esto es así ya que si $(y) = (x)$ tendremos que $y \in (x), x \in (y)$, luego $y = ax$ y $x = by$. Luego $y = aby$ y como $A$ es un dominio de integridad podremos simplificar y obtener $1 = ab$, y así $a$ es unidad.
-\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades diremos que $y$ es \textbf{\textit{irreducible}}.
-\item Si $y \in A^{\ast}$ genera un ideal primo diremos que $y$ es primo. \textbf{\textit{Todo elemento primo es irreducible}}. Veámoslo. \vspace{0.2cm}\\
-\emph{Demostración: } Sea $y = ax$. Si $(y)$ es primo, $a \in (y)$ ó $x \in (y)$. Si $a \in (y)$ tendremos que $a = zy$, luego $y = zyx$ y $1 = zx$. Así, $x \in \mathcal{U}(A)$ y $a = yx^{-1} \in y \cdot \mathcal{U}(A)$. Análogo si $x \in (y)$.
+\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades, es decir asociados, diremos que $y$ es \textbf{\textit{irreducible}}.
+\item Si $y \in A^{\ast}$ genera un ideal primo diremos que $y$ es primo. \textbf{\textit{Todo elemento primo es irreducible}}. Veámoslo. 
+
+\emph{Demostración: } Sea $y = ax$. Si $y$ es primo entonces $(y)$ es primo y se tendrá que $a \in (y)$ ó $x \in (y)$. Si $a \in (y)$ tendremos que $a = zy$, luego $y = zyx$ y $1 = zx$. Así, $x \in \mathcal{U}(A)$ y $a = yx^{-1} \in y \cdot \mathcal{U}(A)$. Análogo si $x \in (y)$.
 
 $\hfill \square$
 
@@ -2384,7 +2443,7 @@ Con estas condiciones llegamos a la definición de \textit{elementos asociados}
 \begin{definition}Dos elemento $x,y \in A$ se dirán \textbf{asociados} en $A$ si $x \mid y$ e $y \mid x$. Por ejemplo, en $\mathbb{Z}$ $n$ y $-n$ lo son. Ser asociados es una relación de equivalencia en $A$, en la que la clase de un $x$ cualquiera (sus asociados) estará formada por elementos de la forma $ux$, con $u \in \mathcal{U}(A)$. 
 \end{definition}
 
-Lo podemos resumir diciendo que dos elementos $x,y \in A$ son asociados si y sólo si $(x) = (y)$.
+Lo podemos resumir diciendo que dos elementos $x,y \in A$ son asociados si y sólo si $(x) = (y)$. De igual forma diremos que $y$ es un asociado de $x$ si $x = uy$, con $u \in \mathcal{U}(A)$.
 
 Estos elementos son distintos, pero se comportan de forma análoga desde el punto de vista de la divisibilidad, es decir, tienen los mismos múltiplos y los mismos divisores.
 
@@ -2395,12 +2454,14 @@ Una clase importante de dominios de integridad, en la que la relación de divisi
 \norm{\cdot}\colon A\longrightarrow \mathbb{N}
 \end{array}
 $$
-con $\mathbb{N}$ el conjunto de los enteros no negativos, y que cumpla: \begin{enumerate}
+con $\mathbb{N}$ el conjunto de los enteros no negativos, que cumpla: \begin{enumerate}
 \item $\norm{x} = 0$ si y sólo si $x = 0$.
 \item $\norm{xy} = \norm{x} \cdot \norm{y}.$
 \item Si $x, y \in A^{\ast}$, existe $r \in A$ tal que $y \mid (x-r)$ y $\norm{r} < \norm{y}$. Esto no viene a ser más que la división de los enteros, donde $r$ es el resto y el elemento $q \in A$ tal que $x-r = qy$ el cociente. 
 \end{enumerate}
 \end{definition}
+
+La última condición puede ser reformulada tal que así: dados $x,y \in A$ no nulos (en realidad bastaría con que sólo lo fuera $y$) existen $r$ y $q$ tales que $x=qy+r$, con $r=0$ ó bien $\norm{r} < \norm{y}$.
 
 En un dominio euclídeo se cumple la siguiente propiedad:
 
@@ -2434,7 +2495,7 @@ Por ejemplo, tanto $\mathbb{Z}$ como $\mathbb{Z}[i]$ son $DIP$.
 
 \begin{proposition} Sea $A$ un $DIP$. Entonces todo elemento irreducible $a \in A^{\ast}$ genera un ideal maximal.
 \end{proposition}
-\emph{Demostración: } Sea $I \subset A$ un ideal que contiene al ideal principal $(a)$, generado por el elemento irreducible $a$. Veamos que ó bien $I = (a)$ ó $I = A$. Pero por ser $A$ un $DIP$, existirá un $b \in A$ tal que $I = (b)$. En consecuencia, $(a) \subset I = (b)$ y $b \mid a$. Como $a$ es irreducible, tendremos dos opciones: \begin{enumerate}
+\emph{Demostración: } Sea $I \subseteq A$ un ideal que contiene al ideal principal $(a)$, generado por el elemento irreducible $a$. Veamos que ó bien $I = (a)$ ó $I = A$. Pero por ser $A$ un $DIP$, existirá un $b \in A$ tal que $I = (b)$. En consecuencia, $(a) \subset I = (b)$ y $b \mid a$. Como $a$ es irreducible, tendremos dos opciones: \begin{enumerate}
 \item O bien $b = u \cdot a$, con $u \in \mathcal{U}(A)$, y entonces $(a) = (b) = I$.
 \item O bien $b \in \mathcal{U}(A)$, y entonces $A = (b) = I$.
 \end{enumerate}
@@ -2443,15 +2504,20 @@ $\hfill \square$
 
 A continuación pasaremos a dar una definición muy importante, tanto para anillos como para cuerpos, y que nos habla sobre el menor entero tal que multiplicado por el neutro de un anillo/cuerpo nos da el cero. 
 
-\begin{definition}[\textbf{\textit{Característica de un dominio de integridad.}}] Consideremos de nuevo un dominio $A$. Si $k \in \mathbb{Z}$, definimos un elemento $k \cdot 1_{A} \in A$: $$k \cdot 1_{A} = 1_{A} + \cdots + 1_{A} \hspace{0.1cm} \text{si k>0}$$ $$k \cdot 1_{A} = 0 \hspace{0.1cm} \text{si k = 0}$$ $$k \cdot 1_{A} = -((-k) \cdot 1_{A}) \hspace{0.1cm} \text{si k<0}.$$
+\begin{definition}[\textbf{\textit{Característica de un dominio de integridad.}}] Consideremos de nuevo un dominio $A$. Si $k \in \mathbb{Z}$, definimos un elemento $k \cdot 1_{A} \in A$: $$k \cdot 1_{A} = 1_{A} + \cdots + 1_{A} \hspace{0.1cm} \text{si $k>0$}$$ $$k \cdot 1_{A} = 0 \hspace{0.1cm} \text{si k = 0}$$ $$k \cdot 1_{A} = -((-k) \cdot 1_{A}) \hspace{0.1cm} \text{si $k<0$}.$$
 Entonces, $$\begin{array}{rccl}
 \phi \colon &\mathbb{Z}&\longrightarrow &A \\
 &k& \longmapsto &k\cdot 1_{A}
 \end{array}
 $$ es un homomorfismo de anillos. Consideremos su núcleo $Ker \hspace{0.1cm} \phi$. Entonces pueden darse dos casos: \begin{enumerate}
-\item $ker \hspace{0.1cm} \phi = \lbrace 0 \rbrace$. Entonces $\mathbb{Z} \subset A$ vía $\phi$, y diremos que $A$ tiene \textbf{característica $0$}. Esto ocurre, por ejemplo para $A = \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C} o \mathbb{Z}[i]$. En este caso el menor entero $k$ tal que $k \cdot 1_{A} = 0$, es el $0$.
-\item $ker \hspace{0.1cm} \phi \neq \lbrace 0 \rbrace$. Como $\mathbb{Z}/Ker \hspace{0.1cm} \phi \simeq Im \hspace{0.1cm} \phi \subset A$ y $A$ es dominio de integridad, $\mathbb{Z}/ker \hspace{0.1cm} \phi$ también lo será, y en así $ker \hspace{0.1cm} \phi$ será un ideal primo. Como $\mathbb{Z}$ es un $DIP$, $ker \hspace{0.1cm} \phi = (p)$, con $p$ primo. Diremos entonces que $A$ tiene \textbf{característica $p$}. De hecho, por el resultado anterior, $\mathbb{Z}/(p)$ es un cuerpo. Además, todo anillo finito tiene característica positiva.
+\item $Ker \hspace{0.1cm} \phi = \lbrace 0 \rbrace$. Entonces $\mathbb{Z} \subseteq A$ vía $\phi$, y diremos que $A$ tiene \textbf{característica $0$}. Esto ocurre, por ejemplo para $A = \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$ ó $\mathbb{Z}[i]$. En este caso el menor entero $k$ tal que $k \cdot 1_{A} = 0$, es el $0$.
+\item $Ker \hspace{0.1cm} \phi \neq \lbrace 0 \rbrace$. Como $\mathbb{Z}/Ker \hspace{0.1cm} \phi \cong Im \hspace{0.1cm} \phi \subseteq A$ y $A$ es dominio de integridad, $\mathbb{Z}/Ker \hspace{0.1cm} \phi$ también lo será, y en así $Ker \hspace{0.1cm} \phi$ será un ideal primo. Como $\mathbb{Z}$ es un $DIP$, $Ker \hspace{0.1cm} \phi = (p)$, con $p$ primo. Diremos entonces que $A$ tiene \textbf{característica $p$}. De hecho, por el resultado anterior, $\mathbb{Z}/(p)$ es un cuerpo. Además, todo anillo finito tiene característica positiva.
 \end{enumerate}
+\end{definition}
+
+Es decir, una definición resumida sería: 
+
+\begin{definition}Dado $A$ un DI, aunque bastaría con que fuera un anillo, llamaremos \textbf{característica} de $A$ al menor natural $n$ tal que $n\cdot 1_A = 0$. En caso de que no exista, diremos que la característica de $A$ es cero.
 \end{definition}
 
 \begin{definition} Sean $x,y \in A\setminus \lbrace 0 \rbrace$. Diremos que $z \in A$ es: \begin{enumerate}
@@ -2537,16 +2603,16 @@ A partir de aquí y con esto, vamos a poder definir una nueva estructura algebra
 \item Los elementos $a_{1}, \ldots, a_{r}$ son únicos, salvo producto por unidades de $A$, así como los enteros $\alpha_{1}, \ldots,\alpha_{r}$. 
 \end{enumerate}
 \end{proposition}
-\emph{Demostración: } Veamos primero (2). Sea $$x = a_{1}^{\alpha_{1}} \ldots  a_{r}^{\alpha_{r}} = b_{1}^{\beta_{1}} \ldots  a_{s}^{\beta_{s}}.$$ Para cada $i$ tenemos $a_{i} \mid b_{1}^{\beta_{1}} \ldots b_{s}^{\beta_{s}}.$ Como $a_{i}$ es irreducible, de~~ tenemos que $$a_{i} \mid b_{\sigma (i)}$$ para algún $\sigma (i)$. Análogamente $$b_{\sigma(i)}\mid a_{j}$$ para algún $j$. Por tanto, $a_{i} \mid a_{j}$, luego $a_{i}$ y $a_{j}$ no son primos entre sí, e $i = j$. Así, existe una unidad $u_{i} \in \mathcal{U}(A)$ con $$b_{\sigma(i)} = u_{i}a_{i}.$$ Se observa que $\sigma(i) \neq \sigma (j)$ si $i \neq j$, pues en otro caso $u_{i}a_{i} = u_{j}a_{j}$, o sea, $a_{j} = (u_{j}^{-1}u_{i})a_{i}$ y se tendría $a_{i} \mid a_{j}$ con $i \neq j$. Así, $\sigma \colon i \longrightarrow \sigma (i)$ es inyectiva, y $r \leq s$. Por simetría $r = s$, y $\sigma$ es una permutación de $\lbrace 1, \ldots, r \rbrace$ tal que: $$b_{\sigma(1)} = u_{1}a_{1}, \ldots, b_{\sigma(r)} = u_{r}a_{r}; \hspace{0.2cm} u_{1}, \ldots, u_{r} \in \mathcal{U}(A).$$
-En fin, $\beta_{\sigma(i)} = \alpha_{i} $ \hspace{0.1cm} $\forall i$. En efecto, $$a_{i}^{\alpha_{i}} \mid x = u a_{1}^{\beta_{\sigma(1)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ donde $u = u_{1}^{\beta_{\sigma(1)}} \ldots u_{r}^{\beta_{\sigma(r)}} \in \mathcal{U}(A).$ Si $\alpha_{i} > \beta_{\sigma(i)}$, simplificando $a_{i}^{\beta_{\sigma(i)}}$ obtendríamos $$a_{i} \mid a_{i}^{y_{i}} \mid  u a_{1}^{\beta_{\sigma(1)}} \ldots a_{i}^{\beta_{\sigma(i)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ pues $y_{i} = \alpha_{i} - \beta_{\sigma(i)} \geq 1.$ Entonces $a_{i} \mid a_{j}$ para algún $i \neq j$, que es absurdo. Tiene que ser $\alpha_{i} \leq \beta_{\sigma(i)}$, y por simetría se tiene la igualdad. 
+\emph{Demostración: } Veamos primero (2). Sea $$x = a_{1}^{\alpha_{1}} \ldots  a_{r}^{\alpha_{r}} = b_{1}^{\beta_{1}} \ldots  a_{s}^{\beta_{s}}.$$ Para cada $i$ tenemos $a_{i} \mid b_{1}^{\beta_{1}} \ldots b_{s}^{\beta_{s}}.$ Como $a_{i}$ es irreducible, de~\ref{pregauss0} tenemos que $$a_{i} \mid b_{\sigma (i)}$$ para algún $\sigma (i)$. Análogamente $$b_{\sigma(i)}\mid a_{j}$$ para algún $j$. Por tanto, $a_{i} \mid a_{j}$, luego $a_{i}$ y $a_{j}$ no son primos entre sí, e $i = j$. Así, existe una unidad $u_{i} \in \mathcal{U}(A)$ con $$b_{\sigma(i)} = u_{i}a_{i}.$$ Se observa que $\sigma(i) \neq \sigma (j)$ si $i \neq j$, pues en otro caso $u_{i}a_{i} = u_{j}a_{j}$, o sea, $a_{j} = (u_{j}^{-1}u_{i})a_{i}$ y se tendría $a_{i} \mid a_{j}$ con $i \neq j$. Así, $\sigma \colon i \longrightarrow \sigma (i)$ es inyectiva, y $r \leq s$. Por simetría $r = s$, y $\sigma$ es una permutación de $\lbrace 1, \ldots, r \rbrace$ tal que: $$b_{\sigma(1)} = u_{1}a_{1}, \ldots, b_{\sigma(r)} = u_{r}a_{r}; \hspace{0.2cm} u_{1}, \ldots, u_{r} \in \mathcal{U}(A).$$
+Finalmente, $\beta_{\sigma(i)} = \alpha_{i} $ $\forall i$. En efecto, $$a_{i}^{\alpha_{i}} \mid x = u a_{1}^{\beta_{\sigma(1)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ donde $u = u_{1}^{\beta_{\sigma(1)}} \ldots u_{r}^{\beta_{\sigma(r)}} \in \mathcal{U}(A).$ Si $\alpha_{i} > \beta_{\sigma(i)}$, simplificando $a_{i}^{\beta_{\sigma(i)}}$ obtendríamos $$a_{i} \mid a_{i}^{y_{i}} \mid  u a_{1}^{\beta_{\sigma(1)}} \ldots a_{i}^{\beta_{\sigma(i)}} \ldots a_{r}^{\beta_{\sigma(r)}},$$ pues $y_{i} = \alpha_{i} - \beta_{\sigma(i)} \geq 1.$ Entonces $a_{i} \mid a_{j}$ para algún $i \neq j$, que es absurdo. Tiene que ser $\alpha_{i} \leq \beta_{\sigma(i)}$, y por simetría se tiene la igualdad. 
 
 Pasemos a probar ahora $(1)$. Primeramente, afirmamos que $x$ tiene algún divisor irreducible. Ciertamente, pues de no tenerlo entonces el propio $x$ sería reducible (si no lo fuera sería un divisor irreducible de sí mismo), y tendría algún divisor $x_{1}$ con $(x) \subseteq (x_{1}) \subseteq A.$ A su vez $x_{1}$ sería reducible, y existiría $x_{2} \in A$ con $(x_{1}) \subseteq (x_{2}) \subseteq A$. Recurrentemente obtendríamos una sucesión $x = x_{0}, x_{1}, x_{2}, \ldots , x_{n}, \ldots$ tal que $$(x_{0}) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subseteq \ldots .$$ Y esto no es posible. Para verlo, sea: $$ I = \bigcup_{i \geq 0} (x_{i}).$$ Entonces $I$ es un ideal: \begin{enumerate}
-\item Si $a,b \in I$ es $a \in (x_{i}), b \in (x_{j})$, escribimos $k = max {i,j}$ y tenemos $a,b \in (x_{k})$, luego $a + b \in (x_{k}) \subseteq I$.
-\item  Si $a \in I, b \in A$, entonces $a \in (x_{i})$ para algún $i$, y $ba \in (x_{i}) \subset I$. 
+\item Si $a,b \in I$ es $a \in (x_{i}), b \in (x_{j})$, escribimos $k = max\left\lbrace i,j\right\rbrace$ y tenemos $a,b \in (x_{k})$, luego $a + b \in (x_{k}) \subseteq I$.
+\item  Si $a \in I, b \in A$, entonces $a \in (x_{i})$ para algún $i$, y $ba \in (x_{i}) \subseteq I$. 
 \end{enumerate}
 Como $I$ tiene que ser principal, existe un $z \in A$ con $$(z) = \bigcup_{i \geq 0} (x_{i}).$$ Luego $z \in (x_{i_{0}})$ para algún $i_{0}$, con lo que $$(x_{i_{0}+1}) \subseteq I = (z) \subseteq (x_{i_{0}}),$$ y así $(x_{i_{0}+1}) = (x_{i_{0}})$, que es absurdo.
 
-Sea ahora $a_{1}$ un divisor irreducible de $x$. Entonces $$x = a_{1}x_{1}, \hspace{0.2cm} x_{1} \in A.$$ Si $x_{1}$ es unidad ya hemos acabado. Si no, $x_{1}$ tendrá algún divisor irreducible $a_{2}$ y $x_{1} = a_{2}x_{2}$, donde o bien $x_{2}$ es unidad, y así habremos acabado, o bien $x_{2}$ tiene un divisor irreducible $a_{3}$. Si después de una cantidad finita de pasos encontramos una unidad $u = u_{r} \in \mathcal{U}(A)$, será $$x = a_{1}a_{2} \ldots a_{r}u,$$ y agrupando los $a_{i}$ iguales tendremos la descomposición que buscábamos. Sólo queda ver que este proceso es finito. Si no lo fuera obtendríamos una sucesión $$(x) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subset \ldots .$$ Y, como hicimos anteriormente, se tendría $(x_{i_{0}}) = (x_{i_{0}+1})$ para cierto $i_{0}$, es decir, $$a_{i_{0}+1} = x_{i_{0}}/ x_{i_{0}+1} \in \mathcal{U}(A),$$ lo que es absurdo.
+Sea ahora $a_{1}$ un divisor irreducible de $x$. Entonces $$x = a_{1}x_{1}, \hspace{0.2cm} x_{1} \in A.$$ Si $x_{1}$ es unidad ya hemos acabado. Si no, $x_{1}$ tendrá algún divisor irreducible $a_{2}$ y $x_{1} = a_{2}x_{2}$, donde o bien $x_{2}$ es unidad, y así habremos acabado, o bien $x_{2}$ tiene un divisor irreducible $a_{3}$. Si después de una cantidad finita de pasos encontramos una unidad $u = u_{r} \in \mathcal{U}(A)$, será $$x = a_{1}a_{2} \ldots a_{r}u,$$ y agrupando los $a_{i}$ iguales tendremos la descomposición que buscábamos. Sólo queda ver que este proceso es finito. Si no lo fuera obtendríamos una sucesión $$(x) \subseteq (x_{1}) \subseteq (x_{2}) \subseteq \ldots \subseteq (x_{n}) \subseteq \ldots .$$ Y, como hicimos anteriormente, se tendría $(x_{i_{0}}) = (x_{i_{0}+1})$ para cierto $i_{0}$, es decir, $$a_{i_{0}+1} = x_{i_{0}}/ x_{i_{0}+1} \in \mathcal{U}(A),$$ lo que es absurdo.
 
 $\hfill \square$
 
@@ -2557,6 +2623,8 @@ Esta factorización que acabamos de describir nos permite establecer un nuevo ti
 \item Todo elemento no nulo que no sea unidad es producto de elementos irreducibles.
 \end{enumerate}
 \end{definition}
+
+Notar que de la proposición anterior tenemos que los DFU satisfacen la condición de cadena ascendente para ideales principales.
 
 \begin{observation} Algunas observaciones:\begin{enumerate}
 \item Que todo elemento no nulo que no sea unidad sea producto de elementos irreducibles no garantiza la unicidad de dicha factorización. Es necesaria también la primera condición, ya que la unicidad se desprende de que ésta se cumple sobre un dominio de ideales principales.
@@ -2569,7 +2637,7 @@ Los anillos $\mathbb{Z}$ y $\mathbb{Z}[i]$ son DE y por tanto DFU. Es precisamen
 
 A continuación veremos todas las propiedades vistas hasta ahora a través de un ejemplo bastante completo:
 
-\begin{example} Nos situaremos en el subanillo $A \subset \mathbb{C}$ de los números complejos de la forma $a +b\sqrt{-5}$, $a,b \in \mathbb{Z}$. Lo denotaremos $A = \mathbb{Z}[\sqrt{-5}]$ y efectivamente $$\mathbb{Z}[\sqrt{-5}] = \lbrace a + b\sqrt{-5} : a,b \in \mathbb{Z} \rbrace.$$ A lo largo del ejemplo se usará indistintamente tanto $A$ como $\mathbb{Z}[\sqrt{-5}]$. 
+\begin{example} Nos situaremos en el subanillo $A \subseteq \mathbb{C}$ de los números complejos de la forma $a +b\sqrt{-5}$, $a,b \in \mathbb{Z}$. Lo denotaremos $A = \mathbb{Z}[\sqrt{-5}]$ y efectivamente $$\mathbb{Z}[\sqrt{-5}] = \lbrace a + b\sqrt{-5} : a,b \in \mathbb{Z} \rbrace.$$ A lo largo del ejemplo se usará indistintamente tanto $A$ como $\mathbb{Z}[\sqrt{-5}]$. 
 
 Estudiaremos primero las unidades. Sea un elemento $a +b\sqrt{-5} \in \mathbb{Z}[\sqrt{-5}]$, entonces $a +b\sqrt{-5} \in \mathcal{U}(\mathbb{Z}[\sqrt{-5}])$ si y sólo si existen $c,d \in \mathbb{Z}$ tales que $$1 = (c + d\sqrt{-5})(a +b\sqrt{-5}) = (ca-5db) + (cb + da)\sqrt{-5}.$$ Y esto quiere decir que $ca-5db = 1$ y $cb + da = 0$. De lo que se obtiene las siguientes soluciones $$c = \dfrac{a}{a^{2}+5b^{2}}, \hspace{0.2cm} d = \dfrac{-b}{a^{2}+5b^{2}}.$$ Esto quiere decir que $(a^{2}+5b^{2}) \mid a$ y que $(a^{2} + 5b^{2}) \mid b$; por lo que $|b| \geq a^{2}+5b^{2}$ y de esto $|b| = 0$ ya que de lo contrario tendríamos que $a^{2} + 5b^{2} \geq 5b^{2} > b^{2} \geq |b|$, que es una contradicción. Así $|b| = 0$ y $b = 0$, y como nuevamente $|a| \geq a^{2} + 5b^{2} = a^{2}$ entonces $|a| \leq 1$. Pero $a$ no puede ser $0$ porque sino también lo sería $a + b\sqrt{-5}$, luego $a = \pm 1$. Esto deja como posibles soluciones $(a,b) = (\pm 1, 0).$ Así, $\mathcal{U} (\mathbb{Z}[\sqrt{-5}]) = \lbrace 1, -1 \rbrace$.\vspace{0.3cm}\\
  
@@ -2604,7 +2672,7 @@ Primero, el resultado central del capítulo, y a partir del cual desarrollaremos
 \end{proposition}
 \emph{Demostración: }Está claro que podemos suponer que $n \geq 2$. Supongamos que $n=ab$, con $1 <a,b<n$ y que $\mathbb{Z}/n\mathbb{Z}$ es cuerpo. Entonces $(a+n\mathbb{Z})(b+n\mathbb{Z}) = 0$ pero esto sería absurdo si $a+n\mathbb{Z},b+n\mathbb{Z}\neq 0$ puesto que un $\mathbb{Z}/n\mathbb{Z}$ es cuerpo y no tiene divisores de cero, así que necesariamente $n$ es primo.
 
-Recíprocamente, supongamos que $n$ es primo, y sea $1 \geq m < n$, entonces se tiene que $mcd(n,m)=1$.  En este caso, sabemos que van a existir $a,b \in \mathbb{Z}$ tales que $an+bm = 1$ por la identidad de Bézout. POr lo tanto, $$(m+n\mathbb{Z})(b+n\mathbb{Z}) = 1+n\mathbb{Z},$$ y tenemos que $m+n\mathbb{Z}$ es invertible.
+Recíprocamente, supongamos que $n$ es primo, y sea $1 \leq m < n$, entonces se tiene que $mcd(n,m)=1$.  En este caso, sabemos que van a existir $a,b \in \mathbb{Z}$ tales que $an+bm = 1$ por la identidad de Bézout. Por lo tanto, $$(m+n\mathbb{Z})(b+n\mathbb{Z}) = 1+n\mathbb{Z},$$ y tenemos que $m+n\mathbb{Z}$ es invertible.
 
 $\hfill \square$
 
@@ -2653,7 +2721,7 @@ El cuál ya sabemos que existe por el punto anterior, y está bien definido porq
 
 Podemos dar una versión alternativa del teorema chino de los restos:
 
-\begin{theorem}[\textbf{\textit{Teorema Chino del resto}}]
+\begin{theorem}
 Si $a,b$ son enteros primos entre sí, entonces se tendrá un isomorfismo de anillos unitarios $$\mathbb{Z}(ab) \cong \mathbb{Z}/(a) \times \mathbb{Z}/(b).$$
 \end{theorem}
 \emph{Demostración: } Definimos $$\begin{array}{rccl}
@@ -2662,9 +2730,47 @@ f \colon &\mathbb{Z}/(ab)&\longrightarrow &\mathbb{Z}/(a) \times \mathbb{Z}/(b)\
 \end{array}
 $$ Está bien definido, pues si $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} ab$ entonces $ab \mid (k-l)$ y así tanto $a$ como $b$ dividen a $k-l$ y tenemos que $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} a$ y $k \equiv l \hspace{0.1cm} \text{mod} \hspace{0.1cm} b$. 
 
-Que es homomorfismo es evidente. Es inyectiva, sea $k$ un entero tal que $f([k]_{ab}) = 0$, entonces $([k]_{a}, [k]_{b}) = (0,0)$ y así $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} a$$ $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} b.$$ Esto quiere decir que $a \mid k$ y $b \mid k$, luego $mcm(a,b) \mid k$; pero como $a$ y $b$ son primos entre sí tenemos que $mcm(a,b) = ab$. Por lo tanto, $ab \mid k$, es decir, $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} ab.$$ Luego $ker f = \lbrace 0 \rbrace$ y $f$ es  inyectiva.
+Que es homomorfismo es evidente. Es inyectiva, sea $k$ un entero tal que $f([k]_{ab}) = 0$, entonces $([k]_{a}, [k]_{b}) = (0,0)$ y así $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} a$$ $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} b.$$ Esto quiere decir que $a \mid k$ y $b \mid k$, luego $mcm(a,b) \mid k$, pero como $a$ y $b$ son primos entre sí tenemos que $mcm(a,b) = ab$. Por lo tanto, $ab \mid k$, es decir, $$k \equiv 0 \hspace{0.1cm} \text{mod} \hspace{0.1cm} ab.$$ Luego $ker f = \lbrace 0 \rbrace$ y $f$ es  inyectiva.
 
 Como es una aplicación inyectiva entre dos conjuntos finitos de igual cardinal $ab$ entonces también será biyectiva, y así isomorfismo.
+
+$\hfill \square$
+
+\begin{lemma}Sean $m$ y $n$ enteros positivos tales que $mcd(m,n)=1$. Entonces, dados $a,b \in \mathbb{Z}$, el sistema $$x \equiv a \hspace{0.1cm} \text{mod} \hspace{0.1cm} m$$
+$$x \equiv b \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$$ tiene solución. Si $x_1, x_2$ son dos soluciones del sistema, entonces $x_1 \equiv x_2 \hspace{0.1cm} \text{mod} \hspace{0.1cm} mn$.
+\end{lemma}
+\emph{Demostración: }La ecuación $x \equiv a \hspace{0.1cm} \text{mod} \hspace{0.1cm} m$ tiene solución puesto que $a+km$ satisface la ecuación para cualquier $k \in \mathbb{Z}$. Debemos mostrar que existe un entero $k_1$ tal que $$a+k_1m \equiv b \hspace{0.1cm} \text{mod} \hspace{0.1cm} n.$$ Esto es equivalente a mostrar que $$k_1m \equiv (b-a) \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$$ tiene solución para $k_1$. Como $m$ y $n$ son coprimos, existen enteros $s$ y $t$ tales que $ms+nt=1$. Concluimos que $(b-a)ms=(b-a)-(b-a)nt$ y así $$(b-a)ms \equiv (b-a) \hspace{0.1cm} \text{mod} \hspace{0.1cm} n.$$
+Tomamos $k_1=(b-a)s$ y ya está.
+
+Para ver ahora que dos soluciones cualesquiera son congruentes módulo $mn$, sean $c_1$ y $c_2$ dos soluciones del sistema. Es decir, 
+$$c_i\equiv a \hspace{0.1cm} \text{mod} \hspace{0.1cm} m$$
+$$c_i \equiv b \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$$ para $i=1,2$. Entonces $$c_2 \equiv c_1 \hspace{0.1cm} \text{mod} \hspace{0.1cm} m$$ $$c_2 \equiv c_1 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n$$ por lo que tanto $m$ como $n$ dividen a $c_2-c_1$. Así, $c_2 \equiv c_1 \hspace{0.1cm} \text{mod} \hspace{0.1cm} mn.$
+
+$\hfill \square$
+
+\begin{example}Resolvamos el siguiente sistema: 
+$$x \equiv 3 \hspace{0.1cm} \text{mod} \hspace{0.1cm} 4$$
+$$x \equiv 4 \hspace{0.1cm} \text{mod} \hspace{0.1cm} 4$$
+Usando el algoritmo de Euclides podemos encontrar enteros $s,t$ tales que $4s+5t = 1$. Una posibilidad para tales enteros es $s=4$ y $t=-3$. Tenemos que $a=3$, $b=4$, $m=4$ y $n=5$, luego $k_1 = (4-3)4$ y concluimos así que $$x=a+k_1m=3 +4k_1 = 3+4((4-3)4)=19.$$
+\end{example}
+
+Por extensión a $k$ ecuaciones llegamos a:
+
+\begin{theorem}[\textbf{\textit{Teorema Chino de los restos}}]
+Sean $n_1, n_2, \ldots, n_k$ enteros positivos tales que $mcd(n_i,n_j)=1$ con $i \neq j$, es decir, coprimos dos a dos. Entonces para enteros cualesquiera $a_1, \ldots, a_k$ el sistema 
+$$x \equiv a_1 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_1$$
+$$x \equiv a_2 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_2$$
+$$\vdots$$
+$$x \equiv a_k \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_k$$
+tiene solución. Más aún, dos soluciones cualesquiera de sistema son congruentes módulo $n_1, n_2, \ldots, n_k$.
+\end{theorem}
+\emph{Demostración: }Lo haremos por inducción sobre el número de ecuaciones en el sistema. Si hay $k=2$ ecuaciones entonces el resultado se da por el lema anterior. Ahora supongamos que el resultado es cierto para un sistema de $k$ o menos ecuaciones y que queremos encontrar una solución de 
+$$x \equiv a_1 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_1$$
+$$x \equiv a_2 \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_2$$
+$$\vdots$$
+$$x \equiv a_{k+1} \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_{k+1}.$$ Considerando las primeras $k$ ecuaciones, existe una solución que es única módulo $n_1 \ldots n_k$, digamos $a$. Como $n_1 \ldots n_k$ y $n_{k+1}$ son coprimos entre sí el sistema
+$$x \equiv a \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_1\ldots n_k$$
+$$x \equiv a_{k+1} \hspace{0.1cm} \text{mod} \hspace{0.1cm} n_{k+1}$$ tiene una solución que es única módulo $n_1 \ldots n_{k+1}$ por el lema anterior.
 
 $\hfill \square$
 

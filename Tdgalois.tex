@@ -1673,6 +1673,26 @@ Si $f$ se escinde en $K$ (en particular, si $\delta(f) = 1$), entonces $K$ es un
 
 $\hfill \square$
 
+\begin{example}Hallar un cuerpo de escisión de $f(x) = x^4-5x^2+5 \in \mathbb{Q}[x]$ sobre $\mathbb{Q}$.
+
+Sabemos que $f(x)$ es irreducible por Eisenstein, sus raíces son: $$x = \pm \sqrt{\dfrac{5 \pm \sqrt{25-20}}{2}}, \quad \alpha = \sqrt{\dfrac{5 + \sqrt{5}}{2}}, \hspace{0.1cm}  \beta = \sqrt{\dfrac{5 - \sqrt{5}}{2}}, \hspace{0.1cm}, -\alpha, -\beta.$$
+
+Es inmediato ver que $\alpha \beta = \sqrt{5}$. Notar que tanto $\alpha$ como $\beta$ son reales. El cuerpo de escisión será $\mathbb{Q}(\alpha, \beta, -\alpha, -\beta) = \mathbb{Q}(\alpha,\beta)$.
+
+Ahora, $\alpha^2 = \dfrac{5+\sqrt{5}}{2}$, luego $\mathbb{Q}(\alpha^2) = \mathbb{Q}(\sqrt{5})$ ó $\sqrt{5} \in \mathbb{Q}(\alpha)$. Así, $\beta = \alpha /\sqrt{5} \in \mathbb{Q}(\alpha)$, luego $\mathbb{Q}(\alpha, \beta) = \mathbb{Q}(\alpha)$ y así el cuerpo de escisión es $\mathbb{Q}(\alpha)$. Y $|\mathbb{Q}(\alpha) : \mathbb{Q} | = \delta(f) = 4$, ya que $f=Irr(\alpha, \mathbb{Q})$.
+\end{example}
+
+$\hfill \blacksquare$
+
+De este ejemplo podemos ver que en estos casos, en los polinomios bicuadrados de la forma $x^4+ax^2+b$, las raíces van a ser de la forma: $$\alpha = \sqrt{\dfrac{-a+\sqrt{a^2-4b}}{2}}, \hspace{0.1cm} \beta =\sqrt{\dfrac{-a-\sqrt{a^2-4b}}{2}}, \hspace{0.1cm} -\alpha, \hspace{0.1cm}, -\beta,$$ y van a cumplir que $\alpha\beta = \sqrt{b}$. Luego, el cuerpo de escisión de estos polinomios será de la forma $\mathbb{Q}(\alpha, \beta)$.
+
+\begin{example}Hallar el cuerpo de escisión de $f(x)= x^4+3x^2-3 \in \mathbb{Q}[x]$ sobre $\mathbb{Q}$.
+$$\alpha= \sqrt{\dfrac{-3+\sqrt{21}}{2}},\hspace{0.1cm} \beta = \sqrt{\dfrac{-3-\sqrt{21}}{2}}, \hspace{0.1cm} \alpha\beta = \sqrt{-3}, \hspace{0.1cm} \mathbb{Q}(\alpha^2) = \mathbb{Q}(21).$$ Notar que $\beta \notin \mathbb{Q}(\alpha)$ ya que $\beta \notin \mathbb{R}$ pero $\alpha \in \mathbb{R}$. Así, el cuerpo de escisión de $f(x)$ sobre $\mathbb{Q}$ es $\mathbb{Q}(\alpha, \beta)$. Se tiene que $\beta^2 \in \mathbb{Q}(\sqrt{21})=\mathbb{Q}(\alpha^2)$, luego $\beta^2 = t \in \mathbb{Q}(\alpha^2)\subseteq \mathbb{Q}(\alpha)$ y así $Irr(\beta, \mathbb{Q}(\alpha))=x^2-t$, luego $|\mathbb{Q}(\alpha)(\beta):\mathbb{Q}(\beta)| =2$, y  $$|\mathbb{Q}(\alpha,\beta):\mathbb{Q}| = |\mathbb{Q}(\alpha) (\beta):\mathbb{Q}(\alpha)||\mathbb{Q}(\alpha):\mathbb{Q}| = 8.$$
+
+\end{example}
+
+$\hfill \blacksquare$
+
 \begin{proposition}\label{eq:cuesc} Sea $\sigma \colon K_{1} \longrightarrow K_{2}$ un isomorfismo, $f_{1} \in K_{1}[x]$ y $f_{2} = \sigma (f_{1}) \in K_{2}[x]$. Sean $E_{i}$, con $i = 1,2$ cuerpos de escisión de $f_{i}$ sobre $K_{i}$, $i = 1,2$. Entonces existe un isomorfismo $\tau \colon E_{1} \longrightarrow E_{2}$ que extiende $\sigma$, es decir, $ \left.\tau \right|_{K_{1}} = \sigma$.
 \end{proposition}
 \emph{Demostración: } Inducción sobre $|E_{1}: K_{1}|$ :
@@ -1742,9 +1762,18 @@ $\hfill \square$
 
 \subsection{Extensiones separables}
 
+\begin{definition}Una extensión $E/K$ se dice \textbf{separable} si todo $f \in K[x]$ irreducible que tenga una raíz en $E$ no tiene raíces múltiples en $E$. Es decir, que todas sus raíces son distintas.
+\end{definition}
+
+Toda extensión de cuerpos de característica $0$ es separable por~~.
+
+\begin{definition}Una extensión $E/K$ se dice \textbf{extensión de Galois} si es normal y separable.
+\end{definition}
+
 \section{La correspondencia de Galois}
 \subsection{El grupo de Galois}
-Lo que a continuación vamos a definir será el objeto de estudio del resto del texto, imprescindible para entender lo que venga en adelante y eje vertebrador de la \textit{Teoría de Galois}.
+
+Lo que a continuación vamos a definir será el objeto de estudio del resto del texto, imprescindible para entender lo que venga en adelante y eje vertebrador de la \textit{Teoría de Galois}. Empezaremos definiendo el grupo de Galois.
 
 Recordemos que, dado un cuerpo $E$, denotaremos por $Aut(E)$ al grupo de los automorfismos de $E$, es decir, al grupo de los isomorfismos $\sigma \colon E \longrightarrow E$ con la operación composición de aplicaciones.
 
