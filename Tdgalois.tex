@@ -1209,6 +1209,64 @@ $\hfill \square$
 
 \section{Anillos y cuerpos}
 
+\begin{definition} Decimos que un \textbf{conjunto $A$} dotado de dos operaciones, que usualmente denominaremos suma y producto, $$\begin{array}{rccl}
++ \colon &A \times A & \longrightarrow & A\\
+&(a,b) & \longmapsto &a+b
+\end{array}
+$$
+$$\begin{array}{rccl}
+\cdot \colon &A \times A & \longrightarrow & A\\
+&(a,b) & \longmapsto &ab
+\end{array}
+$$
+es un \textbf{anillo} si cumple que \begin{enumerate}
+\renewcommand{\theenumi}{\roman{enumi}}
+\item $A$ dotado de la suma es un \textbf{grupo conmutativo}, es decir, \begin{itemize}
+\item La suma cumple las propiedades asociativa y conmutativa.
+\item Existe un único elemento $0 \in A$ tal que $a + 0 = 0 + a = a\hspace{0.2cm} \forall a \in A$, que denominaremos \textbf{elemento neutro ó cero}.
+\item Para todo $a \in A$ existe un único elemento $b$ tal que $a + b = b +a = 0$, que denominaremos \textbf{elemento opuesto} y denotaremos por $-a$.
+\end{itemize}
+\item $A$ dotado del producto es un \textbf{semigrupo}, es decir, que el producto cumple la propiedad \textbf{asociativa}. Dados $a, b, c \in A$, entonces se tiene que $$a(bc)= (ab)c.$$
+\item La propiedad \textbf{distributiva}, es decir que dados $a,b,c \in A$, tenemos que $$(a+b)c = ac+bc, \hspace{0.3cm} a(b+c) = ab+ac.$$
+\end{enumerate}
+Además es importante matizar que el elemento neutro para la suma, el cero, podrá escribirse como $0_{A}$ ó simplemente $0$. Denotaremos por $A^{\ast} = A\setminus \lbrace 0 \rbrace.$ Y, como en grupos, la operación conocida como producto podrá denotarse con un $\cdot$ en ocasiones ó con simple yuxtaposición.\vspace{0.2cm}\\
+Finalmente, una notación usual para los anillos será ($A$, $+$, $\cdot$), que incluye el conjunto y las dos operaciones dotadas.
+\end{definition}
+
+\begin{definition} Llamaremos \textbf{anillo unitario} a un anillo $A$ que posea \textbf{elemento unidad}, es decir,si existe $1_{A} = 1 \in A$ tal que $1 \cdot a = a \cdot 1 = a$ \hspace{0.1cm} $\forall a \in A$. También se puede denominar uno.
+\end{definition}
+
+\begin{definition}Sea $A$ un anillo unitario. Una \textbf{unidad} de $A$ es un elemento $a \in A$ para el que existe un $b \in A$ tal que $$ab = ba = 1.$$ Es decir, $b$ será el \textbf{inverso} de $a$ con respecto al producto. Lo denotaremos por $a^{-1}$, y observar que si ciertos $a, b, c \in A$ verifican $ab = ca = 1$, entonces $$c = c(ab) = (ca)b = b.$$ Por lo que, de existir el inverso, será único. El conjunto de todas las unidades de $A$ lo denotaremos por $\mathcal{U}(A)$, que es un grupo con la operación producto. En efecto, dados $a,b \in \mathcal{U}(A)$, entonces $$(ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = aa^{-1} = 1 = b^{-1}b = b^{-1}(a^{-1}a)b = (b^{-1}a^{-1})(ab).$$ De aquí deducimos que $(ab)^{-1} = b^{-1}a^{-1}.$ Finalmente, diremos que un anillo es \textbf{conmutativo} si se cumple, para cualesquiera $a,b \in A$ que $$ab = ba.$$
+\end{definition}
+
+\begin{definition} Llamaremos \textbf{cuerpo} a un anillo $K$ tal que $K^{\ast} = K \setminus \lbrace 0 \rbrace$ forma un grupo con la multiplicación. Dicho de otra forma, en todo anillo unitario vamos a tener que $\mathcal{U}(A) \subseteq A^{\ast}$, y los cuerpos son aquellos anillos unitarios tales que $\mathcal{U}(A) = K^{\ast}$. De igual manera que para anillos, también podremos definir los \textbf{cuerpos conmutativos} como aquellos que, para cualesquiera $a,b \in K$ se tiene que $$ab = ba.$$
+\end{definition}
+
+\begin{definition}Si $A$ es un anillo, podemos construir el \textbf{anillo de polinomios} $A[x]$ sobre $A$. 
+
+Un polinomio $p \in A[x]$ es una suma de la forma $$p = \sum_n a_nx^n,$$ con $a_n \in A$ para todo $n$ y donde existe un $m$ tal que $a_n=0$ si $n>m$. En ocasiones también podremos escribir estos elementos como $p(x)$. Si tenemos que $p=a_mx^m+\ldots+a_1x+a_0,$ y $a_m\neq 0$ entonces podremos decir que el \textbf{grado} de $p$, $\delta(p)$, es $m$. También diremos que los términos $a_m,\ldots, a_1, a_0$ son los \textbf{coeficientes} de $p$ y concretamente que $a_m$ es el \textbf{coeficiente director} de $p$. Si este coeficiente director $a_m =1$ diremos que $p$ es mónico. El polinomio $0$ se suele convenir que tiene grado $-\infty$.
+
+Diremos que dos polinomios $p = \sum_n a_nx^n$, $q = \sum	_n b_nx^n$ son iguales si y sólo si $a_n = b_n$ para todo $n$. También los podremos sumar y multiplicar: $$p+q= \sum_n(a_n+b_n)x^n,$$ $$pq = \sum_n\left(\sum_{i+j=n \atop i,j\geq 0} a_ib_j \right) x^n.$$
+\end{definition}
+
+\begin{definition}Sea $A$ un anillo. Llamaremos \textbf{divisor de cero} a un elemento $a \in A$ no nulo tal que $ab = 0$ para algún $b \in A$ no nulo.
+\end{definition}
+
+\begin{definition} Llamaremos \textbf{dominio de integridad}, ó D.I, a un anillo unitario y conmutativo sin divisores de cero.
+
+Importante remarcar una propiedad fundamental de los dominios de integridad, y también de los cuerpos: se pueden simplificar factores comunes en las igualdades ya que si tenemos $ab = ac$, con $a \neq 0$, entonces $a(b-c) = 0$, y al no ser $a$ un divisor de cero, tenemos que $b-c = 0$ y de aquí $b = c$. Esto se conoce como \textbf{ley cancelativa} y también puede darse en estructuras de anillos, siempre y cuando los elementos implicados no sean divisores de cero. 
+\end{definition}
+
+\begin{definition} Sea $B$ un anillo conmutativo y unitario, $A \subseteq B$ un subconjunto que, con las operaciones inducidas por $B$, es a su vez un anillo unitario tal que $1_{B} =1_{A}.$ Diremos que $A$ es un \textbf{subanillo} de $B$, y ya sabemos que la aplicación
+$$\begin{array}{rccl}
+&A&\longrightarrow &B \\
+&x& \longmapsto &x
+\end{array}
+$$  es un monomorfismo, la inclusión canónica. Si $A$ y $B$ son cuerpos diremos que $A$ es un \textbf{subcuerpo} de $B$. Además, todo dominio de integridad es subanillo de su cuerpo de fracciones, vía el monomorfismo $x \longrightarrow x/1$.
+\end{definition}
+
+
+
 \begin{proposition} Dado un cuerpo $K$ y $p \in K[x]$. Entonces $p$ es irreducible si y sólo si $K[x]/(p)$ es un cuerpo.
 \end{proposition}
 \emph{Demostración: }Veamos la primera implicación. Sea $f + (p) \neq (p)$. Veamos que $f + (p)$ tiene inverso. Como $p$ es irreducible, el máximo común divisor de $f$ y $p$ es $1$. Por Bézout, existen $a,b \in K[x]$ tales que $1 = af + bp$. Tendríamos así que $$1 + (p) = (a+ (p))(f+(p)) + (b+(p))(p+(p)) = (a+ (p))(f+(p))$$ ya que $p+(p)=0$. Así, $a+(p)$ es el inverso de $f+(p)$. Luego, $K[x]/(p)$ es un cuerpo.
@@ -1241,7 +1299,27 @@ $\hfill \blacksquare$
 
 $\hfill \square$
 
-\begin{proposition}[\textbf{\textit{Criterio de Eisenstein}}] Sea $f= a_{0} + a_{1}x + \ldots + a_{n}x^{n} \in \mathbb{Z}[x]$. Supongamos que existe $p$ primo tal que $p \mid a_{i}$, con $0 \leq i \leq n-1$, $p \nmid a_{n}$ y $p \nmid a_{0}^{2}$. Entonces $f$ es irreducible en $\mathbb{Q}[x]$.
+\begin{proposition} \label{eq:raimu}
+Sea $K$ un cuerpo y $E$ un cuerpo que contenga a $K$. Sea $f \in K[x]$ y $f'$ la derivada de $f$. Supongamos que $f'\neq 0$. Entonces:
+\begin{enumerate}
+\item Sea $a \in E$ raíz de $f$. Entonces $a$ es raíz múltiple de $f$ si y sólo si $f'(a)=0$.
+\item Si $f$ y $f'$ son primos entre sí, $f$ no tiene raíces múltiples en $E$.
+\item Si $f \in K[x]$ es irreducible, $f$ no tiene raíces múltiples en $E$.
+\item Si $char K = 0$, los polinomios  irreducibles de $K[x]$ no tienen raíces múltiples en $E$.
+\item Si $char K = p$, los polinomios irreducibles de $K[x]$ cuyo grado no es múltiplo de $p$ no tienen raíces múltiples en $E$.
+\end{enumerate}
+\end{proposition}
+\emph{Demostración: }
+\begin{enumerate}
+\item Sea $a$ raíz múltiple de $f$, entonces $f=(x-a)^ng$, con $n >1$ y un $g \in K[x]$. Entonces $f' = n(x-a)^{n-1}g+(x-a)^ng'$ y así $f'(a)=0$. Recíprocamente, si $a$ no fuera raíz múltiple entonces $f=(x-a)g$, con $g(a) \neq 0$ y $f'=g+(x-a)g'$ y $f'(a)=g(a) \neq 0$, absurdo.
+\item Por Bézout, existen $g,h \in K[x]$ tales que $1=fg+f'h$. Si fuera $f(a)=f'(a) = 0$ entonces $1(a) = 0$, absurdo. Por el punto $1.$ $f$ no tiene raíces múltiples.
+\item Como $f$ es irreducible y $f'\neq 0$, entonces $f$ y $f'$ son primos entre sí y aplicamos el punto anterior.
+\item Si $char K = 0$ y $g$ es un polinomio irreducible en $K[x]$, $g$ es no constante y $g'\neq 0$. Aplicamos el punto anterior.
+\item Si $char K = p$ y $g$ es un polinomio irreducible en $K[x]$ tal que $p$ no divide a $\delta (g)$, $g'\neq 0$ y aplicamos el punto $3$.
+\end{enumerate}
+$\hfill \square$
+
+\begin{proposition}[\textbf{\textit{Criterio de Eisenstein}}] Sea $f= a_{0} + a_{1}x + \ldots + a_{n}x^{n} \in \mathbb{Z}[x]$. Supongamos que existe $p$ primo tal que $p \mid a_{i}$, con $0 \leq i \leq n-1$, $p \nmid a_{n}$ y $p^2 \nmid a_{0}$. Entonces $f$ es irreducible en $\mathbb{Q}[x]$.
 \end{proposition} 
 
 
@@ -1261,16 +1339,19 @@ Notar que $k$ va de $1$ hasta $n$ y que sería equivalente a que fuera desde $0$
 De esto, lo primero que observamos es que empleando nuevamente la fórmula de De Moivre, resulta que $\zeta_{1}^{k} = \zeta_{k}$, donde $$\zeta_{1} =  \cos \left( \dfrac{2\pi}{n} \right) + i\sin \left( \dfrac{2\pi}{n} \right) = \xi,$$ y así podemos llegar a escribir todas las $n$-ésimas raíces de la unidad como $$\zeta_{1} = \xi, \hspace{0.1cm} \zeta_{2} = \xi^{2}, \ldots, \hspace{0.1cm} \zeta_{n-1} = \xi^{n-1}, \hspace{0.1cm}\zeta_{n} = \xi^{n} = 1.$$
 
 Así, es claro cómo las raíces forman un grupo cíclico de orden $n$.
+
 \section{Extensiones de Cuerpos}
-Nos encuadramos en una área de las matemáticas donde las estructuras algebraicas son fundamentales de conocer, en este caso, y durante todo el texto, conocer los grupos y anillos es imprescindible. Y como ya sabemos, un tipo concreto de anillo son los cuerpos, en los que se cumple que todo elemento no nulo es una unidad, o dicho de otra manera que el grupo de las unidades es el propio anillo a excepción del cero. 
+
+Nos encuadramos en una área de las matemáticas donde las estructuras algebraicas son fundamentales de conocer, en este caso, y durante todo el texto, conocer los grupos y anillos es imprescindible. Y como ya sabemos, un tipo concreto de anillo son los cuerpos, en los que se cumple que todo elemento no nulo es una unidad, o dicho de otra manera, el grupo de las unidades es el propio anillo a excepción del cero. 
 
 Nosotros nos vamos a parar a estudiar estas estructuras, cómo se relacionan entre ellas (veremos similitudes con grupos en algunos casos) y cómo se relacionan con la \textit{Teoría de Galois}. Sin más comencemos:
+
 \subsection{Generalidades}
 \begin{definition} Dados dos cuerpos $E,K$, diremos que $E$ es una extensión de un cuerpo $K$ si existe un monomorfismo de cuerpos $\varphi \colon K \longrightarrow E$. Dicho de otra forma, si $K$ es un subcuerpo de $E$. A las extensiones las denotaremos por $E/K$.
-Además, se cumplirá que $E$ es un $K-$espacio vectorial. A la dimensión de este $K-$espacio vectorial la denotaremos por $dim_{K}E$. Si $dim_{K}E$ es finita, se dice que la extensión $E/K$ es finita y $dim_{K}E$ se escribirá como $| E : K|$ y se denominará \textbf{grado} de la extensión.
+Además, se cumplirá que $E$ es un $K-$espacio vectorial. A la dimensión de este $K-$espacio vectorial la denotaremos por $dim_{K}E$. Si $dim_{K}E$ es finita, se dice que la extensión $E/K$ es \textbf{finita} y $dim_{K}E$ se escribirá como $| E : K|$ y se denominará \textbf{grado} de la extensión.
 \end{definition}
 
-Tal y como hemos mencionado, dada una extension $E/K$, $E$ tendrá una estructura de espacio vectorial sobre $K$. Para ver esto simplemente hay que considerar las operaciones $+$, $\cdot$ y partir de un grupo abeliano $(E, +)$. Al ser $K$ un subcuerpo de $E$ las operaciones anteriores inducen las de $K$. En este grupo definimos la siguiente operación: $$(\lambda, a) \longmapsto \lambda a = \lambda \cdot a, \hspace{0.2cm} \lambda \in K, a \in E,$$ con $\lambda \cdot a$ el producto de elementos habitual en $E$. Como además, $1_{K} = 1_{E}$ por ser $K$ subcuerpo, entonces se va a tener que $1_{K} \cdot x = x$ $\forall x$. Así es fácil ver que, con lo anterior, tenemos una estructura de espacio vectorial.
+Dada una extension $E/K$, $E$ tendrá una estructura de espacio vectorial sobre $K$. Para ver esto simplemente hay que considerar las operaciones $+$, $\cdot$ y partir de un grupo abeliano $(E, +)$. Al ser $K$ un subcuerpo de $E$ las operaciones anteriores inducen las de $K$. En este grupo definimos la siguiente operación: $$(\lambda, a) \longmapsto \lambda a = \lambda \cdot a, \hspace{0.2cm} \lambda \in K, a \in E,$$ con $\lambda \cdot a$ el producto de elementos habitual en $E$. Como además, $1_{K} = 1_{E}$ por ser $K$ subcuerpo, entonces se va a tener que $1_{K} \cdot x = x$ $\forall x$. Así es fácil ver que, con lo anterior, tenemos una estructura de espacio vectorial.
 
 \begin{example} Veamos algunos ejemplos de extensiones conocidas: \begin{enumerate}
 \item $|\mathbb{R} : \mathbb{Q}| = \infty$, pues en caso de que fuese un natural $n$ cualquiera entonces $\mathbb{R} \simeq \mathbb{Q}^{n}$ y $\mathbb{R}$ sería numerable.
@@ -1316,17 +1397,17 @@ Un resultado que se desprenden de forma inmediata de la transitividad del grado 
 
 \begin{proposition} Sea $E/K$ una extensión de cuerpos, finita, y $|E:K|$ un número primo. Entonces cada elemento $\alpha \in E \setminus K$ cumple que $E = K(\alpha)$.
 \end{proposition}
-\emph{Demostración: } Aplicando~\ref{eq:trgr} a los cuerpos $K \subseteq K(\alpha) \subset E$ tenemos que $$|E:K| = |E: K(\alpha)| |K(\alpha) : K|$$ y como $|E:K|$ es un número primo y $|K(\alpha) :K| \neq 1$ ya que $\alpha \neq K$, entonces se tiene que $|E:K(\alpha)| = 1$, es decir, que $E = K(\alpha)$ $\forall \alpha \in E \setminus K$.
+\emph{Demostración: } Aplicando~\ref{eq:trgr} a los cuerpos $K \subseteq K(\alpha) \subset E$ tenemos que $$|E:K| = |E: K(\alpha)| |K(\alpha) : K|$$ y como $|E:K|$ es un número primo y $|K(\alpha) :K| \neq 1$ ya que $\alpha \notin K$, entonces se tiene que $|E:K(\alpha)| = 1$, es decir, que $E = K(\alpha)$ $\forall \alpha \in E \setminus K$.
 
 $\hfill \square$
 
 \begin{definition} Sea  $E/K$ una extensión y $\alpha \in E$. Diremos que $\alpha$ es \textbf{algebraico} sobre $K$ si existe un $p \in K[x]$ no nulo tal que $p(\alpha) = 0$, es decir, que $\alpha$ sea una raíz de $p$. Si $\alpha$ no es algebraico sobre $K$ se dice entonces que es \textbf{trascendente}. La extensión $E/K$ se dirá \textbf{algebraica} si todo elemento de $E$ es algebraico sobre $K$.
 \end{definition}
 \begin{example} Algunos ejemplos: \begin{enumerate}
-\item Si $\alpha \in E$, entonces $\alpha$ es algebraico sobre $E$.
+\item Si $\alpha \in K$, entonces $\alpha$ es algebraico sobre $K$. En particular, será raíz de $f(x) = x-\alpha$.
 \item $\sqrt{2}$ es algebraico sobre $\mathbb{Q}$, ya que es raíz de $x^{2}-2$.
 \item Los números $e$ y $\pi$ son trascendentes  sobre $\mathbb{Q}$.
-\item El número $\alpha = \sqrt{2 + \sqrt{5}}$ es algebraico sobre $Q$, pues $\alpha^{2} = 2 + \sqrt{5}$ ó sea $\alpha^{2}-2 = \sqrt{5}$, y entonces $\alpha^{4}-4\alpha^{2}-1 = 0$. Por tanto, $\alpha$ es raíz del polinomio $p(x) = x^{4}-4x^{2}-1 \in \mathbb{Q}[x]$.
+\item El número $\alpha = \sqrt{2 + \sqrt{5}}$ es algebraico sobre $Q$, pues $\alpha^{2} = 2 + \sqrt{5}$, es decir, $\alpha^{2}-2 = \sqrt{5}$, y entonces $\alpha^{4}-4\alpha^{2}-1 = 0$. Por tanto, $\alpha$ es raíz del polinomio $p(x) = x^{4}-4x^{2}-1 \in \mathbb{Q}[x]$.
 \end{enumerate}
 \end{example}
 
@@ -1334,11 +1415,11 @@ $\hfill \blacksquare$
 
 \begin{proposition} Toda extensión finita es algebraica.
 \end{proposition}
-\emph{Demostración: } Sea $E/K$ finita y $n = |E:K|$. Si $\alpha \in E$, la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ tienen $n+1$ elementos (iguales o repetidos). Como $dim_{K} E = n$, dicha familia tiene que ser linealmente dependiente. Así, existen $t_{0}, t_{1}, \ldots, t_{n} \in K$ no todos nulos tales que $t_{0}1 + t_{1}\alpha + \ldots + t_{n}\alpha^{n} = 0$. Sea $p(x) = t_{0} + t_{1}x + \ldots + t_{n}x^{n}$. Entonces $p(x) \in K[x]$, $p(x) \neq 0$ y $p(\alpha) = 0.$
+\emph{Demostración: } Sea $E/K$ finita y $n = |E:K|$. Si $\alpha \in E$, la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ tiene $n+1$ elementos (iguales o repetidos). Como $dim_{K} E = n$, dicha familia tiene que ser linealmente dependiente. Así, existen $t_{0}, t_{1}, \ldots, t_{n} \in K$ no todos nulos tales que $t_{0}1 + t_{1}\alpha + \ldots + t_{n}\alpha^{n} = 0$. Sea $p(x) = t_{0} + t_{1}x + \ldots + t_{n}x^{n}$. Entonces $p(x) \in K[x]$, $p(x) \neq 0$ y $p(\alpha) = 0.$
 
 $\hfill \square$
 
-Es interesante ver que, como hemos dicho, dada una extensión $E/K$ de grado $n$ y un $\alpha \in E$, entonces la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ va a ser linealmente dependiente. Más adelante veremos qué significa esta familia, qué hay que hacer para convertirla en linealmente independiente y si será base de algo. Al fin y al cabo estamos hablando de espacios vectoriales.
+Es interesante ver que, como hemos dicho, dada una extensión $E/K$ de grado $n$ y un $\alpha \in E$, entonces la familia $\lbrace 1, \alpha, \ldots, \alpha^{n} \rbrace$ va a ser linealmente dependiente. Más adelante veremos qué significa esta familia, qué hay que hacer para convertirla en linealmente independiente y si será base de algo, ya que al fin y al cabo estamos hablando de espacios vectoriales.
 
 Ahora, estudiaremos un resultado que nos dice que a cada cuerpo le podemos asignar una extensión que contendrá una raíz de un polinomio de su anillo de polinomios.
 
@@ -1350,24 +1431,26 @@ Ahora, estudiaremos un resultado que nos dice que a cada cuerpo le podemos asign
 \end{array}
 $$ es un monomorfismo de cuerpos. En efecto, $\varphi (a) = 0$ quiere decir que $a \in I$, es decir, que $p(x)$ divide a $a$. Como $\delta (p) \geq 1$ y $a \in K$, tenemos que $a = 0$.
 
-Ahora, veamos que existe $\alpha \in E$ tal que $p(\alpha) = 0$ (ó dicho de otra forma, que $p^{\varphi} (\alpha) = I$). En efecto, sea $\alpha = x + I \in E$. Entonces $p^{\varphi} (\alpha) = \sum_{i}^{n}\varphi(a_{i})\alpha^{i} = \sum_{i}^{n}(a_{i} + I) (x + I)^{i} = \sum_{i}^{n}(a_{i} + I) (x^{i} + I) = \sum_{i}^{n}a_{i}x^{i} + I = p(x) + I = I,$ es decir, $p(\alpha) = 0$. Como $p$ divide a $f$, $f(\alpha) = 0$.
+Ahora, veamos que existe $\alpha \in E$ tal que $p(\alpha) = 0$ (o dicho de otra forma, que $p^{\varphi} (\alpha) = I$). En efecto, sea $\alpha = x + I \in E$. Entonces $p^{\varphi} (\alpha) = \sum_{i}^{n}\varphi(a_{i})\alpha^{i} = \sum_{i}^{n}(a_{i} + I) (x + I)^{i} = \sum_{i}^{n}(a_{i} + I) (x^{i} + I) = \sum_{i}^{n}a_{i}x^{i} + I = p(x) + I = I,$ es decir, $p(\alpha) = 0$. Como $p$ divide a $f$, $f(\alpha) = 0$.
 
 $\hfill \square$
 
 \begin{corolario}Sea $K$ un cuerpo y sea $f \in K[x]$, con $\delta(f) > 0$. Entonces existe una extensión $E$ de $K$ tal que $f$ tiene todas sus raíces en $E$.
 \end{corolario}
-\emph{Demostración: } Por el resultado anterior existen una extensión $K_{1}$ de $K$ y $\alpha_{1} \in K_{1}$ tal que $f(\alpha_{1}) = 0$. Luego $f(x) = (x-\alpha_{1})f_{1}(x)$ en $K_{1}[x]$. Si aplicamos nuevamente el resultado anterior a $f_{1}(x)$ obtendremos una extensión $K_{2}$ de $K_{1}$ y $\alpha_{2} \in K_{2}$ tal que $f_{1}(\alpha_{2}) = 0$ (es decir, $f(\alpha_{2} = 0$). Si continuamos haciendo esto obtendremos $$f(x) = e(x-\alpha_{1})(x-\alpha_{2}) \ldots (x-\alpha_{n}).$$ Donde $\alpha_{i} \in K_{i}$, $e \in K$, con los $K_{i}$ las sucesivas extensiones, que cumplen: $$K \subseteq K_{1} \subseteq \ldots \subseteq K_{n-1} \subseteq K_{n}.$$
+\emph{Demostración: } Por el resultado anterior existen una extensión $K_{1}$ de $K$ y $\alpha_{1} \in K_{1}$ tal que $f(\alpha_{1}) = 0$. Luego $f(x) = (x-\alpha_{1})f_{1}(x)$ en $K_{1}[x]$. Si aplicamos nuevamente el resultado anterior a $f_{1}(x)$ obtendremos una extensión $K_{2}$ de $K_{1}$ y $\alpha_{2} \in K_{2}$ tal que $f_{1}(\alpha_{2}) = 0$ (es decir, $f(\alpha_{2}) = 0$). Si continuamos haciendo esto obtendremos $$f(x) = e(x-\alpha_{1})(x-\alpha_{2}) \ldots (x-\alpha_{n}).$$ Donde $\alpha_{i} \in K_{i}$, $e \in K$, con los $K_{i}$ las sucesivas extensiones, que cumplen: $$K \subseteq K_{1} \subseteq \ldots \subseteq K_{n-1} \subseteq K_{n}.$$
 
 $\hfill \square$
+
+Veremos más adelante que este tipo de descomposiciones serán de gran importancia, y cuando ocurra diremos que $E$ es un \textit{cuerpo de escisión de $f$ sobre $K$}.
 
 \begin{corolario} \label{eq:preclau} Si $K$ es un cuerpo, y $\lbrace f_{1}, f_{2}, \ldots, f_{m} \rbrace \subseteq K[x]$, con $\delta (f_{i}) \geq 1$ $\forall$ $i$, entonces existirá una extensión $E$ de $K$ que contiene a todas las raíces de $f_{i}$ $\forall$ $i$.
 \end{corolario}
 
-Ahora, dada una extensión $E/K$ y un  elemento $\alpha \in E$, una forma alternativa a~\ref{eq:kalfa} de ver $K(\alpha)$ es como la intersección de todos los cuerpos intermedios que contengan a ese elemento, es decir $$K(\alpha) = \lbrace L: L \hspace{0.2cm} \text{cuerpo}: K \subseteq L \subseteq E,\hspace{0.1cm} \alpha \in L\rbrace.$$
+Ahora, dada una extensión $E/K$ y un  elemento $\alpha \in E$, una forma alternativa a~\ref{eq:kalfa} de ver $K(\alpha)$ es como la intersección de todos los cuerpos intermedios que contengan a ese elemento, es decir $$K(\alpha) = \bigcap \lbrace L: L \hspace{0.2cm} \text{cuerpo}: K \subseteq L \subseteq E,\hspace{0.1cm} \alpha \in L\rbrace.$$
 
 Ahora para ver qué pasa si $|K(\alpha) : K| = \infty$ recordemos que, dado un cuerpo cualquiera $K$, su cuerpo de fracciones $K(x)$ es de la forma: $$K(x) = \left\lbrace \dfrac{f}{g} : f,g \in K[x], g\neq 0 \right\rbrace.$$
 
-\begin{proposition} Sea $E/K$ una extensión, $\alpha \in E$ trascendente, entonces $|K(\alpha): K| = \infty$ y $K(\alpha) \simeq K(x)$.
+\begin{proposition} Sea $E/K$ una extensión, $\alpha \in E$ trascendente, entonces $|K(\alpha): K| = \infty$ y $K(\alpha) \cong K(x)$.
 \end{proposition}
 \emph{Demostración: } Consecuencia de que, en este caso al ser $\alpha$ trascendente, la aplicación $$\begin{array}{rccl}
 \theta \colon &K(x)&\longrightarrow &K(\alpha) \\
@@ -1377,10 +1460,12 @@ $$ es un isomorfismo de cuerpos y de espacios vectoriales sobre $K$.
 
 $\hfill \square$
 
-\begin{definition} Sea $E/K$ y $\alpha \in K$ algebraico sobre $K$, llamaremos \textbf{polinomio irreducible de $\alpha$ sobre $K$} al único generador mónico del ideal $\lbrace f \in K[x]: f(\alpha) = 0 \rbrace$. Este polinomio se denotará por $Irr(\alpha, K)$ y su grado se denomina \textbf{grado de $\alpha$ sobre $K$}.
+Sabemos que si $K$ es un cuerpo, entonces también será un dominio de ideales principales ($DIP$), es decir, que cualquier ideal de $K$ estará generado por un sólo elemento, que será mónico.
+
+\begin{definition} Sea $E/K$ y $\alpha \in K$ algebraico sobre $K$, llamaremos \textbf{polinomio irreducible de $\alpha$ sobre $K$} al único generador mónico del ideal $I = \lbrace f \in K[x]: f(\alpha) = 0 \rbrace$. Este polinomio se denotará por $Irr(\alpha, K)$ y su grado se denomina \textbf{grado de $\alpha$ sobre $K$}.
 \end{definition}
 
-Es importante observar que $Irr(\alpha, K)$ siempre existe, ya que $K[x]$ es $DIP$. Además, su grado es el menor posible entre los polinomios no nulos de $K[x]$ de los cuales $\alpha$ es raíz. Es decir, $Irr(\alpha, K)$ es el polinomio mónico irreducible de menor grado posible de $K[x]$ que tiene a $\alpha$ por raíz.
+Es importante observar que $Irr(\alpha, K)$ siempre existe, ya que $K[x]$ es $DIP$. Además, su grado es el menor posible entre los polinomios no nulos de $K[x]$ de los cuales $\alpha$ es raíz. Es decir, $Irr(\alpha, K)$ \textbf{\textit{es el polinomio mónico irreducible de menor grado posible de $K[x]$ que tiene a $\alpha$ por raíz.}}
 
 Recordemos antes de ver el siguiente resultado que, dado un anillo conmutativo y unitario $A$, un elemento cualquiera $f$ de $A[x]$ es irreducible en $A[x]$ si: \begin{enumerate}
 \item $f$ no es invertible en $A[x]$.
@@ -1394,15 +1479,15 @@ Recordemos antes de ver el siguiente resultado que, dado un anillo conmutativo y
 \item Si $q$ es un polinomio mónico irreducible en $K[x]$ y $\alpha$ es raíz de $q$, entonces $q = Irr(\alpha, K)$.
 \end{enumerate}
 \end{proposition}
-\emph{Demostración: }Vamos a llamar a  $Irr(\alpha, K) = p(x)$ y a definir que  $A = \lbrace f \in K[x] : f(\alpha) = 0\rbrace = (p).$ \begin{enumerate}
-\item $Irr(\alpha, K) \notin K$ pues es no nulo. Además, si $p(x) = h(x) g(x)$ en $K[x]$, se tendría que $0 = p(\alpha) = h(\alpha) g(\alpha)$ y por ejemplo  tomemos $h(\alpha) = 0$. Entonces $h \in A$, es decir, que existiría $f \in K[x]$ tal que $pf = h$, por lo que $p = pfg$ en $K[x]$. De esto se deduce que $1 = fg$ y así $g$ es invertible, por tanto $p$ irreducible.
-\item  Si $\sum_{i= 0}^{n-1}c_{i}\alpha^{i} = 0$, con $c_{i} \in K$ y algún $c_{i}$ es no nulo, entonces $\alpha$ sería raíz de $k(x) = \sum_{i = 0}^{n-1}c_{i}x^{i}$, es decir, $k \in A$ , lo cual es absurdo, ya que $\delta (k) \leq n-1.$ Por lo tanto, $c_{i} = 0$ $\forall i$ y así la familia $\lbrace 1, \alpha, \ldots, \alpha^{n-1} \rbrace$ es linealmente independiente (esto tiene sentido con lo que vimos al demostrar que toda extensión finita es algebraica). Veamos ahora que genera $K(\alpha)$. Como $$K \subseteq T = K + \alpha K + \ldots + \alpha^{n-1} K \subseteq K(\alpha),$$ para ver que $K(\alpha) \subseteq K + \alpha K + \ldots + \alpha^{n-1} K$ bastará con ver que esto último, $T$, es un cuerpo. Lo veremos en dos partes: 
+\emph{Demostración: }Vamos a llamar a  $Irr(\alpha, K) = p(x)$ y a definir que  $I = \lbrace f \in K[x] : f(\alpha) = 0\rbrace = (p).$ \begin{enumerate}
+\item $p(x)\notin K$ pues es no nulo. Además, si $p(x) = h(x) g(x)$ en $K[x]$, se tendría que $0 = p(\alpha) = h(\alpha) g(\alpha)$ y por ejemplo  tomemos $h(\alpha) = 0$. Entonces $h \in I$, es decir, que existiría $f \in K[x]$ tal que $pf = h$, por lo que $p = pfg$ en $K[x]$. De esto se deduce que $1 = fg$ y así $g$ es invertible, por tanto $p$ irreducible. Análogo si $g(\alpha)=0$.
+\item  Si $\sum_{i= 0}^{n-1}c_{i}\alpha^{i} = 0$, con $c_{i} \in K$ y algún $c_{i}$ es no nulo, entonces $\alpha$ sería raíz de $k(x) = \sum_{i = 0}^{n-1}c_{i}x^{i}$, es decir, $k \in I$ , lo cual es absurdo, ya que $\delta (k) \leq n-1.$ Por lo tanto, $c_{i} = 0$ $\forall i$ y así la familia $\lbrace 1, \alpha, \ldots, \alpha^{n-1} \rbrace$ es linealmente independiente (esto tiene sentido con lo que vimos al demostrar que toda extensión finita es algebraica). Veamos ahora que genera $K(\alpha)$. Como $$K \subseteq T = K + \alpha K + \ldots + \alpha^{n-1} K \subseteq K(\alpha),$$ para ver que $K(\alpha) \subseteq K + \alpha K + \ldots + \alpha^{n-1} K$ bastará con ver que esto último, $T$, es un cuerpo. Lo veremos en dos partes: 
 
 Primero, $p(\alpha) = 0$ y si $p(x) = x^{n} + k_{n-1}x^{n-1} + \ldots + k_{0}$, entonces $\alpha^{n} = -k_{0} - k_{1}\alpha - \ldots - k_{n-1}\alpha^{n-1} \in T$. Luego $\alpha^{n+1} \in \alpha T \subseteq  \alpha K + \ldots + \alpha^{n-1} K + \alpha^{n} K \subseteq T + \alpha^{n} K \subseteq T + T E \subseteq T + T \subseteq T.$ En general se tiene así que los $\alpha^{i} \in T$ $\forall i \geq n$, y como $1, \alpha, \ldots, \alpha^{n-1} \in T$ entonces $\alpha^{i} \in T$ $\forall i \geq 0$.
 
-Segundo, de lo que acabamos de ver se deduce que $T$ es cerrado para la suma y el producto, y es fácil ver que es anillo unitario. Ahora, si $0 \neq t \in T$, $t = \lambda_{0} + \lambda_{1} \alpha + \ldots + \lambda_{n-1} \alpha^{n-1}$, con $\lambda_{i} \in K$, veamos que $t$ es invertible en $T$. Si $v(x) = \lambda_{0} + \lambda_{1} x + \ldots + \lambda_{n-1} x^{n-1}$, entonces $v(\alpha) = t \neq 0$ y $v(x) \notin A$, es decir, $p$ no divide a $v(x)$. Como $p$ es irreducible, resulta que $p$ y $v(x)$ son coprimos, y por Bézout existirán $q,r \in K[x]$ tales que $1 = rv + qp$. Ahora, $1 = r(\alpha)v(\alpha) + q(\alpha) p(\alpha) = r(\alpha) t$, con $r(\alpha) \in T$, y así $t$ es invertible en $T$.
+Segundo, de lo que acabamos de ver se deduce que $T$ es cerrado para la suma y el producto, y es fácil ver que es anillo unitario. Ahora, si $0 \neq t \in T$, $t = \lambda_{0} + \lambda_{1} \alpha + \ldots + \lambda_{n-1} \alpha^{n-1}$, con $\lambda_{i} \in K$, veamos que $t$ es invertible en $T$. Si $v(x) = \lambda_{0} + \lambda_{1} x + \ldots + \lambda_{n-1} x^{n-1}$, entonces $v(\alpha) = t \neq 0$ y $v(x) \notin I$, es decir, $p$ no divide a $v(x)$. Como $p$ es irreducible, resulta que $p$ y $v(x)$ son coprimos, y por Bézout existirán $q,r \in K[x]$ tales que $1 = rv + qp$. Ahora, $1 = r(\alpha)v(\alpha) + q(\alpha) p(\alpha) = r(\alpha) t$, con $r(\alpha) \in T$, y así $t$ es invertible en $T$.
 \item De la segunda parte del apartado anterior se tiene que $\lbrace 1, \alpha, \alpha^{2}, \ldots, \alpha^{n-1} \rbrace$ es base de $K(\alpha)$ sobre $K$, con $n = \delta (Irr(\alpha K))$, por lo que $|K(\alpha) : K| = n = \delta (Irr(\alpha, K))$. 
-\item Como $q \in A$, $q = rp$ con $r \in K[x]$. Al ser $q$ irreducible en $K[x]$ se tiene que cumplir que $\delta (q) = \delta (p)$ ó bien $\delta (q) = \delta (r)$. En el primer caso, $r$ es constante y como $q$ y $p$ son ambos mónicos entonces son iguales. En el segundo caso, $p$ sería constante y así reducible, lo cual es absurdo.
+\item Como $q \in I$, $q = rp$ con $r \in K[x]$. Al ser $q$ irreducible en $K[x]$ se tiene que cumplir que $\delta (q) = \delta (p)$ ó bien $\delta (q) = \delta (r)$. En el primer caso, $r$ es constante y como $q$ y $p$ son ambos mónicos entonces son iguales. En el segundo caso, $p$ sería constante y así reducible, lo cual es absurdo.
 \end{enumerate}
 
 $\hfill \square$
@@ -1414,13 +1499,13 @@ Ahora, bajo las mismas condiciones que en el anterior resultado, se va a tener q
 \varphi \colon &K[x]&\longrightarrow &E \\
 &f& \longmapsto &f(\alpha).
 \end{array}
-$$ Como $Ker \hspace{0.1cm} \varphi = (p)$ (el pol. irreducible) y $p$ es irreducible, $K[x]/Ker \hspace{0.1cm} (p)$ es un cuerpo. Por el \textit{Primer Teorema de Isomorfía de anillos}, $\varphi (K[x])$ también será un cuerpo, y $\varphi(K[x]) = \lbrace f(\alpha) :f \in K[x] \rbrace.$ Como $\lbrace f(\alpha) : f \in K[x] \rbrace \subseteq K(\alpha)$, entonces $K(\alpha) = \lbrace f(\alpha) : f \in K[x] \rbrace$.
+$$ Como $Ker \hspace{0.1cm} \varphi = (p)$ (el pol. irreducible) y $p$ es irreducible, $K[x]/Ker \hspace{0.1cm} (\varphi)$ es un cuerpo. Por el \textit{Primer Teorema de Isomorfía de anillos}, $\varphi (K[x])$ también será un cuerpo, y $\varphi(K[x]) = \lbrace f(\alpha) :f \in K[x] \rbrace.$ Como $\lbrace f(\alpha) : f \in K[x] \rbrace \subseteq K(\alpha)$, entonces $K(\alpha) = \lbrace f(\alpha) : f \in K[x] \rbrace$.
 \begin{corolario}\label{eq:cor1} Sea $E/K$ una extensión y $\alpha \in E$, entonces $\alpha$ es algebraico sobre $K$ si y sólo si $|K(\alpha) : K|$ es finito.
 \end{corolario}
 
 \begin{corolario} Sea $E/K$ una extensión, $\alpha \in E$ y $|E:K| = m$, entonces el grado de $\alpha$ sobre $K$ divide a $m$.
 \end{corolario}
-Visto ya lo cómo conseguir una base de una extensión, y que para ello necesitaremos encontrar un polinomio irreducible sobre un cuerpo, importante remarcar el hecho de que sea irreducible, para comprobarlo disponemos de algunos criterios como el visto anteriormente, el criterio de Eisenstein. Ahora unos ejemplos: 
+Visto ya cómo conseguir una base de una extensión, y que para ello necesitaremos encontrar un polinomio irreducible sobre un cuerpo, importante remarcar el hecho de que sea irreducible, para comprobarlo disponemos de algunos criterios como el visto anteriormente, el criterio de Eisenstein. Ahora unos ejemplos: 
 
 \begin{example} Veamos algunos casos de polinomios irreducibles: \begin{enumerate}
 \item Si consideramos la extensión $\mathbb{Q}(i)/\mathbb{Q}$, entonces $x^{2}+1 \in \mathbb{Q}[x]$ es irreducible, mónico y tiene a $i$ por raíz, luego es el polinomio irreducible de $i$ sobre $\mathbb{Q}$. Por la proposición anterior $\lbrace 1, i \rbrace$ es una base de $\mathbb{Q}(i)$ sobre $\mathbb{Q}$, así $$\mathbb{Q}(i) = \lbrace a+bi : a,b \in \mathbb{Q} \rbrace.$$
@@ -1429,15 +1514,15 @@ Visto ya lo cómo conseguir una base de una extensión, y que para ello necesita
 \item $x^{2}-3 = Irr(\sqrt{3}, \mathbb{Q})$, $|\mathbb{Q}(\sqrt{3}) : \mathbb{Q}| = 2$ y $\mathbb{Q}(\sqrt{3}) = \lbrace a+b \sqrt{3}: a,b \in \mathbb{Q} \rbrace$.
 \item El polinomio irreducible de $\sqrt{3}$ sobre $\mathbb{Q}(\sqrt{2})$ tiene que tener a $\sqrt{3}$ por raíz, sabemos que $x^{2}-3$ lo tiene y podemos intentar ver si es irreducible sobre $\mathbb{Q}(\sqrt{2})[x]$ (lo es en $\mathbb{Q}[x]$ pero eso no nos asegura nada). 
 
-Si fuera reducible tendría que tener alguna raíz en $\mathbb{Q}(\sqrt{2})$, luego $\pm \sqrt{3} \in \mathbb{Q}(\sqrt{2})$ y así $\sqrt{3} = a+b\sqrt{2}$, con $a,b \in \mathbb{Q}$, es decir, que $\sqrt{3} -b \sqrt{2} = a \in \mathbb{Q}$. Si elevamos al cuadrado: $$3+2b^{2}-2b\sqrt{6} = a^{2} \in \mathbb{Q},$$ de lo que deducimos que $b\sqrt{6} \in \mathbb{Q}$, ya que $\mathbb{Q}$ es un cuerpo. Pero como $\sqrt{6} \notin \mathbb{Q}$ sólo puede ser $b = 0$, y así $\sqrt{3} = a \in \mathbb{Q}$, lo cual es absurdo. Por lo tanto, $x^{2}-3$ es irreducible en $\mathbb{Q}(\sqrt{2})[x]$, y así $Irr(\sqrt{3}, \mathbb{Q}(\sqrt{2}))=x^{2}-3$, luego $|\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}(\sqrt{2})| = 2$.
+Si fuera reducible tendría que tener alguna raíz en $\mathbb{Q}(\sqrt{2})$, luego $\pm \sqrt{3} \in \mathbb{Q}(\sqrt{2})$ y así $\sqrt{3} = a+b\sqrt{2}$, con $a,b \in \mathbb{Q}$, es decir, que $\sqrt{3} -b \sqrt{2} = a \in \mathbb{Q}$. Si elevamos al cuadrado: $$3+2b^{2}-2b\sqrt{6} = a^{2} \in \mathbb{Q},$$ de lo que deducimos que $b\sqrt{6} \in \mathbb{Q}$, ya que $\mathbb{Q}$ es un cuerpo. Pero como $\sqrt{6} \notin \mathbb{Q}$ sólo puede ser $b = 0$, y así $\sqrt{3} = a \in \mathbb{Q}$, lo cual es absurdo. Por lo tanto, $x^{2}-3$ es irreducible en $\mathbb{Q}(\sqrt{2})[x]$, y así $Irr(\sqrt{3}, \mathbb{Q}(\sqrt{2}))=x^{2}-3$, luego $|\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}(\sqrt{2})| = 2$. Notar que así: $$|\mathbb{Q}(\sqrt{2},\sqrt{3}):\mathbb{Q}| = |\mathbb{Q}(\sqrt{2},\sqrt{3}):\mathbb{Q}(\sqrt{2})||\mathbb{Q}(\sqrt{2}):\mathbb{Q}| = 2 \cdot 2 = 4.$$
 \end{enumerate}
 \end{example}
 
 $\hfill \blacksquare$
 
-\begin{example} Analizaremos ahora otra extensión que veremos que guarda relación con el ejemplo anterior, la extensión $\mathbb{Q}(\sqrt{2}+\sqrt{3})/\mathbb{Q}$. Y es que se tiene que $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2}+\sqrt{3})$, esto es así ya que $\mathbb{Q}(\sqrt{2}+\sqrt{3}) \subset \mathbb{Q}(\sqrt{2}, \sqrt{3})$ es evidente y para ver el otro contenido simplemente basta comprobar que $\sqrt{2}, \sqrt{3} \in \mathbb{Q}(\sqrt{2}+\sqrt{3})$. Para ver esto último tengamos en cuenta que $$11\sqrt{2} + 9\sqrt{3} = (\sqrt{2}+ \sqrt{3})^{3} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}),$$ de lo que deducimos que $$\sqrt{2} = \dfrac{(11\sqrt{2} + 9\sqrt{3}-9(\sqrt{2}+\sqrt{3}))}{2} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}) $$ $$\sqrt{3} = \dfrac{-(11\sqrt{2} + 9\sqrt{3})+11(\sqrt{2} + \sqrt{3})}{2} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}).$$
+\begin{example} Analizaremos ahora otra extensión que veremos que guarda relación con el ejemplo anterior, la extensión $\mathbb{Q}(\sqrt{2}+\sqrt{3})/\mathbb{Q}$. Y es que se tiene que $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2}+\sqrt{3})$, esto es así ya que $\mathbb{Q}(\sqrt{2}+\sqrt{3}) \subseteq \mathbb{Q}(\sqrt{2}, \sqrt{3})$ es evidente y para ver el otro contenido simplemente basta comprobar que $\sqrt{2}, \sqrt{3} \in \mathbb{Q}(\sqrt{2}+\sqrt{3})$. Para ver esto último tengamos en cuenta que $$11\sqrt{2} + 9\sqrt{3} = (\sqrt{2}+ \sqrt{3})^{3} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}),$$ de lo que deducimos que $$\sqrt{2} = \dfrac{(11\sqrt{2} + 9\sqrt{3}-9(\sqrt{2}+\sqrt{3}))}{2} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}) $$ $$\sqrt{3} = \dfrac{-(11\sqrt{2} + 9\sqrt{3})+11(\sqrt{2} + \sqrt{3})}{2} \in \mathbb{Q}(\sqrt{2}+\sqrt{3}).$$
 
-Así, $\mathbb{Q}(\sqrt{2}, \sqrt{3}) \subset \mathbb{Q}(\sqrt{2}+\sqrt{3})$ y por tanto tenemos la igualdad: $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2}+\sqrt{3})$.
+Así, $\mathbb{Q}(\sqrt{2}, \sqrt{3}) \subseteq \mathbb{Q}(\sqrt{2}+\sqrt{3})$ y por tanto tenemos la igualdad: $\mathbb{Q}(\sqrt{2}, \sqrt{3}) = \mathbb{Q}(\sqrt{2}+\sqrt{3})$.
 
 Una consecuencia de esto es que: $$|\mathbb{Q}(\sqrt{2} + \sqrt{3}) : \mathbb{Q}| = |\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}| = |\mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q}(\sqrt{2})| |\mathbb{Q}(\sqrt{2}): \mathbb{Q}| = 2 \cdot 2 = 4.$$
 \end{example}
@@ -1448,7 +1533,7 @@ $\hfill \blacksquare$
 
 Notar primero que $\beta^{2} = \sqrt{5}$ y que $\alpha = \sqrt{5} + \sqrt{5}i$, es decir, $\alpha = \beta^{2} + \beta^{2}i$. Así, $\mathbb{Q}(\alpha, \beta) = \mathbb{Q}(\beta^{2} + \beta^{2}i, \beta) = \mathbb{Q}(\beta^{2}i, \beta) = \mathbb{Q}(i, \beta) = \mathbb{Q}(\beta) (i)$. 
 
-Ahora, al estar claramente $\mathbb{Q}(\beta) \subset \mathbb{R}$ pero $i \notin \mathbb{R}$, el polinomio irreducible de $i$ sobre $\mathbb{Q}(\beta)$ va a ser el mismo que sobre $\mathbb{Q}$, es decir, $x^{2}+1$. Así, va a ser $|\mathbb{Q}(i,\beta) : \mathbb{Q}(\beta)| = 2$.
+Ahora, al estar claramente $\mathbb{Q}(\beta) \subseteq \mathbb{R}$ pero $i \notin \mathbb{R}$, el polinomio irreducible de $i$ sobre $\mathbb{Q}(\beta)$ va a ser el mismo que sobre $\mathbb{Q}$, es decir, $x^{2}+1$. Así, va a ser $|\mathbb{Q}(i,\beta) : \mathbb{Q}(\beta)| = 2$.
 
 Por otro lado, es claro que $|\mathbb{Q}(\beta) : \mathbb{Q}| = 4$ ya que el polinomio irreducible de $\beta = \sqrt[4]{5}$ sobre $\mathbb{Q}$ es $x^{4}-5$. (por el criterio de Eisenstein). Así, $$|\mathbb{Q}(\alpha, \beta) : \mathbb{Q}| = |\mathbb{Q}(i, \beta) : \mathbb{Q}| = |\mathbb{Q}(i, \beta) : \mathbb{Q}(\beta)| |\mathbb{Q}(\beta) : \mathbb{Q}| = 2 \cdot 4 = 8.$$
 \end{example}
@@ -1469,12 +1554,14 @@ Además, ambas se cumplen si $mcd(m,n) = 1$.
 \end{proposition}
 \emph{Demostración: }
 Está claro que $|K(u) : K| = m$ y que $|K(v) : K| = n$, luego $$\dfrac{|K(u,v):K(u)|}{|K(u,v):K(v)|} = \dfrac{|K(u,v):K|/|K(u):K)|}{|K(u,v):K|/|K(v):K|} = \dfrac{|K(v):K|}{|K(u):K|} = \dfrac{n}{m}.$$
-De lo que se desprende la equivalencia entre $1.$ y $2.$ Ahora, si $mcd(m,n) = 1$, la fracción $\dfrac{n}{m}$ no se puede simplificar, luego existirá un entero positivo $a$ tal que $$|K(u,v):K(u)| = an, \hspace{0.2cm} |K(u,v):K(v)| = am.$$ Ahora, $$n \leq an = |K(u,v):K(u)| = \delta(Irr(v, K(u))) \leq \delta (Irr(v,K)) = n,$$ donde la última desigualdad se desprende de lo visto en el anterior resultado, como $K \subset K(u)$ el polinomio $Irr(v,K)$ es múltiplo de $Irr(v,K(u))$. Así, $an = n$ y $a = 1$. Luego: $$|K(u,v):K(u)| = n, \hspace{0.2cm} |K(u,v):K(v)| = m.$$
-
+De lo que se desprende la equivalencia entre $1.$ y $2.$ Ahora, si $mcd(m,n) = 1$, la fracción $\dfrac{n}{m}$ no se puede simplificar, luego existirá un entero positivo $a$ tal que $$|K(u,v):K(u)| = an, \hspace{0.2cm} |K(u,v):K(v)| = am.$$ Ahora, $$n \leq an = |K(u,v):K(u)| = \delta(Irr(v, K(u))) \leq \delta (Irr(v,K)) = n,$$ donde la última desigualdad se desprende de lo visto en el anterior resultado, como $K \subseteq K(u)$ el polinomio $Irr(v,K)$ es múltiplo de $Irr(v,K(u))$. Así, $an = n$ y $a = 1$. Luego: $$|K(u,v):K(u)| = n, \hspace{0.2cm} |K(u,v):K(v)| = m.$$
 
 $\hfill \square$
 
+Hay que tener en cuenta que el resultado dice que si se cumple una se cumple la otra, pero en general no tiene por qué ocurrir ninguna. Ocurrirá cuando $m,n$ sean coprimos. 
+
 Vamos a ver un caso donde podamos aplicar esto que acabamos de ver:
+
 \begin{example} Sea $E = \mathbb{Q}(\sqrt{2}, \sqrt{3})$ y $\alpha = \sqrt[5]{2}$. Vamos a calcular $Irr(\alpha, E)$.
 
 Para empezar, si tomamos $x^{5}-2$, por el criterio de Eisenstein, es irreducible en $\mathbb{Q}[x]$. Así, $|\mathbb{Q}(\alpha) : \mathbb{Q}| = 5$. Ahora, ya hemos visto en ejemplos anteriores que si $v = \sqrt{2}+ \sqrt{3}$ entonces $E = \mathbb{Q}(v)$, y que $|\mathbb{Q}(v) : \mathbb{Q}| = 4$. Como $mcd(4,5) = 1$ entonces podemos aplicar el resultado que acabamos de ver: $$|E(\alpha) : E| = |\mathbb{Q}(\alpha,v) : \mathbb{Q}(v) | = \delta (Irr(\alpha, \mathbb{Q})) = 5.$$ Así, al ser $x^{5}-2$ un polinomio de grado $5$ en $E[x]$ que tiene por raíz a $\alpha$, entonces $$Irr(\alpha, E) = x^{5}-2.$$
@@ -1554,6 +1641,9 @@ Recordemos la necesidad de que $p \in K[x]$ sea irreducible. Entonces, dadas $\a
 &k& \longmapsto &k
 \end{array}
 $$ 
+
+Respecto al resultado anterior tenemos la siguiente definición:
+
 \begin{definition} Si $E$ es una extensión algebraica de $K$, $\alpha, \beta \in E$, diremos que $\alpha$ y $\beta$ son \textbf{conjugados sobre $K$} si $Irr(\alpha, K) = Irr(\beta, K)$, o equivalentemente si $\alpha$ es raíz de $Irr(\beta, K)$. Lo denotaremos por $\alpha$ $conj_{K}$ $\beta$.
 \end{definition}
 
@@ -1597,7 +1687,7 @@ Primero veamos que $\mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2})$. Com
 
 Ahora veamos que $\mathbb{Q}(a, \sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2})$. Para esto basta ver que $a \in \mathbb{Q}(a\sqrt{2})$ (y así $\sqrt{2}$ ya que $\sqrt{2} = a^{-1}(a\sqrt{2})$) ya que como $\mathbb{Q}(a, \sqrt{2})$ es el menor cuerpo conteniendo a ambos elementos se tendrá que $$\mathbb{Q}(a,\sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2}).$$
 
-Como $x^{3}+x+1$ es irreducible en $\mathbb{Q}[x]$ entonces se tiene que $Irr(a, \mathbb{Q}) = x^{3}+x+1$ y $|\mathbb{Q}(a) : \mathbb{Q}| = 3$. Así, $\mathbb{Q}(a) = \lbrace ba + ca^{2} + d : b,c,d \in \mathbb{Q} \rbrace.$ Luego ó $\mathbb{Q}(a^{2}) = \mathbb{Q}(a)$ ó $\mathbb{Q}(a^{2}) = \mathbb{Q}$. Pero esto último no puede ser ya que si $\mathbb{Q}(a^{2}) = \mathbb{Q}$ entonces $a^{2} \in \mathbb{Q}$ y así $a^{2} = t \in \mathbb{Q}$ y $x^{2}-t$ tiene como raíz $a$. Absurdo porque $x^{3}+x+1$ es su polinomio irreducible. Con esto, tenemos que $a^{2}= \dfrac{(a\sqrt{2})^{2}}{2} \in \mathbb{Q}(a\sqrt{2})$ y así $\mathbb{Q}(a) = \mathbb{Q}(a^{2}) \subseteq \mathbb{Q}(a\sqrt{2})$.
+Como $x^{3}+x+1$ es irreducible en $\mathbb{Q}[x]$ entonces se tiene que $Irr(a, \mathbb{Q}) = x^{3}+x+1$ y $|\mathbb{Q}(a) : \mathbb{Q}| = 3$. Así, $\mathbb{Q}(a) = \lbrace d+ba + ca^{2}: b,c,d \in \mathbb{Q} \rbrace.$ Luego ó $\mathbb{Q}(a^{2}) = \mathbb{Q}(a)$ ó $\mathbb{Q}(a^{2}) = \mathbb{Q}$. Pero esto último no puede ser ya que si $\mathbb{Q}(a^{2}) = \mathbb{Q}$ entonces $a^{2} \in \mathbb{Q}$ y así $a^{2} = t \in \mathbb{Q}$ y $x^{2}-t$ tiene como raíz $a$. Absurdo porque $x^{3}+x+1$ es su polinomio irreducible. Con esto, tenemos que $a^{2}= \dfrac{(a\sqrt{2})^{2}}{2} \in \mathbb{Q}(a\sqrt{2})$ y así $\mathbb{Q}(a) = \mathbb{Q}(a^{2}) \subseteq \mathbb{Q}(a\sqrt{2})$.
 
 $$\mathbb{Q}(a,\sqrt{2}) \subseteq \mathbb{Q}(a\sqrt{2}) \subseteq \mathbb{Q}(a,\sqrt{2})\Rightarrow \mathbb{Q}(a\sqrt{2}) = \mathbb{Q}(a, \sqrt{2}).$$
 \end{example}
@@ -1656,6 +1746,8 @@ De lo que se trata de ver en esta sección es la existencia y unicidad (salvo is
 
 \begin{definition} Sea $f \in K[x]$ un polinomio y $E/K$ una extensión. Diremos que $f$ \textbf{se escinde} en $E$ si existen $a_{1}, \ldots, a_{n} \in E$ tales que $f = a(x-a_{1}) \ldots (x-a_{n})$, con $a \in K$. Si además $E = K(a_{1}, \ldots, a_{n})$ decimos que $E$ es un \textbf{cuerpo de escisión de $f$ sobre $K$}.
 \end{definition}
+
+Una definición más general (la anterior sólo sirve para casos finitos) sería: \textit{diremos que un cuerpo $E$ es un \textbf{cuerpo de escisión} de un $f$ sobre un cuerpo $K$ si $f$ se puede descomponer como producto factores lineales en $E$}.
 
 \begin{observation} Algunas observaciones: 
 \begin{enumerate}
@@ -1722,13 +1814,13 @@ $\hfill \square$
 
 \begin{observation}Un par de observaciones: \begin{enumerate}
 \item Si $E/K$ es normal, $E/K$ es finita. Esto es así ya que $E$ lo vamos a obtener adjuntando a $K$ un número finito de elementos algebraicos y aplicar~\ref{eq:finalg}.
-\item Si $E/K$ es normal y $K \subseteq L \subseteq E$, $E/L$ también es normal. En este caso, ya que $E$ es cuerpo de escisión de un $f \in K[x]$ sobre $K$, luego también es cuerpo de escisión de $f \in L[x]$ sobre $L$.
+\item Si $E/K$ es normal y $K \subseteq L \subseteq E$, $E/L$ también es normal. En este caso, ya que $E$ es cuerpo de escisión de un $f \in K[x]$ sobre $K$, también es cuerpo de escisión de $f \in L[x]$ sobre $L$.
 \end{enumerate}
 \end{observation}
 
 \begin{proposition} Toda extensión de grado $2$ es normal.
 \end{proposition}
-\emph{Demostración: }$E/K$ es algebraica ya que es finita. Sea ahora $f \in K[x]$ irreducible con una raíz $\alpha$ en $E$. Veamos que $f$ se escinde en $E$. $\alpha$ es algebraico sobre $K$ y $|K(\alpha) :K| = \delta(Irr(\alpha, K)) = \delta(f)$. Como $K \subset K(\alpha) \subset E$, entonces $|K(\alpha):K| \geq |E:K| = 2$. Luego $\delta(f) = 1$ ó $2$.
+\emph{Demostración: }$E/K$ es algebraica ya que es finita. Sea ahora $f \in K[x]$ irreducible con una raíz $\alpha$ en $E$. Veamos que $f$ se escinde en $E$. $\alpha$ es algebraico sobre $K$ y $|K(\alpha) :K| = \delta(Irr(\alpha, K)) = \delta(f)$. Como $K \subseteq K(\alpha) \subseteq E$, entonces $|K(\alpha):K| \leq |E:K| = 2$. Luego $\delta(f) = 1$ ó $2$.
 
 Si $\delta(f) = 1$ entonces $f$ se escinde en $K$. Si $\delta(f) = 2$, como sabemos que $x -\alpha$ divide a $f$ en $E[x]$ existe un $g \in E[x]$ tal que $f=(x-\alpha)g$, y como $\delta(f) = 2$ entonces $\delta(g) = 1$ y $f$ se escinde en $E$.
 
@@ -1762,10 +1854,28 @@ $\hfill \square$
 
 \subsection{Extensiones separables}
 
-\begin{definition}Una extensión $E/K$ se dice \textbf{separable} si todo $f \in K[x]$ irreducible que tenga una raíz en $E$ no tiene raíces múltiples en $E$. Es decir, que todas sus raíces son distintas.
+\begin{definition}Una extensión $E/K$ se dice \textbf{separable} si todo $f \in K[x]$ irreducible que tenga una raíz en $E$ no tiene raíces múltiples en $E$. Es decir, todas sus raíces son distintas.
 \end{definition}
 
-Toda extensión de cuerpos de característica $0$ es separable por~~.
+De igual forma podremos definir: 
+
+\begin{definition}Dado un cuerpo $K$, un polinomio $f \in K[x]$ diremos que es \textbf{separable} si el máximo común divisor de $f$ y su derivada $f'$ es $1$.
+\end{definition}
+
+\begin{definition}Sea $E/K$ una extensión. Un elemento algebraico $a \in E$ se dice que es \textbf{separable} si su polinomio irreducible lo es. Evidentemente si todo $a \in E$ es separable entonces la extensión será separable.
+\end{definition}
+
+Por ejemplo, el polinomio $x^2 -1 \in \mathbb{Q}[x]$ es separable, pero $(x-1)^2 \in \mathbb{Q}[x]$ no.
+
+Toda extensión de cuerpos de característica $0$ es separable por~\ref{eq:raimu}. Recordemos que es así porque entonces $Irr(a,K)$ de un elemento $a \in E$ es irreducible y así el máximo común divisor con su derivada sólo puede ser $1$.
+
+\begin{proposition}Sea $E/K$ una extensión algebraica y separable y $L$ un cuerpo intermedio de la extensión. Entonces $E/L$ y $L/K$ son separables.
+\end{proposition}
+\emph{Demostración: }La extensión $L/K$ es separable ya que $L \subseteq E$ y todo elemento de $E$ es separable sobre $K$.
+
+Sea ahora $\alpha \in E$ y $f \in K[x]$ su polinomio irreducible. Entonces $q=Irr(\alpha, L) \mid f$. Si $q$ no fuera separable, cualquier factor común entre $q$ y su derivada sería también un factor común entre $f$ y su derivada, por lo que $f$ no sería separable.
+
+$\hfill \square$
 
 \begin{definition}Una extensión $E/K$ se dice \textbf{extensión de Galois} si es normal y separable.
 \end{definition}

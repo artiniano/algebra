@@ -1807,7 +1807,7 @@ $\hfill \square$
 \section{Anillos}
 \subsection{Generalidades}
 
-\begin{definition} Decimos que un conjunto $A$ dotado de dos operaciones, que usualmente denominaremos suma y producto, $$\begin{array}{rccl}
+\begin{definition} Decimos que un \textbf{conjunto $A$} dotado de dos operaciones, que usualmente denominaremos suma y producto, $$\begin{array}{rccl}
 + \colon &A \times A & \longrightarrow & A\\
 &(a,b) & \longmapsto &a+b
 \end{array}
@@ -1847,7 +1847,7 @@ A lo largo de las siguiente páginas siempre trabajaremos con anillos unitarios,
 \begin{observation}Es importante tener en cuenta que a lo largo de las siguientes páginas en ocasiones podremos escribir $x/y$ en vez de $xy^{-1}$, siempre que $x \in A$ e $y \in \mathcal{U}(A)$.
 \end{observation}
 
-\begin{definition} Llamaremos \textbf{cuerpo} a un anillo $K$ tal que $K^{\ast} = K \setminus \lbrace 0 \rbrace$ forma un grupo con la multiplicación. Dicho de otra forma, en todo anillo unitario vamos a tener que $\mathcal{U}(A) \subset A^{\ast}$, y los cuerpos son aquellos anillos unitarios tales que $\mathcal{U}(A) = K^{\ast}$. De igual manera que para anillos, también podremos definir los \textbf{cuerpos conmutativos} como aquellos que, para cualesquiera $a,b \in K$ se tiene que $$ab = ba.$$
+\begin{definition} Llamaremos \textbf{cuerpo} a un anillo $K$ tal que $K^{\ast} = K \setminus \lbrace 0 \rbrace$ forma un grupo con la multiplicación. Dicho de otra forma, en todo anillo unitario vamos a tener que $\mathcal{U}(A) \subseteq A^{\ast}$, y los cuerpos son aquellos anillos unitarios tales que $\mathcal{U}(A) = K^{\ast}$. De igual manera que para anillos, también podremos definir los \textbf{cuerpos conmutativos} como aquellos que, para cualesquiera $a,b \in K$ se tiene que $$ab = ba.$$
 Además, un elemento $a \in A$ diremos que es \textbf{idempotente} si $a^{2} = a$. Y diremos que es \textbf{nilpotente} si existe un entero positivo $n$ tal que $a^{n} = 0$. Un anillo cuyo único elemento nilpotente sea el $0$ se dirá \textbf{reducido}.
 \end{definition}
 
@@ -1995,7 +1995,8 @@ $$ Entonces $(fg)(t) = (t - \abs{t})(t + \abs{t}) = t^{2} -\abs{t}^{2} = 0.$
 
 Es claro además que los cuerpos no tienen divisores de cero, ya que si tenemos que $ab =0 $, con $a$ y $b$ no nulos, entonces $$a = a(bb^{-1}) = (ab)b^{-1} = 0b^{-1} = 0.$$ Pero el no tener divisores de cero tampoco hace a un anillo un cuerpo, por ejemplo $\mathbb{Z}$ no los tiene, pero sin embargo tampoco es un cuerpo. Por lo tanto, se ha de introducir una clase de anillos más amplia que se encuentre entre ambas estructuras, es de aquí de dónde surge la siguiente definición:
 
-\begin{definition} Llamaremos \textbf{dominio de integridad}, ó D.I, a un anillo unitario y conmutativo sin divisores de cero.\vspace{0.2cm}\\
+\begin{definition} Llamaremos \textbf{dominio de integridad}, ó D.I, a un anillo unitario y conmutativo sin divisores de cero.
+
 Importante remarcar una propiedad fundamental de los dominios de integridad, y también de los cuerpos: se pueden simplificar factores comunes en las igualdades ya que si tenemos $ab = ac$, con $a \neq 0$, entonces $a(b-c) = 0$, y al no ser $a$ un divisor de cero, tenemos que $b-c = 0$ y de aquí $b = c$. Esto se conoce como \textbf{ley cancelativa} y también puede darse en estructuras de anillos, siempre y cuando los elementos implicados no sean divisores de cero. 
 \end{definition}
 
@@ -2012,7 +2013,7 @@ Así, si $A = \mathbb{Z}$, entonces la anterior construcción nos devolverá el 
 
 Ahora un concepto que es propio de los anillos en general, análogo al de los subgrupos en  los grupos. Y es que, como ya se dijo entonces para los grupos, dada una estructura algebraica cualquiera siempre es natural preguntarse si van a poder definirse subconjuntos que mantengan esa estructura. 
 
-\begin{definition} Sea $B$ un anillo conmutativo y unitario, $A \subset B$ un subconjunto que, con las operaciones inducidas por $B$, es a su vez un anillo unitario tal que $1_{B} =1_{A}.$ Diremos que $A$ es un \textbf{subanillo} de $B$, y ya sabemos que la aplicación
+\begin{definition} Sea $B$ un anillo conmutativo y unitario, $A \subseteq B$ un subconjunto que, con las operaciones inducidas por $B$, es a su vez un anillo unitario tal que $1_{B} =1_{A}.$ Diremos que $A$ es un \textbf{subanillo} de $B$, y ya sabemos que la aplicación
 $$\begin{array}{rccl}
 &A&\longrightarrow &B \\
 &x& \longmapsto &x
