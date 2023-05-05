@@ -1960,6 +1960,59 @@ Diremos que dos polinomios $p = \sum_n a_nx^n$, $q = \sum	_n b_nx^n$ son iguales
 
 $\hfill \blacksquare$
 
+Un anillo clásico muy interesante es el siguiente:
+
+\begin{example}Sea $X$ un conjunto, si consideramos el conjunto de las partes de $X$ $$\mathcal{P}(X) = \lbrace A : A \subseteq X \rbrace,$$ junto con las dos operaciones $$A+B = (A \setminus B) \cup (B \setminus A), \quad \forall A,B \in \mathcal{P}(X),$$ $$A \cdot B = A \cap B, \quad \forall A,B \in \mathcal{P}(X).$$ Entonces $(\mathcal{P}(X), +, \cdot)$ es un anillo conmutativo pero no unitario. A la operación $+$ la denominaremos \textbf{diferencia simétrica}, y se suele representar por $\Delta$.
+
+Veámoslo, para ello definamos la \textbf{función característica de un conjunto}: dado dos conjuntos cualesquiera $A,X$ tales que $A \subseteq X$, 
+$$\begin{array}{rccl}
+\mathcal{X}_A \colon &X&\longrightarrow &\lbrace 1, 0\rbrace \\
+&x& \longmapsto &\mathcal{X}_A(x) = \left\lbrace\begin{array}{c} 1~si~x \in A \\ 0~si~x \notin A \end{array}\right.
+\end{array}
+$$
+
+Esta función cumple: 
+\begin{enumerate}
+\item $\mathcal{X}_A = \mathcal{X}_B \Leftrightarrow A = B$. 
+
+En efecto, si $x \in A$, entonces $\mathcal{X}_A(x)=1$. Por hiótesis $\mathcal{X}_A=\mathcal{X}_B$, luego $\mathcal{X}_B(x)=1$, y $x \in B$ y así $A \subseteq B$. Para el otro contenido es análogo. Reciprocamente, por hipótesis $A = B$ y si $x \in A =B$ entonces $\mathcal{X}_A(x) = \mathcal{X}_B(x)=1$. Si $x \notin A = B$ entonces $\mathcal{X}_A(x) = \mathcal{X}_B(x) = 0$. Como $\mathcal{X}_A(x) = \mathcal{X}_B(x) $ para todo $x \in X$ concluimos que $\mathcal{X}_A = \mathcal{X}_B$.
+\item $\mathcal{X}_{A^c} = 1- \mathcal{X}_A$.
+
+Si $x \in A$, entonces $x \notin A^c$, luego $\mathcal{X}_A(x)=1$ y $\mathcal{X}_{A^c}(x)=0$, así que $\mathcal{X}_{A^c}(x) =1 - \mathcal{X}_A(x)$. Si $x \notin A$, entonces $x \in A^c$, luego $\mathcal{X}_A(x)=0$ y $\mathcal{X}_{A^c}(x)=1$, así que $\mathcal{X}_{A^c}(x) =1 - \mathcal{X}_A(x)$. Como esto se tiene para todo $x \in X$, concluimos que $\mathcal{X}_{A^c} = 1 - \mathcal{X}_A$.
+\item $\mathcal{X}_{A \cap B} = \mathcal{X}_A \cdot \mathcal{X}_B$.
+
+Si $x \in A \cap B$ entonces $x \in A$ y $x \in B$, luego $\mathcal{X}_{A\cap B} = 1$, y $\mathcal{X}_A = 1$, $\mathcal{X}_B=1$. Es decir, si $x \in A \cap B$ entonces $\mathcal{X}_{A\cap B}(x) = \mathcal{X}_A(x) \cdot \mathcal{X}_B(x)$. Por otra parte, si $x \notin \mathcal{X}_{A\cap B}$ entonces $x \notin A$ ó $x \notin B$, luego $\mathcal{X}_{A\cap B}(x)=0$ y ó $\mathcal{X}_A(x)=0$ ó $\mathcal{X}_B(x)=0$. Por lo tanto, si $x \notin A \cap B$ entonces también se tiene que $\mathcal{X}_{A\cap B}(x) = \mathcal{X}_A(x) \cdot \mathcal{X}_B(x)$. Concluimos que $\mathcal{X}_{A\cap B} = \mathcal{X}_A \cdot \mathcal{X}_B$.
+\item $\mathcal{X}_{A\cup B} = \mathcal{X}_A + \mathcal{X}_B - \mathcal{X}_A \cdot \mathcal{X}_B$.
+
+Si $x \in A \cup B$ entonces $\mathcal{X}_{A\cup B}(x) = 1$. Según los distintos casos tenemos: si $x \in A \cap B$ entonces $\mathcal{X}_A(x)+ \mathcal{X}_B(x)-\mathcal{X}_A(x) \cdot \mathcal{X}_B(x) = 1+1-1\cdot 1 = 1.$ Si $x \in A$ y $x\notin B$ entonces $\mathcal{X}_A(x)+ \mathcal{X}_B(x)-\mathcal{X}_A(x) \cdot \mathcal{X}_B(x) =1+0 - 1 \cdot 0 = 1$. Si $x \notin A$ y $x \in B$ entonces $\mathcal{X}_A(x)+ \mathcal{X}_B(x)-\mathcal{X}_A(x) \cdot \mathcal{X}_B(x) = 0 + 1 -0 \cdot 1 = 1.$ Si $x \notin A \cup B$, entonces $\mathcal{X}_{A\cup B}(x)=0$, y como $x \notin A$, $x \notin B$: $\mathcal{X}_A(x)+ \mathcal{X}_B(x)-\mathcal{X}_A(x) \cdot \mathcal{X}_B(x) = 0 + 0 - 0 \cdot 0 =0$. Por lo tanto, para todo $x \in X$ se tiene que $\mathcal{X}_{A\cup B}(x)= \mathcal{X}_A(x)+ \mathcal{X}_B(x)-\mathcal{X}_A(x) \cdot \mathcal{X}_B(x)$, luego concluimos que $\mathcal{X}_{A\cup B} = \mathcal{X}_A+ \mathcal{X}_B-\mathcal{X}_A \cdot \mathcal{X}_B$.
+\item $\mathcal{X}_{A \Delta B} = \mathcal{X}_A + \mathcal{X}_B - 2 \cdot \mathcal{X}_A \cdot \mathcal{X}_B.$
+
+Para todo $x \in X$ se tiene que $\mathcal{X}_\emptyset(x) = 0$ ya que $ x\notin \emptyset$. Es decir, $\mathcal{X}_\emptyset = 0$. Por los dos apartados anteriores tenemos que $\mathcal{X}_{A\cup B} = \mathcal{X}_A + \mathcal{X}_B - \mathcal{X}_{A\cap B}$ y si $A \cap B = \emptyset$ entonces $\mathcal{X}_{A\cup B} = \mathcal{X}_A + \mathcal{X}_B$. La diferencia simétrica sabemos que la podemos expresar como $(A \setminus B) \cup (B \setminus A)$, siendo esta unión disjunta, luego $\mathcal{X}_{A\Delta B} = \mathbb{X}_{A \setminus B} + \mathcal{X}_{B\setminus A} = \mathcal{X}_{A\cap B^c} + \mathcal{X}_{B\cap A^c} = \mathcal{X}_A \cdot \mathcal{X}_{B^c} + \mathcal{X}_B \cdot \mathcal{X}_{A^c} = \mathcal{X}_A \cdot(1 - \mathcal{X}_B) + \mathcal{X}_B \cdot (1- \mathcal{X}_A) = \mathcal{X}_A + \mathcal{X}_B -2 \cdot \mathcal{X}_A \cdot \mathcal{X}_B$.
+\end{enumerate}
+
+Comprobemos ahora que es un anillo: 
+\begin{enumerate}
+\item La propiedad más costosa de ver es la asociativa para $+$, que sabemos que es la diferencia simétrica $\Delta$, así que todo se reduce a ver que, dados $A,B,C \in \mathcal{P}(X)$, $(A+B)+C = A+(B+C)$ ó dicho de otra forma: $(A \Delta B) \Delta C = A \Delta(B \Delta C)$. Usaremos las propiedades que hemos visto de la función característica, ya que sabemos que dos subconjuntos $A = B$ son iguales si y sólo si sus funciones características coinciden. 
+
+$\mathcal{X}_{(A\Delta B) \Delta C} = \mathcal{X}_{A\Delta B} + \mathcal{X}_C - 2 \cdot \mathcal{X}_{A\Delta B} \cdot \mathcal{X}_C = \mathcal{X}_A + \mathcal{X}_B -2 \cdot \mathcal{X}_A \cdot \mathcal{X}_B + \mathcal{X}_C -2 \cdot(\mathcal{X}_A+\mathcal{X}_B-2\cdot\mathcal{X}_A \cdot\mathcal{X}_B) \cdot \mathcal{X}_C = \mathcal{X}_A + \mathcal{X}_B -2 \cdot \mathcal{X}_A \cdot \mathcal{X}_B + \mathcal{X}_C - 2 \cdot \mathcal{X}_A \cdot \mathcal{X}_C - 2\cdot \mathcal{X}_B \cdot \mathcal{X}_C +4 \cdot \mathcal{X}_A \cdot \mathcal{X}_B \cdot \mathcal{X}_C.$ 
+
+$\mathcal{X}_{A\Delta(B\Delta C)} = \mathcal{X}_A + \mathcal{X}_{B \Delta C} - 2 \cdot \mathcal{X}_A \cdot \mathcal{X}_{B \Delta C} = \mathcal{X}_A + \mathcal{X}_B + \mathcal{X}_C - 2 \cdot \mathcal{X}_B \cdot \mathcal{X}_C - 2 \cdot \mathcal{X}_A \cdot (\mathcal{X}_B + \mathcal{X}_C -2 \cdot \mathcal{X}_A \cdot \mathcal{X}_C) = \mathcal{X}_A + \mathcal{X}_B + \mathcal{X}_C - 2 \cdot \mathcal{X}_A \cdot \mathcal{X}_B - 2 \cdot \mathcal{X}_A \cdot \mathcal{X}_C - 2 \cdot \mathcal{X}_B \cdot \mathcal{X}_C + 4 \cdot \mathcal{X}_A \cdot \mathcal{X}_B \cdot \mathcal{X}_C.$
+
+Y se tiene la igualdad, luego se tiene que $(A \Delta B ) \Delta C = A \Delta (B \Delta C)$.
+\item Para el elemento neutro, notar que $A\Delta \emptyset = \emptyset \Delta A = A$ para todo $A \in \mathcal{P}(X)$.
+\item Cada elemento es inverso de sí mismo, ya que $A \Delta A = \emptyset$ para todo $A \in \mathcal{P}(X)$.
+\item La operación $\Delta$ es conmutativa, ya que $A \Delta B = B \Delta A$ para cualesquiera $A, B \in \mathcal{P}(X)$.
+\item La operación $\cdot$ es asociativa, ya que $(A \cap B) \cap C = A \cap (B \cap C)$ para cualesquiera $A,B,C \in \mathcal{P}(X)$. Notar que también es conmutativa.
+\item Veamos la propiedad distributiva de $\cdot$ respecto de $\Delta$. Dados $A,B,C \in \mathcal{P}(X)$, entonces $(A\Delta B) \cdot C = ((A \setminus B) \cup (B \setminus A)) \cdot C = ((A \setminus B) \cup (B \setminus A)) \cap C = ((A \setminus B) \cap C) \cup ((B \setminus A) \cap C) = ((A \cap C)\setminus B) \cup ((B \cap C) \setminus A) = ((A \cap C)\setminus (B \cap C)) \cup ((B \cap C) \setminus (A\cap C)) = (A \cap C) \Delta (B \cap C) = (A\cdot C) \Delta (B \cdot C)$.
+\item Notar que no existe elemento $1$ ya que el único elemento $B \in \mathcal{P}(X)$ que cumple que para cualquier subconjunto $A \in \mathcal{P}(X)$, $A \cdot B = A$ es el propio $A$.
+\end{enumerate}
+
+Así, queda probad que $(\mathcal{P}(X), \Delta, \cdot)$ es un anillo conmutativo, en el que además se tiene que $A^2 = A$ para cualquier $A \in \mathcal{P}(X)$.
+\end{example}
+$\hfill \blacksquare$
+
+Los anillos $A$ como el anterior que cumplan que para todo elemento $a \in A$ se tiene $a^2 = a$ se denominan \textbf{\textit{anillo de Boole}}.
+
 Una vez vistos estos ejemplos y definiciones vamos a definir unos elementos que son de gran importancia en un anillo, y que nos abrirán las puertas a otra estructura algebraica.
 
 \begin{definition}Sea $A$ un anillo. Llamaremos \textbf{divisor de cero} a un elemento $a \in A$ no nulo tal que $ab = 0$ para algún $b \in A$ no nulo.
@@ -2011,6 +2064,22 @@ A este cuerpo $K = T/\sim$ lo denominaremos \textbf{cuerpo de fracciones de $A$}
 
 Así, si $A = \mathbb{Z}$, entonces la anterior construcción nos devolverá el cuerpo $\mathbb{Q}$ de los números racionales.
 
+Presentamos ahora la noción de característica de un anillo, que más adelante la detallaremos y analizaremos con más profundidad:
+
+\begin{definition}[\textbf{\textit{Característica de un anillo}}]
+Llamaremos \textbf{característica} de un anillo $A$ al menor natural no nulo $n$ tal que $n\cdot 1=n1 = 0$. En caso de que no exista diremos que $A$ tiene característica $0$.
+\end{definition}
+
+Es decir, la característica de un anillo es el mínimo número de veces que hay que sumar $1$ consigo mismo para obtener $0$, y si no existe dicho número entonces diremos que será $0$.
+
+Claramente los anillos $\mathbb{Z}$ y $\mathbb{Q}$ tienen característica $0$, mientras que los cocientes de $\mathbb{Z}$, $\mathbb{Z}/n\mathbb{Z}$ tienen característica $n$. 
+
+\begin{proposition}La característica de un dominio de integridad $A$ es $0$ o $p$, con $p$ primo.
+\end{proposition}
+\emph{Demostración: }Supongamos que $A$ es un dominio de integridad cuya característica no es $0$. Sea $p$ la característica de $A$ y supongamos que no es primo, luego $p = nm$, con $n,m>1$ enteros, y $m 1 \neq 0 \neq n  1$ pero $(m 1)(n 1 ) = (n m)1 = 0$, contradiciendo que $A$ sea dominio de integridad.
+
+$\hfill \square$
+
 Ahora un concepto que es propio de los anillos en general, análogo al de los subgrupos en  los grupos. Y es que, como ya se dijo entonces para los grupos, dada una estructura algebraica cualquiera siempre es natural preguntarse si van a poder definirse subconjuntos que mantengan esa estructura. 
 
 \begin{definition} Sea $B$ un anillo conmutativo y unitario, $A \subseteq B$ un subconjunto que, con las operaciones inducidas por $B$, es a su vez un anillo unitario tal que $1_{B} =1_{A}.$ Diremos que $A$ es un \textbf{subanillo} de $B$, y ya sabemos que la aplicación
@@ -2021,13 +2090,17 @@ $$\begin{array}{rccl}
 $$  es un monomorfismo, la inclusión canónica. Si $A$ y $B$ son cuerpos diremos que $A$ es un \textbf{subcuerpo} de $B$. Además, todo dominio de integridad es subanillo de su cuerpo de fracciones, vía el monomorfismo $x \longrightarrow x/1$.
 \end{definition}
 
-Es decir, diremos que un subconjunto $A$ de un anillo $R$ es \textbf{subanillo} de $R$ si $s-t, st \in A$ \hspace{0.1cm} $\forall st, \in A$. En particular, $A$ es subgrupo de $R$.
+Es decir, diremos que un subconjunto $A$ de un anillo $R$ es \textbf{subanillo} de $R$ si $s-t, st \in A$ $\forall st, \in A$. En particular, $A$ es subgrupo de $R$.
+
+\begin{definition}Llamaremos \textbf{cuerpo primo}, o también \textbf{subcuerpo primo}, de un cuerpo $K$ a la intersección de todos los subcuerpos de $K$. Es decir, el subcuerpo primo de un cuerpo es el menor subcuerpo que contiene.
+\end{definition}
+
+Los denominamos cuerpos primos porque, tal y como veremos más adelante, serán de la forma $\mathbb{Z}_p$ con $p$ primo, o $\mathbb{Q}$, es decir, el cuerpo de los racionales.
 
 Además, resulta que la interseccion es cerrada para los subanillos: 
 
 \begin{observation} Si $\lbrace A_{i}: i \in I\rbrace$, con $I$ una colección finita de índices, es una familia de subanillos (subcuerpos respectivamente) de un anillo $B$, entonces su intersección $$A = \bigcap_{i \in I} A_{i}$$ es también un subanillo (subcuerpo) de $B$.
 \end{observation}
-
 
 \begin{example} Veamos algunos ejemplos de dominios de integridad: \begin{enumerate}
 \item Sea $A$ un anillo, el anillo de matrices $M_{2}$ con elementos de $A$ nunca es dominio de integridad, ya que por ejemplo dado un $x \in A$ tenemos $$\left( \begin{matrix}
@@ -2061,13 +2134,13 @@ Ahora introduciremos uno de los conceptos más importantes que veremos a lo larg
 Aunque la primera condición es también equivalente a: \begin{enumerate}
 \item $\forall x,y \in I$, se tiene que $x+y \in I$. 
 \end{enumerate}
-Y esto es así ya que, al cumplirse $b.$ y esta nueva condición, tendremos que dados $x,y \in I$ $$x-y = x +(-1)y \in I$$ (ya que $(-1)y \in I$ por $b.$). Así, $I$ será subgrupo para la suma. Estas dos últimas condiciones son las que dió en su momento el matemático Richard Dedekind cuando definió el concepto de ideal (la primera es de Kummer).
+Y esto es así ya que, al cumplirse $2.$ y esta nueva condición, tendremos que dados $x,y \in I$ $$x-y = x +(-1)y \in I$$ (ya que $(-1)y \in I$ por $2.$). Así, $I$ será subgrupo para la suma. Estas dos últimas condiciones son las que dió en su momento el matemático Richard Dedekind cuando definió el concepto de ideal (la primera es de Kummer).
 \end{definition}
 
 Es inmediato comprobar que, por ejemplo, los múltiplos de un número entero, es decir, conjuntos de la forma $n\mathbb{Z}$ con $n$ un entero cualquiera, forman un ideal del anillo de los números enteros $\mathbb{Z}$.
 
 \begin{definition} Algunas definiciones de especial interés: \renewcommand{\labelenumi}{\arabic{enumi}.} \begin{enumerate}
-\item El conjunto $\lbrace 0 \rbrace$ es un ideal de $A$, denominado \textbf{ideal nulo}. También $A$ cumple con las condiciones, así que también es ideal de $A$, y tanto este como el ideal nulo son los llamados \textbf{ideales impropios} de $A$. Esto sirve para distinguirlos de aquellos ideales $I \neq A$, a los que llamaremos \textbf{ideales propios} de $A$. Notar que si $1 \in I$, entonces por la segunda condición tenemos que $x = x \cdot 1 \in I$ para cualquier $x \in A$ y así $I = A$. Por lo tanto será importante para tener en cuenta que \textbf{$I$ es propio si y sólo si $1 \notin I$.}
+\item El conjunto $\lbrace 0 \rbrace$ es un ideal de $A$, denominado \textbf{ideal nulo}. También $A$ cumple con las condiciones, así que también es ideal de $A$, y tanto este como el ideal nulo son los llamados \textbf{ideales impropios} de $A$. Esto sirve para distinguirlos de aquellos ideales $\lbrace 0 \rbrace \neq I \neq A$, a los que llamaremos \textbf{ideales propios} de $A$. Notar que si $1 \in I$, entonces por la segunda condición tenemos que $x = x \cdot 1 \in I$ para cualquier $x \in A$ y así $I = A$. Por lo tanto será importante tener en cuenta que \textbf{$I$ es propio si y sólo si $1 \notin I$.}
 \item Si $x \in A$, entonces el conjunto $$xA = \lbrace xa : \hspace{0.1cm} a \in A \rbrace$$ es un ideal de $A$, denominado \textbf{ideal principal generado por $x$} y lo denotaremos por $(x)$. Un ejemplo de esto podrían ser los ideales de $\mathbb{Z}$ mencionados anteriormente, los conjuntos $n\mathbb{Z}$. Más adelante veremos esta expresión generalizada para hablar de ideales generados por conjuntos.
 \end{enumerate}
 \end{definition}
@@ -2087,7 +2160,8 @@ Con todo esto, sería normal preguntarse para qué hemos definido este concepto,
 \begin{definition}\label{eq:ancoci} \textbf{\textit{Anillos cociente.}} Sea $A$ un anillo conmutativo y unitario e $I \subset A$ un ideal propio. Definiremos la siguiente relación de equivalencia: \begin{center}
 $x \sim y$ si $x-y \in I$, con $x,y \in A$.
 \end{center}
-Es evidente que es una relación de equivalencia (cumple las propiedades reflexiva, simétrica y transitiva).\vspace{0.2cm}\\
+Es evidente que es una relación de equivalencia (cumple las propiedades reflexiva, simétrica y transitiva) ya que $I$ tiene estructura de subgrupo.
+
 El conjunto cociente de $A$ para esta relación la denotaremos $A/I$ y la clase de equivalencia de un elemento $x \in A$ será: $$x + I = \lbrace x + a  : \hspace{0.1cm} a \in I \rbrace.$$
 Que un elemento $y$ esté en la clase de equivalencia de $x$ significa que existirá un elemento $a \in I$ de la forma $a = y-x$. Además,\begin{center}
 $x + I = y + I  \Leftrightarrow x \equiv y$ $mod$ $I$, es decir, que tanto $x-y \in I$ como $y-x \in I$.
@@ -2115,9 +2189,9 @@ En resumen, llamaremos anillo cociente al conjunto $A/I$ de las clases de equiva
 A continuación desarrollaremos la idea de subconjuntos que generan ideales. Anteriormente vimos cuando un ideal es generado por un sólo elemento, denominado ideal principal generado por ese elemento, y ahora generalizaremos ese concepto. Definiremos ideal generado por un subconjunto a través de la siguiente proposición:
 
 \begin{proposition}[\textbf{\textit{Ideales generados por un subconjunto}}]
-Sea $A$ un anillo conmutativo y unitario, y $L$ un subconjunto de $A$, que carece de estructura algebraica. Consideremos el conjunto $I \subset A$ de todas las sumas finitas de la forma $$a_{1}x_{1} + \ldots + a_{r}x_{r}, \hspace{0.2cm} a_{1}, \ldots, a_{r} \in A, \hspace{0.2cm} x_{1}, \ldots, x_{r} \in L, \hspace{0.2cm} r \geq 1.$$ Entonces tenemos que \begin{enumerate}
+Sea $A$ un anillo conmutativo y unitario, y $L$ un subconjunto de $A$, que carece de estructura algebraica. Consideremos el conjunto $I \subseteq A$ de todas las sumas finitas de la forma $$a_{1}x_{1} + \ldots + a_{r}x_{r}, \hspace{0.2cm} a_{1}, \ldots, a_{r} \in A, \hspace{0.2cm} x_{1}, \ldots, x_{r} \in L, \hspace{0.2cm} r \geq 1.$$ Entonces tenemos que \begin{enumerate}
 \item $I$ es un ideal.
-\item $I$ es el mínimo ideal que contiene a $L$, es decir, si $\mathcal{L}$ es la colección de todos los ideales $J \subset A$ tales que $ L \subset J$, se verifica que $$I = \bigcap_{J \in \mathcal{L}} J.$$
+\item $I$ es el mínimo ideal que contiene a $L$, es decir, si $\mathcal{L}$ es la colección de todos los ideales $J \subseteq A$ tales que $ L \subseteq J$, se verifica que $$I = \bigcap_{J \in \mathcal{L}} J.$$
 \end{enumerate}
 \end{proposition}
 \emph{Demostración: } Veamos $1.$. Comprobemos , para ello sean $$a = \sum_{k =1}^{r}a_{k}x_{k}, \hspace{0.2cm} b= \sum_{l=1}^{s} b_{l}y_{l} \in I, \hspace{0.3cm} c \in A.$$ Entonces es evidente que $$a+b = a_{1}x_{1} + \ldots + a_{r}x_{r} + b_{1}y_{1} + \ldots + b_{s}y_{s} \in I$$ $$c \cdot a = c(a_{1}x_{1} + \ldots + a_{r}x_{r}) =(ca_{1})x_{1} + \ldots + (ca_{r})x_{r} \in I.$$ Para probar $2.$ observar que $I \in \mathcal{L}$, puesto que $I$ es un ideal que contiene a $L$, luego $$\bigcap_{J \in \mathcal{L}} J \subseteq I.$$ Pero, por otra parte, si $J \in \mathcal{L}$, $a_{1}, \ldots, a_{r} \in A$, $x_{1}, \ldots, x_{r} \in L$, tenemos $a_{1}x_{1}, \ldots, a_{r}x_{r} \in J$ y $a_{1}x_{1}+ \ldots + a_{r}x_{r} \in J$ por ser $J$ un ideal de $A$ que contiene a $L$. Esto demuestra que todos los elementos de $I$ están también en $J$, así $I \subseteq J$. Siendo esto igual para todo ideal $J$ de $\mathcal{L}$, tenemos que $$I \subseteq \bigcap_{J \in \mathcal{L}} J.$$ Por tanto, la igualdad.
@@ -2126,7 +2200,7 @@ Este ideal $I$ que acabamos de construir es lo que conoceremos como \textbf{\tex
 
 $\hfill \square$
 
-\begin{definition} Sea $A$ un anillo conmutativo y unitario. Un ideal $I \subset A$ se llama \textbf{finitamente generado} si un el ideal generado por un subconjunto finito $L = \lbrace x_{1}, \ldots, x_{r}\rbrace \subset A.$ En dicho caso, $$I = Ax_{1} + \ldots + Ax_{r} = \left\lbrace \sum_{k=1}^{r}a_{k}x_{k} : \hspace{0.1cm} a_{1}, \ldots, a_{r} \in A \right\rbrace.$$ Lo denotaremos $I = (x_{1}, \ldots, x_{r}).$ Y recordar que si $r=1$, es decir, que el ideal está generado por un solo elemento entonces $I$ se llama \textbf{ideal principal}.
+\begin{definition} Sea $A$ un anillo conmutativo y unitario. Un ideal $I \subseteq A$ se llama \textbf{finitamente generado} si es un ideal generado por un subconjunto finito $L = \lbrace x_{1}, \ldots, x_{r}\rbrace \subseteq A.$ En dicho caso, $$I = Ax_{1} + \ldots + Ax_{r} = \left\lbrace \sum_{k=1}^{r}a_{k}x_{k} : \hspace{0.1cm} a_{1}, \ldots, a_{r} \in A \right\rbrace.$$ Lo denotaremos $I = (x_{1}, \ldots, x_{r}).$ Y recordar que si $r=1$, es decir, si el ideal está generado por un solo elemento, entonces $I$ se llama \textbf{ideal principal}.
 \end{definition}
 
 \begin{definition}
@@ -2168,12 +2242,11 @@ De estas definiciones deducimos el siguiente resultado:
 \item Dada una colección finita de ideales $I_{1}, \ldots, I_{r}$ de $A$, con $r \geq 1$, entonces $$I_{1} \cdots I_{r} \subseteq I_{1} \cap \cdots \cap I_{r}.$$
 \end{enumerate} 
 \end{proposition}
-\emph{Demostración: }
-Para probar $1.$ simplemente hay que tener en cuenta que, como $IJ =  \lbrace x_{1}y_{1} + \ldots + x_{r}y_{r} : \hspace{0.1cm} x_{1}, \ldots, x_{r} \in I, \hspace{0.1cm} y_{1}, \ldots, y_{r} \in J, \hspace{0.1cm} r \geq 1 \rbrace$, entonces cada $x_{i}y_{i} \in I$ puesto que cada $x_{i} \in I$ y cada $y_{i} \in A$ al pertenecer a $J$, y análogamente $x_{i}y_{i} \in J$, así que $x_{i}y_{i} \in I \cap J$. Y como $I \cap J$ es ideal, entonces las sumas también pertenecerán. La comprobación de que $IJ$ es ideal es también directa.
+\emph{Demostración: }Para probar $1.$ simplemente hay que tener en cuenta que, como $IJ =  \lbrace x_{1}y_{1} + \ldots + x_{r}y_{r} : \hspace{0.1cm} x_{1}, \ldots, x_{r} \in I, \hspace{0.1cm} y_{1}, \ldots, y_{r} \in J, \hspace{0.1cm} r \geq 1 \rbrace$, entonces cada $x_{i}y_{i} \in I$ puesto que cada $x_{i} \in I$ y cada $y_{i} \in A$ al pertenecer a $J$, y análogamente $x_{i}y_{i} \in J$, así que $x_{i}y_{i} \in I \cap J$. Y como $I \cap J$ es ideal, entonces las sumas también pertenecerán. La comprobación de que $IJ$ es ideal es también directa.
 
 Para ver $2.$ daremos un contraejemlo. Consideremos $A = \mathbb{Z}$, $I = 4\mathbb{Z}$ y $J = 6\mathbb{Z}$, respectivamente los múltiplos de $4$ y de $6$. Entonces la $I \cap J$ estará formado por aquellos elementos que sean múltiplos de $4$ y de $6$, es decir múltiplos de $12$, luego $I \cap J = 12\mathbb{Z}$. Sin embargo, $IJ = 24\mathbb{Z}$, luego el contenido de $IJ$ en la intersección es estricto.
 
-$3.$ es evidente por recurrencia ya que $$I_{1} \cdots I_{r} \subset (I_{1} \cdots I_{r-1} ) I_{r} \subseteq (I_{1} \cdots I_{r-1} ) \cap I_{r} \subseteq (I_{1} \cap \cdots \cap I_{r-1} ) \cap I_{r} \subseteq I_{1} \cap \cdots \cap I_{r}.$$
+$3.$ es evidente por recurrencia ya que $$I_{1} \cdots I_{r} \subseteq (I_{1} \cdots I_{r-1} ) I_{r} \subseteq (I_{1} \cdots I_{r-1} ) \cap I_{r} \subseteq (I_{1} \cap \cdots \cap I_{r-1} ) \cap I_{r} \subseteq I_{1} \cap \cdots \cap I_{r}.$$
 
 $\hfill \square$
 
@@ -2183,9 +2256,9 @@ $\hfill \square$
 \begin{observation} Efectivamente, se tiene la igualdad $IJ = I \cap J$ ya que al ser comaximales existirán $x \in I$ e $y \in J$ tales que $x +y = 1$. Y ahora, dado un $a \in I \cap J$, $a,x \in I$ y también $a, y \in J$, así que $$a = a1 = a(x+y) = ax + ay \in IJ.$$
 \end{observation}
 
-\begin{example} En el anillo $\mathbb{Z}$ de los números enteros todos los ideales son principales, tal y como veremos más adelante. Así, para cada número entero $k$ se tiene el ideal $$(k) = I_{k} = k\mathbb{Z} = \lbrace pk : \hspace{0.1cm} p \in \mathbb{Z} \rbrace.$$ Y es claro que tanto $k$ como $-k$ generan el mismo ideal, así que tomaremos $k \geq 0$. Esto establece una biyección entre los ideales de $\mathbb{Z}$ y los enteros no negativos, con $0 = 0\mathbb{Z} = \lbrace 0 \rbrace$ y $1\mathbb{Z} = \mathbb{Z}$. Veamoslo:
+\begin{example} En el anillo $\mathbb{Z}$ de los números enteros todos los ideales son principales, tal y como veremos más adelante. Así, para cada número entero $k$ se tiene el ideal $$(k) = I_{k} = k\mathbb{Z} = \lbrace pk : \hspace{0.1cm} p \in \mathbb{Z} \rbrace.$$ Y es claro que tanto $k$ como $-k$ generan el mismo ideal, así que tomaremos $k \geq 0$. Esto establece una biyección entre los ideales de $\mathbb{Z}$ y los enteros no negativos, con $(0) = 0\mathbb{Z} = \lbrace 0 \rbrace$ y $1\mathbb{Z} = \mathbb{Z}$. Veamoslo:
 
-Supongamos que $(k) = (l)$, con $k, l \geq 0$. Entonces $k \in (l)$ y $l \in (k)$. Si $l==$, entonces $k \in (l) = (0) = \lbrace 0 \rbrace$, luego $k = l = 0$. Igualmente si $k = 0$. Ahora, sea $k,l > 0$. Entonces $$k = ql, \hspace{0.2cm} l = pk, \hspace{0.2cm} 0 < q, p \in \mathbb{Z}.$$ Y, por lo tanto, $k \geq l$ y $l \geq k$, y de aquí la igualdad.
+Supongamos que $(k) = (l)$, con $k, l \geq 0$. Entonces $k \in (l)$ y $l \in (k)$. Si $l=0$, entonces $k \in (l) = (0) = \lbrace 0 \rbrace$, luego $k = l = 0$. Igualmente si $k = 0$. Ahora, sea $k,l > 0$. Entonces $$k = ql, \hspace{0.2cm} l = pk, \hspace{0.2cm} 0 < q, p \in \mathbb{Z}.$$ Y, por lo tanto, $k \geq l$ y $l \geq k$, y de aquí la igualdad.
 \end{example}
 
 $\hfill \blacksquare$
@@ -2226,6 +2299,9 @@ El por qué del término ideal primo se debe a que los ideales primos no nulos d
 \begin{observation} Todo ideal maximal es primo, ya que todo cuerpo es dominio de integridad.
 \end{observation}
 
+\begin{observation} Notar que $A = A/(0)$, con $A$ un anillo cualquiera. Luego $A$ es un dominio de integridad si y sólo si $(0)$ es primo y $A$ es cuerpo si y sólo si $(0)$ es maximal.
+\end{observation}
+
 \begin{proposition} Sea $I$ es un ideal primo de un anillo unitario y conmutativo $A$ tal que el anillo cociente $A/I$ es finito, entonces $I$ es un ideal maximal.
 \end{proposition}
 \emph{Demostración: } Tenemos que ver que $ B = A/I$ es un cuerpo. Sea $x \in B$ un elemento no nulo, entonces la aplicación $$\begin{array}{rccl}
@@ -2233,6 +2309,45 @@ h \colon &B^{\ast}&\longrightarrow &B^{\ast} \\
 &y& \longmapsto &xy,
 \end{array}
 $$ es inyectiva, puesto que $xy = xy'$ implica que $x(y-y') =0$ y como $B$ no tiene divisores de cero, por ser $A/I$ dominio de integridad, $y = y'$. Y como $B$ es finito la aplicación $h$ ha de ser necesariamente suprayectiva y así $1_{B} = xy$ para algún $y \in B^{\ast}$, luego $x$ es unidad. Como esto se puede hacer para cualquier $x \in B$ no nulo, $B$ es un cuerpo.
+
+$\hfill \square$
+
+\begin{definition}Sea $A$ un anillo conmutativo y unitario, se dice que un ideal $I$ de $A$ es \textbf{radical} si para todo $x \in A$ tal que $x^n \in I$, con $n$ un entero positivo, se cumple que $x \in I$.
+\end{definition}
+
+\begin{proposition}Todo ideal primo $I$ de un anillo conmutativo y unitario $A$ es radical.
+\end{proposition}
+\emph{Demostración: }Tenemos que ver que si $x \in A$ y $n>0$ es un entero tal que $x^n \in I$ entonces $x \in I$. Lo haremos por inducción: es evidente para $n=1$. Ahora, si $n>1$ y $x^n \in I$ entonces $x \cdot x^{n-1} \in I$ y por ser $I$ primo entonces ó $x \in I$ y ya hemos terminado, ó $x^{n-1} \in I$. En el segundo caso la hipótesis de inducción asegura que $x \in I$.
+
+$\hfill \square$
+
+\begin{proposition}Sean $A$ un anillo e $I$ un ideal propio de $A$. Entonces:
+\begin{enumerate}
+\item Existe un ideal maximal $M$ de $A$ que contiene a $I$.
+\item El anillo $A$ posee algún ideal maximal.
+\item Para cada $x \in A \setminus \mathcal{U}(A)$ existe un ideal maximal $M$ de $A$ tal que $x \in M$.
+\end{enumerate} 
+\end{proposition}
+\emph{Demostración: }\begin{enumerate}
+\item La familia de ideales $$\mathcal{F} = \lbrace J \subseteq A~ideal~de~A~:I \subset J \rbrace,$$ no es vacía pues contiene al ideal $I$ y está parcialmente ordenada con respecto a la inclusión. Toda cadena de ideales $\mathcal{C} = \lbrace J_l \rbrace_{l \in L}$ de $\mathcal{F}$ está acotada superiormente ya que $J = \cup_l J_l \in \mathcal{F}$ es una cota superior suya. Por el \textit{Lema de Zorn} existe un elemento maximal $M \in \mathcal{F}$. Veamos que $M$ es un ideal maximal de $A$ que contiene a $I$:
+
+La inclusión $I \subseteq M$ se deduce de que $M \in \mathcal{F}$. Por otro lado, si $M$ no es un ideal maximal de $A$, existe un ideal $J$ tal que $M \subset J \subset A$. Pero entoncces $I \subseteq M \subset J \subset A$ y así $J \in \mathcal{F}$, y esto contradice la maximalidad de $M$.
+\item Basta aplicar el apartado anterior al ideal $I = \lbrace 0 \rbrace$.
+\item Como $x$ no es unidad, se tiene que el ideal $(x) \neq A$, luego por $1.$ existe un ideal maximal $M$ de $A$ que contiene a $(x)$, y así $x \in M$.
+\end{enumerate}
+
+$\hfill \square$
+
+\begin{definition} Llamaremos \textbf{radical de Jacobson} $I$ de $A$, con $A$ un anillo conmutativo y unitario, a la intersección de todos los ideales maximales de $A$. Lo denotaremos por $\mathcal{R}$.
+\end{definition}
+
+Además, los podemos caracterizar de la siguiente forma:
+
+\begin{proposition}Dado $A$ un anillo conmutativo y unitario, $x \in \mathcal{R}$ si y sólo si $1-xy$ es una unidad en $A$ para todo $y \in A$.
+\end{proposition}
+emph{Demostración: }Sea $x \in \mathcal{R}$ y supongamos que $1-xy$ no es unidad. Entonces, por el resultado anterior, pertenece a un ideal maximal $M$, pero $x \in \mathcal{R} \subseteq M$, por lo que $xy \in M$ y así $1 \in M$, absurdo. 
+
+Recíprocamente, supongamos que $x \notin M$ para todo ideal maximal $M$. Entonces $M$ y $x$ generan el ideal $(1)$, luego $u +xy = 1$ para algún $u \in M$ y algún $y \in A$. Por lo tanto, $1-xy \in M$ y esto implicaría que $1-xy$ no es una unidad, contradiciendo la hipótesis.
 
 $\hfill \square$
 
@@ -2245,6 +2360,7 @@ Ahora, al igual que con pasaba con grupos, introduciremos las aplicaciones que c
 \item $f(xy) = f(x)f(y)$, $\forall x,y \in A.$
 \item $f(1_{A}) = 1_{B}.$
 \end{enumerate}
+
 \end{definition}
 \begin{observation} La última condición es muy importante y de no darse no podrían excluirse algunas aplicaciones que, aunque conserven las operaciones, podrían ser contraproducentes. Ya que, si $x \in A$ $$f(x) \cdot (f(1_{A}) - 1_{B}) = f(x) f(1_{A}) - f(x)1_{B} = f(x \cdot 1_{A}) - f(x) = 0.$$ Así, si $f(1_{A}) \neq 1_{B}$, todos los elementos de $f(A)$ serían divisores de cero. 
 \end{observation}
@@ -2268,10 +2384,10 @@ y como esto es para todo $t \in \mathbb{R}$ tenemos que $$\phi(g + h) = \phi(g) 
 
 $\hfill \blacksquare$
 
-Un homomorfismo muy importante es el conocido como \textit{homomorfismo evaluación}, que involucra anillos de polinomios. Si $p(x) = a_kx^k + \ldots + a_1x+a_0 \in A[x]$ y $a \in A$, con $A$ un anillo conmutativo y unitario, entonces definimos $p(b)=a_kb^k + \ldots + a_1b +a_0$.` 
+Un homomorfismo muy importante es el conocido como \textit{homomorfismo evaluación}, que involucra anillos de polinomios. Si $p(x) = a_kx^k + \ldots + a_1x+a_0 \in A[x]$ y $a \in A$, con $A$ un anillo conmutativo y unitario, entonces definimos $p(b)=a_kb^k + \ldots + a_1b +a_0$. 
 
 \begin{proposition}[\textbf{\textit{Homomorfismo evaluación}}]
-Sea $A$ un anillo conmutativo y unitario, y supongamos que $a \in R$. Entonces, la aplicación $$\begin{array}{rccl}
+Sea $A$ un anillo conmutativo y unitario, y supongamos que $a \in A$. Entonces, la aplicación $$\begin{array}{rccl}
 e_a \colon &A[x]&\longrightarrow &A \\
 &p& \longmapsto &p(a)
 \end{array}
@@ -2284,7 +2400,7 @@ $\hfill \square$
 Veamos ahora las definiciones esenciales para homomorfismos, igual que en grupos pero en anillos: 
 
 \begin{definition} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Entonces: \begin{enumerate}
-\item Llamaremos \textbf{núcleo} de $f$ y lo denotaremos \textbf{$ker f$} al ideal $$Ker f = \lbrace x \in A:  f(x) = 0 \rbrace.$$ Es un ideal ya que, si $x,y \in ker f$, $a \in A$, tenemos que $$f(x+y) = f(x) + f(y) = 0 +0 = 0,$$ $$f(ax)=f(a) f(x) = f(a) \cdot 0 = 0.$$
+\item Llamaremos \textbf{núcleo} de $f$ y lo denotaremos \textbf{$ker f$} al ideal $$ker f = \lbrace x \in A:  f(x) = 0 \rbrace.$$ Es un ideal ya que, si $x,y \in ker f$, $a \in A$, tenemos que $$f(x+y) = f(x) + f(y) = 0 +0 = 0,$$ $$f(ax)=f(a) f(x) = f(a) \cdot 0 = 0.$$
 \item Llamaremos \textbf{imagen} de $f$ y la denotaremos \textbf{$Im f$} al anillo $$Im f = \lbrace y \in B: \hspace{0.1cm} \exists x \in A, \hspace{0.1cm} y = f(x) \rbrace.$$
 Es un anillo conmutativo y unitario con las operaciones heredadas de $B$, ya que si $y = f(x)$, $v = f(u)$, $x, u \in A$, tenemos que $$y-v = f(x) - f(u) = f(x-u) \in im f,$$ $$y \cdot v = f(x)f(u) = f(x u) \in im f,$$ $$1_{B} = f(1_{A}) \in imf.$$
 \end{enumerate}
@@ -2292,12 +2408,22 @@ Es un anillo conmutativo y unitario con las operaciones heredadas de $B$, ya que
 
 \begin{proposition} Sea $f \colon A \longrightarrow B$ un homomorfismo de anillos conmutativos y unitarios. Como $f(1_{A}) = 1_{B} \neq 0$, $ker f$ es un ideal propio de $A$. Además, $f$ es inyectiva si y sólo si $ker f = \lbrace 0 \rbrace.$
 \end{proposition}
-\emph{Demostración: } Sea $f$ inyectiva, como $f(0) = 0$, entonces el núcleo ha de reducirse al elemento neutro $0$. Recíprocamente, supongamos que $ker f = \lbrace 0 \rbrace$. Si $x,y \in A$ y tenemos que $f(x) = f(y)$, entonces $f(x-y)= 0$. Esto quiere decir que $x-y \in Ker f$, pero $ker f = \lbrace 0 \rbrace$ luego $x-y = 0$ y finalmente $x = y$. Y así, $f$ es inyectiva.
+\emph{Demostración: } Sea $f$ inyectiva, como $f(0) = 0$, entonces el núcleo ha de reducirse al elemento neutro $0$. Recíprocamente, supongamos que $ker f = \lbrace 0 \rbrace$. Si $x,y \in A$ y tenemos que $f(x) = f(y)$, entonces $f(x-y)= 0$. Esto quiere decir que $x-y \in ker f$, pero $ker f = \lbrace 0 \rbrace$ luego $x-y = 0$ y finalmente $x = y$. Y así, $f$ es inyectiva.
 
 $\hfill \square$
 
 \begin{observation} Si $f \colon K \longrightarrow B$ es un homomorfismo de anillos conmutativos y unitarios, y $K$ es un cuerpo, entonces $f$ ha de ser inyectiva. Observar que esto es así ya que al ser $ker f$ un ideal de $K$ distinto de $K$ (ya que $f(1_{K}) = 1_{B}$), por~\ref{eq:idK} sólo puede ser $\lbrace 0 \rbrace$, y así $f$ es inyectiva.
 \end{observation}
+
+Notar que, dado un homomorfismo de anillos $f \colon A \longrightarrow B$, si $I \subseteq A$ es un ideal de $A$, entonces $f(I)$ no tiene por qué ser necesariamente un ideal de $B$. Por ejemplo, si consideramos la inclusión $i \colon \mathbb{Z} \longrightarrow \mathbb{Q}$ y un ideal $I$ de $\mathbb{Z}$, y $f(I)$ no es ideal de $\mathbb{Q}$ ya que $\mathbb{Q}$ es un cuerpo y sus únicos ideales son él mismo y el trivial. Sin embargo, 
+
+\begin{proposition}Dado un homomorfismo de anillos sobreyectivo $f \colon A \longrightarrow B$ e $I$ un ideal de $A$, entonces $f(I)$ es un ideal de $B$.
+\end{proposition}
+\emph{Demostración: }Si $b_1, b_2 \in f(I)$ existen $a_1,a_2 \in I$ tales que $f(a_i)=b_i$, y como $a_1+a_2 \in I$ entonces $b_1+b_2 =f(a_1)+f(a_2)=f(a_1+a_2)\in f(I)$. Además, dados $b \in B$ e $y \in f(I)$ existen, por ser $f$ sobreyectiva, $a \in A, x \in I$ tal que $f(a)=b$ y $f(x)=y$. Como $ax \in I$, se tiene que $by = f(a)f(x) = f(ax) \in f(I)$.
+
+$\hfill \square$
+
+Notar también que, dado un homomorfismo de anillos conmutativos y unitarios $f \colon A \longrightarrow B$ y $M$ un ideal maximal de $B$, no siempre se va a tener que $f^{-1}(M)$ sea un ideal maximal de $A$. Por ejemplo, en la inclusión $i \colon \mathbb{Z} \longrightarrow \mathbb{Q}$, $M = \lbrace 0 \rbrace$ es un ideal maximal en $\mathbb{Q}$, ya que $\mathbb{Q}$ es un cuerpo, pero $\lbrace 0 \rbrace = i^{-1}(M)$ no es un ideal maximal de $\mathbb{Z}$. 
 
 Ahora, al igual que con grupos, veremos los \textit{Teoremas de Isomorfía}, que funcionan de forma análoga a los de grupos y que también nos serán muy útiles . Antes de eso definamos brevemente los distintos homomorfismos de anillos, también de forma análoga a los de los grupos.
 
@@ -2330,7 +2456,7 @@ la aplicación que nos induce, que será biyectiva, es decir, un isomorfismo:
 
 $$A/Ker f \cong Imf.$$
 
-Y
+y
 $$\begin{array}{rccl}
 i \colon &Im f&\longrightarrow &B \\
 &f(x)& \longmapsto &f(x) =y,
@@ -2341,7 +2467,7 @@ la inclusión canónica, que será inyectiva.
 Así, en estas condiciones, todas las aplicaciones son homomorfismos y el diagrama es conmutativo, es decir, $$f = i \circ \bar{f} \circ \pi.$$
 \end{theorem}
 \emph{Demostración: }Veamos que $\bar{f}$ \begin{enumerate}
-\item está bien definida, y es que si $x + Ker f = y + Ker f$ entonces tenemos que $x-y \in Ker f$ y así $f(x-y) = 0$, pero $f(x-y)= f(x) -f(y)$ y de aquí deducimos que $$f(x) = f(y),$$ y así $\bar{f}(x + Kerf)$ no depende del representante que escojamos de la clase.
+\item está bien definida, y es que si $x + Ker f = y + Ker f$ entonces tenemos que $x-y \in Ker f$ y así $f(x-y) = 0$, pero $f(x-y)= f(x) -f(y)$ y de aquí deducimos que $$f(x) = f(y),$$ y así $\bar{f}(x + Kerf) = \bar{f}(y+ Kerf)$, es decir, $\bar{f}$ no depende del representante que escojamos de la clase.
 \item es inyectiva. Sean $x,y \in A$ tales que $\bar{f}(x + Kerf) = \bar{f}(y + Kerf)$. Esto quiere decir que $f(x) = f(y)$, y así $f(x) - f(y) = f(x-y) = 0$, luego $x-y \in Kerf$. Así, $x + Kerf = y + Kerf$ y $\bar{f}$ es inyectiva.
 \item es suprayectiva. Sea $y \in Imf$, entonces $y = f(x)$ para algún $x \in A$ y así, $$y = \bar{f}(x + Kerf),$$ y $\bar{f}$ es suprayectiva, es decir, $\forall y \in Imf$ existe un $x + Kef \in A/Kerf$ tal que $\bar{f}(x + Kerf) = y$.
 \end{enumerate}
@@ -2350,12 +2476,12 @@ $\hfill \square$
 
 \begin{corolario}$\mathbb{R}[x]/(x^2+1) \cong \mathbb{C}$.
 \end{corolario}
-\emph{Demostración: }Consideremos el homomorfismo $f \colon \mathbb{R}[x] \longrightarrow \mathbb{C}$ definido por la inclusión $\mathbb{R} \subseteq \mathbb{C}$ y tal que $f(x) = i$. Este homomorfismo es sobreyectivo ya que dado $a+bi \in \mathbb{C}$ $f(bx+a)=a+ib$, por tanto $Imf = \mathbb{C}$. Basta ahora ver que $Kerf =(x^2+1)$. Como $\mathbb{R}$ es un cuerpo, todo ideal no trivial de $\mathbb{R}[x]$ está generado por cualquiera de sus elementos no nulos de grado mínimo. Por tanto, es suficiente comprobar que $x^2+1 \in Kerf$ y que $Ker f$ no posee ningún polinomio no trivial de grado menor que $2$. Claramente $f(x^2+1)=i^2+1 = 0$. Si $bx+a \in \mathbb{R}[x]$ es un polinomio no trivial entonces $f(bx+a) = a+ib$ es un número complejo no trivial, con lo que queda demostrado.
+\emph{Demostración: }Consideremos el homomorfismo $f \colon \mathbb{R}[x] \longrightarrow \mathbb{C}$ definido por la inclusión $\mathbb{R} \subseteq \mathbb{C}$ y tal que $f(x) = i$. Este homomorfismo es sobreyectivo ya que, dado $a+bi \in \mathbb{C}$, $f(a+bx)=a+ib$, por tanto $Imf = \mathbb{C}$. Basta ahora ver que $Kerf =(x^2+1)$. Como $\mathbb{R}$ es un cuerpo, todo ideal no trivial de $\mathbb{R}[x]$ está generado por cualquiera de sus elementos no nulos de grado mínimo. Por tanto, es suficiente comprobar que $x^2+1 \in Kerf$ y que $Ker f$ no posee ningún polinomio no trivial de grado menor que $2$. Claramente $f(x^2+1)=i^2+1 = 0$. Si $a+bx \in \mathbb{R}[x]$ es un polinomio no trivial entonces $f(a+bx) = a+ib$ es un número complejo no trivial, con lo que queda demostrado.
 
 $\hfill \square$
 
 \begin{theorem}[\textbf{\textit{Segundo Teorema de Isomorfía}}]
-Sean $A \subset B$ dos anillos conmutativos y unitarios, e $I$ un ideal de $B$. Entonces $A + I$ es un subanillo de $B$ que contiene a $I$. Además, los anillos $(A+ I)/I$ y $A/(A \cap I)$ son isomorfos.
+Sean $A \subseteq B$ dos anillos conmutativos y unitarios, e $I$ un ideal de $B$. Entonces $A + I$ es un subanillo de $B$ que contiene a $I$. Además, los anillos $(A+ I)/I$ y $A/(A \cap I)$ son isomorfos.
 \end{theorem}
 \emph{Demostración: } Que $A + I$ es subanillo de $B$ es inmediato. Para ver lo segundo consideremos el siguiente homomorfismo: $$\begin{array}{rccl}
 f \colon &A&\longrightarrow &(A + I)/I \\
@@ -2420,16 +2546,17 @@ $\hfill \square$
 Durante esta sección consideraremos a $A$ como un dominio de integridad.
 
 \begin{definition} Sean $x, y$ elementos de $A$ tales que $x \neq 0$. Se dice que \textbf{$x$ divide a $y$, que $x$ es un divisor de $y$, que $y$ es divisible por $x$ ó que $y$ es un múltiplo de $x$} si existe $a \in A$ tal que $y = ax$. Se escribe $x \mid y$. Si $x$ no divide a $y$ se escribe $x \nmid y$.\vspace{0.2cm}\\
-En otras palabras, $x \mid y \Leftrightarrow y \in (x)$, ó equivalentemente $(y) \subset (x)$.
+En otras palabras, $x \mid y \Leftrightarrow y \in (x)$, ó equivalentemente $(y) \subseteq (x)$.
 \end{definition}
 
 Esto nos presenta la divisibilidad como una relación de orden parcial que será inmediata para ideales pero que para entenderla entre elementos habrá que describir la relación de igualdad asociada: 
+
 \begin{center}
 $x$ está relacionado con $y$ si $x \mid y$ e $y \mid x$, o sea si $(x) = (y).$
 \end{center} 
 Estas condiciones son equivalentes a: \begin{enumerate}
 \item Existe una unidad $a \in \mathcal{U}(A)$ tal que $y = ax$. Esto es así ya que si $(y) = (x)$ tendremos que $y \in (x), x \in (y)$, luego $y = ax$ y $x = by$. Luego $y = aby$ y como $A$ es un dominio de integridad podremos simplificar y obtener $1 = ab$, y así $a$ es unidad.
-\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades, es decir asociados, diremos que $y$ es \textbf{\textit{irreducible}}.
+\item Si $y \in A^{\ast}$ no es unidad, denotaremos $div(y)$ el conjunto de todos los divisores de $y$. Es claro que los conjuntos $y \cdot \mathcal{U}(A)$ y $\mathcal{U}(A)$ están contenidos en $div(y)$. Así, si $y$ no tiene más divisores que las unidades y los productos del propio $y$ por unidades diremos que $y$ es \textbf{\textit{irreducible}}.
 \item Si $y \in A^{\ast}$ genera un ideal primo diremos que $y$ es primo. \textbf{\textit{Todo elemento primo es irreducible}}. Veámoslo. 
 
 \emph{Demostración: } Sea $y = ax$. Si $y$ es primo entonces $(y)$ es primo y se tendrá que $a \in (y)$ ó $x \in (y)$. Si $a \in (y)$ tendremos que $a = zy$, luego $y = zyx$ y $1 = zx$. Así, $x \in \mathcal{U}(A)$ y $a = yx^{-1} \in y \cdot \mathcal{U}(A)$. Análogo si $x \in (y)$.
@@ -2446,7 +2573,19 @@ Con estas condiciones llegamos a la definición de \textit{elementos asociados}
 
 Lo podemos resumir diciendo que dos elementos $x,y \in A$ son asociados si y sólo si $(x) = (y)$. De igual forma diremos que $y$ es un asociado de $x$ si $x = uy$, con $u \in \mathcal{U}(A)$.
 
+Así, hablaremos de \textbf{\textit{elementos irreducibles}} cuando sus únicos divisores sean unidades y asociados.
+
 Estos elementos son distintos, pero se comportan de forma análoga desde el punto de vista de la divisibilidad, es decir, tienen los mismos múltiplos y los mismos divisores.
+
+\begin{proposition}Todo dominio de integridad finito $A$ es un cuerpo.
+\end{proposition}
+\emph{Demostración: }Sea $a \in A$ un elemento no nulo. Sea $$\begin{array}{rccl}
+&A&\longrightarrow &A \\
+&x& \longmapsto &a\cdot x,
+\end{array}
+$$
+esta aplicación es inyectiva puesto que $A$ es un dominio de integridad y cumple la propiedad cancelativa. Toda aplicación inyectiva entre dos conjuntos finitos de igual cardinal es biyectiva. Por lo tanto, existe un $b \in A$ tal que $a \cdot b = 1$. Como $A$ es conmutativo, $a$ es una unidad con inverso $a^{-1}=b$.
+$\hfill \square$
 
 Una clase importante de dominios de integridad, en la que la relación de divisibilidad puede ser estudiada con ventaja, es:
 
@@ -2460,9 +2599,12 @@ con $\mathbb{N}$ el conjunto de los enteros no negativos, que cumpla: \begin{enu
 \item $\norm{xy} = \norm{x} \cdot \norm{y}.$
 \item Si $x, y \in A^{\ast}$, existe $r \in A$ tal que $y \mid (x-r)$ y $\norm{r} < \norm{y}$. Esto no viene a ser más que la división de los enteros, donde $r$ es el resto y el elemento $q \in A$ tal que $x-r = qy$ el cociente. 
 \end{enumerate}
+A esta aplicación la denominaremos \textbf{norma euclídea}.
 \end{definition}
 
 La última condición puede ser reformulada tal que así: dados $x,y \in A$ no nulos (en realidad bastaría con que sólo lo fuera $y$) existen $r$ y $q$ tales que $x=qy+r$, con $r=0$ ó bien $\norm{r} < \norm{y}$.
+
+Notar que el anillo de los enteros $\mathbb{Z}$ es un dominio eculídeo tomando como aplicación el módulo $|\cdot |$.
 
 En un dominio euclídeo se cumple la siguiente propiedad:
 
@@ -2470,7 +2612,7 @@ En un dominio euclídeo se cumple la siguiente propiedad:
 \end{proposition}
 \emph{Demostración: } Lo primero notar que $\norm{1_{A}} = 1$, puesto que $\norm{1_{A}} = \norm{1_{A}\cdot 1_{A}} = \norm{1_{A}}^{2}$ y como $\norm{1_{A}} \neq 0$, tenemos que $\norm{1_{A}} = 1$.
 
-Veamos que $\mathcal{U}(A) \subset \lbrace x \in A : \norm{x} = 1 \rbrace$. Si $x \in A$ tiene inverso $x^{-1}$, resulta que $\norm{x} \cdot \norm{x^{-1}} = \norm{x\cdot x^{-1}} = \norm{1_{A}} = 1.$ Luego necesariamente $\norm{x} = 1$ (recordar que son naturales).
+Veamos que $\mathcal{U}(A) \subseteq \lbrace x \in A : \norm{x} = 1 \rbrace$. Si $x \in A$ tiene inverso $x^{-1}$, resulta que $\norm{x} \cdot \norm{x^{-1}} = \norm{x\cdot x^{-1}} = \norm{1_{A}} = 1.$ Luego necesariamente $\norm{x} = 1$ (recordar que son naturales).
 
 Recíprocamente, sea $x \in A$ con $\norm{x} = 1$. Entonces $x \neq 0$ y por definición se tiene que $x \mid (1_{A}-r)$ para un cierto $r \in A$, con $\norm{r} < \norm{x}.$ Como $\norm{x} = 1$, sólo puede ser $\norm{r} = 0$, luego $r = 0$. Así $x \mid 1_{A}$ y por tanto se trata de una unidad. 
  
@@ -2481,29 +2623,39 @@ Por ejemplo, en el caso de $\mathbb{Z}[i]$, si definimos el módulo de un elemen
 \begin{proposition}\label{eq:dedip} En un dominio euclídeo todos los ideales son principales.
 \end{proposition}
 \emph{Demostración: } Sea $I$ un ideal no nulo de un dominio euclídeo $A$. Elijamos un $x \in I$ tal que $$\norm{x} = \min \lbrace \norm{y} :0 \neq y \in I \rbrace.$$ Este mínimo existe y es $>0$, puesto que es el mínimo de un conjunto no vacío de números naturales positivos. Afirmamos que $I$ está generado por $x$.\vspace{0.2cm}\\
-En efecto, sea $y \in I$, $y \neq 0$. Entonces como $x \in A^{\ast}$, existirá $r \in A$ tal que $x \mid (y-r)$ y con $\norm{r} < \norm{x}$. De esto deducimos que $y-r \in (x) \subset I$, y como $y \in I$ e $I$ es ideal, $r \in I$. Pero la minimalidad de $\norm{x}$ y la condición de que $\norm{r} < \norm{x}$ implican que $r = 0$. Así, $y = y-r$ está en $(x)$, y por lo tanto $I = (x)$.
+En efecto, sea $y \in I$, $y \neq 0$. Entonces como $x \in A^{\ast}$, existirá $r \in A$ tal que $x \mid (y-r)$ y con $\norm{r} < \norm{x}$. De esto deducimos que $y-r \in (x) \subseteq I$, y como $y \in I$ e $I$ es ideal, $r \in I$. Pero la minimalidad de $\norm{x}$ y la condición de que $\norm{r} < \norm{x}$ implican que $r = 0$. Así, $y = y-r$ está en $(x)$, y por lo tanto $I = (x)$.
 
 $\hfill \square$
 
-Este resultado que acabamos de ver nos dice que todos los dominios euclídeos tienen todos sus ideales generados por un sólo elemento, si definimos a éstos como una nueva clase de dominios habremos encontrado otra estructura que nos facilitará mucho el trabajo con ideales. 
+Este resultado que acabamos de ver nos dice que en los dominios euclídeos todos los ideales son generados por un sólo elemento, luego principales, y si definimos a éstos como una nueva clase de dominios habremos encontrado otra estructura que nos facilitará mucho el trabajo con ideales. 
 
 \subsubsection{Dominios de ideales principales}
 
 \begin{definition} Llamaremos \textbf{dominio de ideales principales}, escrito como $DIP$, a un dominio de integridad en el que todos sus ideales son principales. Todo $DE$ es un $DIP$.
 \end{definition} 
 
-Por ejemplo, tanto $\mathbb{Z}$ como $\mathbb{Z}[i]$ son $DIP$.
+Aunque ya sabemos que $\mathbb{Z}$, como es dominio euclídeo, es un $DIP$, es interesante notar que no haría falta que pudiese definirse el módulo para que fuera un $DIP$:
+
+\begin{proposition}$\mathbb{Z}$ es un $DIP$.
+\end{proposition}
+\emph{Demostración: }Si $I \subseteq \mathbb{Z}$ es un ideal, en particular es subgrupo, y como $\mathbb{Z}$ es cíclico todos sus subgrupos lo son, es decir, $I = \langle n \rangle = (n)$, para algún entero $n$. 
+
+$\hfill \square$
+
+En concreto ya sabemos que todos los ideales de $\mathbb{Z}$ son de la forma $n\mathbb{Z}$.
 
 \begin{proposition} Sea $A$ un $DIP$. Entonces todo elemento irreducible $a \in A^{\ast}$ genera un ideal maximal.
 \end{proposition}
-\emph{Demostración: } Sea $I \subseteq A$ un ideal que contiene al ideal principal $(a)$, generado por el elemento irreducible $a$. Veamos que ó bien $I = (a)$ ó $I = A$. Pero por ser $A$ un $DIP$, existirá un $b \in A$ tal que $I = (b)$. En consecuencia, $(a) \subset I = (b)$ y $b \mid a$. Como $a$ es irreducible, tendremos dos opciones: \begin{enumerate}
+\emph{Demostración: } Sea $I \subseteq A$ un ideal que contiene al ideal principal $(a)$, generado por el elemento irreducible $a$. Veamos que ó bien $I = (a)$ ó $I = A$. Pero por ser $A$ un $DIP$, existirá un $b \in A$ tal que $I = (b)$. En consecuencia, $(a) \subseteq I = (b)$ y $b \mid a$. Como $a$ es irreducible, tendremos dos opciones: \begin{enumerate}
 \item O bien $b = u \cdot a$, con $u \in \mathcal{U}(A)$, y entonces $(a) = (b) = I$.
 \item O bien $b \in \mathcal{U}(A)$, y entonces $A = (b) = I$.
 \end{enumerate}
 
 $\hfill \square$
 
-A continuación pasaremos a dar una definición muy importante, tanto para anillos como para cuerpos, y que nos habla sobre el menor entero tal que multiplicado por el neutro de un anillo/cuerpo nos da el cero. 
+De este resultado se desprende de forma clara que en un dominio de ideales principales todos los ideales primos son maximales.
+
+A continuación desarrollaremos una definición que ya vimos anteriormente, tanto para anillos como para cuerpos, y que nos habla sobre el menor entero tal que multiplicado por el neutro de un anillo/cuerpo nos da el cero. 
 
 \begin{definition}[\textbf{\textit{Característica de un dominio de integridad.}}] Consideremos de nuevo un dominio $A$. Si $k \in \mathbb{Z}$, definimos un elemento $k \cdot 1_{A} \in A$: $$k \cdot 1_{A} = 1_{A} + \cdots + 1_{A} \hspace{0.1cm} \text{si $k>0$}$$ $$k \cdot 1_{A} = 0 \hspace{0.1cm} \text{si k = 0}$$ $$k \cdot 1_{A} = -((-k) \cdot 1_{A}) \hspace{0.1cm} \text{si $k<0$}.$$
 Entonces, $$\begin{array}{rccl}
@@ -2535,12 +2687,13 @@ Es decir, una definición resumida sería:
 \end{enumerate} 
 \end{observation}
 
-\begin{proposition} \label{eq:lemdiv} Sean $x, y \in A\setminus \lbrace 0 \rbrace$, y supongamos que tienen un $mcm$ $z$. Entonces $t = xy/z \in A$ y es un $mcd$ de $x,y$.
+\begin{proposition} \label{eq:lemdiv} Sean $x, y \in A\setminus \lbrace 0 \rbrace$, y supongamos que tienen un $mcm$ $z$. Entonces $t = xy/z \in A$ y $t$ es un $mcd$ de $x,y$.
 \end{proposition}
 \emph{Demostración: } Por definición de $mcm$, $z$ divide a $xy$, luego $t$ es un elemento de $A$ bien definido. Por otra parte, $x \mid z$ e $y\mid z$, luego $z = ax$, $z =by,$ con $a,b \in A.$ \vspace{0.2cm}\\
 Se tiene $zx =byx = btz$, y como $A$ es dominio $x = bt$ y $t \mid x$. Análogamente, $t \mid y$. Por otra parte, si $u$ es un divisor común de $x$ e $y$, entonces $x = cu, y = du$, con $c,d \in A$. Observamos que  $$xy/u = (x/u)y = cy, \hspace{0.2cm} xy/u = (y/u)x = dx,$$ luego $xy/u$ es múltiplo común de $x$ e $y$, con lo que $z$ divide a $xy/u$, y en consecuencia, $u$ divide a $xy/z = t$. Esto prueba que $t$ es múltiplo de cualquier divisor común $u$ de $x$ e $y$.
 
 $\hfill \square$
+
 \begin{proposition} \label{eq:mcmd} Sea $A$ un dominio de integridad, entonces son equivalentes:
 \begin{enumerate}
 \item Todo par de elementos no nulos tienen $mcm$.
@@ -2548,7 +2701,7 @@ $\hfill \square$
 \end{enumerate}
 Y se cumple que, si $x,y \in A^{\ast}$, entonces $$mcm(x,y) \cdot mcd(x,y) = xy.$$
 \end{proposition}
-\emph{Demostración: } Que el primero implica el segundo es claro por el lema anterior. Veamos el recíproco. Sean $x,y \in A$, $t = mcd(x,y)$. Entonces $$z = xy/t = (x/t)y = x(y/t)$$ es múltiplo de $x$ y de $y$. Consideremos otro múltiplo común $u$. Entonces $$tu = mcd(xu,yu) \hspace{0.2cm} (\ast).$$ En efecto, sea $d = mcd(xu,yu)$. Evidentemente $tu \mid d$ y así $d = tuv$. Entonces $tuv$ divide a $xu$ y a $yu$, de donde $tv$ divide a $x$ e $y$, luego $tv$ divide a $t$ y $v$ es unidad. Así, tenemos $(\ast)$.\vspace{0.2cm}\\
+\emph{Demostración: } Que el primero implica el segundo es claro por el resultado anterior. Veamos el recíproco. Sean $x,y \in A$, $t = mcd(x,y)$. Entonces $$z = xy/t = (x/t)y = x(y/t)$$ es múltiplo de $x$ y de $y$. Consideremos otro múltiplo común $u$. Entonces $$tu = mcd(xu,yu) \hspace{0.2cm} (\ast).$$ En efecto, sea $d = mcd(xu,yu)$. Evidentemente $tu \mid d$ y así $d = tuv$. Entonces $tuv$ divide a $xu$ y a $yu$, de donde $tv$ divide a $x$ e $y$, luego $tv$ divide a $t$ y $v$ es unidad. Así, tenemos $(\ast)$.\vspace{0.2cm}\\
 Claramente $xy \mid xu$ y $xy \mid tu$, esto es, $xy / t$ divide a $u$. Así $z = xy/t = mcm(x,y)$, y multiplicando esta igualdad por $t$ queda $zt = xy$.
 
 $\hfill \square$
@@ -2564,16 +2717,17 @@ $\hfill \square$
 $\hfill \square$
 
 Anteriormente vimos que todo elemento primo es irreducible, ahora veremos que dadas unas condiciones también se cumple el recíproco.
+
 \begin{proposition}\label{pregauss0} Supongamos que en un dominio de integridad $A$ se cumple cualquiera de las condiciones de~\ref{eq:mcmd}. Entonces todo elemento irreducible de $A$ es primo.
 \end{proposition}
 \emph{Demostración: } Sean $a \in A$ irreducible e $I = (a)$. Para comprobar que $I$ es primo consideremos $x,y \in A$ con $xy \in I$. Entonces $xy = ab$ con $b \in A$. Por la hipótesis existen $$\alpha = mcm (y,b)$$ $$\beta = mcd(y,b)$$ y se verifica $\alpha \beta = yb.$ Observemos ahora que $xy$ es múltiplo de $b$ y de $y$, luego $\alpha \mid xy$. En consecuencia, podemos escribir $$a = \frac{xy}{\alpha} \cdot \frac{\alpha}{b}; \hspace{0.2cm} \frac{xy}{\alpha}, \frac{\alpha}{b} \in A.$$ Por ser $a$ irreducible existe una unidad $u \in A$ tal que se verifica una de las dos condiciones siguientes: \begin{enumerate}
 \item $xy/\alpha = ua$. Entonces $x = u(\alpha/y)a$, con lo que $x \in (a) = I$. (Notar que $y \mid \alpha$, luego $\alpha /y \in A$.)
-\item $a/b = ua$. Entonces $y = \alpha \beta /b = u \beta a$ y así $y \in (a) = I$.
+\item $\alpha/b = ua$. Entonces $y = \alpha \beta /b = u \beta a$ y así $y \in (a) = I$.
 \end{enumerate}
 
 $\hfill \square$
 
-\begin{proposition}[\textbf{\textit{Identidad de Bézout}}] Sean $x, y \in A^{\ast}$, y supongamos que generan un ideal principal. Entonces existe $z = mcd(x,y)$ y $$z = ax + by$$ con $a,b \in A$.
+\begin{proposition}[\textbf{\textit{Identidad de Bézout}}] Sean $x, y \in A^{\ast}$, y supongamos que generan un ideal principal. Entonces existen $z = mcd(x,y)$, $a,b \in A$ tales que $$z = ax + by.$$
 \end{proposition}
 \emph{Demostración: }Sea $z \in A$ un generador de $(x) + (y)$. Entonces: \begin{enumerate}
 \item $x,y \in (z)$, luego $z$ es un divisor común de $x$ e $y$.
@@ -2625,18 +2779,26 @@ Esta factorización que acabamos de describir nos permite establecer un nuevo ti
 \end{enumerate}
 \end{definition}
 
+\begin{example}Veamos que $\mathbb{Z}[\sqrt{5}i] = \lbrace a + b\sqrt{5}i: a,b \in \mathbb{Z} \rbrace$ es dominio de integridad con las operaciones habituales de suma y producto de complejos:
+
+Como $\mathbb{Z}[\sqrt{5}i]\subseteq \mathbb{C}$ bastará demostrar que $\mathbb{Z}[\sqrt{5}i]$ es subanillo de $\mathbb{C}$. Usamos el conocido teorema de caracterización de subanillos. Claramente, $\mathbb{Z}[\sqrt{5}i] \neq 0$. Para cada par de elementos $a+b \sqrt{5}i, c+d\sqrt{5}i \in \mathbb{Z}[\sqrt{5}i]$ tenemos $$(a+b\sqrt{5}i)-(c+d\sqrt{5}i) = (a-c)+(b-d)\sqrt{5}i\in \mathbb{Z}[\sqrt{5}i]$$ $$(a+b\sqrt{5}i)(c+d\sqrt{5}i) = (ac-5bd)+(ad+bc)\sqrt{5}i\in \mathbb{Z}[\sqrt{5}i].$$ Así, $\mathbb{Z}[\sqrt{5}i]$ es subanillo, y como $\mathbb{C}$ es conmutativo, también lo será $\mathbb{Z}[\sqrt{5}i]$. Además, $1 = 1+0 \sqrt{5}i \in \mathbb{Z}[\sqrt{5}i]$, luego es unitario. Como $(\mathbb{C}, +, \cdot)$ es dominio de integridad, también lo será $\mathbb{Z}[\sqrt{5}i]$.
+\end{example}
+
+$\hfill \blacksquare$
+
 Notar que de la proposición anterior tenemos que los DFU satisfacen la condición de cadena ascendente para ideales principales.
 
 \begin{observation} Algunas observaciones:\begin{enumerate}
 \item Que todo elemento no nulo que no sea unidad sea producto de elementos irreducibles no garantiza la unicidad de dicha factorización. Es necesaria también la primera condición, ya que la unicidad se desprende de que ésta se cumple sobre un dominio de ideales principales.
 \item En un DFU siempre existen mcd y mcm. Efectivamente, puesto que el mcd es el producto de los factores irreducibles comunes elevados al menor exponente y el mcm es el producto de todos los factores irreducibles (comunes y no comunes) elevados al mayor exponente.
 \item Las relaciones entre las distintas estructuras algebraicas estudiadas se puede resumir en: $$Cuerpos \subseteq DE \subseteq DIP \subseteq DFU 	\subseteq DI \subseteq Anillo.$$
-Por ejemplo, las matrices constituyen un anillo pero no un DI, $\mathbb{Z}[\sqrt{-3}]$ es un DI que no es DFU (puesto que $(1+\sqrt{-3})(1-\sqrt{-3}) = 4 = 2 \cdot 2$), el anillo de los polinomios con coeficientes enteros $\mathbb{Z}[X]$ es un DFU que no es DIP o $\mathbb{Z}$ es un DE que no es un cuerpo. \vspace{0.3cm}\\
+Por ejemplo, las matrices constituyen un anillo pero no un DI, $\mathbb{Z}[\sqrt{-3}]$ es un DI que no es DFU (puesto que $(1+\sqrt{-3})(1-\sqrt{-3}) = 4 = 2 \cdot 2$), el anillo de los polinomios con coeficientes enteros $\mathbb{Z}[X]$ es un DFU que no es DIP o $\mathbb{Z}$ es un DE que no es un cuerpo. 
+
 Los anillos $\mathbb{Z}$ y $\mathbb{Z}[i]$ son DE y por tanto DFU. Es precisamente en $\mathbb{Z}$ donde éste resultado se manifiesta como el \textbf{\textit{teorema fundamental de la Aritmética}}: \textit{todo número entero positivo $n$ se escribe de modo único como producto de números primos positivos $p_{1}, \ldots, p_{r}$ de la forma $n = p_{1}^{\alpha_{1}} \ldots p_{r}^{\alpha_{r}}.$}
 \end{enumerate}
 \end{observation}
 
-A continuación veremos todas las propiedades vistas hasta ahora a través de un ejemplo bastante completo:
+A continuación veremos todas las propiedades vistas hasta ahora a través de un ejemplo bastante completo, se trata de $\mathbb{Z}[\sqrt{-5}] =\mathbb{Z}[\sqrt{5}i]$, que ya habíamos probado que era subanillo:
 
 \begin{example} Nos situaremos en el subanillo $A \subseteq \mathbb{C}$ de los números complejos de la forma $a +b\sqrt{-5}$, $a,b \in \mathbb{Z}$. Lo denotaremos $A = \mathbb{Z}[\sqrt{-5}]$ y efectivamente $$\mathbb{Z}[\sqrt{-5}] = \lbrace a + b\sqrt{-5} : a,b \in \mathbb{Z} \rbrace.$$ A lo largo del ejemplo se usará indistintamente tanto $A$ como $\mathbb{Z}[\sqrt{-5}]$. 
 
@@ -2667,7 +2829,7 @@ $\hfill \blacksquare$
 
 A lo largo de la presente sección se llevará a cabo el estudio de los cocientes del anillo de los números enteros $\mathbb{Z}$. Pero antes de eso veamos algunas propiedades del anillo en el que nos encontramos y que ya conocemos gracias a todo lo visto en las secciones anteriores: 
 
-Primero, el resultado central del capítulo, y a partir del cual desarrollaremos el resto.
+Primero, el resultado central de la sección, y a partir del cual desarrollaremos el resto.
 
 \begin{proposition}Sea $n$ un entero positivo. El anillo $\mathbb{Z}/n\mathbb{Z}$ es un cuerpo si y sólo si $n$ es primo.
 \end{proposition}
@@ -2856,22 +3018,21 @@ Es además una propiedad que se puede extender por inducción a un anillo de pol
 
 La división en $A[X]$ está regulada por la conocida como \textbf{\textit{pseudodivisión}}.
 
-\begin{proposition}\label{eq:divPol} Dados $0 \neq f(X), g(X) \in A[X]$, si $a$ es el coeficiente director de $f(X)$, existen un entero $t \geq 0 $ y polinomios $q(X), r(X) \in A[X]$ tales que $a^tg(X) = f(X)q(X)+r(X)$ y ó $r(X) = 0$ ó si $r(X) \neq 0$ se tiene que $\delta (r) < \delta (f)$.
+\begin{proposition}\label{eq:divPol} Dados $0 \neq f(X), g(X) \in A[X]$, si $a$ es el coeficiente director de $f(X)$, existen un entero $t \geq 0 $ y polinomios $q(X), r(X) \in A[X]$ tales que $a^tg(X) = f(X)q(X)+r(X)$ y ó $r(X) = 0$ ó $\delta (r) < \delta (f)$.
 \end{proposition}
 \emph{Demostración: }Si $\delta (g) < \delta (f)$,  basta tomar $t = 0$, $q(X) = 0$ y $r(X) = g(X)$. Supongamos $m = \delta(g) \geq \delta(f) = n$ y procedamos por inducción sobre $m$. Sea $b$ el coeficiente director de $g(X)$. Si $m = 0$, se tiene que $g(X) = b$ y $n = 0$. Como $ag(X)=f(X)b$, basta tomar $t=1$, $q(X)=b$ y $r(X)=0$. Si $m >0$, sea $h(X)=ag(X)-bf(X)X^{m-n}$. Como $\delta(h) < \delta(g)=m$, por inducción existen $t'\geq 0$ y $q'(X), r'(X) \in A[X]$ verificando $a^{t'}h(X) = q'(X)f(X) + r'(X)$, donde ó $r'(X) = 0$ ó $\delta(r') < \delta(f)$. Así $a^{t'+1}g(X) = (q'(X)+a^{t'}bX^{m-n})f(X)+r'(X)$ y basta tomar $t = t'+1$, $q(X) = q'(X) + a^{t'}bX^{m-n}$ y $r(X) = r'(X)$.
 
-
 $\hfill \square$
 
-\begin{corolario}SI $K$ es un cuerpo, $K[x]$ es un dominio euclídeo.
+\begin{corolario}SI $K$ es un cuerpo, $K[X]$ es un dominio euclídeo.
 \end{corolario}
 \emph{Demostración: }En este caso, el grado es una función euclídea.
 
 $\hfill \square$
 
-\begin{corolario}[\textbf{\textit{Teorema del resto}}] Si $a \in A$ y $f(X) \in A[X]$, el resto al dividir $f(X)$ por $(X-a)$ es $f(a)$. En particular, $f(a) = 0$ si y sólo si $X-a \mid f(X)$.
+\begin{corolario}[\textbf{\textit{Teorema del resto}}] Si $a \in A$ y $f(X) \in A[X]$, el resto de dividir $f(X)$ por $(X-a)$ es $f(a)$. En particular, $f(a) = 0$ si y sólo si $X-a \mid f(X)$.
 \end{corolario}
-\emph{Demostración: }Aplicamos~\ref{eq:divPol} con $f(X)$ como dividendo y $X-a$ como divisor y después sustituir $X = a$.
+\emph{Demostración: }Aplicamos~\ref{eq:divPol}, quedando $f(X)= (X-a)g(X)+r(X)$, con $f(X)$ como dividendo, $X-a$ como divisor, $g(X)$ un polinomio cualquiera de $A[X]$ y $r(X)$ el resto. Entonces ó $r(X)=0$, y así está claro que $f(a)$ es el resto (que es $0$), ó $\delta(r) < \delta(X-a)$, y así $r(X)$ sería una constante y $f(a) = (a-a)g(a) + r = r$.
 
 $\hfill \square$
 
@@ -2943,6 +3104,15 @@ Si $A$ es un $DFU$, entonces también lo es $A[X]$.
 \emph{Demostración: }Sea $f(X) \in A[X]$ un polinomio no nulo y no unidad. Escribamos $f(X) = c(f)f_1(X)$, con $f_1(X) \in A[X]$ primitivo, y factorizemos $f_1(X)$ en $K[X]$. Si $p(X) \in K[X]$ es uno de sus factores irreducibles, procediendo de modo habitual, podemos escribir $p(X) = (a/b)p'(X)$, con $a,b \in A$ y $p'(X) \in A[X]$ es primitivo. Más aún, como $p(X)$ es irreducible en $K[X]$, $p'(X)$ es irreducible en $K[X]$, luego, por primitividad, $p'(X)$ es irreducible en $A[X]$. Igualmente, otra vez por primitividad, $a/b \in \mathcal{U}(A) = \mathcal{U}(A[X])$. Por lo tanto, factorizando $c(f)$ en $A$, podemos escribir $$f(X) = ua_1 \cdots a_rp_1'(X) \cdots p_n'(X),$$ con $u \in \mathcal{U}(A[X])$, $a_1, \ldots, a_r \in A$ irreducibles en $A$ y $p_1'(X), \ldots, p_n'(X) \in A[X]$ irreducibles en $A[X]$. Notemos que cada $a_i$ es irreducible en $A[X]$ puesto que lo es en $A$. Por lo tanto la factorización existe. 
 
 Veamos ahora que es única. Sea $a_1\cdots a_rp_1(X) \cdots p_n(X)= b_1\cdots b_sq_1(X) \cdots q_m(X)$, donde $a_1, \ldots, a_r, b_1, \ldots, b_s \in A$ son irreducibles en $A[X]$, luego también en $A$, y $p_1(X), \ldots, p_n(X), q_1(X), \ldots, q_m(X) \in A[X]$ son polinomios no constantes irreducibles en $A[X]$. Por primitividad, $a_1 \cdots a_r \sim b_1 \cdots b_s$, luego $r=s$ y, salvo el orden, $a_i \sim b_i$. Así, $p_1(X) \cdots p_n(X)$ y $q_1(X) \cdots q_m(X)$ son asociados en $K[X]$, pues lo son en $A[X]$ y son primitivos. Por lo tanto $n=m$ y, salvo el orden nuevamente, $p_j(X) \sim q_j(X)$ en $A[X]$, pues son polinomios primitivos asociados en $K[X]$. Así, la factorización es única
+
+$\hfill \square$
+
+\begin{theorem}
+Sea $A$ un dominio de integridad. Entonces $A[x]$ es $DIP$ si y sólo si $A$ es un cuerpo.
+\end{theorem}
+\emph{Demostración: }Si $A$ es un cuerpo sabemos que $A[x]$ es un dominio euclídeo, luego un $DIP$. Recíprocamente, si $A[x]$ es $DIP$, sea $a \in A$ un elemento no nulo y veamos que es una unidad en $A$. Para ello consideramos el ideal $(x,a)$ de $A[x]$. Como ha de ser principal existirá un polinomio $p \in A[x]$ tal que $(x,a)=(p)$, luego $a=pq$ para cierto $q \in A[x]$, pero entonces $\delta (p) + \delta (q)= \delta(a)=0$, luego $\delta(p)=0$ y así $p \in A$. Por otra parte, $x =pr$ para cierto $r \in A[x]$, pero entonces el coeficiente director de $x$, que es $1$, es el producto de $p$ por el coeficiente director de $r$, luego $p$ es una unidad y $(p) = A[x]$.
+
+Entoncecs, $1 \in (p) = (x,a)$, luego $1 = ux+va$, para ciertos polinomios $u,v \in A[x]$. Sin embargo, el término independiente de $ux$ es $0$ y el de $va$ es $ba$, donde $b$ es el término independiente de $v$. Resulta así que $1 = ba$ y $a$ es una unidad en $A$.
 
 $\hfill \square$
 
